@@ -43,7 +43,11 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'usuarios' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/public/images/usuarios',
+            'url' => env('APP_URL').'/public/images/usuarios',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

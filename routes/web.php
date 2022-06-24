@@ -21,10 +21,21 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/inicio', function () {
-    return view('inicio');
-});
+// Route::get('/inicio', function () {
+//     return view('inicio');
+// });
 
+Route::get('/inicio', 'InicioController@index')->name('inicio');
+
+
+
+// Route::get('/', function () {
+//     if(Auth::check())
+//     {
+//         return redirect()->route('inicio');
+//     }
+//     return View::make('auth/login');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -11,6 +11,8 @@
             @yield('lefsidebar')
             @yield('content')
             @yield('scripts')
+            @yield('script')
+
         </div>
     </body>
 </html>

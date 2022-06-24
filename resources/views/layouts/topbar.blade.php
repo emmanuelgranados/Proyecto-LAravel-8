@@ -398,7 +398,7 @@
                     Account Setting</a
                 >
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.html#"
+                <a class="dropdown-item" href="/#"
                     ><i
                     data-feather="log-out"
                     class="feather-sm text-danger me-1 ms-1"

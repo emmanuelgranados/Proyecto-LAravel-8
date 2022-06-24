@@ -25,12 +25,16 @@ class UsuariosController extends Controller
         // Auth::user()->authorizeRoles(['admin', 'Sistemas']);
         // dd(Role::where('activo', 1)->get());
 
-        $usuarios = User::all();
+        $usuarios = User::select('users.id','users.name','users.email','users.activo','roles.nombreRol')
+        ->leftjoin('roles','users.fk_id_rol','=','roles.id')
+        ->where('users.activo',1)
+        ->where('users.eliminado',0)
+        ->get();
 
-        // dd( $usuarios );
+        //  dd( $usuarios );
 
 
-        return view('administracion/usuarios');
+        return view('administracion/usuarios',['usuarios'=>$usuarios]);
         // return view('administracion/usuarios/usuarios', ['usuarios' => User::where('activo', 1)->get(), 'roles' => Role::where('activo', 1)->pluck('name', 'id'),
         //                                                   'empleados_maestra'=>EmpleadosMaestra::select('id_empleado','nombre','apellido_paterno','apellido_materno')->where('activo', 1)->get()]);
     }
