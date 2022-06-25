@@ -2,7 +2,7 @@ $(function () {
 
 });
 
-function nuevo_usuario(id){
+function nuevo_usuario(){
     console.log(id);
 }
 

@@ -16,24 +16,47 @@ class RolesTableSeeder extends Seeder
      * @return void
      */
 
-    static $name = [
-        'admin',
-        'sistemas',
-        'supervisor',
-        'ejecutivo',
-        'socio'
-    ];
-
 
     public function run()
     {
 
-       foreach (self::$name as $name) {
+
         DB::table('roles')->insert([
-            'nombreRol' => $name,
-            'activo' => 1
+            'name' => 'admin',
+            'description'=>'Administrador',
+            'activo' => 1,
+            'eliminado' => 0
         ]);
-     }
+
+
+        DB::table('roles')->insert([
+            'name' => 'sistemas',
+            'description'=>'Sistemas',
+            'activo' => 1,
+            'eliminado' => 0
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'supervisor',
+            'description'=>'Supervisor',
+            'activo' => 1,
+            'eliminado' => 0
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'ejecutivo',
+            'description'=>'Ejecutivo',
+            'activo' => 1,
+            'eliminado' => 0
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'socio',
+            'description'=>'Socio',
+            'activo' => 1,
+            'eliminado' => 0
+        ]);
     }
 }
+
 

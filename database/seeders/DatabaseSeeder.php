@@ -14,11 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // La creación de datos de roles debe ejecutarse primero
+    $this->call(RolesTableSeeder::class);    // Los usuarios necesitarán los roles previamente generados
+    $this->call(UsersTableSeeder::class);
     }
 }

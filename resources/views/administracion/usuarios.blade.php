@@ -8,6 +8,11 @@
 {{-- {{dd($usuarios)}} --}}
 @section('content')
 
+<div id="add-contact" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @include('administracion.nuevoUsuario')
+</div>
+
+
 <div id="main-wrapper">
 
     <div class="page-wrapper">
@@ -24,8 +29,10 @@
                 <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
               </ol>
             </nav>
-            <button class="btn btn-success text-white ms-3 d-none d-md-block"><i class="mdi mdi-account-plus"></i> Nuevo usuario </button>
-          </div>
+            @if(Auth::user()->hasRole('sistemas'))
+            <button class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#add-contact"><i class="mdi mdi-account-plus"></i> Nuevo usuario </button>
+            @endif
+        </div>
         </div>
       </div>
 
@@ -56,7 +63,7 @@
                         Status
                       </td>
                       <td scope="col" class="border-0 font-weight-medium">
-                        Manage
+                        Acciones
                       </td>
                     </tr>
                   </thead>
@@ -66,7 +73,7 @@
                     <th>{{$usuario->id}}</th>
                     <th>{{$usuario->name}}</th>
                     <th>{{$usuario->email}}</th>
-                    <th>{{$usuario->nombreRol}}</th>
+                    <th>{{$usuario->rol}}</th>
                         @if ($usuario->activo == 1)
                         <th> <span class="badge bg-light-success text-success fw-normal"> Activo</span></th>
                          @elseif ($usuario->activo == 0)

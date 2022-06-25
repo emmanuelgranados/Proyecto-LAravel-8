@@ -7,6 +7,7 @@ use App\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,12 +25,13 @@ class UsuariosController extends Controller
     {
         // Auth::user()->authorizeRoles(['admin', 'Sistemas']);
         // dd(Role::where('activo', 1)->get());
-
-        $usuarios = User::select('users.id','users.name','users.email','users.activo','roles.nombreRol')
-        ->leftjoin('roles','users.fk_id_rol','=','roles.id')
-        ->where('users.activo',1)
-        ->where('users.eliminado',0)
-        ->get();
+// dd(Auth::user()->hasRole('admin'));
+      $usuarios =  DB::table('role_user')->selectRaw('users.id , users.name ,users.email , users.activo , roles.name as rol')
+      ->join('roles', 'roles.id', '=', 'role_id')
+      ->join('users', 'users.id', '=', 'user_id')
+      ->where('users.activo',1)
+      ->where('users.eliminado',0)
+      ->get();
 
         //  dd( $usuarios );
 

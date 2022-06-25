@@ -19,7 +19,6 @@ class UsersTableSeeder extends Seeder
             'name' => 'Sistemas',
             'email' => 'sistemas@arca.com',
             'password'=>"pug1",
-            'fk_id_rol'=>2,
             'activo' =>1,
             'eliminado' =>0
         ]);
