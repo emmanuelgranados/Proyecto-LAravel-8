@@ -105,7 +105,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Calle</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" name="cliente[direcciones][0][calle]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -113,7 +113,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Número Exterior</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" name="cliente[direcciones][0][numero_exterior]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -121,7 +121,7 @@
                                                                 <div class="mb-3 ">
                                                                     <label class="control-label">Número Interior</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" name="cliente[direcciones][0][numero_interior]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -132,7 +132,7 @@
                                                                 <div class="mb-3 row">
                                                                     <label class="control-label">Colonia</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" name="cliente[direcciones][0][colonia]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -141,7 +141,10 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Código Postal</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <select name="cliente[direcciones][0][fk_id_codigos_postales]" class="form-control form-select">
+                                                                            <option value="1">Country 1</option>
+                                                                            <option value="2">Country 2</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -149,9 +152,8 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">País</label>
                                                                     <div class="col-md-12">
-                                                                        <select class="form-control form-select">
-                                                                            <option>Country 1</option>
-                                                                            <option>Country 2</option>
+                                                                        <select  name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select">
+                                                                            <option value="1">Country 1</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -162,9 +164,9 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Estado</label>
                                                                     <div class="col-md-12">
-                                                                        <select class="form-control form-select">
-                                                                            <option>Country 1</option>
-                                                                            <option>Country 2</option>
+                                                                        <select name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select">
+                                                                            <option value="1">Country 1</option>
+                                                                            <option value="2">Country 2</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -173,9 +175,9 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Municipio</label>
                                                                     <div class="col-md-12">
-                                                                        <select class="form-control form-select">
-                                                                            <option>Country 1</option>
-                                                                            <option>Country 2</option>
+                                                                        <select name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select">
+                                                                            <option value="1">Country 1</option>
+                                                                            <option value="2">Country 2</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -186,7 +188,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Teléfono 1</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -194,7 +196,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label ">Teléfono 2</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -247,7 +249,7 @@
                                         </td>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="detallesLista" >
                                     {{-- @foreach ($usuarios as $usuario )
                                     <tr>
                                         <th>{{$usuario->id}}</th>

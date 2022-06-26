@@ -12,8 +12,9 @@ $(function () {
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data:datos,
             success:function(data){
-            //    $("#msg").html(data.msg);
                 console.log(data);
+                tabla_clientes();
+
             }
          });
 
@@ -22,11 +23,31 @@ $(function () {
 
 });
 
+tabla_clientes();
 
 function tabla_clientes(){
 
+    $('#detallesLista').empty();
 
+    $.get( 'api/lista_clientes',function(data){
+        console.info(data);
 
+        let tabla = '';
+
+        $.each(data,function(i,ele){
+
+            tabla += '<tr>'+
+                        '<td>'+ ele.id +'</td>'+
+                        '<td>'+ ele.nombre_razon_social +'</td>'+
+                        '<td>'+ ele.rfc +'</td>'+
+                        '<td>'+ ele.email +'</td>'+
+                        '<td>'+ ele.pagina_web +'</td>'+
+                    '</tr>';
+
+        });
+        $('#detallesLista').append(tabla);
+
+    });
 
 
 }
