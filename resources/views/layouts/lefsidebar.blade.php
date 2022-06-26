@@ -73,20 +73,10 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                            aria-expanded="false">
+                        <a class="sidebar-link" href="{{ route('clientes') }}" >
                             <i class="mdi mdi-account-card-details"></i>
                             <span class="hide-menu">Clientes</span>
                         </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a href="eco-products.html" class="sidebar-link">
-                                    <i class="mdi mdi-cards-variant"></i>
-                                    <span class="hide-menu">Products</span>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
