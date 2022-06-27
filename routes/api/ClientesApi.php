@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 Route::get('/lista_clientes', function (Request $request) {
 
-    $clientes = Clientes::all();
+    $clientes = Clientes::where('activo',1)->where('eliminado',0)->get();
 
     return $clientes;
 });

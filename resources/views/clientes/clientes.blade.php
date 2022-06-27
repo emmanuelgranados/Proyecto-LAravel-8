@@ -300,7 +300,8 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Calle</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" id="editar_calle" name="cliente[direcciones][0][calle]" class="form-control">
+                                                                        <input type="hidden" id="editar_id_0" name="direcciones[0][id]" class="form-control">
+                                                                        <input type="text" id="editar_calle_0" name="direcciones[0][calle]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -308,7 +309,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Número Exterior</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" id="editar_numero_exterior" name="cliente[direcciones][0][numero_exterior]" class="form-control">
+                                                                        <input type="text" id="editar_numero_exterior_0" name="direcciones[0][numero_exterior]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -316,7 +317,7 @@
                                                                 <div class="mb-3 ">
                                                                     <label class="control-label">Número Interior</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" id="editar_numero_interior" name="cliente[direcciones][0][numero_interior]" class="form-control">
+                                                                        <input type="text" id="editar_numero_interior_0" name="direcciones[0][numero_interior]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -327,7 +328,7 @@
                                                                 <div class="mb-3 row">
                                                                     <label class="control-label">Colonia</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" id="editar_colonia" name="cliente[direcciones][0][colonia]" class="form-control">
+                                                                        <input type="text" id="editar_colonia_0" name="direcciones[0][colonia]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -336,7 +337,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Código Postal</label>
                                                                     <div class="col-md-12">
-                                                                        <select id="editar_fk_id_codigos_postales" name="cliente[direcciones][0][fk_id_codigos_postales]" class="form-control form-select">
+                                                                        <select id="editar_fk_id_codigos_postales_0" name="direcciones[0][fk_id_codigos_postales]" class="form-control form-select">
                                                                             <option value="1">Country 1</option>
                                                                             <option value="2">Country 2</option>
                                                                         </select>
@@ -347,7 +348,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">País</label>
                                                                     <div class="col-md-12">
-                                                                        <select id="editar_fk_id_paises" name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select">
+                                                                        <select id="editar_fk_id_paises_0" name="direcciones[0][fk_id_paises]"class="form-control form-select">
                                                                             <option value="1">Country 1</option>
                                                                         </select>
                                                                     </div>
@@ -357,9 +358,9 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="mb-3">
-                                                                    <label class="control-label">Estado</label>
+                                                                    <label class="control-label_0">Estado</label>
                                                                     <div class="col-md-12">
-                                                                        <select id="editar_fk_id_estados" name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select">
+                                                                        <select id="editar_fk_id_estados_0" name="direcciones[0][fk_id_estados]" class="form-control form-select">
                                                                             <option value="1">Country 1</option>
                                                                             <option value="2">Country 2</option>
                                                                         </select>
@@ -370,7 +371,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Municipio</label>
                                                                     <div class="col-md-12">
-                                                                        <select id="editar_fk_id_municipios" name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select">
+                                                                        <select id="editar_fk_id_municipios_0" name="direcciones[0][fk_id_municipios]" class="form-control form-select">
                                                                             <option value="1">Country 1</option>
                                                                             <option value="2">Country 2</option>
                                                                         </select>
@@ -383,7 +384,8 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Teléfono 1</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" id="editar_telefono_0" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control">
+                                                                        <input type="hidden" id="editar_telefonos_id_0" name="telefonos[0][id]" >
+                                                                        <input type="text" id="editar_telefonos_telefono_0" name="telefonos[0][telefono]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -391,7 +393,8 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label ">Teléfono 2</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" id="editar_telefono_1" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control">
+                                                                        <input type="hidden" id="editar_telefonos_id_1" name="telefonos[1][id]" >
+                                                                        <input type="text" id="editar_telefonos_telefono_1" name="telefonos[1][telefono]" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>

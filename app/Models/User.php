@@ -9,12 +9,15 @@ use App\Models\Roles;
 class User extends  Authenticatable
 {
 
+    // public $timestamps = false;
+
    protected $table = 'users';
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'foto',
         'activo',
         'eliminado'
     ];

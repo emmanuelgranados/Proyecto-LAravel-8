@@ -56,31 +56,27 @@ class ClientesController extends Controller
     public function editarCliente( Request $request)
     {
 
-        $nuevoCliente = Clientes::create($request->cliente );
-        $nuevaDireccion = $request->cliente['direcciones'];
+        Clientes::where('id',$request->cliente['id'])->update($request->cliente );
 
-        foreach( $nuevaDireccion  as $i => $direccion ){
-
-            $nuevaDireccion[$i]['fk_id_clientes'] = $nuevoCliente->id;
-            $nuevaDireccion = Direcciones::create( $nuevaDireccion[$i] );
-
-            foreach( $direccion['telefonos'] as $j => $telefonos ){
-
-                $direccion['telefonos'][$j]['fk_id_direcciones'] = $nuevaDireccion->id;
-                $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
-
-            }
-
-
+        foreach( $request->direcciones as $direccion ){
+            Direcciones::where('id',$direccion['id'])->update($direccion);
         }
 
-        return "Exito papuuuus";
+        foreach( $request->telefonos  as $telefono ){
+            Telefonos::where('id',$telefono['id'])->update($telefono);
+        }
+
+
+
+        return "Exito papuuuus2";
 
     }
 
-    public function eliminarCliente()
+    public function eliminarCliente( Request $request )
     {
+        Clientes::where('id',$request->id)->update( ['activo' => 0,'eliminado' => 1 ] );
 
+        return "Exito papuuuus3";
     }
 
 }

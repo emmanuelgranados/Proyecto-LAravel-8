@@ -31,5 +31,6 @@
     <link href="../../assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
     <!-- needed css -->
     <link href="dist/css/style.min.css" rel="stylesheet" />
+    <link href="plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
 
 @endsection

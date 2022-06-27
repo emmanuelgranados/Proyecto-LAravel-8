@@ -29,6 +29,7 @@
 
     <script src="plugins/select2/js/select2.min.js"></script>
 
+    <script src="../../assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
       $("#calendar").fullCalendar("option", "height", 650);
     </script>
