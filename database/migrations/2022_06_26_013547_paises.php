@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
-            $table->string('pais');;
+            $table->string('pais');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->boolean('activo')->default(1);
         });
     }
 

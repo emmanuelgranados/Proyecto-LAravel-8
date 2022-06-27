@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->integer('fk_id_paises');
             $table->string('estado');
+            $table->string('clave');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->boolean('activo')->default(1);
         });
     }
 

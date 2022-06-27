@@ -155,7 +155,9 @@
                                                                     <label class="control-label">País</label>
                                                                     <div class="col-md-12">
                                                                         <select  name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
+                                                                            @foreach ( $paises as $pais )
+                                                                                <option value="{{ $pais->id }}">{{ $pais->pais }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -166,9 +168,10 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Estado</label>
                                                                     <div class="col-md-12">
-                                                                        <select name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
-                                                                            <option value="2">Country 2</option>
+                                                                        <select name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select estados">
+                                                                            @foreach ( $estados as $estado )
+                                                                                <option value="{{ $estado->id }}">{{ $estado->estado }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -177,9 +180,8 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Municipio</label>
                                                                     <div class="col-md-12">
-                                                                        <select name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
-                                                                            <option value="2">Country 2</option>
+                                                                        <select name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select municipios">
+
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -349,7 +351,9 @@
                                                                     <label class="control-label">País</label>
                                                                     <div class="col-md-12">
                                                                         <select id="editar_fk_id_paises_0" name="direcciones[0][fk_id_paises]"class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
+                                                                            @foreach ( $paises as $pais )
+                                                                                <option value="{{ $pais->id }}">{{ $pais->pais }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -361,8 +365,9 @@
                                                                     <label class="control-label_0">Estado</label>
                                                                     <div class="col-md-12">
                                                                         <select id="editar_fk_id_estados_0" name="direcciones[0][fk_id_estados]" class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
-                                                                            <option value="2">Country 2</option>
+                                                                            @foreach ( $estados as $estado )
+                                                                                <option value="{{ $estado->id }}">{{ $estado->estado }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>

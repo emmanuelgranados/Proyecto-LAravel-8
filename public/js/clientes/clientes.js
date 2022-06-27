@@ -1,5 +1,22 @@
 $(function () {
 
+    $( ".estados" ).change(function () {
+        var fk_id_estados = $(this).val();
+        $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
+            var municipios = '';
+
+            $.each(data,function(i,ele){
+
+                municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
+
+            });
+            $('.municipios').empty();
+            $('.municipios').append(municipios);
+
+        });
+
+    }).change();
+
     $("#formNuevoCliente").on("submit", function(e){
 
         e.preventDefault();

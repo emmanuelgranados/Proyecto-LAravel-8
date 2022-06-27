@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Clientes;
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
 use App\Models\Direcciones;
+use App\Models\Estados;
+use App\Models\Municipios;
+use App\Models\Paises;
 use App\Models\Telefonos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +26,15 @@ class ClientesController extends Controller
 
 
         $clientes = Clientes::all();
+        $paises = Paises::all();
+        $estados = Estados::all();
 
-        return view('clientes/clientes',['clientes'=>$clientes]);
+        return view('clientes/clientes',[
+            'clientes'=>$clientes,
+            'paises' => $paises,
+            'estados' => $estados
+
+        ]);
 
     }
 
