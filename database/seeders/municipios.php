@@ -698,8 +698,9 @@ class municipios extends Seeder
             (679, 8, 'Hidalgo del Parral', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1),
             (680, 30, 'Hidalgotitlán', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1),
             (681, 19, 'Higueras', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1),
-            (682, 31, 'Hocabá', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1);
-            INSERT INTO `municipios` (`id`, `id_state`, `municipio`, `created_at`, `updated_at`, `activo`) VALUES
+            (682, 31, 'Hocabá', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1)");
+
+            DB::statement("INSERT INTO `municipios` (`id`, `fk_id_estados`, `municipio`, `created_at`, `updated_at`, `activo`) VALUES
             (683, 31, 'Hoctún', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1),
             (684, 31, 'Homún', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1),
             (685, 21, 'Honey', '2020-08-02 02:30:13', '2020-08-02 02:30:13', 1),
@@ -1371,8 +1372,9 @@ class municipios extends Seeder
             (1351, 13, 'San Bartolo Tutotepec', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1),
             (1352, 20, 'San Bartolo Yautepec', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1),
             (1353, 20, 'San Bartolomé Ayautla', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1),
-            (1354, 20, 'San Bartolomé Loxicha', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1);
-            INSERT INTO `municipios` (`id`, `id_state`, `municipio`, `created_at`, `updated_at`, `activo`) VALUES
+            (1354, 20, 'San Bartolomé Loxicha', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1)");
+
+            DB::statement("INSERT INTO `municipios` (`id`, `fk_id_estados`, `municipio`, `created_at`, `updated_at`, `activo`) VALUES
             (1355, 20, 'San Bartolomé Quialana', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1),
             (1356, 20, 'San Bartolomé Yucuañe', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1),
             (1357, 20, 'San Bartolomé Zoogocho', '2020-08-02 02:30:15', '2020-08-02 02:30:15', 1),
