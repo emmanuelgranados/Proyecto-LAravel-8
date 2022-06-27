@@ -26,6 +26,8 @@
     <script src="../../assets/libs/moment/min/moment.min.js"></script>
     <script src="../../assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
     <script src="../../dist/js/pages/calendar/cal-init.js"></script>
+
+    <script src="../../assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
       $("#calendar").fullCalendar("option", "height", 650);
     </script>
