@@ -44,9 +44,6 @@ $(function () {
 
         e.preventDefault();
 
-
-
-
          Swal.fire({
             title: "¿Esta seguro que quiere modificar este cliente?",
             type: "warning",
@@ -107,7 +104,7 @@ function tabla_clientes(){
                         '</a>'+
                         '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">'+
                           '<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoCliente('+ ele.id +')" >Editar</a></li>'+
-                          '<li><a class="dropdown-item" href="table-basic.html#">Borrar</a></li>'+
+                          '<li><a class="dropdown-item" onclick="eliminarCliente('+ ele.id +')">Borrar</a></li>'+
                         '</ul>'+
                       '</div></td>'+
                     '</tr>';
@@ -150,5 +147,35 @@ function cargarInfoCliente(id){
         });
     });
 
+}
+
+function eliminarCliente(id){
+
+    Swal.fire({
+            title: "¿Esta seguro que quiere eliminar este cliente?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+          }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    type:'POST',
+                    url:'eliminar_cliente',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data:{id:id},
+                    success:function(data){
+                        tabla_clientes();
+                        $('#cerrarModalEditar').trigger("click");
+                        Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
+
+                    }
+                });
+
+            }
+          });
 }
 

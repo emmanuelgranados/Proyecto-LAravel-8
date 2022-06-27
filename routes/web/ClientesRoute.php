@@ -9,6 +9,7 @@ Route::group(['namespace' => 'Clientes'], function () {
     Route::post('lista_cliente', 'ClientesController@nuevoCliente');
     Route::post('nuevo_cliente', 'ClientesController@nuevoCliente');
     Route::post('editar_cliente', 'ClientesController@editarCliente');
+    Route::post('eliminar_cliente', 'ClientesController@eliminarCliente');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');

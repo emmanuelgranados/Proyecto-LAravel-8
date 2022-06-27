@@ -72,9 +72,11 @@ class ClientesController extends Controller
 
     }
 
-    public function eliminarCliente()
+    public function eliminarCliente( Request $request )
     {
+        Clientes::where('id',$request->id)->update( ['activo' => 0,'eliminado' => 1 ] );
 
+        return "Exito papuuuus3";
     }
 
 }
