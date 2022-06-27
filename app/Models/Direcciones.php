@@ -27,5 +27,21 @@ class Direcciones extends  Model
         'eliminado'
     ];
 
+    public function pais()
+    {
+        return $this->hasOne(Paises::class,'id','fk_id_paises');
+    }
+    public function estado()
+    {
+        return $this->hasOne(Estados::class, 'id', 'fk_id_estados');
+    }
+    public function municipio()
+    {
+        return $this->hasOne(Municipios::class, 'id', 'fk_id_municipios');
+    }
 
+    public function telefonos()
+    {
+        return $this->hasMany(Telefonos::class,'fk_id_direcciones','id');
+    }
 }

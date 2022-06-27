@@ -22,5 +22,9 @@ class Clientes extends  Model
         'eliminado'
     ];
 
+    public function direcciones()
+    {
+        return $this->hasMany(Direcciones::class, 'fk_id_clientes','id');
+    }
 
 }

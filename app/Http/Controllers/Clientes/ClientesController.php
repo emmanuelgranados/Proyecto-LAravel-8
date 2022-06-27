@@ -53,8 +53,28 @@ class ClientesController extends Controller
 
     }
 
-    public function actualizarCliente()
+    public function editarCliente( Request $request)
     {
+
+        $nuevoCliente = Clientes::create($request->cliente );
+        $nuevaDireccion = $request->cliente['direcciones'];
+
+        foreach( $nuevaDireccion  as $i => $direccion ){
+
+            $nuevaDireccion[$i]['fk_id_clientes'] = $nuevoCliente->id;
+            $nuevaDireccion = Direcciones::create( $nuevaDireccion[$i] );
+
+            foreach( $direccion['telefonos'] as $j => $telefonos ){
+
+                $direccion['telefonos'][$j]['fk_id_direcciones'] = $nuevaDireccion->id;
+                $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
+
+            }
+
+
+        }
+
+        return "Exito papuuuus";
 
     }
 
