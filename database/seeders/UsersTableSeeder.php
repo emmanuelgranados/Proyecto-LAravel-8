@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Roles;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
@@ -15,13 +17,31 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Sistemas',
-            'email' => 'sistemas@arca.com',
-            'password'=>"pug1",
-            'activo' =>1,
-            'eliminado' =>0
-        ]);
+
+        $role_sistemas = Roles::where('name', 'sistemas')->first();
+        $role_admin = Roles::where('name', 'admin')->first();
+
+        $user = new User();
+        $user->name = 'Sistemas';
+        $user->email = 'sistemas@arca.com';
+        $user->password = bcrypt('secret');
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_sistemas);
+
+        $user = new User();
+        $user->name = 'Admin';
+        $user->email = 'admin@example.com';
+        $user->password = bcrypt('secret');
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_admin);
+
+
 
     }
 }

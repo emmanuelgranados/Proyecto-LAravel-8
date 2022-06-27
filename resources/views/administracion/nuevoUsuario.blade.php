@@ -1,112 +1,48 @@
 
-                    <div class="modal-dialog">
+            <form  class="formNuevoUsuario" id="formNuevoUsuario" method="POST" enctype="multipart/form-data">
+
+           <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header d-flex align-items-center">
                           <h4 class="modal-title" id="myModalLabel">
-                            Add New Contact
+                            Nuevo Usuario
                           </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal form-material">
                             <div class="form-group mb-3">
                               <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Type name"
-                                />
+                                <label for="name"class="control-label">Nombre de Usuario</label>
+                                <input type="text" id="name" name="name"class="form-control" placeholder="Nombre de Usaurio"/>
                               </div>
                               <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Email"
-                                />
+                                <label for="email"class="control-label">Correo Electronico</label>
+                                <input type="text" id="email" name="email"class="form-control" placeholder="usuario@arca.com"/>
                               </div>
                               <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Phone"
-                                />
+                                <label for="password" class="control-label">Contraseña</label>
+                                <input type="password" id="password" name="password" class="form-control">
                               </div>
                               <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Designation"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Age"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Date of joining"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Salary"
-                                />
-                              </div>
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span
-                                    class="input-group-text"
-                                    id="inputGroupFileAddon01"
-                                    >Upload</span
-                                  >
-                                </div>
-                                <div class="custom-file">
-                                  <input
-                                    type="file"
-                                    class="custom-file-input"
-                                    id="inputGroupFile01"
-                                    aria-describedby="inputGroupFileAddon01"
-                                  />
-                                  <label
-                                    class="custom-file-label"
-                                    for="inputGroupFile01"
-                                    >Choose file</label
-                                  >
-                                </div>
-                              </div>
+                                <label for="rol" class="control-label">Rol</label>
+
+                                <select id="rol_alta" name="roles[]"class="form-control select2"  style="height: 36px; width: 100%">
+                                @foreach ($roles as $rol)
+                                <option value="{{$rol->id}}">{{$rol->name}}</option>
+                                @endforeach
+                                </select>
                             </div>
+                             </div>
                           </form>
                         </div>
                         <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-info waves-effect"
-                            data-bs-dismiss="modal"
-                          >
-                            Save
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-default waves-effect"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancel
-                          </button>
+                          <button type="submit" class="btn btn-info waves-effect" data-bs-dismiss="modal"> Guardar</button>
+                          <button type="button"  id="cerrarModalNuevo" class="btn btn-default waves-effect" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                       </div>
                       <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
 
+            </form>

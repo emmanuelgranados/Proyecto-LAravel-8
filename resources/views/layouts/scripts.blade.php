@@ -21,11 +21,13 @@
     <script src="../../dist/js/feather.min.js"></script>
     <script src="../../dist/js/custom.min.js"></script>
     <!-- This Page JS -->
-    <script src="../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="../../dist/js/pages/dashboards/dashboard1.js"></script>
+    {{-- <script src="../../assets/libs/apexcharts/dist/apexcharts.min.js"></script> --}}
+    {{-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> --}}
     <script src="../../assets/libs/moment/min/moment.min.js"></script>
     <script src="../../assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
     <script src="../../dist/js/pages/calendar/cal-init.js"></script>
+
+    <script src="plugins/select2/js/select2.min.js"></script>
 
     <script src="../../assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>

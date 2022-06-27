@@ -14,7 +14,9 @@ class Roles extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nombreRol',
+        'name',
+        'description',
+        'eliminado',
         'activo' ];
 
 
