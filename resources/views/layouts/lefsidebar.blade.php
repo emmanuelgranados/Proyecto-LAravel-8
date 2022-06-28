@@ -11,10 +11,10 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link has-arrow waves-effect waves-dark profile-dd" href="javascript:void(0)"
                             aria-expanded="false"><img src="../../assets/images/users/1.jpg" class="rounded-circle ms-2"
-                                width="30" /><span class="hide-menu">Steve Jection </span></a>
+                                width="30" /><span class="hide-menu">Sección de {{auth()->user()->name}} </span></a>
                         <ul aria-expanded="false" class="collapse first-level">
                             <li class="sidebar-item">
-                                <a href="javascript:void(0)" class="sidebar-link">
+                                <a href="{{ route('perfilUsuario') }}" class="sidebar-link">
                                     <i class="ti-user"></i>
                                     <span class="hide-menu"> My Profile </span>
                                 </a>

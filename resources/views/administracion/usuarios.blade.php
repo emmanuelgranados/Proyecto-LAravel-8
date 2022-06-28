@@ -7,6 +7,11 @@
 
 {{-- {{dd($roles)}} --}}
 @section('content')
+<style>
+    p {
+    color: red;
+}
+</style>
 
 <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     @include('administracion.nuevoUsuario')
@@ -57,54 +62,7 @@
                 <h5 class="card-title mb-0">Lista de usuarios</h5>
               </div>
               <div class="table-responsive">
-                <table class="table no-wrap user-table mb-0">
-                  <thead class="table-light">
-                    <tr>
-                      <td scope="col" class="border-0 font-weight-medium ps-4" >
-                        #
-                      </td>
-                      <td scope="col" class="border-0 font-weight-medium">
-                      Nombre
-                      </td>
-                      <td scope="col" class="border-0 font-weight-medium">
-                        Email
-                      </td>
-                      <td scope="col" class="border-0 font-weight-medium">
-                        Rol
-                      </td>
-                      <th scope="col" class="border-0 font-weight-medium">
-                        Status
-                      </td>
-                      <td scope="col" class="border-0 font-weight-medium">
-                        Acciones
-                      </td>
-                    </tr>
-                  </thead>
-
-
-                    <tbody id="detallesLista" ></tbody>
-                {{-- @foreach ($usuarios as $usuario )
-                <tr>
-                    <th>{{$usuario->id}}</th>
-                    <th>{{$usuario->name}}</th>
-                    <th>{{$usuario->email}}</th>
-                    <th>{{$usuario->rol}}</th>
-                        @if ($usuario->activo == 1)
-                        <th> <span class="badge bg-light-success text-success fw-normal"> Activo</span></th>
-                         @elseif ($usuario->activo == 0)
-                         <th><span class="badge bg-light-warning text-warning fw-normal">Inactivo</span></th>
-                        @endif
-                    <th>
-                        <button title="Detalles" onclick="detalle_usuario({{$usuario->id}})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-contact" ><i data-feather="eye" class="feather-sm fill-white"></i></button>
-                        <button title="Editar" onclick="editar_usuario({{$usuario->id}})"    class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#editar-contact"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                        <button title="Eliminar" onclick="delete_usuario({{$usuario->id}})" class="btn text-center btn-small btn-link font-weight-bold botoncheckdelete" data-bs-toggle="modal" data-bs-target="#delete-contact"><i data-feather="trash-2" class="feather-sm fill-white"></i></button>
-                    </th>
-
-                </tr>
-                @endforeach --}}
-
-
-
+                <table   id="usuarios"  class="table table-striped table-bordered display">
                 </table>
               </div>
             </div>
@@ -124,5 +82,6 @@
 
 
 @section('script')
+
     <script src="js/administracion/usuarios.js" as></script>
 @endsection

@@ -31,7 +31,7 @@ class UsuariosController extends Controller
      }
 
 
-     public function crear_usuario(Request $request){
+     public function crear_usuario(UsuarioRequest $request){
 
 
 
