@@ -146,6 +146,14 @@ function cargarInfoCliente(id){
                 $.each(ele,function(j,ele2){
                     $.each(ele2,function(a,ele3){
                         $('#editar_'+a+'_'+j).val(ele3).change();
+                        console.info(a,ele3);
+                        if( a == 'fk_id_estados' ){
+
+                            cargarMunicipios('#editar_fk_id_municipios_'+j,ele3,ele2.fk_id_municipios);
+
+                        }
+
+
 
                         if( a == 'telefonos' ){
 
@@ -155,6 +163,7 @@ function cargarInfoCliente(id){
                                     $('#editar_telefonos_'+c+'_'+b).val(ele5).change();
                                 });
                             });
+
                         }
 
                     });
@@ -169,30 +178,52 @@ function cargarInfoCliente(id){
 function eliminarCliente(id){
 
     Swal.fire({
-            title: "¿Esta seguro que quiere eliminar este cliente?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Aceptar",
-          }).then((result) => {
-            if (result.value) {
+        title: "¿Esta seguro que quiere eliminar este cliente?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
 
-                $.ajax({
-                    type:'POST',
-                    url:'eliminar_cliente',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data:{id:id},
-                    success:function(data){
-                        tabla_clientes();
-                        $('#cerrarModalEditar').trigger("click");
-                        Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
+            $.ajax({
+                type:'POST',
+                url:'eliminar_cliente',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
+                    tabla_clientes();
+                    $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
 
-                    }
-                });
+                }
+            });
 
-            }
-          });
+        }
+    });
 }
 
+function cargarMunicipios(campo,fk_id_estados,seleccion){
+
+    $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
+        var municipios = '';
+
+        $.each(data,function(i,ele){
+            console.log( parseInt(seleccion) , ele.id);
+            if( parseInt(seleccion) != ele.id ){
+                municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
+            }else{
+                console.info('aqui ');
+                municipios += '<option value="'+ ele.id +'" selected>'+ ele.municipio +'</option>';
+            }
+
+        });
+        $(campo).empty();
+        $(campo).append(municipios);
+        // $(campo).val(ele5).change();
+
+    });
+
+}
