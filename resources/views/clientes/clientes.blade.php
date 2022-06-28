@@ -139,17 +139,7 @@
                                                                 </div>
                                                             </div>
                                                             <!--/span-->
-                                                            <div class="col-md-4">
-                                                                <div class="mb-3">
-                                                                    <label class="control-label">Código Postal</label>
-                                                                    <div class="col-md-12">
-                                                                        <select name="cliente[direcciones][0][fk_id_codigos_postales]" class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
-                                                                            <option value="2">Country 2</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
                                                             <div class="col-md-4">
                                                                 <div class="mb-3">
                                                                     <label class="control-label">País</label>
@@ -162,9 +152,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-4">
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Estado</label>
                                                                     <div class="col-md-12">
@@ -176,12 +164,23 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Municipio</label>
                                                                     <div class="col-md-12">
                                                                         <select name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select municipios">
 
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label class="control-label">Código Postal</label>
+                                                                    <div class="col-md-12">
+                                                                        <select name="cliente[direcciones][0][fk_id_codigos_postales]" class="form-control form-select codigosPostales">
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -334,18 +333,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!--/span-->
-                                                            <div class="col-md-4">
-                                                                <div class="mb-3">
-                                                                    <label class="control-label">Código Postal</label>
-                                                                    <div class="col-md-12">
-                                                                        <select id="editar_fk_id_codigos_postales_0" name="direcciones[0][fk_id_codigos_postales]" class="form-control form-select">
-                                                                            <option value="1">Country 1</option>
-                                                                            <option value="2">Country 2</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <div class="col-md-4">
                                                                 <div class="mb-3">
                                                                     <label class="control-label">País</label>
@@ -358,13 +345,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-4">
                                                                 <div class="mb-3">
                                                                     <label class="control-label_0">Estado</label>
                                                                     <div class="col-md-12">
-                                                                        <select id="editar_fk_id_estados_0" name="direcciones[0][fk_id_estados]" class="form-control form-select">
+                                                                        <select id="editar_fk_id_estados_0" name="direcciones[0][fk_id_estados]" class="form-control form-select estados">
                                                                             @foreach ( $estados as $estado )
                                                                                 <option value="{{ $estado->id }}">{{ $estado->estado }}</option>
                                                                             @endforeach
@@ -372,11 +357,27 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+
+                                                        </div>
+                                                        <div class="row">
+
                                                             <div class="col-md-6">
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Municipio</label>
                                                                     <div class="col-md-12">
-                                                                        <select id="editar_fk_id_municipios_0" name="direcciones[0][fk_id_municipios]" class="form-control form-select  "></select>
+                                                                        <select id="editar_fk_id_municipios_0" name="direcciones[0][fk_id_municipios]" class="form-control form-select municipios "></select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label class="control-label">Código Postal</label>
+                                                                    <div class="col-md-12">
+                                                                        <select id="editar_fk_id_codigos_postales_0" name="direcciones[0][fk_id_codigos_postales]" class="form-control form-select codigosPostales">
+                                                                            <option value="1">Country 1</option>
+                                                                            <option value="2">Country 2</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>

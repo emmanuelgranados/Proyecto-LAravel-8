@@ -64,9 +64,9 @@
                         </a>
                         <ul aria-expanded="false" class="collapse first-level">
                             <li class="sidebar-item">
-                                <a href="eco-products.html" class="sidebar-link">
+                                <a href="{{ route('bitacora') }}" class="sidebar-link">
                                     <i class="mdi mdi-cards-variant"></i>
-                                    <span class="hide-menu">Products</span>
+                                    <span class="hide-menu">Bitacaora</span>
                                 </a>
                             </li>
 

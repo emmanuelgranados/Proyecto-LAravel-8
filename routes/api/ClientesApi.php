@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Clientes;
+use App\Models\CodigosPostales;
 use App\Models\Municipios;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,18 @@ Route::get('/obtener_municipios', function (Request $request) {
     ->get();
 
     return $municipios;
+
+});
+
+Route::get('/obtener_codigos_postales', function (Request $request) {
+
+    $cp = CodigosPostales::select('cp')
+    ->where('fk_id_estados',$request->fk_id_estados)
+    ->orderBy('cp')
+    ->groupBy('cp')
+    ->get();
+
+    return $cp;
 
 });
 
