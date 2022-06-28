@@ -30,6 +30,14 @@
     <script src="plugins/select2/js/select2.min.js"></script>
 
     <script src="../../assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="/datatables/datatables.css">
+    <script type="text/javascript" charset="utf8" src="/datatables/datatables.js"></script>
+    <!-- Moment.js: -->
+    <script src="https://cdn.datatables.net/plug-ins/1.11.3/dataRender/datetime.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
     <script>
       $("#calendar").fullCalendar("option", "height", 650);
     </script>

@@ -29,7 +29,7 @@ class UsuarioRequest extends FormRequest
         return [
 
           'name'                     => 'required|max:20',
-          'email'                    => 'required|max:30',
+          'email'                    => 'required|email|max:30',
           'password'                 => 'required|max:30',
           'roles'                    => 'required',
           'foto'                     => 'image|mimes:png,jpg,jpeg,svg,gif|max:2040',

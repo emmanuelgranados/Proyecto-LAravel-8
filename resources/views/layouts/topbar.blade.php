@@ -333,7 +333,7 @@
                     class="rounded-circle"
                     width="36"
                 />
-                <span class="ms-2 font-weight-medium">Steve</span
+                <span class="ms-2 font-weight-medium">{{auth()->user()->name}}</span
                 ><span class="fas fa-angle-down ms-2"></span>
                 </a>
                 <div
@@ -364,11 +364,11 @@
                     />
                     </div>
                     <div class="ms-2">
-                    <h4 class="mb-0 text-white">Steave Jobs</h4>
-                    <p class="mb-0">varun@gmail.com</p>
+                    <h4 class="mb-0 text-white">{{auth()->user()->name}}</h4>
+                    <p class="mb-0">{{auth()->user()->email}}</p>
                     </div>
                 </div>
-                <a class="dropdown-item" href="index.html#"
+                <a class="dropdown-item" href="{{ route('perfilUsuario') }}"
                     ><i
                     data-feather="user"
                     class="feather-sm text-info me-1 ms-1"

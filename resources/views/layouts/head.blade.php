@@ -7,17 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex,nofollow" />
-    <title>Ample Template by WrapPixel</title>
+    <title>ARCA Despacho Juridico y Contable</title>
     <link
       rel="canonical"
       href="https://www.wrappixel.com/templates/ampleadmin/"
     />
     <!-- Favicon icon -->
-    <link
+    {{-- <link
       rel="icon"
       type="image/png"
       sizes="16x16"
       href="https://demos.wrappixel.com/premium-admin-templates/bootstrap/ample-bootstrap/package/assets/images/favicon.png"
+    /> --}}
+
+      <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/logos/logo2.png"
     />
     <link
       rel="stylesheet"
@@ -32,5 +39,6 @@
     <!-- needed css -->
     <link href="dist/css/style.min.css" rel="stylesheet" />
     <link href="plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+
 
 @endsection
