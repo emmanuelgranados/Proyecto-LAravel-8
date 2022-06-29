@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_final')->nullable();
             $table->dateTime('fecha_registro')->useCurrent();
-            $table->integer('fk_id_estados');
+            $table->integer('fk_id_estatus');
             $table->boolean('eliminado')->default(0);
         });
     }

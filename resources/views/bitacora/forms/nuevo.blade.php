@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <form  class="formNuevoCliente" id="formNuevoCliente" method="POST">
+                            <form  class="formNuevaTarea" id="formNuevaTarea" method="POST">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">
@@ -18,11 +18,10 @@
                                             <div class="col-md-12">
 
                                                 <div class="mb-3">
-                                                    <label class="control-label">Personal que Va a Realizar la Tareas</label>
+                                                    <label class="control-label">Personal Asignado</label>
                                                     <div class="col-md-12">
-                                                        <select id="selectUsuarios" name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select ">
-
-                                                        </select>
+                                                        <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
+                                                        <select id="selectUsuarios" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
                                                     </div>
                                                 </div>
 
@@ -32,7 +31,7 @@
                                             <div class="col-md-12">
                                                 <div class="mb-3">
                                                     <label>Tarea a Realizar</label>
-                                                    <textarea class="form-control" rows="5"></textarea>
+                                                    <textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>
                                                   </div>
                                             </div>
                                         </div>
@@ -41,8 +40,8 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Cliente</label>
                                                     <div class="col-md-12">
-                                                    {{-- <input type="text" class="form-control nuevoCliente" name="cliente[rfc]" placeholder="XAXX010101000"> --}}
-                                                    <select id="selectClientes" name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select ">
+                                                    {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
+                                                    <select id="selectClientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
 
                                                     </select>
                                                     </div>
@@ -53,7 +52,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Inicio</label>
                                                     <div class="col-md-12">
-                                                    <input type="datetime-local" class="form-control" name="cliente[pagina_web]" >
+                                                    <input type="datetime-local" class="form-control" name="tarea[fecha_inicio]" >
                                                     {{-- <small class="form-control-feedback">
                                                         This field has error.
                                                     </small> --}}
@@ -64,7 +63,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Final</label>
                                                     <div class="col-md-12">
-                                                    <input type="datetime-local" class="form-control" name="cliente[pagina_web]">
+                                                    <input type="datetime-local" class="form-control" name="tarea[fecha_final]">
                                                     {{-- <small class="form-control-feedback">
                                                         This field has error.
                                                     </small> --}}
@@ -79,19 +78,34 @@
                                             <div class="col-md-12">
                                                 <div class="mb-3">
                                                     <label>Comentario</label>
-                                                    <textarea class="form-control" rows="5"></textarea>
+                                                    <input type="hidden" name="comentario[fk_id_users]" value="{{ Auth::user()->id }}">
+                                                    <textarea class="form-control" rows="5" name="comentario[comentario]"></textarea>
                                                   </div>
                                             </div>
                                         </div>
 
 
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
+
+                                                <div class="mb-3">
+                                                    <label class="control-label">Prioridad</label>
+                                                    <div class="col-md-12">
+                                                        <select name="tarea[fk_id_prioridades]" class="form-control form-select estados">
+                                                            <option value="1">Baja</option>
+                                                            <option value="2">Media</option>
+                                                            <option value="3">Alta</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
 
                                                 <div class="mb-3">
                                                     <label class="control-label">Estatus de la Tarea</label>
                                                     <div class="col-md-12">
-                                                        <select name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select estados">
+                                                        <select name="tarea[fk_id_estatus]" class="form-control form-select estados">
                                                             <option value="1">En proceso</option>
                                                             <option value="2" selected>Pendiente</option>
                                                             <option value="3">Terminado</option>

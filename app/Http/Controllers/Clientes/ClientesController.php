@@ -25,6 +25,7 @@ class ClientesController extends Controller
     {
 
 
+
         $clientes = Clientes::all();
         $paises = Paises::all();
         $estados = Estados::all();

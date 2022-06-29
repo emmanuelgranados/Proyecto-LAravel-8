@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Bitacora;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
+use App\Models\Comentarios;
 use App\Models\Direcciones;
 use App\Models\Estados;
 use App\Models\Municipios;
 use App\Models\Paises;
+use App\Models\Tareas;
 use App\Models\Telefonos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,40 +26,42 @@ class BitacoraController extends Controller
     public function index()
     {
 
-
-        $clientes = Clientes::all();
-        $paises = Paises::all();
-        $estados = Estados::all();
-
-        return view('bitacora/bitacora',[
-            'clientes'=>$clientes,
-            'paises' => $paises,
-            'estados' => $estados
-
-        ]);
+        // dd();
+        return view('bitacora/bitacora');
 
     }
 
-    public function nuevoCliente( Request $request)
+    public function nuevaTarea( Request $request)
     {
 
-        $nuevoCliente = Clientes::create($request->cliente );
-        $nuevaDireccion = $request->cliente['direcciones'];
+        // dd($request);
 
-        foreach( $nuevaDireccion  as $i => $direccion ){
+        $nuevaTarea = Tareas::create($request->tarea);
 
-            $nuevaDireccion[$i]['fk_id_clientes'] = $nuevoCliente->id;
-            $nuevaDireccion = Direcciones::create( $nuevaDireccion[$i] );
+        $comentario = $request->comentario;
 
-            foreach( $direccion['telefonos'] as $j => $telefonos ){
+        $comentario['fk_id_tareas'] = $nuevaTarea->id;
 
-                $direccion['telefonos'][$j]['fk_id_direcciones'] = $nuevaDireccion->id;
-                $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
+        $nuevaComentario = Comentarios::create($comentario);
 
-            }
+        // dd($comentario);
+
+        // $nuevaDireccion = $request->cliente['direcciones'];
+
+        // foreach( $nuevaDireccion  as $i => $direccion ){
+
+        //     $nuevaDireccion[$i]['fk_id_clientes'] = $nuevoCliente->id;
+        //     $nuevaDireccion = Direcciones::create( $nuevaDireccion[$i] );
+
+        //     foreach( $direccion['telefonos'] as $j => $telefonos ){
+
+        //         $direccion['telefonos'][$j]['fk_id_direcciones'] = $nuevaDireccion->id;
+        //         $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
+
+        //     }
 
 
-        }
+        // }
 
         return "Exito papuuuus";
 

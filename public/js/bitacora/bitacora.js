@@ -1,44 +1,44 @@
 $(function () {
 
-    $( ".estados" ).change(function () {
+    // $( ".estados" ).change(function () {
 
-        var fk_id_estados = $(this).val();
+    //     var fk_id_estados = $(this).val();
 
-        $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
-            var municipios = '';
+    //     $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
+    //         var municipios = '';
 
-            $.each(data,function(i,ele){
+    //         $.each(data,function(i,ele){
 
-                municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
+    //             municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
 
-            });
-            $('.municipios').empty();
-            $('.municipios').append(municipios);
+    //         });
+    //         $('.municipios').empty();
+    //         $('.municipios').append(municipios);
 
-        });
+    //     });
 
-        $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
-            console.info(data);
-            var cp = '';
+    //     $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
+    //         console.info(data);
+    //         var cp = '';
 
-            $.each(data,function(i,ele){
+    //         $.each(data,function(i,ele){
 
-                cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
+    //             cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
 
-            });
-            $('.codigosPostales').empty();
-            $('.codigosPostales').append(cp);
+    //         });
+    //         $('.codigosPostales').empty();
+    //         $('.codigosPostales').append(cp);
 
-        });
+    //     });
 
-    }).change();
+    // }).change();
 
-    $("#formNuevoCliente").on("submit", function(e){
+    $("#formNuevaTarea").on("submit", function(e){
 
         e.preventDefault();
 
         Swal.fire({
-            title: "¿Esta seguro que desea agregar un nuevo cliente?",
+            title: "¿Esta seguro que desea agregar una nueva tarea?",
             // text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: true,
@@ -50,14 +50,14 @@ $(function () {
             if (result.value) {
                 $.ajax({
                     type:'POST',
-                    url:'nuevo_cliente',
+                    url:'nueva_tarea',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
 
-                        tabla_clientes();
+                        // tabla_clientes();
                         $('#cerrarModalNuevo').trigger("click");
-                        Swal.fire("¡Éxito!", "Se agrego un nuevo registro de cliente.", "success");
+                        Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
 
                     }
                  });
@@ -69,41 +69,41 @@ $(function () {
 
       });
 
-      $("#formEditarCliente").on("submit", function(e){
+    //   $("#formEditarCliente").on("submit", function(e){
 
-        e.preventDefault();
+    //     e.preventDefault();
 
-         Swal.fire({
-            title: "¿Esta seguro que quiere modificar este cliente?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Aceptar",
-          }).then((result) => {
-            if (result.value) {
+    //      Swal.fire({
+    //         title: "¿Esta seguro que quiere modificar este cliente?",
+    //         type: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         cancelButtonText: "Cancelar",
+    //         confirmButtonText: "Aceptar",
+    //       }).then((result) => {
+    //         if (result.value) {
 
-                let datos = $(this).serialize() ;
+    //             let datos = $(this).serialize() ;
 
-                $.ajax({
-                    type:'POST',
-                    url:'editar_cliente',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data:datos,
-                    success:function(data){
-                        console.log(data);
-                        tabla_clientes();
-                        $('#cerrarModalEditar').trigger("click");
-                        Swal.fire("¡Éxito!", "Se modifico la información del cliente.", "success");
+    //             $.ajax({
+    //                 type:'POST',
+    //                 url:'editar_cliente',
+    //                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    //                 data:datos,
+    //                 success:function(data){
+    //                     console.log(data);
+    //                     tabla_clientes();
+    //                     $('#cerrarModalEditar').trigger("click");
+    //                     Swal.fire("¡Éxito!", "Se modifico la información del cliente.", "success");
 
-                    }
-                });
+    //                 }
+    //             });
 
-            }
-          });
+    //         }
+    //       });
 
-      });
+    //   });
 
 
 });
@@ -152,11 +152,11 @@ function cargarUsuarios(){
 cargarClientes();
 
 function cargarClientes(){
-    alert();
+
     $.get('api/obtener_clientes',function(data){
 
         $.each(data,function(i,ele){
-            console.info(i,ele);
+
             selectClientes += '<option value="'+ ele.id +'">'+ ele.nombre_razon_social +'</option>';
 
         });
@@ -167,75 +167,149 @@ function cargarClientes(){
 
 }
 
-function eliminarCliente(id){
+cargarListaTareasActivas()
 
-    Swal.fire({
-        title: "¿Esta seguro que quiere eliminar este cliente?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        cancelButtonText: "Cancelar",
-        confirmButtonText: "Aceptar",
-        }).then((result) => {
-        if (result.value) {
+function cargarListaTareasActivas(){
 
-            $.ajax({
-                type:'POST',
-                url:'eliminar_cliente',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:{id:id},
-                success:function(data){
-                    tabla_clientes();
-                    $('#cerrarModalEditar').trigger("click");
-                    Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
+    $.get( 'api/obtener_lista_tareas_activas',function(data){
 
-                }
-            });
-
-        }
-    });
-}
-
-function cargarMunicipios(campo,fk_id_estados,seleccion){
-
-    $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
-        var municipios = '';
+        let listaTareasActivas = '';
 
         $.each(data,function(i,ele){
-            console.log( parseInt(seleccion) , ele.id);
-            if( parseInt(seleccion) != ele.id ){
-                municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
-            }else{
-                console.info('aqui ');
-                municipios += '<option value="'+ ele.id +'" selected>'+ ele.municipio +'</option>';
-            }
+
+            listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
+                                    '<div class="form-check border-start border-2 border-info ps-1">'+
+                                        // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
+                                        '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
+                                            '<a href="#"><span>'+ ele.tarea +'</span></a>'+
+                                        '</label>',
+                                    '</div>',
+                                   '</li>';
 
         });
-        $(campo).empty();
-        $(campo).append(municipios);
+        $('#listaTareasActivas').append(listaTareasActivas);
 
     });
 
+
 }
 
-function cargarCodigosPostales(campo,fk_id_estados,seleccion){
 
-    $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
-        var cp = '';
+cargarListaComentarios()
+
+function cargarListaComentarios(){
+
+    $.get( 'api/obtener_lista_comentarios',function(data){
+
+        let listaComentarios = '';
+        let idUsuarioLogin = $('#id_usuario').val();
 
         $.each(data,function(i,ele){
-            console.info(seleccion , ele.cp);
-            if( parseInt(seleccion) != ele.cp ){
-                cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
+
+            if( parseInt(idUsuarioLogin) == ele.fk_id_users ){
+
+                listaComentarios += '<li class="odd mt-4">'+
+                                    '<div class="chat-content ps-3 d-inline-block text-end">'+
+                                        '<div class=" message fs-3 bg-light-inverse d-inline-block mb-2 font-weight-medium">'+ ele.comentario +'</div>'+
+                                        '<br>'+
+                                    '</div>'+
+                                    '<div class="chat-time d-inline-block text-end fs-2 font-weight-medium">'+ ele.fecha +'</div>'+
+                                   '</li>';
             }else{
-                cp += '<option value="'+ ele.cp +'" selected>'+ ele.cp +'</option>';
+
+                listaComentarios += '<li class="mt-4">'+
+                                        '<div class="chat-img d-inline-block align-top">'+
+                                            '<img src="../../assets/images/users/3.jpg" alt="user" class="rounded-circle">'+
+                                        '</div>'+
+                                        '<div class="chat-content ps-3 d-inline-block">'+
+                                        '   <h5 class="text-muted fs-3 fw-normal">'+ele.usuarios.name+'s</h5>'+
+                                            '<div class="message fs-3 bg-primary text-white d-inline-block mb-2 fw-normal shadow">'+ ele.comentario +'</div>'+
+                                        '</div>'+
+                                        '<div class="chat-time d-inline-block text-end fs-2 font-weight-medium">'+ ele.fecha +'</div>'+
+                                    '</li>';
+
             }
 
+
+
+
         });
-        $(campo).empty();
-        $(campo).append(cp);
+        $('#listaComentarios').append(listaComentarios);
 
     });
 
+
 }
+
+// function eliminarCliente(id){
+
+//     Swal.fire({
+//         title: "¿Esta seguro que quiere eliminar este cliente?",
+//         type: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: "#3085d6",
+//         cancelButtonColor: "#d33",
+//         cancelButtonText: "Cancelar",
+//         confirmButtonText: "Aceptar",
+//         }).then((result) => {
+//         if (result.value) {
+
+//             $.ajax({
+//                 type:'POST',
+//                 url:'eliminar_cliente',
+//                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//                 data:{id:id},
+//                 success:function(data){
+//                     tabla_clientes();
+//                     $('#cerrarModalEditar').trigger("click");
+//                     Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
+
+//                 }
+//             });
+
+//         }
+//     });
+// }
+
+// function cargarMunicipios(campo,fk_id_estados,seleccion){
+
+//     $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
+//         var municipios = '';
+
+//         $.each(data,function(i,ele){
+//             console.log( parseInt(seleccion) , ele.id);
+//             if( parseInt(seleccion) != ele.id ){
+//                 municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
+//             }else{
+//                 console.info('aqui ');
+//                 municipios += '<option value="'+ ele.id +'" selected>'+ ele.municipio +'</option>';
+//             }
+
+//         });
+//         $(campo).empty();
+//         $(campo).append(municipios);
+
+//     });
+
+// }
+
+// function cargarCodigosPostales(campo,fk_id_estados,seleccion){
+
+//     $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
+//         var cp = '';
+
+//         $.each(data,function(i,ele){
+//             console.info(seleccion , ele.cp);
+//             if( parseInt(seleccion) != ele.cp ){
+//                 cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
+//             }else{
+//                 cp += '<option value="'+ ele.cp +'" selected>'+ ele.cp +'</option>';
+//             }
+
+//         });
+//         $(campo).empty();
+//         $(campo).append(cp);
+
+//     });
+
+// }

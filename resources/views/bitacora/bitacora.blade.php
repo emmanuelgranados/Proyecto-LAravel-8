@@ -31,13 +31,13 @@
 
                     {{-- Fomularios para editar cliente --}}
 
-                    @include('bitacora.forms.editar')
+                    {{-- @include('bitacora.forms.editar') --}}
                 </div>
             </div>
 
             <div class="page-content container-fluid">
                 <div class="row">
-
+                    <input type="hidden" id="id_usuario" value="{{ Auth::user()->id }}">
 
                     <div class="col-md-12 col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
@@ -289,20 +289,16 @@
                         </div>
                         <div class="card-body">
                           <div class="todo-widget">
-                            <ul class="list-task todo-list list-group mb-0" data-role="tasklist">
-                              <li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">
-                                <div class="
-                                    form-check
-                                    border-start border-2 border-info
-                                    ps-1
-                                  ">
+                            <ul class="list-task todo-list list-group mb-0" data-role="tasklist" id="listaTareasActivas">
+                              {{-- <li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">
+                                <div class="form-check border-start border-2 border-info ps-1">
                                   <input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">
                                   <label for="inputSchedule" class="form-check-label ps-2 fw-normal">
                                     <span>Give salary to employee</span>
                                   </label>
                                 </div>
-                              </li>
-                              <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
+                              </li> --}}
+                              {{-- <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
                                 <div class="
                                     form-check
                                     border-start border-2 border-danger
@@ -323,8 +319,8 @@
                                     <img class="rounded-circle" src="../../assets/images/users/4.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Selina" data-bs-original-title="">
                                   </li>
                                 </ul>
-                              </li>
-                              <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
+                              </li> --}}
+                              {{-- <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
                                 <div class="
                                     form-check
                                     border-start border-2 border-primary
@@ -368,8 +364,8 @@
                                   ">
                                   26 jun 2021
                                 </div>
-                              </li>
-                              <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
+                              </li> --}}
+                              {{-- <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
                                 <div class="
                                     form-check
                                     border-start border-2 border-primary
@@ -412,8 +408,8 @@
                                   ">
                                   26 jun 2021
                                 </div>
-                              </li>
-                              <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
+                              </li> --}}
+                              {{-- <li class="list-group-item border-0 mb-0 py-3 pe-3 ps-0" data-role="task">
                                 <div class="
                                     form-check
                                     border-start border-2 border-success
@@ -436,7 +432,7 @@
                                     <img class="rounded-circle" src="../../assets/images/users/4.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Assign to Selina" data-bs-original-title="">
                                   </li>
                                 </ul>
-                              </li>
+                              </li> --}}
                             </ul>
                           </div>
                         </div>
@@ -477,215 +473,11 @@
                     </div>
                     <div class="col-md-12 col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
-                          <h5 class="card-title p-3 card-header mb-0">Recent Chat</h5>
+                          <h5 class="card-title p-3 card-header mb-0">Comentarios de la Tarea</h5>
                           <div class="card-body">
                             <div class="chat-box scrollable ps-container ps-theme-default ps-active-y" style="height: 434px" data-ps-id="82206101-6a21-2db6-501a-84bf820abaa5">
                               <!--chat Row -->
-                              <ul class="chat-list m-0 p-0">
-                                <!--chat Row -->
-                                <li class="mt-4">
-                                  <div class="chat-img d-inline-block align-top">
-                                    <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle">
-                                  </div>
-                                  <div class="chat-content ps-3 d-inline-block">
-                                    <h5 class="text-muted fs-3 fw-normal">
-                                      James Anderson
-                                    </h5>
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-primary
-                                        text-white
-                                        d-inline-block
-                                        mb-2
-                                        fw-normal
-                                        shadow
-                                      ">
-                                      Lorem Ipsum is simply dummy text of the printing &amp;
-                                      type setting industry.
-                                    </div>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    10:56 am
-                                  </div>
-                                </li>
-                                <!--chat Row -->
-                                <li class="mt-4">
-                                  <div class="chat-img d-inline-block align-top">
-                                    <img src="../../assets/images/users/2.jpg" alt="user" class="rounded-circle">
-                                  </div>
-                                  <div class="chat-content ps-3 d-inline-block">
-                                    <h5 class="text-muted fs-3 fw-normal">Bianca Doe</h5>
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-primary
-                                        text-white
-                                        d-inline-block
-                                        mb-2
-                                        fw-normal
-                                        shadow
-                                      ">
-                                      It’s Great opportunity to work.
-                                    </div>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    10:57 am
-                                  </div>
-                                </li>
-                                <!--chat Row -->
-                                <li class="odd mt-4">
-                                  <div class="chat-content ps-3 d-inline-block text-end">
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-light-inverse
-                                        d-inline-block
-                                        mb-2
-                                        font-weight-medium
-                                      ">
-                                      I would love to join the team.
-                                    </div>
-                                    <br>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    10:58 am
-                                  </div>
-                                </li>
-                                <!--chat Row -->
-                                <li class="odd mt-4">
-                                  <div class="chat-content ps-3 d-inline-block text-end">
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-light-inverse
-                                        d-inline-block
-                                        mb-2
-                                        font-weight-medium
-                                      ">
-                                      Whats budget of the ample admin project.
-                                    </div>
-                                    <br>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    10:59 am
-                                  </div>
-                                </li>
-                                <!--chat Row -->
-                                <li class="mt-4">
-                                  <div class="chat-img d-inline-block align-top">
-                                    <img src="../../assets/images/users/3.jpg" alt="user" class="rounded-circle">
-                                  </div>
-                                  <div class="chat-content ps-3 d-inline-block">
-                                    <h5 class="text-muted fs-3 fw-normal">
-                                      Angelina Rhodes
-                                    </h5>
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-primary
-                                        text-white
-                                        d-inline-block
-                                        mb-2
-                                        fw-normal
-                                        shadow
-                                      ">
-                                      Well we have good budget for the project
-                                    </div>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    11:00 am
-                                  </div>
-                                </li>
-                                <!--chat Row -->
-                                <li class="mt-4">
-                                  <div class="chat-img d-inline-block align-top">
-                                    <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle">
-                                  </div>
-                                  <div class="chat-content ps-3 d-inline-block">
-                                    <h5 class="text-muted fs-3 fw-normal">
-                                      James Anderson
-                                    </h5>
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-primary
-                                        text-white
-                                        d-inline-block
-                                        mb-2
-                                        fw-normal
-                                        shadow
-                                      ">
-                                      Lorem Ipsum is simply dummy text of the printing &amp;
-                                      type setting industry.
-                                    </div>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    10:56 am
-                                  </div>
-                                </li>
-                                <!--chat Row -->
-                                <li class="odd mt-4">
-                                  <div class="chat-content ps-3 d-inline-block text-end">
-                                    <div class="
-                                        message
-                                        fs-3
-                                        bg-light-inverse
-                                        d-inline-block
-                                        mb-2
-                                        font-weight-medium
-                                      ">
-                                      Whats budget of the new project.
-                                    </div>
-                                    <br>
-                                  </div>
-                                  <div class="
-                                      chat-time
-                                      d-inline-block
-                                      text-end
-                                      fs-2
-                                      font-weight-medium
-                                    ">
-                                    10:59 am
-                                  </div>
-                                </li>
-                              </ul>
+                              <ul class="chat-list m-0 p-0" id="listaComentarios"></ul>
                             <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 434px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 211px;"></div></div></div>
                           </div>
                           <div class="card-body border-top">
