@@ -130,6 +130,7 @@ $(function () {
 
                         // tabla_clientes();
                         cargarListaComentarios($('#fk_id_tareas').val());
+                        $('#nuevoComentario').val('');
                         $('#cerrarModalNuevo').trigger("click");
                         Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
 
@@ -236,10 +237,40 @@ function cargarListaTareasActivas(id){
 
 
         $('#listaTareasActivas').append(listaTareasActivas);
+        cargarListaTareas(id);
 
     });
 
 
+}
+
+
+function cargarListaTareas(fk_id_users){
+    $('#detallesLista').empty;
+    $.get( 'api/obtener_lista_tareas',{fk_id_users:fk_id_users},function(data){
+
+        let listaTareas = '';
+
+        $.each(data,function(i,ele){
+
+            listaTareas += '<tr>'+
+                                '<td>'+ ele.id +'</td>'+
+                                '<td>'+ ele.clientes.nombre_razon_social +'</td>'+
+                                '<td>'+ ele.tarea +'</td>'+
+                                '<td>'+ ele.prioridades.prioridad +'</td>'+
+                                '<td>'+ ele.usuarios_alta.name +'</td>'+
+                                '<td>'+ ele.asignado.name +'</td>'+
+                                '<td>'+ ele.fecha_inicio +'</td>'+
+                                '<td>'+ ele.fecha_final +'</td>'+
+                                '<td>'+ ele.estatus.estatus +'</td>'+
+                                '<td></td>'+
+                            '</tr>';
+
+        });
+
+
+        $('#detallesLista').append(listaTareas);
+    });
 }
 
 

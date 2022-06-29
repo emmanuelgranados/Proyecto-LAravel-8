@@ -263,8 +263,7 @@
                                         <div class="input-field mt-0 mb-0">
                                             <input type="hidden" name="comentario[fk_id_users]" value="{{ Auth::user()->id }}">
                                             <input type="hidden" id="fk_id_tareas" name="comentario[fk_id_tareas]" value="">
-                                            {{-- <textarea class="form-control" rows="5" name="comentario[comentario]"></textarea> --}}
-                                            <input type="text" name="comentario[comentario]" placeholder="Escribe tu comentario" class="form-control border-0">
+                                            <input type="text" id="nuevoComentario" name="comentario[comentario]" placeholder="Escribe tu comentario" class="form-control border-0">
                                         </div>
                                     </div>
                                     <div class="col-3 text-end">
@@ -287,11 +286,15 @@
                                     <thead >
                                         <tr>
                                             <td scope="col" class="border-0 font-weight-medium ps-4" >#</td>
-                                            <td scope="col" class="border-0 font-weight-medium">Nombre o Rázon Social</td>
-                                            <td scope="col" class="border-0 font-weight-medium">RFC</td>
-                                            <th scope="col" class="border-0 font-weight-medium">Correo Electronico</td>
-                                            <td scope="col" class="border-0 font-weight-medium">Página Web</td>
-                                            <td scope="col" class="border-0 font-weight-medium">Acciones</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Cliente</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Tarea</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Prioridad</td>
+                                            <th scope="col" class="border-0 font-weight-medium">Asigno</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Realiza</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Fecha Inicio</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Fecha Final</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Estatus</td>
+                                            <td scope="col" class="border-0 font-weight-medium"></td>
                                         </tr>
                                     </thead>
                                     <tbody id="detallesLista" ></tbody>

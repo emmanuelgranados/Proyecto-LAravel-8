@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tareas extends Model
 {
@@ -27,6 +28,32 @@ class Tareas extends Model
         'eliminado'
      ];
 
+
+    public function clientes(){
+        return $this->belongsTo( Clientes::class,'fk_id_clientes','id' );
+    }
+
+    public function prioridades(){
+        return $this->belongsTo( Prioridades::class,'fk_id_clientes','id' );
+    }
+
+    public function usuariosAlta(){
+
+        return $this->belongsTo( User::class,'fk_id_users_alta','id' );
+
+    }
+
+    public function usuariosAsignado(){
+
+        return $this->belongsTo( User::class,'fk_id_users_asignado','id' );
+
+    }
+
+    public function estatus(){
+
+        return $this->belongsTo( Estatus::class,'fk_id_users_asignado','id' );
+
+    }
 
 
 }

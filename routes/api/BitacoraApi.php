@@ -39,6 +39,18 @@ Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
 
 });
 
+Route::get('/obtener_lista_tareas', function (Request $request ) {
+
+    $tareasActivas = Tareas::with('clientes','prioridades','usuariosAlta','usuariosAsignado','estatus')
+    ->orderBy('id','DESC')
+    ->where('fk_id_users_asignado',$request->fk_id_users)
+    ->where('eliminado',0)
+    ->get();
+
+    return $tareasActivas;
+
+});
+
 Route::get('/obtener_lista_comentarios', function (Request $request) {
 
     $tareasActivas = Comentarios::with('usuarios.roles')->orderBy('id','DESC')
