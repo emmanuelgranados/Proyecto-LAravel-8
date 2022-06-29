@@ -25,6 +25,9 @@ class UsersTableSeeder extends Seeder
         $user->name = 'Sistemas';
         $user->email = 'sistemas@arca.com';
         $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
         $user->foto = 1;
         $user->activo = 1;
         $user->eliminado = 0;
@@ -33,8 +36,11 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
         $user->name = 'Admin';
-        $user->email = 'admin@example.com';
+        $user->email = 'admin@arca.com';
         $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
         $user->foto = 1;
         $user->activo = 1;
         $user->eliminado = 0;

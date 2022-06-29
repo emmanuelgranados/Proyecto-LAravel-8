@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Models\User;
+use App\Models\Roles;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class PerfilUsuarioController extends Controller
@@ -19,7 +20,8 @@ class PerfilUsuarioController extends Controller
     {
         $id=Auth::user()->id;
 
-        return view('administracion/perfilusuario',['user' => User::select('foto')->where('id',$id)->get()]);
+        return view('administracion/perfilusuario',['user' => User::select('foto')->where('id',$id)->get(),
+                                                    'roles'=>Roles::select()->where('activo',1)->where('eliminado',0)->get()]);
      }
 
 }

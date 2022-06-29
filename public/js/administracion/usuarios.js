@@ -1,6 +1,8 @@
 $(function () {
 
     tabla_usuarios();
+    tabla_roles();
+
 
     $('#rol_alta.select2').select2({
         multiple:true,
@@ -45,6 +47,7 @@ $(function () {
                 Swal.fire("¡Éxito!", "Se agrego un nuevo registro de usuario.", "success");
             },
             error: function(response) {
+                $('#agregar_usuario').trigger("click");
             console.log(response.responseJSON.errors);
                 // $( "#errors" ).append(json.errors );
 
@@ -63,6 +66,30 @@ $(function () {
 
 
 });
+
+
+function tabla_roles(){
+
+    $('#ListaRoles').empty();
+
+    $.get( 'api/lista_roles',function(data){
+        console.info(data);
+
+        let tabla = '';
+
+        $.each(data,function(i,ele){
+
+            tabla += '<tr>'+
+                        '<td>'+ ele.name +'</td>'+
+                        '<td>'+ ele.cantidad +'</td>'+
+                    '</tr>';
+
+        });
+        $('#ListaRoles').append(tabla);
+
+    });
+
+}
 
 function tabla_usuarios(){
 
@@ -128,8 +155,8 @@ function tabla_usuarios(){
         }
 
     });
-    $(".buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel"
-      ).addClass("btn btn-cyan text-white me-1");
+    // $(".buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel"
+    //   ).addClass("btn btn-cyan text-white me-1");
     }
 
 
