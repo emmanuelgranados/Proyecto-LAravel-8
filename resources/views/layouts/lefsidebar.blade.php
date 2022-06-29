@@ -69,7 +69,6 @@
                                     <span class="hide-menu">Bitacaora</span>
                                 </a>
                             </li>
-
                         </ul>
                     </li>
                     <li class="sidebar-item">

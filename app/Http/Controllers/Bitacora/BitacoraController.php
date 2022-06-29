@@ -67,6 +67,15 @@ class BitacoraController extends Controller
 
     }
 
+    public function nuevoComentarios( Request $request)
+    {
+
+        $nuevoComentario = Comentarios::create($request->comentario);
+
+        return "Exito papuuuus";
+
+    }
+
     public function editarCliente( Request $request)
     {
 

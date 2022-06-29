@@ -43,232 +43,7 @@
                         <div class="card w-100">
                           <h5 class="card-title p-3 card-header mb-0">Integrantes del Grupo</h5>
                           <div class="p-3">
-                            <ul class="list-style-none chat-list" id="listaUsuariosGrupo">
-                              {{-- <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Varun Dhavan</h5>
-                                      <small class="text-success">Online</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/2.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Akshay Kumar</h5>
-                                      <small class="text-muted">Offline</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/3.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Shraddha Kapoor</h5>
-                                      <small class="text-success">Online</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/4.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Madhuri Dixit</h5>
-                                      <small class="text-danger">Busy</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/5.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Shaina Nehwal</h5>
-                                      <small class="text-muted">Offline</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/6.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Varun Dhavan</h5>
-                                      <small class="text-success">Online</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li class="mb-3">
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/2.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Akshay Kumar</h5>
-                                      <small class="text-muted">Offline</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                              <li>
-                                <a href="javascript:void(0)">
-                                  <div class="d-flex align-items-center">
-                                    <img src="../../assets/images/users/3.jpg" class="rounded-circle" width="40">
-                                    <div class="ms-3">
-                                      <h5 class="mb-0">Shraddha Kapoor</h5>
-                                      <small class="text-success">Online</small>
-                                    </div>
-                                    <div class="ms-auto chat-icon">
-                                      <button type="button" class="
-                                          btn btn-light-success
-                                          text-success
-                                          btn-circle btn-circle
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                      </button>
-                                      <button type="button" class="
-                                          btn btn-light-info
-                                          text-info
-                                          btn-circle btn-circle
-                                          ms-2
-                                        ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </a>
-                              </li>
-                            </ul> --}}
+                            <ul class="list-style-none chat-list" id="listaUsuariosGrupo"></ul>
                           </div>
                         </div>
                       </div>
@@ -481,16 +256,22 @@
                             <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 434px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 211px;"></div></div></div>
                           </div>
                           <div class="card-body border-top">
-                            <div class="row">
-                              <div class="col-9">
-                                <div class="input-field mt-0 mb-0">
-                                  <input type="text" id="textarea1" placeholder="Type and enter" class="form-control border-0">
+                            <form class="formComentarios" id="formComentarios" method="POST">
+                                <div class="row">
+
+                                    <div class="col-9">
+                                        <div class="input-field mt-0 mb-0">
+                                            <input type="hidden" name="comentario[fk_id_users]" value="{{ Auth::user()->id }}">
+                                            <input type="hidden" id="fk_id_tareas" name="comentario[fk_id_tareas]" value="">
+                                            {{-- <textarea class="form-control" rows="5" name="comentario[comentario]"></textarea> --}}
+                                            <input type="text" name="comentario[comentario]" placeholder="Escribe tu comentario" class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-end">
+                                        <button class="btn-circle btn-lg btn-success btn text-white" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send feather-sm"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="col-3 text-end">
-                                <a class="btn-circle btn-lg btn-success btn text-white" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send feather-sm"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></a>
-                              </div>
-                            </div>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -499,7 +280,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title mb-0">Lista de usuarios</h5>
+                                <h5 class="card-title mb-0">Lista de Tareas</h5>
                             </div>
                             <div class="table-responsive">
                                 <table class="table customize-table table-striped mb-0 v-middle">

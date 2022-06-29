@@ -56,6 +56,7 @@ $(function () {
                     success:function(data){
 
                         // tabla_clientes();
+                        cargarListaComentarios();
                         $('#cerrarModalNuevo').trigger("click");
                         Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
 
@@ -105,6 +106,43 @@ $(function () {
 
     //   });
 
+    $("#formComentarios").on("submit", function(e){
+
+        e.preventDefault();
+
+        Swal.fire({
+            title: "¿Esta seguro que desea agregar un nuevo comentario?",
+            // text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+          }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type:'POST',
+                    url:'nuevo_comentarios',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data:datos,
+                    success:function(data){
+
+                        // tabla_clientes();
+                        cargarListaComentarios($('#fk_id_tareas').val());
+                        $('#cerrarModalNuevo').trigger("click");
+                        Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
+
+                    }
+                 });
+
+            }
+          });
+
+        let datos = $(this).serialize() ;
+
+      });
+
 
 });
 
@@ -112,15 +150,20 @@ cargarUsuarios();
 
 function cargarUsuarios(){
 
+
+
     $.get( 'api/obtener_usuarios',function(data){
 
         let listaUsuariosGrupo = '';
         let selectUsuarios = '';
 
-        $.each(data,function(i,ele){
+        $('#listaTareasActivas').empty();
 
+
+        $.each(data,function(i,ele){
+            console.log(i,ele);
             listaUsuariosGrupo += '<li class="mb-3">'+
-                                    '<a href="javascript:void(0)">'+
+                                    '<a href="javascript:void(0)" onclick="cargarListaTareasActivas('+ ele.id +')">'+
                                         '<div class="d-flex align-items-center">'+
                                             '<img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">'+
                                             '<div class="ms-3">'+
@@ -167,11 +210,14 @@ function cargarClientes(){
 
 }
 
-cargarListaTareasActivas()
 
-function cargarListaTareasActivas(){
 
-    $.get( 'api/obtener_lista_tareas_activas',function(data){
+function cargarListaTareasActivas(id){
+
+    $('#listaTareasActivas').empty();
+    $('#listaComentarios').empty();
+
+    $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
 
         let listaTareasActivas = '';
 
@@ -181,12 +227,14 @@ function cargarListaTareasActivas(){
                                     '<div class="form-check border-start border-2 border-info ps-1">'+
                                         // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
                                         '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
-                                            '<a href="#"><span>'+ ele.tarea +'</span></a>'+
+                                            '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
                                         '</label>',
                                     '</div>',
                                    '</li>';
 
         });
+
+
         $('#listaTareasActivas').append(listaTareasActivas);
 
     });
@@ -195,11 +243,13 @@ function cargarListaTareasActivas(){
 }
 
 
-cargarListaComentarios()
 
-function cargarListaComentarios(){
 
-    $.get( 'api/obtener_lista_comentarios',function(data){
+function cargarListaComentarios(id){
+
+    $('#listaComentarios').empty();
+
+    $.get( 'api/obtener_lista_comentarios',{fk_id_tareas:id},function(data){
 
         let listaComentarios = '';
         let idUsuarioLogin = $('#id_usuario').val();
@@ -234,6 +284,7 @@ function cargarListaComentarios(){
 
 
         });
+        $('#fk_id_tareas').val(id);
         $('#listaComentarios').append(listaComentarios);
 
     });
