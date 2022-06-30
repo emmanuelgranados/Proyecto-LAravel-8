@@ -21,7 +21,7 @@
                                                     <label class="control-label">Personal Asignado</label>
                                                     <div class="col-md-12">
                                                         <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
-                                                        <select id="selectUsuarios" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
+                                                        <select id="fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
                                                     </div>
                                                 </div>
 
@@ -41,7 +41,7 @@
                                                     <label class="control-label">Cliente</label>
                                                     <div class="col-md-12">
                                                     {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
-                                                    <select id="selectClientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
+                                                    <select id="fk_id_clientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
 
                                                     </select>
                                                     </div>

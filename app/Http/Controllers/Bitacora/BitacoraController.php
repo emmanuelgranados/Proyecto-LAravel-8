@@ -76,18 +76,18 @@ class BitacoraController extends Controller
 
     }
 
-    public function editarCliente( Request $request)
+    public function editarTarea( Request $request)
     {
+        // dd( $request );
+        Tareas::where('id',$request->tarea['id'])->update($request->tarea );
 
-        Clientes::where('id',$request->cliente['id'])->update($request->cliente );
+        // foreach( $request->direcciones as $direccion ){
+        //     Direcciones::where('id',$direccion['id'])->update($direccion);
+        // }
 
-        foreach( $request->direcciones as $direccion ){
-            Direcciones::where('id',$direccion['id'])->update($direccion);
-        }
-
-        foreach( $request->telefonos  as $telefono ){
-            Telefonos::where('id',$telefono['id'])->update($telefono);
-        }
+        // foreach( $request->telefonos  as $telefono ){
+        //     Telefonos::where('id',$telefono['id'])->update($telefono);
+        // }
 
 
 
@@ -95,9 +95,9 @@ class BitacoraController extends Controller
 
     }
 
-    public function eliminarCliente( Request $request )
+    public function eliminarTarea( Request $request )
     {
-        Clientes::where('id',$request->id)->update( ['activo' => 0,'eliminado' => 1 ] );
+        Tareas::where('id',$request->id)->update( ['eliminado' => 1 ] );
 
         return "Exito papuuuus3";
     }

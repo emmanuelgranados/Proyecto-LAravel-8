@@ -41,7 +41,24 @@
 
                     <div class="col-md-12 col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
-                          <h5 class="card-title p-3 card-header mb-0">Integrantes del Grupo</h5>
+                            <div class="d-flex align-items-center px-3 py-4 border-bottom">
+                                <div>
+                                  <h4 class="card-title">Integrantes del Grupo</h4>
+                                </div>
+                                <div class="ms-auto">
+                                    <div class="dropdown ">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Grupos
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                          <li><a class="dropdown-item" href="ui-offcanvas.html#">Grupo 1</a></li>
+                                          <li><a class="dropdown-item" href="ui-offcanvas.html#">Grupo 2</a></li>
+                                          <li><a class="dropdown-item" href="ui-offcanvas.html#">Grupo 3</a></li>
+                                        </ul>
+                                      </div>
+                                </div>
+                              </div>
+                          {{-- <h5 class="card-title p-3 card-header mb-0">Integrantes del Grupo</h5> --}}
+
                           <div class="p-3">
                             <ul class="list-style-none chat-list" id="listaUsuariosGrupo"></ul>
                           </div>
@@ -104,7 +121,7 @@
                     </div>
                     <div class="col-md-12 col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
-                          <h5 class="card-title p-3 card-header mb-0">Comentarios de la Tarea</h5>
+                          <h4 class="card-title p-3 card-header mb-0">Comentarios de la Tarea</h4>
                           <div class="card-body">
                             <div class="chat-box scrollable ps-container ps-theme-default ps-active-y" style="height: 434px" data-ps-id="82206101-6a21-2db6-501a-84bf820abaa5">
                               <!--chat Row -->

@@ -1,38 +1,5 @@
 $(function () {
 
-    // $( ".estados" ).change(function () {
-
-    //     var fk_id_estados = $(this).val();
-
-    //     $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
-    //         var municipios = '';
-
-    //         $.each(data,function(i,ele){
-
-    //             municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
-
-    //         });
-    //         $('.municipios').empty();
-    //         $('.municipios').append(municipios);
-
-    //     });
-
-    //     $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
-    //         console.info(data);
-    //         var cp = '';
-
-    //         $.each(data,function(i,ele){
-
-    //             cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
-
-    //         });
-    //         $('.codigosPostales').empty();
-    //         $('.codigosPostales').append(cp);
-
-    //     });
-
-    // }).change();
-
     $("#formNuevaTarea").on("submit", function(e){
 
         e.preventDefault();
@@ -55,7 +22,6 @@ $(function () {
                     data:datos,
                     success:function(data){
 
-                        // tabla_clientes();
                         cargarListaComentarios();
                         $('#cerrarModalNuevo').trigger("click");
                         Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
@@ -70,41 +36,44 @@ $(function () {
 
       });
 
-    //   $("#formEditarCliente").on("submit", function(e){
+      $("#formEditarTarea").on("submit", function(e){
 
-    //     e.preventDefault();
+        e.preventDefault();
 
-    //      Swal.fire({
-    //         title: "¿Esta seguro que quiere modificar este cliente?",
-    //         type: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         cancelButtonText: "Cancelar",
-    //         confirmButtonText: "Aceptar",
-    //       }).then((result) => {
-    //         if (result.value) {
+         Swal.fire({
+            title: "¿Esta seguro que quiere modificar la tarea?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+          }).then((result) => {
+            if (result.value) {
 
-    //             let datos = $(this).serialize() ;
+                let datos = $(this).serialize() ;
 
-    //             $.ajax({
-    //                 type:'POST',
-    //                 url:'editar_cliente',
-    //                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    //                 data:datos,
-    //                 success:function(data){
-    //                     console.log(data);
-    //                     tabla_clientes();
-    //                     $('#cerrarModalEditar').trigger("click");
-    //                     Swal.fire("¡Éxito!", "Se modifico la información del cliente.", "success");
+                $.ajax({
+                    type:'POST',
+                    url:'editar_tarea',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data:datos,
+                    success:function(data){
 
-    //                 }
-    //             });
+                        let usuariosAsignado = $('#editar_fk_id_users_asignado').val();
 
-    //         }
-    //       });
+                        cargarListaTareasActivas(usuariosAsignado);
 
-    //   });
+                        $('#cerrarModalEditar').trigger("click");
+                        Swal.fire("¡Éxito!", "Se modifico la información de la tarea.", "success");
+
+                    }
+                });
+
+            }
+          });
+
+      });
 
     $("#formComentarios").on("submit", function(e){
 
@@ -151,8 +120,6 @@ cargarUsuarios();
 
 function cargarUsuarios(){
 
-
-
     $.get( 'api/obtener_usuarios',function(data){
 
         let listaUsuariosGrupo = '';
@@ -162,7 +129,7 @@ function cargarUsuarios(){
 
 
         $.each(data,function(i,ele){
-            console.log(i,ele);
+
             listaUsuariosGrupo += '<li class="mb-3">'+
                                     '<a href="javascript:void(0)" onclick="cargarListaTareasActivas('+ ele.id +')">'+
                                         '<div class="d-flex align-items-center">'+
@@ -186,7 +153,8 @@ function cargarUsuarios(){
 
         });
         $('#listaUsuariosGrupo').append(listaUsuariosGrupo);
-        $('#selectUsuarios').append(selectUsuarios);
+        $('#fk_id_users_asignado').append(selectUsuarios);
+        $('#editar_fk_id_users_asignado').append(selectUsuarios);
 
     });
 
@@ -198,14 +166,15 @@ cargarClientes();
 function cargarClientes(){
 
     $.get('api/obtener_clientes',function(data){
-
+        var selectClientes = '';
         $.each(data,function(i,ele){
 
             selectClientes += '<option value="'+ ele.id +'">'+ ele.nombre_razon_social +'</option>';
 
         });
 
-        $('#selectClientes').append(selectClientes);
+        $('#fk_id_clientes').append(selectClientes);
+        $('#editar_fk_id_clientes').append(selectClientes);
 
     });
 
@@ -258,7 +227,7 @@ function cargarListaTareas(fk_id_users){
     $.get( 'api/obtener_lista_tareas',{fk_id_users:fk_id_users},function(data){
 
         let listaTareas = '';
-        console.log(data);
+        // console.log(data);
         $.each(data,function(i,ele){
 
             listaTareas += '<tr>'+
@@ -285,7 +254,7 @@ function cargarListaTareas(fk_id_users){
                                                 '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
                                             '</li>'+
                                             '<li>'+
-                                                '<a class="dropdown-item" onclick="eliminarCliente(1)">Borrar</a>'+
+                                                '<a class="dropdown-item" onclick="eliminarTarea('+ ele.id +')">Borrar</a>'+
                                             '</li>'+
                                         '</ul>'+
                                     '</div>'+
@@ -305,40 +274,11 @@ function cargarListaTareas(fk_id_users){
 
 function cargarInfoTarea(id){
 
-    $.get('api/datos_cliente',{id:id},function(data){
-
+    $.get('api/datos_tarea',{id:id},function(data){
+        console.log(data);
         $.each(data,function(i,ele){
 
-            $('#editar_'+i).val(ele);
-
-            if( i == 'direcciones' ){
-                $.each(ele,function(j,ele2){
-                    $.each(ele2,function(a,ele3){
-                        $('#editar_'+a+'_'+j).val(ele3).change();
-                        console.info(a,ele3);
-                        if( a == 'fk_id_estados' ){
-
-                            cargarMunicipios('#editar_fk_id_municipios_'+j,ele3,ele2.fk_id_municipios);
-                            cargarCodigosPostales('#editar_fk_id_codigos_postales_'+j,ele3,ele2.fk_id_codigos_postales);
-
-                        }
-
-
-
-                        if( a == 'telefonos' ){
-
-                            $.each(ele3,function(b,ele4){
-                                $.each(ele4,function(c,ele5){
-
-                                    $('#editar_telefonos_'+c+'_'+b).val(ele5).change();
-                                });
-                            });
-
-                        }
-
-                    });
-                });
-            }
+            $('#editar_'+i).val(ele).change();
 
         });
     });
@@ -393,34 +333,36 @@ function cargarListaComentarios(id){
 
 }
 
-// function eliminarCliente(id){
+function eliminarTarea(id){
 
-//     Swal.fire({
-//         title: "¿Esta seguro que quiere eliminar este cliente?",
-//         type: "warning",
-//         showCancelButton: true,
-//         confirmButtonColor: "#3085d6",
-//         cancelButtonColor: "#d33",
-//         cancelButtonText: "Cancelar",
-//         confirmButtonText: "Aceptar",
-//         }).then((result) => {
-//         if (result.value) {
+    Swal.fire({
+            title: "¿Esta seguro que quiere eliminar este tarea?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
 
-//             $.ajax({
-//                 type:'POST',
-//                 url:'eliminar_cliente',
-//                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-//                 data:{id:id},
-//                 success:function(data){
-//                     tabla_clientes();
-//                     $('#cerrarModalEditar').trigger("click");
-//                     Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
+            $.ajax({
+                type:'POST',
+                url:'eliminar_tarea',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
 
-//                 }
-//             });
 
-//         }
-//     });
-// }
+
+                    $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                }
+            });
+
+        }
+    });
+}
 
 

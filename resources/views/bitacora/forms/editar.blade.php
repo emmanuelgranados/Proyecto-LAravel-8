@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <form  class="formNuevaTarea" id="formNuevaTarea" method="POST">
+                            <form  class="formEditarTarea" id="formEditarTarea" method="POST">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">
@@ -20,8 +20,9 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Personal Asignado</label>
                                                     <div class="col-md-12">
-                                                        <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
-                                                        <select id="selectUsuarios" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
+                                                        <input type="hidden" id="editar_id" name="tarea[id]">
+                                                        {{-- <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}"> --}}
+                                                        <select id="editar_fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
                                                     </div>
                                                 </div>
 
@@ -31,7 +32,7 @@
                                             <div class="col-md-12">
                                                 <div class="mb-3">
                                                     <label>Tarea a Realizar</label>
-                                                    <textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>
+                                                    <textarea class="form-control" id="editar_tarea" rows="5" name="tarea[tarea]" ></textarea>
                                                   </div>
                                             </div>
                                         </div>
@@ -41,7 +42,7 @@
                                                     <label class="control-label">Cliente</label>
                                                     <div class="col-md-12">
                                                     {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
-                                                    <select id="selectClientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
+                                                    <select id="editar_fk_id_clientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
 
                                                     </select>
                                                     </div>
@@ -52,7 +53,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Inicio</label>
                                                     <div class="col-md-12">
-                                                    <input type="datetime-local" class="form-control" name="tarea[fecha_inicio]" >
+                                                    <input type="datetime-local" class="form-control" id="editar_fecha_inicio" name="tarea[fecha_inicio]" >
                                                     {{-- <small class="form-control-feedback">
                                                         This field has error.
                                                     </small> --}}
@@ -63,7 +64,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Final</label>
                                                     <div class="col-md-12">
-                                                    <input type="datetime-local" class="form-control" name="tarea[fecha_final]">
+                                                    <input type="datetime-local" class="form-control" id="editar_fecha_final"  name="tarea[fecha_final]">
                                                     {{-- <small class="form-control-feedback">
                                                         This field has error.
                                                     </small> --}}
@@ -80,7 +81,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Prioridad</label>
                                                     <div class="col-md-12">
-                                                        <select name="tarea[fk_id_prioridades]" class="form-control form-select estados">
+                                                        <select id="editar_fk_id_prioridades" name="tarea[fk_id_prioridades]" class="form-control form-select estados">
                                                             <option value="1">Baja</option>
                                                             <option value="2">Media</option>
                                                             <option value="3">Alta</option>
@@ -94,9 +95,9 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Estatus de la Tarea</label>
                                                     <div class="col-md-12">
-                                                        <select name="tarea[fk_id_estatus]" class="form-control form-select estados">
+                                                        <select id="editar_fk_id_estatus" name="tarea[fk_id_estatus]" class="form-control form-select estados">
                                                             <option value="1">En proceso</option>
-                                                            <option value="2" selected>Pendiente</option>
+                                                            <option value="2">Pendiente</option>
                                                             <option value="3">Terminado</option>
                                                         </select>
                                                     </div>
@@ -104,17 +105,11 @@
 
                                             </div>
                                         </div>
-
-
-
-
                                     </div>
                                 </div>
-
-
                                 <hr class="mt-0 mb-1">
                                 <div class="modal-footer">
-                                    <button type="button" id="cerrarModalNuevo" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
+                                    <button type="button" id="cerrarModalEditar" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
                                     <button type="submit"class="btn btn-light-info text-info font-weight-medium"> Guardar </button>
                                 </div>
                             </form>
