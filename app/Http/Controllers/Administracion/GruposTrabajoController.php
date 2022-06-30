@@ -36,14 +36,14 @@ class GruposTrabajoController extends Controller
 
         $users = collect($request->all())->except('_token','fk_id_grupos');
 
-        $grupo = collect($request->all())->except('_token','fk_id_user');
+        $grupo = collect($request->all())->except('_token','fk_id_users');
 
         //  dd($users, $grupo);
 
         foreach($users as  $user){
 
             foreach($user as $us ){
-                UsersGrupos::create(['fk_id_user' =>$us,
+                UsersGrupos::create(['fk_id_users' =>$us,
                 'fk_id_grupos'=>$grupo['fk_id_grupos'],
                 'activo'=>1]);
             }

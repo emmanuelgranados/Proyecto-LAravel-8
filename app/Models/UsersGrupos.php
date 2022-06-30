@@ -15,7 +15,7 @@ class UsersGrupos extends Model
     protected $table = 'users_grupos';
 
     protected $fillable = [
-        'fk_id_user',
+        'fk_id_users',
         'fk_id_grupos',
         'activo',
         'eliminado'

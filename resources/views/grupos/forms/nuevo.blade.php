@@ -23,7 +23,7 @@
 
                               <div class="mb-3">
                                 <label for="lider" class="control-label">Lider</label>
-                                <select id="lider" name="grupos[lider_fk_id]"class="form-control select2"  style="height: 36px; width: 100%" required>
+                                <select id="lider" name="grupos[fk_id_users]"class="form-control select2"  style="height: 36px; width: 100%" required>
                                 @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach

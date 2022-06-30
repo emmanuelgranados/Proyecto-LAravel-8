@@ -7,7 +7,7 @@ $('#lider.select2').select2({
     dropdownParent: $('#add-group')
 });
 
-$('#fk_id_user').select2({
+$('#fk_id_users').select2({
     multiple:true,
     theme: "classic",
     dropdownParent: $('#add-users')
