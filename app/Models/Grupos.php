@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Grupos extends Model
 {
 
-    public $timestamps = false;
 
     protected $primaryKey = 'id';
 
@@ -17,8 +16,11 @@ class Grupos extends Model
 
     protected $fillable = [
         'name',
+        'lider_fk_id',
         'activo',
-        'eliminado'
+        'eliminado',
+        'created_at',
+        'updated_at'
     ];
 
 

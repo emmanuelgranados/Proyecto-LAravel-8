@@ -43,6 +43,7 @@ $(function () {
             success:function(data){
                 limpiar();
                 tabla_usuarios();
+                tabla_roles();
                 $('#cerrarModalNuevo').trigger("click");
                 Swal.fire("¡Éxito!", "Se agrego un nuevo registro de usuario.", "success");
             },
@@ -165,8 +166,6 @@ function limpiar(){
     $("#name").val("");
     $("#email").val("");
     $("#password").val("");
-
-
 }
 
 function detalle_usuario(id){

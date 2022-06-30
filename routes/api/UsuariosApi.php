@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Grupos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,5 +21,13 @@ use Illuminate\Support\Facades\DB;
                    inner join users u on ru.user_id = u.id
                    group BY r.name ;"));
         });
+
+        Route::get('/lista_grupos', function (Request $request) {
+
+            return  Grupos::select('grupos.id','grupos.name','users.name as lider','grupos.activo','grupos.created_at','grupos.updated_at')
+                            ->leftjoin('users','users.id','=','grupos.lider_fk_id')
+                            ->where('grupos.activo',1)->where('grupos.eliminado',0)->get();
+     });
+
 
 

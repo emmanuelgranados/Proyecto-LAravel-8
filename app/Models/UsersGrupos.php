@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UsersGrupos extends Model
 {
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $primaryKey = 'id';
 
