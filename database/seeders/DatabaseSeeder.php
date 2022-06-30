@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
     $this->call(EstatusTableSeeder::class);
     $this->call(ClientesTableSeeder::class);
     $this->call(PrioridadesTableSeeder::class);
+    $this->call(GruposSeeder::class);
+
     }
 }

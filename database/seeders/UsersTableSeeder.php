@@ -47,6 +47,45 @@ class UsersTableSeeder extends Seeder
         $user->save();
         $user->roles()->attach($role_admin);
 
+        $user = new User();
+        $user->name = 'Israel';
+        $user->email = 'israel@arca.com';
+        $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_admin);
+
+        $user = new User();
+        $user->name = 'Emmanuel';
+        $user->email = 'emmanuel@arca.com';
+        $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_admin);
+
+        $user = new User();
+        $user->name = 'Sandy';
+        $user->email = 'sandy@arca.com';
+        $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_admin);
+
 
 
     }

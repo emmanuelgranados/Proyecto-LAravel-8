@@ -54,7 +54,16 @@
                                     <span class="hide-menu"> Usuarios </span>
                                 </a>
                             </li>
+
+                            <li class="sidebar-item">
+                                <a href="{{ route('grupos') }}" class="sidebar-link">
+                                    <i class="mdi mdi-cards-variant"></i>
+                                    <span class="hide-menu"> Grupos </span>
+                                </a>
+                            </li>
                         </ul>
+
+
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
@@ -77,6 +86,7 @@
                             <span class="hide-menu">Clientes</span>
                         </a>
                     </li>
+
                     <li class="sidebar-item">
                         <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                             aria-expanded="false">
