@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\DB;
         Route::get('/lista_grupos', function (Request $request) {
 
             return  Grupos::select('grupos.id','grupos.name','users.name as lider','grupos.activo','grupos.created_at','grupos.updated_at')
-                            ->leftjoin('users','users.id','=','grupos.lider_fk_id')
+                            ->leftjoin('users','users.id','=','grupos.fk_id_users')
                             ->where('grupos.activo',1)->where('grupos.eliminado',0)->get();
      });
 

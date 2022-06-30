@@ -20,21 +20,20 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
 
-
-        DB::table('roles')->insert([
-            'name' => 'admin',
-            'description'=>'Administrador',
-            'activo' => 1,
-            'eliminado' => 0
-        ]);
-
-
         DB::table('roles')->insert([
             'name' => 'sistemas',
             'description'=>'Sistemas',
             'activo' => 1,
             'eliminado' => 0
         ]);
+
+        DB::table('roles')->insert([
+            'name' => 'socio',
+            'description'=>'Socio',
+            'activo' => 1,
+            'eliminado' => 0
+        ]);
+
 
         DB::table('roles')->insert([
             'name' => 'supervisor',
@@ -50,12 +49,7 @@ class RolesTableSeeder extends Seeder
             'eliminado' => 0
         ]);
 
-        DB::table('roles')->insert([
-            'name' => 'socio',
-            'description'=>'Socio',
-            'activo' => 1,
-            'eliminado' => 0
-        ]);
+
     }
 }
 

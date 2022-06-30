@@ -20,7 +20,7 @@ class GruposSeeder extends Seeder
     {
         DB::table('grupos')->insert([
             'name' => 'Desarrollo',
-            'lider_fk_id'=>3,
+            'fk_id_users'=>2, //lider
             'activo' => 1,
             'eliminado' => 0,
             'created_at'=> Carbon::now(),
@@ -28,14 +28,14 @@ class GruposSeeder extends Seeder
         ]);
 
         DB::table('users_grupos')->insert([
-            'fk_id_user'=>4,
+            'fk_id_users'=>3,
             'fk_id_grupos'=>1,
             'activo'=>1,
             'eliminado'=>0
         ]);
 
         DB::table('users_grupos')->insert([
-            'fk_id_user'=>5,
+            'fk_id_users'=>4,
             'fk_id_grupos'=>1,
             'activo'=>1,
             'eliminado'=>0

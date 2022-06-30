@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Roles;
 use App\Models\User;
+use App\Models\Estados;
 use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
@@ -19,7 +20,8 @@ class UsersTableSeeder extends Seeder
     {
 
         $role_sistemas = Roles::where('name', 'sistemas')->first();
-        $role_admin = Roles::where('name', 'admin')->first();
+        $role_supervisor = Roles::where('name', 'supervisor')->first();
+        $role_ejecutivo = Roles::where('name', 'ejecutivo')->first();
 
         $user = new User();
         $user->name = 'Sistemas';
@@ -27,7 +29,7 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('secret');
         $user->phone = '3312727386';
         $user->message = 'hola';
-        $user->fk_id_estado = 1;
+        $user->fk_id_estado = 14;
         $user->foto = 1;
         $user->activo = 1;
         $user->eliminado = 0;
@@ -35,30 +37,17 @@ class UsersTableSeeder extends Seeder
         $user->roles()->attach($role_sistemas);
 
         $user = new User();
-        $user->name = 'Admin';
-        $user->email = 'admin@arca.com';
-        $user->password = bcrypt('secret');
-        $user->phone = '3312727386';
-        $user->message = 'hola';
-        $user->fk_id_estado = 1;
-        $user->foto = 1;
-        $user->activo = 1;
-        $user->eliminado = 0;
-        $user->save();
-        $user->roles()->attach($role_admin);
-
-        $user = new User();
         $user->name = 'Israel';
         $user->email = 'israel@arca.com';
         $user->password = bcrypt('secret');
         $user->phone = '3312727386';
         $user->message = 'hola';
-        $user->fk_id_estado = 1;
+        $user->fk_id_estado = 14;
         $user->foto = 1;
         $user->activo = 1;
         $user->eliminado = 0;
         $user->save();
-        $user->roles()->attach($role_admin);
+        $user->roles()->attach($role_supervisor);
 
         $user = new User();
         $user->name = 'Emmanuel';
@@ -66,12 +55,12 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('secret');
         $user->phone = '3312727386';
         $user->message = 'hola';
-        $user->fk_id_estado = 1;
+        $user->fk_id_estado = 14;
         $user->foto = 1;
         $user->activo = 1;
         $user->eliminado = 0;
         $user->save();
-        $user->roles()->attach($role_admin);
+        $user->roles()->attach($role_ejecutivo);
 
         $user = new User();
         $user->name = 'Sandy';
@@ -79,12 +68,12 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('secret');
         $user->phone = '3312727386';
         $user->message = 'hola';
-        $user->fk_id_estado = 1;
+        $user->fk_id_estado = 14;
         $user->foto = 1;
         $user->activo = 1;
         $user->eliminado = 0;
         $user->save();
-        $user->roles()->attach($role_admin);
+        $user->roles()->attach($role_ejecutivo);
 
 
 

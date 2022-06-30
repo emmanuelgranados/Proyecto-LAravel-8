@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Roles;
+use App\Models\Estados;
 
 class User extends  Authenticatable
 {
@@ -73,4 +74,8 @@ class User extends  Authenticatable
     }
 
 
+    public function estado()
+    {
+        return $this->belongsTo(Estados::class,'fk_id_estado','id');
+    }
 }

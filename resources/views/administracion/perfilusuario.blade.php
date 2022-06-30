@@ -121,7 +121,7 @@
                         <div class="col-md-3 col-xs-6">
                           <strong>Location</strong>
                           <br />
-                          <p class="text-muted">{{auth()->user()->fk_id_estado}}</p>
+                          <p class="text-muted">{{$estado[0]->estado}}</p>
                         </div>
                       </div>
                       <hr />

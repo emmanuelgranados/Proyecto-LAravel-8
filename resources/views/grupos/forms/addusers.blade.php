@@ -18,8 +18,8 @@
                                 <input type="hidden" id="fk_id_grupos" name="fk_id_grupos" value="{{old('fk_id_grupos')}}" required/>
 
                                 <div class="mb-3">
-                                    <label for="fk_id_user" class="control-label">Intregrantes</label>
-                                    <select id="fk_id_user" name="fk_id_user[]"class="form-control select2" value="{{old('fk_id_user[]')}}"  style="height: 36px; width: 100%" required>
+                                    <label for="fk_id_users" class="control-label">Intregrantes</label>
+                                    <select id="fk_id_users" name="fk_id_users[]"class="form-control select2" value="{{old('fk_id_users[]')}}"  style="height: 36px; width: 100%" required>
                                     @foreach ($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                     @endforeach
