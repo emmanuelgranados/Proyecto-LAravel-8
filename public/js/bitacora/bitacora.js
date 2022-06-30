@@ -127,6 +127,7 @@ function cargarUsuarios(){
 
         $('#listaTareasActivas').empty();
 
+        console.log(data);
 
         $.each(data,function(i,ele){
 
@@ -180,7 +181,36 @@ function cargarClientes(){
 
 }
 
+cargarGrupos();
 
+function cargarGrupos(){
+
+    if( document.getElementById('grupos') != null ){
+
+        $.get('api/obtener_grupos',function(data){
+            var grupos = '';
+            $.each(data,function(i,ele){
+
+                grupos += ' <li><a class="dropdown-item" href="javascript:void(0)" onclick="cargarInfoGrupo('+ ele.id +')">'+ ele.name +'</a></li>';
+
+            });
+
+            $('#listaGrupos').append(grupos);
+
+        });
+
+    }
+
+
+
+}
+
+
+function cargarInfoGrupo(idGrupo){
+
+    alert(idGrupo);
+
+}
 
 function cargarListaTareasActivas(id){
 

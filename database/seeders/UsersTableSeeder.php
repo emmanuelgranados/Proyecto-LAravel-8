@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
         $user->activo = 1;
         $user->eliminado = 0;
         $user->save();
-        $user->roles()->attach($role_admin);
+        $user->roles()->attach($role_supervisor);
 
         $user = new User();
         $user->name = 'Emmanuel';
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
         $user->activo = 1;
         $user->eliminado = 0;
         $user->save();
-        $user->roles()->attach($role_admin);
+        $user->roles()->attach($role_ejecutivo);
 
         $user = new User();
         $user->name = 'Sandy';
@@ -86,8 +86,47 @@ class UsersTableSeeder extends Seeder
         $user->activo = 1;
         $user->eliminado = 0;
         $user->save();
-        $user->roles()->attach($role_admin);
+        $user->roles()->attach($role_ejecutivo);
 
+
+        $user = new User();
+        $user->name = 'cri';
+        $user->email = 'cri@arca.com';
+        $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_supervisor);
+
+        $user = new User();
+        $user->name = 'El h';
+        $user->email = 'h@arca.com';
+        $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_ejecutivo);
+
+        $user = new User();
+        $user->name = 'Aureliuuuuus';
+        $user->email = 'Aureliuuuuus@arca.com';
+        $user->password = bcrypt('secret');
+        $user->phone = '3312727386';
+        $user->message = 'hola';
+        $user->fk_id_estado = 1;
+        $user->foto = 1;
+        $user->activo = 1;
+        $user->eliminado = 0;
+        $user->save();
+        $user->roles()->attach($role_ejecutivo);
 
 
     }

@@ -45,17 +45,16 @@
                                 <div>
                                   <h4 class="card-title">Integrantes del Grupo</h4>
                                 </div>
-                                <div class="ms-auto">
-                                    <div class="dropdown ">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Grupos
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                          <li><a class="dropdown-item" href="ui-offcanvas.html#">Grupo 1</a></li>
-                                          <li><a class="dropdown-item" href="ui-offcanvas.html#">Grupo 2</a></li>
-                                          <li><a class="dropdown-item" href="ui-offcanvas.html#">Grupo 3</a></li>
-                                        </ul>
-                                      </div>
-                                </div>
+
+                                @if ( (int) Auth::user()->fk_id_rol == 1 || (int) Auth::user()->fk_id_rol == 4 )
+                                    <div class="ms-auto">
+                                        <div class="dropdown ">
+                                            <button class="btn btn-secondary dropdown-toggle" id="grupos" type="button" data-bs-toggle="dropdown" aria-expanded="false">Grupos</button>
+                                            <ul class="dropdown-menu" aria-labelledby="grupos" id="listaGrupos" style=""></ul>
+                                        </div>
+                                    </div>
+                                @endif
+
                               </div>
                           {{-- <h5 class="card-title p-3 card-header mb-0">Integrantes del Grupo</h5> --}}
 

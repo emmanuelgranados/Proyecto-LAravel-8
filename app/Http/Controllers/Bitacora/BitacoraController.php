@@ -7,10 +7,14 @@ use App\Models\Clientes;
 use App\Models\Comentarios;
 use App\Models\Direcciones;
 use App\Models\Estados;
+use App\Models\Grupos;
 use App\Models\Municipios;
 use App\Models\Paises;
+use App\Models\Roles;
+use App\Models\RoleUser;
 use App\Models\Tareas;
 use App\Models\Telefonos;
+use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +29,46 @@ class BitacoraController extends Controller
 
     public function index()
     {
+        // dd(Auth::user()->fk_id_rol);
+
+
+        // $idUsuario = Auth::user()->id;
+
+        // $rol = RoleUser::select('roles.id')
+        // ->join('roles','roles.id','=','role_user.role_id')
+        // ->where('role_user.user_id',$idUsuario)
+        // ->first()
+        // ->toArray();
+
+
+        // if( $rol['id'] == 3 || $rol['id'] == 4 ){
+
+
+
+        //     if( $rol['id'] == 3 ){
+
+        //         $grupo = Grupos::where('lider_fk_id',$idUsuario)->first()->toArray();
+        //         $userGrupo = UsersGrupos::where('fk_id_grupos',$grupo['id'])->get()->toArray();
+
+        //     }else if($rol['id'] == 4){
+
+        //         $userGrupo =  UsersGrupos::where('fk_id_user',$idUsuario )->first()->toArray();
+        //         $grupo = Grupos::where('id',$userGrupo['fk_id_grupos'] )->first()->toArray();;
+
+
+        //     }
+
+        // }else{
+
+        //     $grupo = 0;
+        //     $userGrupo = 0;
+
+        // }
+
+
+
+        // dd($rol,$grupo,$userGrupo);
+
 
         // dd();
         return view('bitacora/bitacora');

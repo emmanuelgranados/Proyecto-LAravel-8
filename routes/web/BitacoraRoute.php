@@ -2,8 +2,8 @@
 
 use Doctrine\DBAL\Schema\Index;
 
-// Route::group(['namespace' => 'Administracion', 'middleware' => 'auth'], function () {
-Route::group(['namespace' => 'Bitacora'], function () {
+Route::group(['namespace' => 'Bitacora', 'middleware' => 'auth'], function () {
+// Route::group(['namespace' => 'Bitacora'], function () {
 
     Route::get('bitacora', 'BitacoraController@index')->name('bitacora');
     Route::post('nueva_tarea', 'BitacoraController@nuevaTarea');

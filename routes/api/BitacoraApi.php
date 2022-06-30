@@ -3,18 +3,32 @@
 use App\Models\Clientes;
 use App\Models\CodigosPostales;
 use App\Models\Comentarios;
+use App\Models\Grupos;
 use App\Models\Municipios;
 use App\Models\Tareas;
 use App\Models\User;
+use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/obtener_usuarios', function (Request $request) {
 
-    // $usuario = Auth::user()->id;
+    $usuario = Auth::user();
 
+    if( (int)$usuario->fk_id_rol == 2 ){
 
-    $usuarios = User::with('roles')->get();
+        $usuarios = User::with('roles')->where('fk_id_grupos',$usuario->fk_id_grupos)->get();
+
+    }else{
+        $usuarios = User::with('roles')->get();
+    }
+
+    // $usuarios = User::with('roles')->get();
+    // $usuarios = User::with('roles')
+    //     ->when( $fk_id_roles == 2 ,function($q) {
+    //         where
+    //     })
+    //     ->get();
 
     return $usuarios;
 });
@@ -72,6 +86,14 @@ Route::get('/obtener_lista_comentarios', function (Request $request) {
     ->get();
 
     return $tareasActivas;
+
+});
+
+Route::get('/obtener_grupos', function (Request $request) {
+
+    $grupos = Grupos::get();
+
+    return $grupos;
 
 });
 
