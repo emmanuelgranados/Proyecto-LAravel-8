@@ -27,7 +27,7 @@ class UsuariosController extends Controller
     {
 
         return view('administracion/usuarios',['usuarios' => User::where('activo', 1)->get(),
-        'roles' => Roles::select('name','id')->where('activo', 1)->where('name' ,'<>', 'sistemas')->where('name' ,'<>', 'admin')->get()]);
+        'roles' => Roles::select('name','id')->where('activo', 1)->where('name' ,'<>', 'sistemas')->get()]);
      }
 
 

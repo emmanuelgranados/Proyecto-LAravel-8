@@ -110,15 +110,7 @@ function tabla_usuarios(){
             {data:'id', defaultContent: "---", title: "ID"},
             {data:'name', defaultContent: "---", title: "Nombre Usuario"},
             {data:'email', defaultContent: "---", title: "Email"},
-            {data:function(row, type){
-                let div = '';
-                $.each(row.roles, function (i, det) {
-                    div += `<span class="badge rounded-pill bg-secondary text-dark">${det.name}</span>`
-                                });
-                if(type == "display"){
-                    return div;
-                }
-            }, defaultContent: "---", title: "Rol"},
+            {data:'roles', defaultContent: "---", title: "Rol"},
             {data:'created_at', render:function (data, type, full) { return data == null ? "" : moment(data).format("M/D/YYYY h:mm A");}, defaultContent: "---", title: "Fecha creación"},
             {data:function(row, type){
                 const classname = (row.activo == 1) ? 'bg-light-success text-success' : 'bg-light-warning text-warning';
@@ -130,7 +122,7 @@ function tabla_usuarios(){
                 if(type == "filter"){
                     return text;
                 }
-            }, defaultContent: "---", title: "Estatus"},
+            }, defaultContent: "---", title: "Status"},
              {data:'updated_at', render:function (data, type, full) { return data == null ? "" : moment(data).format("M/D/YYYY h:mm A"); }
               ,defaultContent: "---", title: "Fecha actualización"},
               {data:function(row, type){

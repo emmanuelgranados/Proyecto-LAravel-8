@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('fk_id_grupos')->unsigned();
             $table->boolean('activo')->default(1);
             $table->boolean('eliminado')->default(0);
-            $table->timestamps();
+
         });
     }
 

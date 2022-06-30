@@ -16,7 +16,6 @@ class Grupos extends Model
 
     protected $fillable = [
         'name',
-        'fk_id_users',
         'activo',
         'eliminado',
         'created_at',

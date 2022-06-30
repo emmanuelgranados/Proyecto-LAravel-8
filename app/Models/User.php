@@ -16,6 +16,8 @@ class User extends  Authenticatable
 
     protected $fillable = [
         'name',
+        'fk_id_roles',
+        'fk_id_grupos',
         'phone',
         'message',
         'fk_id_estado',
@@ -38,7 +40,7 @@ class User extends  Authenticatable
     ];
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Roles','role_user', 'user_id', 'role_id')->withTimestamps();
+        return $this->belongsTo(Roles::class, 'fk_id_roles','id');
     }
 
     public function authorizeRoles($roles)

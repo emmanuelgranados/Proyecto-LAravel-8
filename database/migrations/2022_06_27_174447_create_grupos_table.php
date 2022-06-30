@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('grupos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('fk_id_users')->unsigned();
             $table->boolean('activo')->default(1);
             $table->boolean('eliminado')->default(0);
             $table->timestamps();

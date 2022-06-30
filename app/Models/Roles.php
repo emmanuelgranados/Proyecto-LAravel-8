@@ -9,6 +9,8 @@ use App\Models\User;
 class Roles extends Model
 {
 
+    public $timestamps = false;
+
     protected $table = 'roles';
 
     protected $primaryKey = 'id';
@@ -20,11 +22,7 @@ class Roles extends Model
         'activo' ];
 
 
-        public function users() {
-            return $this
-                ->belongsToMany('App\Models\User')
-                ->withTimestamps();
-        }
+
 
 }
 

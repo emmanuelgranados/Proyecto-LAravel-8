@@ -96,6 +96,7 @@ function add(id){
           data:datos,
           success:function(data){
               tabla_grupos();
+            //   tabla_integrantes();
               $('#cerrarModalAgregarUsers').trigger("click");
               Swal.fire("¡Éxito!", "Se agrego un nuevo registro de grupos.", "success");
           },
@@ -120,7 +121,7 @@ function tabla_grupos(){
         ajax: {
             url: 'api/lista_grupos',
             dataSrc: function(json){
-            // console.log(json);
+            // console.logtabla_integrantes(json);
                 return json;
             }
         },
@@ -129,7 +130,6 @@ function tabla_grupos(){
         columns:[
             {data:'id', defaultContent: "---", title: "ID"},
             {data:'name', defaultContent: "---", title: "Nombre de Grupo"},
-            {data:'lider', defaultContent: "---", title: "Lider"},
             {data:function(row, type){
                 const classname = (row.activo == 1) ? 'bg-light-success text-success' : 'bg-light-warning text-warning';
                 const text = (row.activo == 1) ? 'Activo' : 'Inactivo';
@@ -170,6 +170,27 @@ function tabla_grupos(){
     //   ).addClass("btn btn-cyan text-white me-1");
     }
 
+    function detalle(id){
 
+        $('#integrantes').empty();
+
+        $.get( 'api/lista_integrantes',{id:id},function(data){
+            console.info(data);
+
+            let tabla = '';
+
+            $.each(data,function(i,ele){
+
+                tabla += '<tr>'+
+                            '<td>'+ ele.name +'</td>'+
+                            '<td>'+ ele.rol +'</td>'+
+                        '</tr>';
+
+            });
+            $('#integrantes').append(tabla);
+
+        });
+
+    }
 
 
