@@ -1,189 +1,120 @@
-<div id="info-header-modal-2" class="modal fade" tabindex="-1" aria-labelledby="info-header-modalLabel-2" aria-hidden="true">
+<div id="info-header-modal-2" class="modal fade" tabindex="-1" aria-labelledby="info-header-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" >
         <div class="modal-content">
             <div class="modal-header modal-colored-header bg-info text-white">
-                <h4 class="modal-title" id="info-header-modalLabel-2"> Editar Cliente </h4>
+                <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Tarea </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <form  class="formEditarCliente" id="formEditarCliente" method="POST">
+                            <form  class="formNuevaTarea" id="formNuevaTarea" method="POST">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Nombre o Razón Social</label>
-                                                <div class="col-md-12">
-                                                <input type="hidden" id="editar_id" name="cliente[id]">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_nombre_razon_social" name="cliente[nombre_razon_social]" placeholder="google S.A de C.V">
-                                                {{-- <small class="form-control-feedback">
-                                                    This is inline help
-                                                </small> --}}
+                                            <div class="col-md-12">
+
+                                                <div class="mb-3">
+                                                    <label class="control-label">Personal Asignado</label>
+                                                    <div class="col-md-12">
+                                                        <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
+                                                        <select id="selectUsuarios" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label>Tarea a Realizar</label>
+                                                    <textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Cliente</label>
+                                                    <div class="col-md-12">
+                                                    {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
+                                                    <select id="selectClientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
+
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Fecha y Hora Inicio</label>
+                                                    <div class="col-md-12">
+                                                    <input type="datetime-local" class="form-control" name="tarea[fecha_inicio]" >
+                                                    {{-- <small class="form-control-feedback">
+                                                        This field has error.
+                                                    </small> --}}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">RFC</label>
-                                                <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_rfc" name="cliente[rfc]" placeholder="XAXX010101000">
-                                                {{-- <small class="form-control-feedback">
-                                                    This field has error.
-                                                </small> --}}
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Fecha y Hora Final</label>
+                                                    <div class="col-md-12">
+                                                    <input type="datetime-local" class="form-control" name="tarea[fecha_final]">
+                                                    {{-- <small class="form-control-feedback">
+                                                        This field has error.
+                                                    </small> --}}
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                             <!--/span-->
                                         </div>
-                                        <!--/row-->
+
+
                                         <div class="row">
                                             <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Correo Electrónico</label>
-                                                <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_email" name="cliente[email]" placeholder="ejemplo@gmail.com">
-                                                {{-- <small class="form-control-feedback">
-                                                    This is inline help
-                                                </small> --}}
+
+                                                <div class="mb-3">
+                                                    <label class="control-label">Prioridad</label>
+                                                    <div class="col-md-12">
+                                                        <select name="tarea[fk_id_prioridades]" class="form-control form-select estados">
+                                                            <option value="1">Baja</option>
+                                                            <option value="2">Media</option>
+                                                            <option value="3">Alta</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                            </div>
-                                            <!--/span-->
                                             <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Página Web</label>
-                                                <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_pagina_web" name="cliente[pagina_web]" placeholder="www.google.com">
-                                                {{-- <small class="form-control-feedback">
-                                                    This field has error.
-                                                </small> --}}
+
+                                                <div class="mb-3">
+                                                    <label class="control-label">Estatus de la Tarea</label>
+                                                    <div class="col-md-12">
+                                                        <select name="tarea[fk_id_estatus]" class="form-control form-select estados">
+                                                            <option value="1">En proceso</option>
+                                                            <option value="2" selected>Pendiente</option>
+                                                            <option value="3">Terminado</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                            </div>
-                                            <!--/span-->
                                         </div>
+
+
+
+
                                     </div>
                                 </div>
-                                <h4 class="card-title">Dirección</h4>
-                                <hr class="mt-0 mb-1">
-                                <div class="card-body">
-                                <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="control-label">Calle</label>
-                                                <div class="col-md-12">
-                                                    <input type="hidden" id="editar_id_0" name="direcciones[0][id]" class="form-control">
-                                                    <input type="text" id="editar_calle_0" name="direcciones[0][calle]" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="control-label">Número Exterior</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" id="editar_numero_exterior_0" name="direcciones[0][numero_exterior]" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3 ">
-                                                <label class="control-label">Número Interior</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" id="editar_numero_interior_0" name="direcciones[0][numero_interior]" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <!--/span-->
-                                        <div class="col-md-4">
-                                            <div class="mb-3 row">
-                                                <label class="control-label">Colonia</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" id="editar_colonia_0" name="direcciones[0][colonia]" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="control-label">País</label>
-                                                <div class="col-md-12">
-                                                    <select id="editar_fk_id_paises_0" name="direcciones[0][fk_id_paises]"class="form-control form-select">
-                                                        @foreach ( $paises as $pais )
-                                                            <option value="{{ $pais->id }}">{{ $pais->pais }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="control-label_0">Estado</label>
-                                                <div class="col-md-12">
-                                                    <select id="editar_fk_id_estados_0" name="direcciones[0][fk_id_estados]" class="form-control form-select estados">
-                                                        @foreach ( $estados as $estado )
-                                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
 
 
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Municipio</label>
-                                                <div class="col-md-12">
-                                                    <select id="editar_fk_id_municipios_0" name="direcciones[0][fk_id_municipios]" class="form-control form-select municipios "></select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Código Postal</label>
-                                                <div class="col-md-12">
-                                                    <select id="editar_fk_id_codigos_postales_0" name="direcciones[0][fk_id_codigos_postales]" class="form-control form-select codigosPostales">
-                                                        <option value="1">Country 1</option>
-                                                        <option value="2">Country 2</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Teléfono 1</label>
-                                                <div class="col-md-12">
-                                                    <input type="hidden" id="editar_telefonos_id_0" name="telefonos[0][id]" >
-                                                    <input type="text" id="editar_telefonos_telefono_0" name="telefonos[0][telefono]" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label ">Teléfono 2</label>
-                                                <div class="col-md-12">
-                                                    <input type="hidden" id="editar_telefonos_id_1" name="telefonos[1][id]" >
-                                                    <input type="text" id="editar_telefonos_telefono_1" name="telefonos[1][telefono]" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <hr class="mt-0 mb-1">
                                 <div class="modal-footer">
-                                    <button type="button" id="cerrarModalEditar" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
+                                    <button type="button" id="cerrarModalNuevo" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
                                     <button type="submit"class="btn btn-light-info text-info font-weight-medium"> Guardar </button>
                                 </div>
                             </form>

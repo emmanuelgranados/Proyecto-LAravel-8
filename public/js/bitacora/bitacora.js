@@ -169,7 +169,7 @@ function cargarUsuarios(){
                                             '<img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">'+
                                             '<div class="ms-3">'+
                                                 '<h5 class="mb-0">'+ ele.name +'</h5>'+
-                                                '<small class="text-success">'+ 'admin' +'</small>'+
+                                                '<small class="text-success">'+ ele.roles[0].name +'</small>'+
                                             '</div>'+
                                             '<div class="ms-auto chat-icon">'+
                                                 '<button type="button" class="btn btn-light-success text-success btn-circle btn-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></button>'+
@@ -224,8 +224,16 @@ function cargarListaTareasActivas(id){
 
         $.each(data,function(i,ele){
 
+            if( ele.fk_id_prioridades == 1 ){
+                prioridad = 'border-info';
+            }else if( ele.fk_id_prioridades == 2 ){
+                prioridad = 'border-warning';
+            }else if( ele.fk_id_prioridades == 3 ){
+                prioridad = 'border-danger';
+            }
+
             listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
-                                    '<div class="form-check border-start border-2 border-info ps-1">'+
+                                    '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
                                         // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
                                         '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
                                             '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
@@ -246,11 +254,11 @@ function cargarListaTareasActivas(id){
 
 
 function cargarListaTareas(fk_id_users){
-    $('#detallesLista').empty;
+    $('#detallesLista').empty();
     $.get( 'api/obtener_lista_tareas',{fk_id_users:fk_id_users},function(data){
 
         let listaTareas = '';
-
+        console.log(data);
         $.each(data,function(i,ele){
 
             listaTareas += '<tr>'+
@@ -259,12 +267,33 @@ function cargarListaTareas(fk_id_users){
                                 '<td>'+ ele.tarea +'</td>'+
                                 '<td>'+ ele.prioridades.prioridad +'</td>'+
                                 '<td>'+ ele.usuarios_alta.name +'</td>'+
-                                '<td>'+ ele.asignado.name +'</td>'+
+                                '<td>'+ ele.usuarios_asignado.name +'</td>'+
                                 '<td>'+ ele.fecha_inicio +'</td>'+
                                 '<td>'+ ele.fecha_final +'</td>'+
                                 '<td>'+ ele.estatus.estatus +'</td>'+
-                                '<td></td>'+
+                                '<td>'+
+                                    '<div class="dropdown dropstart">'+
+                                        '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
+                                            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
+                                                '<circle cx="12" cy="12" r="1"></circle>'+
+                                                '<circle cx="19" cy="12" r="1"></circle>'+
+                                                '<circle cx="5" cy="12" r="1"></circle>'+
+                                            '</svg>'+
+                                        '</a>'+
+                                        '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+                                            '<li>'+
+                                                '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
+                                            '</li>'+
+                                            '<li>'+
+                                                '<a class="dropdown-item" onclick="eliminarCliente(1)">Borrar</a>'+
+                                            '</li>'+
+                                        '</ul>'+
+                                    '</div>'+
+                                '</td>'+
                             '</tr>';
+
+
+
 
         });
 
@@ -273,6 +302,47 @@ function cargarListaTareas(fk_id_users){
     });
 }
 
+
+function cargarInfoTarea(id){
+
+    $.get('api/datos_cliente',{id:id},function(data){
+
+        $.each(data,function(i,ele){
+
+            $('#editar_'+i).val(ele);
+
+            if( i == 'direcciones' ){
+                $.each(ele,function(j,ele2){
+                    $.each(ele2,function(a,ele3){
+                        $('#editar_'+a+'_'+j).val(ele3).change();
+                        console.info(a,ele3);
+                        if( a == 'fk_id_estados' ){
+
+                            cargarMunicipios('#editar_fk_id_municipios_'+j,ele3,ele2.fk_id_municipios);
+                            cargarCodigosPostales('#editar_fk_id_codigos_postales_'+j,ele3,ele2.fk_id_codigos_postales);
+
+                        }
+
+
+
+                        if( a == 'telefonos' ){
+
+                            $.each(ele3,function(b,ele4){
+                                $.each(ele4,function(c,ele5){
+
+                                    $('#editar_telefonos_'+c+'_'+b).val(ele5).change();
+                                });
+                            });
+
+                        }
+
+                    });
+                });
+            }
+
+        });
+    });
+}
 
 
 
@@ -353,45 +423,4 @@ function cargarListaComentarios(id){
 //     });
 // }
 
-// function cargarMunicipios(campo,fk_id_estados,seleccion){
 
-//     $.get('api/obtener_municipios',{fk_id_estados:fk_id_estados},function(data){
-//         var municipios = '';
-
-//         $.each(data,function(i,ele){
-//             console.log( parseInt(seleccion) , ele.id);
-//             if( parseInt(seleccion) != ele.id ){
-//                 municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
-//             }else{
-//                 console.info('aqui ');
-//                 municipios += '<option value="'+ ele.id +'" selected>'+ ele.municipio +'</option>';
-//             }
-
-//         });
-//         $(campo).empty();
-//         $(campo).append(municipios);
-
-//     });
-
-// }
-
-// function cargarCodigosPostales(campo,fk_id_estados,seleccion){
-
-//     $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
-//         var cp = '';
-
-//         $.each(data,function(i,ele){
-//             console.info(seleccion , ele.cp);
-//             if( parseInt(seleccion) != ele.cp ){
-//                 cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
-//             }else{
-//                 cp += '<option value="'+ ele.cp +'" selected>'+ ele.cp +'</option>';
-//             }
-
-//         });
-//         $(campo).empty();
-//         $(campo).append(cp);
-
-//     });
-
-// }

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
     $this->call(CodigosPostalesTableSeeder::class);
     $this->call(EstatusTableSeeder::class);
     $this->call(ClientesTableSeeder::class);
+    $this->call(PrioridadesTableSeeder::class);
     }
 }

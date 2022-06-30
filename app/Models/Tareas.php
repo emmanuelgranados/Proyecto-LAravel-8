@@ -34,7 +34,7 @@ class Tareas extends Model
     }
 
     public function prioridades(){
-        return $this->belongsTo( Prioridades::class,'fk_id_clientes','id' );
+        return $this->belongsTo( Prioridades::class,'fk_id_prioridades','id' );
     }
 
     public function usuariosAlta(){
@@ -51,7 +51,7 @@ class Tareas extends Model
 
     public function estatus(){
 
-        return $this->belongsTo( Estatus::class,'fk_id_users_asignado','id' );
+        return $this->belongsTo( Estatus::class,'fk_id_estatus','id' );
 
     }
 

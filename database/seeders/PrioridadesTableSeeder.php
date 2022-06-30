@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class EstatusTableSeeder extends Seeder
+class PrioridadesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class EstatusTableSeeder extends Seeder
     public function run()
     {
         DB::statement("
-        INSERT INTO `estatus` (`id`, `estatus`) VALUES
-        (1,'En Proceso'),
-        (2,'Pendiente'),
-        (3,'Terminado')
+        INSERT INTO `prioridades` (`id`, `prioridad`) VALUES
+        (1,'Baja'),
+        (2,'Media'),
+        (3,'Alta')
         ");
 
 

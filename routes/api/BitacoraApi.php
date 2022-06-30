@@ -7,10 +7,14 @@ use App\Models\Municipios;
 use App\Models\Tareas;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/obtener_usuarios', function (Request $request) {
 
-    $usuarios = User::all();
+    // $usuario = Auth::user()->id;
+
+
+    $usuarios = User::with('roles')->get();
 
     return $usuarios;
 });
@@ -24,6 +28,16 @@ Route::get('/obtener_clientes', function () {
     ->get();
 
     return $cliente;
+
+});
+
+Route::get('/datos_tarea', function (Request $request) {
+
+    $tarea = Tareas::with('clientes','prioridades','estatus')
+    ->where('id',$request->id)
+    ->first();
+
+    return $tarea;
 
 });
 
