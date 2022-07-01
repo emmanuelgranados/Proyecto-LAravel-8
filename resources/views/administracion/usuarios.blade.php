@@ -7,13 +7,7 @@
 
 {{-- {{dd($roles)}} --}}
 @section('content')
-<style>
-    p {
-    color: red;
 
-
-}
-</style>
 
 <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     @include('administracion.nuevoUsuario')
@@ -48,7 +42,7 @@
           <div class="col-lg-9 col-md-8 col-xs-12 d-flex justify-content-start justify-content-md-end align-self-center" >
             <nav aria-label="breadcrumb" class="mt-2">
               <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="index.html">Administración</a></li>
+                <li class="breadcrumb-item"><a>Administración</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
               </ol>
             </nav>
@@ -113,9 +107,7 @@
 
       </div>
 
-      <footer class="footer text-center">
-        All Rights Reserved by Ample admin.
-      </footer>
+
 
     </div>
 

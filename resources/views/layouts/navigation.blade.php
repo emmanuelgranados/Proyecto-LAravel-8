@@ -77,7 +77,7 @@
             >
             <div class="dropdown-divider"></div>
             <div class="ps-4 p-2">
-              <a href="index.html#" class="btn d-block w-100 btn-info rounded-pill"
+              <a  class="btn d-block w-100 btn-info rounded-pill"
                 >View Profile</a
               >
             </div>

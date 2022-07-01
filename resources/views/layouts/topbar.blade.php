@@ -12,7 +12,7 @@
             href="javascript:void(0)"
             ><i class="ti-menu ti-close"></i
             ></a>
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" >
             <!-- Logo icon -->
             <b class="logo-icon">
                 <img src="../../assets/images/logos/logo2.png" alt="homepage" class="dark-logo" />
@@ -322,7 +322,7 @@
             <li class="nav-item dropdown">
                 <a
                 class="nav-link dropdown-toggle waves-effect waves-dark"
-                href="index.html#"
+
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
