@@ -118,9 +118,18 @@ $(function () {
 
 cargarUsuarios();
 
-function cargarUsuarios(){
+function cargarUsuarios(fk_id_grupos = null){
 
-    $.get( 'api/obtener_usuarios',function(data){
+    $('#listaUsuariosGrupo').empty();
+    $('#fk_id_users_asignado').empty();
+    $('#editar_fk_id_users_asignado').empty();
+
+    if( fk_id_grupos == null ){
+        fk_id_grupos = 1;
+    }
+
+
+    $.get( 'api/obtener_usuarios',{ fk_id_grupos:fk_id_grupos },function(data){
 
         let listaUsuariosGrupo = '';
         let selectUsuarios = '';
@@ -137,7 +146,7 @@ function cargarUsuarios(){
                                             '<img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">'+
                                             '<div class="ms-3">'+
                                                 '<h5 class="mb-0">'+ ele.name +'</h5>'+
-                                                '<small class="text-success">'+ ele.roles[0].name +'</small>'+
+                                                '<small class="text-success">'+ ele.roles.name +'</small>'+
                                             '</div>'+
                                             '<div class="ms-auto chat-icon">'+
                                                 '<button type="button" class="btn btn-light-success text-success btn-circle btn-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></button>'+
@@ -191,7 +200,7 @@ function cargarGrupos(){
             var grupos = '';
             $.each(data,function(i,ele){
 
-                grupos += ' <li><a class="dropdown-item" href="javascript:void(0)" onclick="cargarInfoGrupo('+ ele.id +')">'+ ele.name +'</a></li>';
+                grupos += ' <li><a class="dropdown-item" href="javascript:void(0)" onclick="cargarUsuarios('+ ele.id +')">'+ ele.name +'</a></li>';
 
             });
 
@@ -206,11 +215,48 @@ function cargarGrupos(){
 }
 
 
-function cargarInfoGrupo(idGrupo){
+// function cargarInfoGrupo(idGrupo){
 
-    alert(idGrupo);
+//     $.get( 'api/obtener_usuarios',function(data){
 
-}
+//         let listaUsuariosGrupo = '';
+//         let selectUsuarios = '';
+
+//         $('#listaTareasActivas').empty();
+
+//         console.log(data);
+
+//         $.each(data,function(i,ele){
+
+//             listaUsuariosGrupo += '<li class="mb-3">'+
+//                                     '<a href="javascript:void(0)" onclick="cargarListaTareasActivas('+ ele.id +')">'+
+//                                         '<div class="d-flex align-items-center">'+
+//                                             '<img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">'+
+//                                             '<div class="ms-3">'+
+//                                                 '<h5 class="mb-0">'+ ele.name +'</h5>'+
+//                                                 '<small class="text-success">'+ ele.roles.name +'</small>'+
+//                                             '</div>'+
+//                                             '<div class="ms-auto chat-icon">'+
+//                                                 '<button type="button" class="btn btn-light-success text-success btn-circle btn-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></button>'+
+//                                                 '<button type="button" class="btn btn-light-info text-info btn-circle btn-circle ms-2">'+
+//                                                     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>'+
+//                                                 '</button>'
+//                                             '</div>'+
+//                                         '</div>'+
+//                                     '</a>'+
+//                                 '</li>';
+
+//             selectUsuarios += '<option value="'+ ele.id +'">'+ ele.name +'</option>';
+
+
+//         });
+//         $('#listaUsuariosGrupo').append(listaUsuariosGrupo);
+//         $('#fk_id_users_asignado').append(selectUsuarios);
+//         $('#editar_fk_id_users_asignado').append(selectUsuarios);
+
+//     });
+
+// }
 
 function cargarListaTareasActivas(id){
 

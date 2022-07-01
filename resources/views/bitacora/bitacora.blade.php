@@ -23,7 +23,10 @@
                             <li class="breadcrumb-item active" aria-current="page">Bitácora</li>
                         </ol>
                     </nav>
-                    <button class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nuevo Tarea </button>
+                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2  || Auth::user()->fk_id_roles == 3 )
+                        <button class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nuevo Tarea </button>
+
+                    @endif
 
                     {{-- Formulario para crear nuevos clientes --}}
 
@@ -43,10 +46,9 @@
                         <div class="card w-100">
                             <div class="d-flex align-items-center px-3 py-4 border-bottom">
                                 <div>
-                                  <h4 class="card-title">Integrantes del Grupo</h4>
+                                    <h4 class="card-title">Integrantes del Grupo</h4>
                                 </div>
-
-                                @if ( (int) Auth::user()->fk_id_rol == 1 || (int) Auth::user()->fk_id_rol == 4 )
+                                @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
                                     <div class="ms-auto">
                                         <div class="dropdown ">
                                             <button class="btn btn-secondary dropdown-toggle" id="grupos" type="button" data-bs-toggle="dropdown" aria-expanded="false">Grupos</button>
@@ -54,15 +56,12 @@
                                         </div>
                                     </div>
                                 @endif
-
-                              </div>
-                          {{-- <h5 class="card-title p-3 card-header mb-0">Integrantes del Grupo</h5> --}}
-
-                          <div class="p-3">
-                            <ul class="list-style-none chat-list" id="listaUsuariosGrupo"></ul>
-                          </div>
+                            </div>
+                            <div class="p-3">
+                                <ul class="list-style-none chat-list" id="listaUsuariosGrupo"></ul>
+                            </div>
                         </div>
-                      </div>
+                    </div>
 
                     <div class="col-lg-4 d-flex align-items-stretch">
 
@@ -70,50 +69,12 @@
                         <div class="d-flex align-items-center px-3 py-4 border-bottom">
                           <div>
                             <h4 class="card-title font-weight-medium">Lista de Taras Activas</h4>
-                            {{-- <h5 class="card-subtitle mb-0">This Months Task</h5> --}}
                           </div>
-                          <div class="ms-auto">
-                            {{-- <button class="btn btn-danger text-white btn-rounded" data-bs-toggle="modal" data-bs-target="#addtask">
-                              Add Task
-                            </button> --}}
-                          </div>
+                          <div class="ms-auto"></div>
                         </div>
                         <div class="card-body">
                           <div class="todo-widget">
                             <ul class="list-task todo-list list-group mb-0" data-role="tasklist" id="listaTareasActivas"></ul>
-                          </div>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="addtask" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header d-flex align-items-center">
-                                <h5 class="modal-title" id="exampleModalLabel">
-                                  Add Task
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <form>
-                                  <div class="form-group">
-                                    <label for="text_name">Name</label>
-                                    <input type="text" class="form-control" id="text_name" placeholder="Enter your Name">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="txt_email">Email Address</label>
-                                    <input type="email" class="form-control" id="txt_email" placeholder="Enter Email">
-                                  </div>
-                                </form>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                  Close
-                                </button>
-                                <button type="button" class="btn btn-primary">
-                                  Save changes
-                                </button>
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>

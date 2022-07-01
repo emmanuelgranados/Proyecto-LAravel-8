@@ -14,13 +14,29 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/obtener_usuarios', function (Request $request) {
 
     $usuario = Auth::user();
+    // dd($usuario->fk_id_roles);
+    switch( $usuario->fk_id_roles  ){
+        case 1:
+        case 2:
+            $usuarios = User::with('roles')->where('fk_id_grupos',$request->fk_id_grupos)->get();
+            break;
 
-    if( (int)$usuario->fk_id_rol == 2 ){
+        case 3:
+            $usuarios = User::with('roles')->where('fk_id_grupos',$usuario->fk_id_grupos)->get();
+            break;
 
-        $usuarios = User::with('roles')->where('fk_id_grupos',$usuario->fk_id_grupos)->get();
+        case 4:
+            $usuarios = User::with('roles')->where('id',$usuario->id)->get();
+            break;
+    }
 
-    }else{
-        $usuarios = User::with('roles')->get();
+
+    if( $usuario->fk_id_roles == 3 ){
+
+
+
+    }else if( $usuario->fk_id_roles == 1 ){
+
     }
 
     // $usuarios = User::with('roles')->get();
