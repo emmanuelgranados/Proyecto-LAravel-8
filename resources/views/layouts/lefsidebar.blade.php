@@ -9,7 +9,7 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav" style="background-color: #493c2d;">
                     <li class="sidebar-item">
-                        <a class="sidebar-link  waves-dark profile-dd" href="javascript:void(0)"
+                        <a href="{{ route('inicio') }}" class="sidebar-link  waves-dark profile-dd" href="javascript:void(0)"
                             aria-expanded="false"><img src="../../assets/images/users/1.jpg" class="rounded-circle ms-2"
                                 width="30" /><span class="hide-menu">Sección de {{auth()->user()->name}} </span>
                         </a>
