@@ -29,6 +29,8 @@ class BitacoraController extends Controller
 
     public function index()
     {
+
+
         // dd(Auth::user()->fk_id_rol);
 
 

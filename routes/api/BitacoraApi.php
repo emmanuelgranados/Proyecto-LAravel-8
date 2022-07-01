@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/obtener_usuarios', function (Request $request) {
 
+
     $usuario = Auth::user();
+
+
     // dd($usuario->fk_id_roles);
     switch( $usuario->fk_id_roles  ){
         case 1:

@@ -368,50 +368,16 @@
                     <p class="mb-0">{{auth()->user()->email}}</p>
                     </div>
                 </div>
-                <a class="dropdown-item" href="{{ route('perfilUsuario') }}"
-                    ><i
-                    data-feather="user"
-                    class="feather-sm text-info me-1 ms-1"
-                    ></i>
-                    My Profile</a
-                >
-                <a class="dropdown-item" href="index.html#"
-                    ><i
-                    data-feather="credit-card"
-                    class="feather-sm text-info me-1 ms-1"
-                    ></i>
-                    My Balance</a
-                >
-                <a class="dropdown-item" href="index.html#"
-                    ><i
-                    data-feather="mail"
-                    class="feather-sm text-success me-1 ms-1"
-                    ></i>
-                    Inbox</a
-                >
+                <a class="dropdown-item" href="{{ route('perfilUsuario') }}" ><i data-feather="user" class="feather-sm text-info me-1 ms-1"></i>Mi perfil</a>
+
+
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.html#"
-                    ><i
-                    data-feather="settings"
-                    class="feather-sm text-warning me-1 ms-1"
-                    ></i>
-                    Account Setting</a
-                >
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/#"
+                <a class="dropdown-item" href="{{route('logout')}}"
                     ><i
                     data-feather="log-out"
                     class="feather-sm text-danger me-1 ms-1"
-                    ></i>
-                    Logout</a
-                >
-                <div class="dropdown-divider"></div>
-                <div class="ps-4 p-2">
-                    <a href="index.html#" class="btn d-block w-100 btn-info rounded-pill"
-                    >View Profile</a
-                    >
-                </div>
-                </div>
+                    ></i>Cerrar Sessión</a>
+
             </li>
             <!-- ============================================================== -->
             <!-- User profile and search -->
