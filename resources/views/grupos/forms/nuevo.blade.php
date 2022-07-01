@@ -19,16 +19,6 @@
                                 <label for="name"class="control-label">Nombre de Grupo</label>
                                 <input type="text" id="name" name="grupos[name]" max="50" value="{{old('name')}}" class="form-control" placeholder="Nombre de Usaurio" required/>
                                 </div>
-
-
-                              <div class="mb-3">
-                                <label for="lider" class="control-label">Lider</label>
-                                <select id="lider" name="grupos[fk_id_users]"class="form-control select2"  style="height: 36px; width: 100%" required>
-                                @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endforeach
-                                </select>
-                            </div>
                              </div>
                           </form>
                         </div>

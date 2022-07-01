@@ -74,8 +74,8 @@
                     <table class="table table-striped mb-0 v-middle">
                         <thead >
                             <tr>
-                                <td scope="col" class="border-0 font-weight-medium ps-4" >Rol</td>
-                                <td scope="col" class="border-0 font-weight-medium">Usuarios</td>
+                                {{-- <td scope="col" class="border-0 font-weight-medium ps-4" >Rol</td> --}}
+                                {{-- <td scope="col" class="border-0 font-weight-medium">Usuarios</td> --}}
                             </tr>
                         </thead>
                         <tbody id="ListaRoles" ></tbody>
@@ -83,7 +83,7 @@
                   </div>
                 </ul>
                 <center class="mt-4">
-                <button class="btn waves-effect waves-light btn-primary" data-bs-toggle="modal" data-bs-target="#nuevo-Rol"><i class="ti-plus me-2"></i>Nuevo Rol</button>
+                <button id="agregar_rol" class="btn waves-effect waves-light btn-primary" data-bs-toggle="modal" data-bs-target="#nuevo-Rol"><i class="ti-plus me-2"></i>Nuevo Rol</button>
                 </center>
               </div>
             </div>

@@ -32,7 +32,7 @@
 
                               <div class="mb-3">
                                 <label for="rol" class="control-label">Rol</label>
-                                <select id="rol_alta" name="roles[]"class="form-control select2"  style="height: 36px; width: 100%" required>
+                                <select id="rol_alta" name="roles"class="form-control select2"  style="height: 36px; width: 100%" required>
                                 @foreach ($roles as $rol)
                                 <option value="{{$rol->id}}">{{$rol->name}}</option>
                                 @endforeach

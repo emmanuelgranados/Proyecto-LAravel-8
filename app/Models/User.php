@@ -25,9 +25,6 @@ class User extends  Authenticatable
         'password',
         'foto',
         'activo',
-        'fk_id_roles',
-        'fk_id_grupos',
-        'activo',
         'eliminado'
     ];
 

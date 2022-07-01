@@ -38,7 +38,7 @@ class GruposTrabajoController extends Controller
 
         $grupo = collect($request->all())->except('_token','fk_id_users');
 
-        //  dd($users, $grupo);
+        //   dd($users, $grupo);
 
         foreach($users as  $user){
 
