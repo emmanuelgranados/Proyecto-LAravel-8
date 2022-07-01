@@ -19,7 +19,7 @@
                 <div class="col-lg-9 col-md-8 col-xs-12 d-flex justify-content-start justify-content-md-end align-self-center" >
                     <nav aria-label="breadcrumb" class="mt-2">
                         <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.html">Bitácora</a></li>
+                            <li class="breadcrumb-item"><a >Bitácora</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Bitácora</li>
                         </ol>
                     </nav>

@@ -37,7 +37,7 @@
                 >
                 <nav aria-label="breadcrumb" class="mt-2">
                     <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a>Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
                         Dashboard
                     </li>
@@ -59,6 +59,25 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
 
+
+        <div class="d-flex justify-content-center" style="margin-top:100px">
+            {{-- <img src="images/mega_logo.png" width= 500px height=300px/> --}}
+
+            <table style="text-align:center;">
+                    <tr>
+                        <td><img src="../../assets/images/logos/logo.png" width= 500px height=100px/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bienvenidos a Bitacora ARCA</strong></td>
+                      </tr>
+
+                    <tr>
+                        <td><strong>Elige una opción del menu para comenzar</strong></td>
+                      </tr>
+
+                </table>
+
+        </div>
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->

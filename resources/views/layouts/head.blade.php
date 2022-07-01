@@ -8,10 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex,nofollow" />
     <title>ARCA Despacho Juridico y Contable</title>
-    <link
+    {{-- <link
       rel="canonical"
       href="https://www.wrappixel.com/templates/ampleadmin/"
-    />
+    /> --}}
     <!-- Favicon icon -->
     {{-- <link
       rel="icon"
