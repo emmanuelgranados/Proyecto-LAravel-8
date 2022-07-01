@@ -5,13 +5,13 @@ $(function () {
 
 
     $('#rol_alta.select2').select2({
-        multiple:true,
+
         theme: "classic",
         dropdownParent: $('#add-contact')
     });
 
-    $('#rol_alta_ed').select2({
-        multiple:true,
+    $('#rol_alta_ed.select2').select2({
+
         theme: "classic",
         dropdownParent: $('#editar-contact')
     });
@@ -64,6 +64,49 @@ $(function () {
 
 
 
+     $("#formNuevoRol").on("submit", function(e){
+
+        e.preventDefault();
+
+        let datos = $(this).serialize() ;
+
+        Swal.fire({
+            title: "¿Esta seguro que desea agregar un nuevo rol?",
+            // text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+          }).then((result) => {
+            if (result.value) {
+            $.ajax({
+            type:'POST',
+            url:'nuevo_rol',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data:datos,
+            success:function(data){
+                limpiarRol();
+                tabla_usuarios();
+                tabla_roles();
+                $('#cerrarModalNuevoRol').trigger("click");
+                Swal.fire("¡Éxito!", "Se agrego un nuevo registro de usuario.", "success");
+            },
+            error: function(response) {
+                $('#agregar_rol').trigger("click");
+            console.log(response.responseJSON.errors);
+                // $( "#errors" ).append(json.errors );
+
+            }
+         });
+
+        }
+
+      });
+
+
+     });
 
 
 });
@@ -82,7 +125,7 @@ function tabla_roles(){
 
             tabla += '<tr>'+
                         '<td>'+ ele.name +'</td>'+
-                        '<td>'+ ele.cantidad +'</td>'+
+                        // '<td>'+ ele.cantidad +'</td>'+
                     '</tr>';
 
         });
@@ -127,9 +170,10 @@ function tabla_usuarios(){
               ,defaultContent: "---", title: "Fecha actualización"},
               {data:function(row, type){
                const id = row.id;
-                return `<button title="Cambiar Contraseña" onclick="contrasena(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-contact" ><i class="fa fa-key" aria-hidden="true"></i></button>
+                return `<button title="Cambiar Contraseña" onclick="contrasena(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-key" ><i class="fa fa-key" aria-hidden="true"></i></button>
                         <button title="Detalles" onclick="detalle_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-contact"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                        <button title="Eliminar" onclick="delete_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold botoncheckdelete" data-bs-toggle="modal" data-bs-target="#delete-contact"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+                        <button title="Eliminar" onclick="delete_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold botoncheckdelete" data-bs-toggle="modal" data-bs-target="#delete-contact"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button title="Bloquear Acceso" onclick="delete_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold botonchecklock" data-bs-toggle="modal" data-bs-target="#lock-contact"><i class="fa fa-lock" aria-hidden="true"></i></button>`;
 
               }, title: "Acciones"}
         ],
@@ -158,6 +202,11 @@ function limpiar(){
     $("#name").val("");
     $("#email").val("");
     $("#password").val("");
+}
+function limpiarRol(){
+    $("#namerol").val("");
+    $("#descripcionrol").val("");
+
 }
 
 function detalle_usuario(id){

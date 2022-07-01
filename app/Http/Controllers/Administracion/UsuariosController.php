@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Models\ExpiraContrasena;
 use App\Models\Roles;
-use App\Models\RoleUser;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\RolesRequest;
 use Carbon\Carbon;
 
 class UsuariosController extends Controller
@@ -26,54 +24,44 @@ class UsuariosController extends Controller
     public function index()
     {
 
-        return view('administracion/usuarios',['usuarios' => User::where('activo', 1)->get(),
-        'roles' => Roles::select('name','id')->where('activo', 1)->where('name' ,'<>', 'sistemas')->get()]);
+        return view('administracion/usuarios',[ 'roles' => Roles::select('name','id')
+                                                  ->where('activo', 1)
+                                                  ->where('name' ,'<>', 'sistemas')
+                                                  ->get()]);
      }
 
 
      public function crear_usuario(UsuarioRequest $request){
 
+    $solicitud = collect($request->all())->except('_token');
 
-
-    $solicitud = collect($request->all())->except('_token','roles');
-
-    $roles = collect($request->all())->except('_token','name','email','password');
-
-    $this->crear($solicitud,$roles);
+    $this->crear($solicitud);
 
     return "Exito";
 
     }
 
 
-    private function crear ($solicitud,$roles){
-        // dd($solicitud,$roles);
+    private function crear($solicitud){
 
-
-      $entity = User::create([
-          'name' => $solicitud['name'],
-          'email' => $solicitud['email'],
-          'password' => Hash::make($solicitud['password']),
-          'activo' => 1,
+            User::create([
+           'name' => $solicitud['name'],
+           'email' => $solicitud['email'],
+           'fk_id_roles' => $solicitud['roles'],
+           'password' => Hash::make($solicitud['password']),
+           'activo' => 1,
       ]);
 
-
- foreach($roles as $key => $rol){
-    //  dd($rol);
-     foreach($rol as $rol2 ){
-        RoleUser::create([
-            'role_id' => $rol2,
-            'user_id' => $entity->id,
-        ]);
-
-     }
-
- }
+        return "Exito";
+    }
 
 
+    public function nuevo_rol(RolesRequest $request){
 
-        return "Exito papuuuus";
+       Roles::create(['name' => $request['name'],
+                      'description' => $request['description'],
+                      'activo'=>1]);
 
-
+       return "Exito";
     }
 }

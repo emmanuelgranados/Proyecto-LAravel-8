@@ -11,6 +11,8 @@ Route::group(['namespace' => 'Administracion'], function () {
     Route::post('nuevo_usuario','UsuariosController@crear_usuario')->name('nuevo_usuario');
 
 
+    Route::post('nuevo_rol','UsuariosController@nuevo_rol')->name('nuevo_rol');
+
 
 
     Route::get('perfilUsuario','PerfilUsuarioController@index')->name('perfilUsuario');
