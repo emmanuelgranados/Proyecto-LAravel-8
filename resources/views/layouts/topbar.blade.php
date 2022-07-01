@@ -60,7 +60,7 @@
                 ><i class="mdi mdi-menu fs-5"></i
                 ></a>
             </li>
-            <li class="nav-item dropdown mega-dropdown">
+            {{-- <li class="nav-item dropdown mega-dropdown">
                 <a
                 class="nav-link dropdown-toggle waves-effect waves-dark"
                 href="index.html#"
@@ -310,7 +310,7 @@
                     </div>
                 </div>
                 </div>
-            </li>
+            </li> --}}
             <!-- ============================================================== -->
             <!-- End mega menu -->
             <!-- ============================================================== -->

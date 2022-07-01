@@ -1,5 +1,5 @@
 @section('scripts')
-<!-- -------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------- -->
     <!-- All Jquery -->
     <!-- -------------------------------------------------------------- -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
@@ -37,6 +37,9 @@
     <!-- Moment.js: -->
     <script src="https://cdn.datatables.net/plug-ins/1.11.3/dataRender/datetime.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+    <script src="../../dist/js/pages/chartjs/chartjs.init.js"></script>
+    <script src="../../assets/libs/chart.js/dist/Chart.min.js"></script>
 
     <script>
       $("#calendar").fullCalendar("option", "height", 650);

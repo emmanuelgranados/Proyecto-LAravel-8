@@ -306,6 +306,14 @@ function cargarListaTareas(fk_id_users){
         // console.log(data);
         $.each(data,function(i,ele){
 
+            let botonAcciones =  (document.getElementById('nuevaTarea') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+                                                                                        '<li>'+
+                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
+                                                                                        '</li>'+
+                                                                                        '<li>'+
+                                                                                            '<a class="dropdown-item" onclick="eliminarTarea('+ ele.id +')">Borrar</a>'+
+                                                                                        '</li>'+
+                                                                                    '</ul>';
             listaTareas += '<tr>'+
                                 '<td>'+ ele.id +'</td>'+
                                 '<td>'+ ele.clientes.nombre_razon_social +'</td>'+
@@ -325,14 +333,7 @@ function cargarListaTareas(fk_id_users){
                                                 '<circle cx="5" cy="12" r="1"></circle>'+
                                             '</svg>'+
                                         '</a>'+
-                                        '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
-                                            '<li>'+
-                                                '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
-                                            '</li>'+
-                                            '<li>'+
-                                                '<a class="dropdown-item" onclick="eliminarTarea('+ ele.id +')">Borrar</a>'+
-                                            '</li>'+
-                                        '</ul>'+
+                                        botonAcciones
                                     '</div>'+
                                 '</td>'+
                             '</tr>';

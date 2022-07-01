@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name'=>'Sistemas',
             'fk_id_roles'=>1,
-            'fk_id_grupos'=>1,
+            'fk_id_grupos'=>0,
             'phone'=>'3312727386',
             'message'=>'hola',
             'fk_id_estado'=>14,
@@ -91,48 +91,56 @@ class UsersTableSeeder extends Seeder
             'updated_at'=>Carbon::now(),
         ]);
 
+        DB::table('users')->insert([
+            'name'=>'cri',
+            'fk_id_roles'=>3,
+            'fk_id_grupos'=>2,
+            'phone'=>'3312727386',
+            'message'=>'hola',
+            'fk_id_estado'=>14,
+            'email'=>'cri@arca.com',
+            'password'=> bcrypt('secret'),
+            'foto'=>1,
+            'activo'=>1,
+            'eliminado'=>0,
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name'=>'El H',
+            'fk_id_roles'=>4,
+            'fk_id_grupos'=>2,
+            'phone'=>'3312727386',
+            'message'=>'hola',
+            'fk_id_estado'=>14,
+            'email'=>'elh@arca.com',
+            'password'=> bcrypt('secret'),
+            'foto'=>1,
+            'activo'=>1,
+            'eliminado'=>0,
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now(),
+        ]);
 
 
+        DB::table('users')->insert([
+            'name'=>'Aurelio',
+            'fk_id_roles'=>4,
+            'fk_id_grupos'=>2,
+            'phone'=>'3312727386',
+            'message'=>'hola',
+            'fk_id_estado'=>14,
+            'email'=>'aurelio@arca.com',
+            'password'=> bcrypt('secret'),
+            'foto'=>1,
+            'activo'=>1,
+            'eliminado'=>0,
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now(),
+        ]);
 
 
-        // $user = new User();
-        // $user->name = 'cri';
-        // $user->email = 'cri@arca.com';
-        // $user->password = bcrypt('secret');
-        // $user->phone = '3312727386';
-        // $user->message = 'hola';
-        // $user->fk_id_estado = 1;
-        // $user->foto = 1;
-        // $user->activo = 1;
-        // $user->eliminado = 0;
-        // $user->save();
-        // $user->roles()->attach($role_supervisor);
-
-        // $user = new User();
-        // $user->name = 'El h';
-        // $user->email = 'h@arca.com';
-        // $user->password = bcrypt('secret');
-        // $user->phone = '3312727386';
-        // $user->message = 'hola';
-        // $user->fk_id_estado = 1;
-        // $user->foto = 1;
-        // $user->activo = 1;
-        // $user->eliminado = 0;
-        // $user->save();
-        // $user->roles()->attach($role_ejecutivo);
-
-        // $user = new User();
-        // $user->name = 'Aureliuuuuus';
-        // $user->email = 'Aureliuuuuus@arca.com';
-        // $user->password = bcrypt('secret');
-        // $user->phone = '3312727386';
-        // $user->message = 'hola';
-        // $user->fk_id_estado = 1;
-        // $user->foto = 1;
-        // $user->activo = 1;
-        // $user->eliminado = 0;
-        // $user->save();
-        // $user->roles()->attach($role_ejecutivo);
 
 
     }
