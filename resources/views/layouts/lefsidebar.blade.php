@@ -52,10 +52,30 @@
 
                     @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('clientes') }}" >
+                            {{-- <a class="sidebar-link" href="{{ route('clientes') }}" >
                                 <i class="mdi mdi-account-card-details"></i>
                                 <span class="hide-menu">Clientes</span>
+                            </a> --}}
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                aria-expanded="false">
+                                <i class="mdi mdi-note-text"></i>
+                                <span class="hide-menu">Bitacora</span>
                             </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="{{ route('clientes') }}" class="sidebar-link">
+                                        <i class="mdi mdi-cards-variant"></i>
+                                        <span class="hide-menu">Clientes</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{{ route('prospectos') }}" class="sidebar-link">
+                                        <i class="mdi mdi-cards-variant"></i>
+                                        <span class="hide-menu">Prospectos</span>
+                                    </a>
+                                </li>
+                            </ul>
+
                         </li>
                     @endif
                     @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )

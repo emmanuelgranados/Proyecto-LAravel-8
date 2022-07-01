@@ -18,6 +18,7 @@ class Clientes extends  Model
         'rfc',
         'email',
         'pagina_web',
+        'prospecto',
         'activo',
         'eliminado'
     ];

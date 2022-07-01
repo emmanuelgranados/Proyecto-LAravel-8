@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('rfc');
             $table->string('email');
             $table->string('pagina_web');
+            $table->boolean('prospecto')->default(0);
             $table->boolean('activo')->default(1);
             $table->boolean('eliminado')->default(0);
         });

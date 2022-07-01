@@ -16,8 +16,8 @@ class ClientesTableSeeder extends Seeder
     public function run()
     {
         DB::statement("
-        INSERT INTO `clientes` (`id`, `nombre_razon_social`, `rfc`, `email`, `pagina_web`, `activo`, `eliminado`) VALUES
-        (1,'google sa. de cv.','AXX0101010003','prueba@example.com','www.google.com',1,0)
+        INSERT INTO `clientes` (`id`, `nombre_razon_social`, `rfc`, `email`, `pagina_web`, `prospecto`, `activo`, `eliminado`) VALUES
+        (1,'google sa. de cv.','AXX0101010003','prueba@example.com','www.google.com',0,1,0)
         ");
 
 

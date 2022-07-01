@@ -14,16 +14,16 @@
         <div class="page-breadcrumb border-bottom">
             <div class="row mb-3">
                 <div class="col-lg-3 col-md-4 col-xs-12 justify-content-start d-flex align-items-center">
-                    <h5 class="font-weight-medium text-uppercase mb-0">Clientes</h5>
+                    <h5 class="font-weight-medium text-uppercase mb-0">Prospectos</h5>
                 </div>
                 <div class="col-lg-9 col-md-8 col-xs-12 d-flex justify-content-start justify-content-md-end align-self-center" >
                     <nav aria-label="breadcrumb" class="mt-2">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="index.html">Clientes</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+                            <li class="breadcrumb-item active" aria-current="page">Prospectos</li>
                         </ol>
                     </nav>
-                    <button class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nuevo Cliente </button>
+                    <button class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nuevo Prospecto </button>
 
                     {{-- Formulario para crear nuevos clientes --}}
 
@@ -31,7 +31,7 @@
                         <div class="modal-dialog modal-xl" >
                             <div class="modal-content">
                                 <div class="modal-header modal-colored-header bg-info text-white">
-                                    <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Cliente </h4>
+                                    <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Prospectos </h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                                 </div>
                                 <div class="modal-body">
@@ -87,7 +87,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Página Web</label>
                                                                     <div class="col-md-12">
-                                                                        <input type="hidden"  id="prospecto" name="cliente[prospecto]" value="0">
+                                                                    <input type="hidden"  name="cliente[prospecto]" value="1" >
                                                                     <input type="text" class="form-control nuevoCliente" name="cliente[pagina_web]" placeholder="www.google.com">
                                                                     {{-- <small class="form-control-feedback">
                                                                         This field has error.
@@ -225,7 +225,7 @@
                         <div class="modal-dialog modal-xl" >
                             <div class="modal-content">
                                 <div class="modal-header modal-colored-header bg-info text-white">
-                                    <h4 class="modal-title" id="info-header-modalLabel-2"> Editar Cliente </h4>
+                                    <h4 class="modal-title" id="info-header-modalLabel-2"> Editar Prospecto </h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                                 </div>
                                 <div class="modal-body">
@@ -282,7 +282,7 @@
                                                                 <div class="mb-3">
                                                                     <label class="control-label">Página Web</label>
                                                                     <div class="col-md-12">
-                                                                    <input type="hidden"  id="editar_prospecto" name="cliente[prospecto]" value="0" >
+                                                                        <input type="hidden"  id="editar_prospecto" name="cliente[prospecto]" value="1" >
                                                                     <input type="text" class="form-control nuevoCliente" id="editar_pagina_web" name="cliente[pagina_web]" placeholder="www.google.com">
                                                                     {{-- <small class="form-control-feedback">
                                                                         This field has error.
@@ -461,5 +461,5 @@
 
 
 @section('script')
-    <script src="js/clientes/clientes.js" as></script>
+    <script src="js/clientes/prospectos.js" as></script>
 @endsection

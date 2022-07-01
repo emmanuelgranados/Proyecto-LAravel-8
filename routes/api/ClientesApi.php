@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 
 Route::get('/lista_clientes', function (Request $request) {
 
-    $clientes = Clientes::where('activo',1)->where('eliminado',0)->get();
+    $clientes = Clientes::where('prospecto',0)->where('activo',1)->where('eliminado',0)->get();
+
+    return $clientes;
+});
+
+Route::get('/lista_prospectos', function (Request $request) {
+
+    $clientes = Clientes::where('prospecto',1)->where('activo',1)->where('eliminado',0)->get();
 
     return $clientes;
 });
