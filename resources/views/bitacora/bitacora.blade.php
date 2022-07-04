@@ -136,6 +136,451 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title">Tickets</h4>
+
+                          <div class="table-responsive mt-4">
+                            <table
+                              id="zero_config"
+                              class="table table-bordered no-wrap fs-3"
+                            >
+                              <thead>
+                                <tr>
+                                  <th>Status</th>
+                                  <th>Title</th>
+                                  <th>ID</th>
+                                  <th>Product</th>
+                                  <th>Created by</th>
+                                  <th>Date</th>
+                                  <th>Agent</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-warning
+                                        text-warning
+                                        font-weight-medium
+                                      "
+                                      >In Progress</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Elegant Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >276377</a
+                                    >
+                                  </td>
+                                  <td>Elegant Admin</td>
+                                  <td>Eric Pratt</td>
+                                  <td>2021/05/01</td>
+                                  <td>Fazz</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-danger
+                                        text-danger
+                                        font-weight-medium
+                                      "
+                                      >Closed</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >AdminX Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1234251</a
+                                    >
+                                  </td>
+                                  <td>AdminX Admin</td>
+                                  <td>Nirav Joshi</td>
+                                  <td>2021/05/11</td>
+                                  <td>Steve</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-success
+                                        text-success
+                                        font-weight-medium
+                                      "
+                                      >Opened</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Admin-Pro Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1020345</a
+                                    >
+                                  </td>
+                                  <td>Admin-Pro</td>
+                                  <td>Vishal Bhatt</td>
+                                  <td>2021/04/01</td>
+                                  <td>John</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-warning
+                                        text-warning
+                                        font-weight-medium
+                                      "
+                                      >In Progress</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Elegant Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >7810203</a
+                                    >
+                                  </td>
+                                  <td>Elegant Admin</td>
+                                  <td>Eric Pratt</td>
+                                  <td>2021/01/01</td>
+                                  <td>Fazz</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-warning
+                                        text-warning
+                                        font-weight-medium
+                                      "
+                                      >In Progress</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >AdminX Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >2103450</a
+                                    >
+                                  </td>
+                                  <td>AdminX Admin</td>
+                                  <td>Nirav Joshi</td>
+                                  <td>2021/05/01</td>
+                                  <td>John</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-warning
+                                        text-warning
+                                        font-weight-medium
+                                      "
+                                      >In Progress</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Admin-Pro Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >2140530</a
+                                    >
+                                  </td>
+                                  <td>Admin-Pro</td>
+                                  <td>Vishal Bhatt</td>
+                                  <td>2021/07/01</td>
+                                  <td>Steve</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-success
+                                        text-success
+                                        font-weight-medium
+                                      "
+                                      >Opened</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Elegant Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >4500123</a
+                                    >
+                                  </td>
+                                  <td>Elegant Admin</td>
+                                  <td>Eric Pratt</td>
+                                  <td>2021/05/10</td>
+                                  <td>Fazz</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-danger
+                                        text-danger
+                                        font-weight-medium
+                                      "
+                                      >Closed</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Elegant Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1230450</a
+                                    >
+                                  </td>
+                                  <td>Elegant Admin</td>
+                                  <td>Eric Pratt</td>
+                                  <td>2021/05/14</td>
+                                  <td>John</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-danger
+                                        text-danger
+                                        font-weight-medium
+                                      "
+                                      >Closed</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >AdminX Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1240503</a
+                                    >
+                                  </td>
+                                  <td>AdminX Admin</td>
+                                  <td>Nirav Joshi</td>
+                                  <td>2021/02/01</td>
+                                  <td>Steve</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-success
+                                        text-success
+                                        font-weight-medium
+                                      "
+                                      >Opened</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Admin-Pro Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1250304</a
+                                    >
+                                  </td>
+                                  <td>Admin-Pro</td>
+                                  <td>Vishal Bhatt</td>
+                                  <td>2021/05/21</td>
+                                  <td>Fazz</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-success
+                                        text-success
+                                        font-weight-medium
+                                      "
+                                      >Opened</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Elegant Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1470250</a
+                                    >
+                                  </td>
+                                  <td>Elegant Admin</td>
+                                  <td>Eric Pratt</td>
+                                  <td>2021/05/11</td>
+                                  <td>John</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-danger
+                                        text-danger
+                                        font-weight-medium
+                                      "
+                                      >Closed</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >Admin-Pro Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1450023</a
+                                    >
+                                  </td>
+                                  <td>Admin-Pro</td>
+                                  <td>Vishal Bhatt</td>
+                                  <td>2021/05/13</td>
+                                  <td>Steve</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span
+                                      class="
+                                        badge
+                                        bg-light-warning
+                                        text-warning
+                                        font-weight-medium
+                                      "
+                                      >In Progress</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="ticket-detail.html"
+                                      class="font-weight-medium link"
+                                      >AdminX Theme Side Menu Open OnClick</a
+                                    >
+                                  </td>
+                                  <td>
+                                    <a href="ticket-detail.html" class="fw-bold link"
+                                      >1420530</a
+                                    >
+                                  </td>
+                                  <td>AdminX Admin</td>
+                                  <td>Nirav Joshi</td>
+                                  <td>2021/10/01</td>
+                                  <td>Fazz</td>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <th>Status</th>
+                                  <th>Title</th>
+                                  <th>ID</th>
+                                  <th>Product</th>
+                                  <th>Created by</th>
+                                  <th>Date</th>
+                                  <th>Agent</th>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
 
@@ -152,4 +597,8 @@
 
 @section('script')
     <script src="js/bitacora/bitacora.js"></script>
+
+    <script>
+        $("#zero_config").DataTable();
+      </script>
 @endsection

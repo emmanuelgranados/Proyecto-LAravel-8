@@ -40,5 +40,15 @@
     <link href="dist/css/style.min.css" rel="stylesheet" />
     <link href="plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
 
+    <link
+      href="../../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css"
+    />
+
 
 @endsection
