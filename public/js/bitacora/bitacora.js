@@ -1,3 +1,5 @@
+// const { data } = require("autoprefixer");
+
 $(function () {
 
     $("#formNuevaTarea").on("submit", function(e){
@@ -260,92 +262,206 @@ function cargarGrupos(){
 
 function cargarListaTareasActivas(id){
 
-    $('#listaTareasActivas').empty();
-    $('#listaComentarios').empty();
+    // $('#listaTareasActivas').empty();
+    // $('#listaComentarios').empty();
 
-    $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
+    // $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
 
-        let listaTareasActivas = '';
+    //     let listaTareasActivas = '';
 
-        $.each(data,function(i,ele){
+    //     $.each(data,function(i,ele){
 
-            if( ele.fk_id_prioridades == 1 ){
-                prioridad = 'border-info';
-            }else if( ele.fk_id_prioridades == 2 ){
-                prioridad = 'border-warning';
-            }else if( ele.fk_id_prioridades == 3 ){
-                prioridad = 'border-danger';
-            }
+    //         if( ele.fk_id_prioridades == 1 ){
+    //             prioridad = 'border-info';
+    //         }else if( ele.fk_id_prioridades == 2 ){
+    //             prioridad = 'border-warning';
+    //         }else if( ele.fk_id_prioridades == 3 ){
+    //             prioridad = 'border-danger';
+    //         }
 
-            listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
-                                    '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
-                                        // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
-                                        '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
-                                            '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
-                                        '</label>',
-                                    '</div>',
-                                   '</li>';
+    //         listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
+    //                                 '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
+    //                                     // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
+    //                                     '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
+    //                                         '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
+    //                                     '</label>',
+    //                                 '</div>',
+    //                                '</li>';
 
-        });
+    //     });
 
 
-        $('#listaTareasActivas').append(listaTareasActivas);
-        cargarListaTareas(id);
+    //     $('#listaTareasActivas').append(listaTareasActivas);
+    //     cargarListaTareas(id);
 
-    });
-
+    // });
+    cargarListaTareas(id);
 
 }
 
 
 function cargarListaTareas(fk_id_users){
-    $('#detallesLista').empty();
-    $.get( 'api/obtener_lista_tareas',{fk_id_users:fk_id_users},function(data){
+    // $('#detallesLista').empty();
 
-        let listaTareas = '';
-        // console.log(data);
-        $.each(data,function(i,ele){
+    $('#zero_config2').empty();
 
-            let botonAcciones =  (document.getElementById('nuevaTarea') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+    $('#zero_config2').DataTable({
+        searchDelay: 400,
+        ajax: {
+            url: "api/obtener_lista_tareas?fk_id_users="+fk_id_users,
+            dataSrc: function(json){
+            console.log('Aqui ando ',json);
+                return json;
+            }
+        },
+        // order: [[0, 'asc']],
+        // ordering:true,
+        columns:[
+            //   { data: "id", defaultContent: "---", title: "#2" },
+              { data: "clientes.nombre_razon_social", defaultContent: "---", title: "Cliente" },
+              { data: "tarea", defaultContent: "---", title: "Tarea" },
+              { data: "prioridades.prioridad", defaultContent: "---", title: "Prioridad" },
+              { data: "usuarios_alta.name", defaultContent: "---", title: "Asigno" },
+              { data: "usuarios_asignado.name", defaultContent: "---", title: "Realiza" },
+              { data: "fecha_inicio", defaultContent: "---", title: "Fecha Inicio" },
+              { data: "fecha_final", defaultContent: "---", title: "Fecha Final" },
+              { data: "estatus.estatus", defaultContent: "---", title: "Estatus"  },
+
+              {data:function(row, type){
+               const id = row.id;
+
+               let botonAcciones =  (document.getElementById('nuevaTarea') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
                                                                                         '<li>'+
-                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
+                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+id+')">Editar</a>'+
                                                                                         '</li>'+
                                                                                         '<li>'+
-                                                                                            '<a class="dropdown-item" onclick="eliminarTarea('+ ele.id +')">Borrar</a>'+
+                                                                                            '<a class="dropdown-item" onclick="eliminarTarea('+ id +')">Borrar</a>'+
                                                                                         '</li>'+
                                                                                     '</ul>';
-            listaTareas += '<tr>'+
-                                '<td>'+ ele.id +'</td>'+
-                                '<td>'+ ele.clientes.nombre_razon_social +'</td>'+
-                                '<td>'+ ele.tarea +'</td>'+
-                                '<td>'+ ele.prioridades.prioridad +'</td>'+
-                                '<td>'+ ele.usuarios_alta.name +'</td>'+
-                                '<td>'+ ele.usuarios_asignado.name +'</td>'+
-                                '<td>'+ ele.fecha_inicio +'</td>'+
-                                '<td>'+ ele.fecha_final +'</td>'+
-                                '<td>'+ ele.estatus.estatus +'</td>'+
-                                '<td>'+
-                                    '<div class="dropdown dropstart">'+
-                                        '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
-                                            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
-                                                '<circle cx="12" cy="12" r="1"></circle>'+
-                                                '<circle cx="19" cy="12" r="1"></circle>'+
-                                                '<circle cx="5" cy="12" r="1"></circle>'+
-                                            '</svg>'+
-                                        '</a>'+
-                                        botonAcciones
-                                    '</div>'+
-                                '</td>'+
-                            '</tr>';
 
 
+                return  '<div class="dropdown dropstart">'+
+                                                '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
+                                                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
+                                                        '<circle cx="12" cy="12" r="1"></circle>'+
+                                                        '<circle cx="19" cy="12" r="1"></circle>'+
+                                                        '<circle cx="5" cy="12" r="1"></circle>'+
+                                                    '</svg>'+
+                                                '</a>'+
+                                                botonAcciones
+                                            '</div>';
 
+              }, title: "Acciones"}
+        ],
+        aLengthMenu: [
+            [25, 50, 100, 200, -1],
+            [25, 50, 100, 200, 'All']
+        ],
+        destroy: true,
+        paging:true,
+        info:true,
+        // responsive: true,
+        dom: "Bfrtip",
+        buttons: ["copy", "csv", "excel", "pdf", "print"],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        }
 
-        });
-
-
-        $('#detallesLista').append(listaTareas);
     });
+
+
+    // $.get( 'api/obtener_lista_tareas',{fk_id_users:fk_id_users},function(datos){
+
+        // let listaTareas = '';
+        // // console.log(data);
+        // $.each(data,function(i,ele){
+
+            // let botonAcciones =  (document.getElementById('nuevaTarea') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+            //                                                                             '<li>'+
+            //                                                                                 '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
+            //                                                                             '</li>'+
+            //                                                                             '<li>'+
+            //                                                                                 '<a class="dropdown-item" onclick="eliminarTarea('+ ele.id +')">Borrar</a>'+
+            //                                                                             '</li>'+
+            //                                                                         '</ul>';
+        //     listaTareas += '<tr>'+
+        //                         '<td>'+ ele.id +'</td>'+
+        //                         '<td>'+ ele.clientes.nombre_razon_social +'</td>'+
+        //                         '<td>'+ ele.tarea +'</td>'+
+        //                         '<td>'+ ele.prioridades.prioridad +'</td>'+
+        //                         '<td>'+ ele.usuarios_alta.name +'</td>'+
+        //                         '<td>'+ ele.usuarios_asignado.name +'</td>'+
+        //                         '<td>'+ ele.fecha_inicio +'</td>'+
+        //                         '<td>'+ ele.fecha_final +'</td>'+
+        //                         '<td>'+ ele.estatus.estatus +'</td>'+
+        //                         '<td>'+
+        //                             '<div class="dropdown dropstart">'+
+        //                                 '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
+        //                                     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
+        //                                         '<circle cx="12" cy="12" r="1"></circle>'+
+        //                                         '<circle cx="19" cy="12" r="1"></circle>'+
+        //                                         '<circle cx="5" cy="12" r="1"></circle>'+
+        //                                     '</svg>'+
+        //                                 '</a>'+
+        //                                 botonAcciones
+        //                             '</div>'+
+        //                         '</td>'+
+        //                     '</tr>';
+
+
+        // $('#zero_config2').DataTable( {
+        //     // "ajax": "api/obtener_lista_tareas?fk_id_users="+fk_id_users,
+        //     "data": datos,
+        //     "columns": [
+        //       { data: "id" },
+        //       { data: "clientes.nombre_razon_social" },
+        //       { data: "tarea" },
+        //       { data: "prioridades.prioridad" },
+        //       { data: "usuarios_alta.name" },
+        //       { data: "usuarios_asignado.name" },
+        //       { data: "fecha_inicio" },
+        //       { data: "fecha_final" },
+        //       { data: "estatus.estatus" }
+        //     ]
+
+        //   } );
+
+
+
+        // });
+
+
+
+
+                // console.info(data.eliminado);
+
+                // $('#zero_config').DataTable().clear().draw();
+                // $('#zero_config').DataTable().rows.add($.map( data,function(item){
+                //     console.log('aqui toy',item)
+                //     return{
+
+                //         eliminado: item.eliminado
+                //     }
+                // })
+
+                // ).draw(); // Add new data
+
+
+
+
+
+        // $('#detallesLista').append(listaTareas);
+    // });
+
+    // var table = $('#zero_config').destroy();
+
+    // table.destroy();
+
+    // var table = $('#zero_config').DataTable();
+
+
+
+    // $('#zero_config').DataTable().columns.adjust().draw(); // Redraw the DataTable
 }
 
 
