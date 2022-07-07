@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
     $this->call(ClientesTableSeeder::class);
     $this->call(PrioridadesTableSeeder::class);
     $this->call(GruposSeeder::class);
+    $this->call(ObligacionesTableSeeder::class);
 
     }
 }
