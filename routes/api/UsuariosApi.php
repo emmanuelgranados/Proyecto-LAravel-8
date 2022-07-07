@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
                return User::select('users.id','users.name','users.email','roles.name as roles','users.activo','users.created_at','users.updated_at')
                ->leftjoin('roles','roles.id','=', 'users.fk_id_roles')
-               ->where('users.activo',1)->where('users.eliminado',0)
+               ->where('users.eliminado',0)
                ->get();
         });
 

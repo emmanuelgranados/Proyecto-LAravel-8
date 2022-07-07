@@ -55,6 +55,19 @@ class UsuariosController extends Controller
         return "Exito";
     }
 
+   public function eliminar_usuario(Request $request){
+
+    User::where('id',$request->id)->update( ['eliminado' => 1 ] );
+
+    return "Exito";
+   }
+
+   public function desactivar_usuario(Request $request){
+
+    User::where('id',$request->id)->update( ['activo' => 0] );
+
+    return "Exito";
+   }
 
     public function nuevo_rol(RolesRequest $request){
 
@@ -64,4 +77,20 @@ class UsuariosController extends Controller
 
        return "Exito";
     }
+
+    public function activar_usuario(Request $request){
+
+        User::where('id',$request->id)->update( ['activo' => 1] );
+
+        return "Exito";
+    }
+
+    public function password_usuario(Request $request){
+// dd($request);
+        User::where('id',$request->id)->update( ['password' => Hash::make($request->password)] );
+
+        return "Exito";
+    }
+
+
 }

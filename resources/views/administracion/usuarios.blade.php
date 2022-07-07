@@ -21,8 +21,8 @@
     @include('administracion.detalleUsuario')
 </div>
 
-<div id="delete-contact" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @include('administracion.deleteUsuario')
+<div id="detalle-key" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @include('administracion.passwordUsuario')
 </div>
 
 <div  id="nuevo-Rol" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

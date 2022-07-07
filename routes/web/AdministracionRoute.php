@@ -9,7 +9,10 @@ Route::group(['namespace' => 'Administracion'], function () {
 
     Route::get('usuarios', 'UsuariosController@index')->name('usuarios');
     Route::post('nuevo_usuario','UsuariosController@crear_usuario')->name('nuevo_usuario');
-
+    Route::post('eliminar_usuario','UsuariosController@eliminar_usuario')->name('eliminar_usuario');
+    Route::post('desactivar_usuario','UsuariosController@desactivar_usuario')->name('desactivar_usuario');
+    Route::post('activar_usuario','UsuariosController@activar_usuario')->name('activar_usuario');
+    Route::post('password_usuario','UsuariosController@password_usuario')->name('password_usuario');
 
     Route::post('nuevo_rol','UsuariosController@nuevo_rol')->name('nuevo_rol');
 
