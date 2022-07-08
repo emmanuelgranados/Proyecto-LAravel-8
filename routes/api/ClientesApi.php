@@ -3,6 +3,7 @@
 use App\Models\Clientes;
 use App\Models\CodigosPostales;
 use App\Models\Municipios;
+use App\Models\Obligaciones;
 use Illuminate\Http\Request;
 
 Route::get('/lista_clientes', function (Request $request) {
@@ -51,3 +52,14 @@ Route::get('/obtener_codigos_postales', function (Request $request) {
 
 });
 
+
+Route::get('/obtener_obligaciones', function (Request $request) {
+
+    $obligaciones = Obligaciones::where('activo',1)
+    ->where('eliminado',0)
+    ->orderBy('obligacion')
+    ->get();
+
+    return $obligaciones;
+
+});

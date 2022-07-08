@@ -143,6 +143,33 @@ function tabla_clientes(){
 
     });
 
+}
+
+lista_obligaciones();
+
+function lista_obligaciones(){
+
+    $('#listaObligaciones').empty();
+
+    $.get( 'api/obtener_obligaciones',function(data){
+        var lista = '';
+        $.each(data,function(i,ele){
+
+            lista += '<div class="col-md-4">'+
+                        '<div class="mb-3">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-check">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="obligaciones_'+i+'">'+
+                                    '<label class="form-check-label" for="obligaciones_'+i+'">'+ ele.obligacion + '</label>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+        });
+        $('#listaObligaciones').append(lista);
+
+    });
 
 }
 

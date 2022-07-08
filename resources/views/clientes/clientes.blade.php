@@ -102,7 +102,7 @@
                                                     <h4 class="card-title">Dirección</h4>
                                                     <hr class="mt-0 mb-1">
                                                     <div class="card-body">
-                                                    <!--/row-->
+                                                        <!--/row-->
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="mb-3">
@@ -206,6 +206,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+
+                                                    <h4 class="card-title">Obligaciones</h4>
+                                                    <hr class="mt-0 mb-1">
+                                                    <div class="card-body">
+                                                        <!--/row-->
+                                                        <div class="row" id="listaObligaciones">
+                                                                        {{-- <input type="text" name="cliente[direcciones][0][calle]" class="form-control"> --}}
+                                                        </div>
+                                                    </div>
+
+
                                                     <hr class="mt-0 mb-1">
                                                     <div class="modal-footer">
                                                         <button type="button" id="cerrarModalNuevo" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
