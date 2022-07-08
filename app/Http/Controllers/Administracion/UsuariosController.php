@@ -92,5 +92,14 @@ class UsuariosController extends Controller
         return "Exito";
     }
 
+    public function editar_usuario(Request $request){
+        //  dd($request);
+        User::where('id',$request->id)->update( ['name' => $request->name,
+                                                 'email' => $request->email,
+                                                 'fk_id_roles' => $request->roles,] );
+
+        return "Exito";
+    }
+
 
 }

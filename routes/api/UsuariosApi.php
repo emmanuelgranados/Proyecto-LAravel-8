@@ -18,6 +18,16 @@ use Illuminate\Support\Facades\DB;
                ->get();
         });
 
+
+        Route::post('/detalle_usuario', function (Request $request) {
+
+            return User::select('users.id','users.name','users.email','roles.id as idRol','roles.name as roles','users.activo','users.created_at','users.updated_at')
+            ->leftjoin('roles','roles.id','=', 'users.fk_id_roles')
+            ->where('users.eliminado',0)
+            ->where('users.id', $request->id)
+            ->get();
+     });
+
         Route::get('/lista_roles', function (Request $request) {
 
             return Roles::select('roles.name')

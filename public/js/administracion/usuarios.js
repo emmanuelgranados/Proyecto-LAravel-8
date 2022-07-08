@@ -10,7 +10,7 @@ $(function () {
         dropdownParent: $('#add-contact')
     });
 
-    $('#rol_alta_ed.select2').select2({
+    $('#rol_altaed.select2').select2({
 
         theme: "classic",
         dropdownParent: $('#editar-contact')
@@ -54,14 +54,10 @@ $(function () {
 
             }
          });
-
         }
-
       });
 
-
      });
-
 
 
      $("#formNuevoRol").on("submit", function(e){
@@ -107,6 +103,9 @@ $(function () {
 
 
      });
+
+
+
 
 
 });
@@ -227,7 +226,7 @@ function tabla_usuarios(){
 
                }
                 return `<button title="Cambiar Contraseña" onclick="contrasena(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-key" ><i class="fa fa-key" aria-hidden="true"></i></button>
-                        <button title="Detalles" onclick="detalle_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-contact"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                        <button title="Editar" onclick="editar_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#editar-contact"><i class="fa fa-edit" aria-hidden="true"></i></button>
                         <button title="Eliminar" onclick="delete_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold botoncheckdelete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <button title="Bloquear Usuario"  ${$bloquear} id="bloquearusuario" onclick="descativar_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold botonchecklock"><i class="fa fa-lock" aria-hidden="true"></i></button>
                         <button title="Desbloquear Usuario"  ${$desbloquear} id="activausuario" onclick="activar_usuario(${id})" class="btn text-center btn-small btn-link font-weight-bold botoncheckunlock"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>`;
@@ -273,6 +272,63 @@ function detalle_usuario(id){
 
 function editar_usuario(id){
     console.log(id);
+    $("#id_user_editar").val(id);
+    $.ajax({
+        type:'POST',
+        url:'api/detalle_usuario',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:{id:id},
+        success:function(data){
+           console.log(data);
+           $('#name_editar').val(data[0].name);
+           $('#email_editar').val(data[0].email);
+           $('#rol_altaed').val(data[0].idRol).change();
+        }
+    });
+
+    $("#formEditarUsuario").on("submit", function(e){
+
+        e.preventDefault();
+
+        let datos = $(this).serialize() ;
+
+        Swal.fire({
+            title: "¿Esta seguro que desea editar este usuario?",
+            // text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+          }).then((result) => {
+            if (result.value) {
+            $.ajax({
+            type:'POST',
+            url:'editar_usuario',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data:datos,
+            success:function(data){
+
+                tabla_usuarios();
+                tabla_roles();
+                $('#cerrarModalEditar').trigger("click");
+                Swal.fire("¡Éxito!", "Se agrego edito el registro de usuario.", "success");
+            },
+            error: function(response) {
+                $('#cerrarModalEditar').trigger("click");
+            console.log(response.responseJSON.errors);
+                // $( "#errors" ).append(json.errors );
+
+            }
+         });
+
+        }
+
+      });
+
+
+     });
 }
 
 
