@@ -180,7 +180,7 @@
 
 
                                 <h4 class="card-title">Obligaciones</h4>
-                                <hr class="mt-0 mb-1">
+                                <hr class="mt-0 mb-1 card w-100">
                                 <div class="card-body">
                                     <!--/row-->
                                     <div class="row" id="listaObligaciones">
@@ -191,58 +191,18 @@
                                 <h4 class="card-title">Tareas Predeterminadas</h4>
                                 <hr class="mt-0 mb-1">
                                 <div class="card-body">
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion " id="accordionPanelsStayOpenExample">
                                         <div class="accordion-item">
                                           <h2 class="accordion-header" id="flush-headingOne">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tareasContabilidad" aria-expanded="false" aria-controls="tareasContabilidad">
                                               Contabilidad
                                             </button>
                                           </h2>
-                                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                                          <div id="tareasContabilidad" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
                                             <div class="accordion-body">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">
-                                                      <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="list1">
-                                                        <label class="form-check-label" for="list1">
-                                                          Todo list 1
-                                                        </label>
-                                                      </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                      <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="list2">
-                                                        <label class="form-check-label" for="list2">
-                                                          Todo list 2
-                                                        </label>
-                                                      </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                      <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="list3">
-                                                        <label class="form-check-label" for="list3">
-                                                          Todo list 3
-                                                        </label>
-                                                      </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                      <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="list4">
-                                                        <label class="form-check-label" for="list4">
-                                                          Todo list 4
-                                                        </label>
-                                                      </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                      <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="list5">
-                                                        <label class="form-check-label" for="list5">
-                                                          Todo list 5
-                                                        </label>
-                                                      </div>
-                                                    </li>
-                                                  </ul>
+                                                <ul class="list-group" id="listaTareasContabilidad"></ul>
                                             </div>
+
                                           </div>
                                         </div>
                                         <div class="accordion-item">
@@ -253,45 +213,11 @@
                                           </h2>
                                           <div id="flush-collapseTwo" class="accordion-collapse collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample" style="">
                                             <div class="accordion-body">
-                                              Anim pariatur cliche reprehenderit, enim eiusmod high
-                                              life accusamus terry richardson ad squid. 3 wolf moon
-                                              officia aute, non cupidatat skateboard dolor brunch.
-                                              Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-                                              wolf moon tempor, sunt aliqua put a bird on it squid
-                                              single-origin coffee nulla assumenda shoreditch et.
-                                              Nihil anim keffiyeh helvetica, craft beer labore wes
-                                              anderson cred nesciunt sapiente ea proident. Ad vegan
-                                              excepteur butcher vice lomo. Leggings occaecat craft
-                                              beer farm-to-table, raw denim aesthetic synth nesciunt
-                                              you probably haven't heard of them accusamus labore
-                                              sustainable VHS.
+                                                <ul class="list-group" id="listaTareasDefensa"></ul>
                                             </div>
                                           </div>
                                         </div>
-                                        {{-- <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingThree">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                              Accordion Item #3
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseThree" class="accordion-collapse collapse " aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample" style="">
-                                            <div class="accordion-body">
-                                              Anim pariatur cliche reprehenderit, enim eiusmod high
-                                              life accusamus terry richardson ad squid. 3 wolf moon
-                                              officia aute, non cupidatat skateboard dolor brunch.
-                                              Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-                                              wolf moon tempor, sunt aliqua put a bird on it squid
-                                              single-origin coffee nulla assumenda shoreditch et.
-                                              Nihil anim keffiyeh helvetica, craft beer labore wes
-                                              anderson cred nesciunt sapiente ea proident. Ad vegan
-                                              excepteur butcher vice lomo. Leggings occaecat craft
-                                              beer farm-to-table, raw denim aesthetic synth nesciunt
-                                              you probably haven't heard of them accusamus labore
-                                              sustainable VHS.
-                                            </div>
-                                          </div>
-                                        </div> --}}
-                                      </div>
+                                    </div>
                                 </div>
 
                                 <hr class="mt-0 mb-1">

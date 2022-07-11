@@ -4,6 +4,7 @@ use App\Models\Clientes;
 use App\Models\CodigosPostales;
 use App\Models\Municipios;
 use App\Models\Obligaciones;
+use App\Models\TareasPredefinidas;
 use Illuminate\Http\Request;
 
 Route::get('/lista_clientes', function (Request $request) {
@@ -58,6 +59,19 @@ Route::get('/obtener_obligaciones', function (Request $request) {
     $obligaciones = Obligaciones::where('activo',1)
     ->where('eliminado',0)
     ->orderBy('obligacion')
+    ->get();
+
+    return $obligaciones;
+
+});
+
+Route::get('/obtener_tareas_predefinidas', function (Request $request) {
+
+    $obligaciones = TareasPredefinidas::with('subTareasPredefinidas')
+    ->where('fk_id_categorias_tareas',$request->fk_id_categorias_tareas)
+    ->where('activo',1)
+    ->where('eliminado',0)
+    ->orderBy('tarea_predefinida')
     ->get();
 
     return $obligaciones;

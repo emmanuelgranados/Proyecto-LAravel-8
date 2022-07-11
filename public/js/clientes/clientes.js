@@ -18,7 +18,7 @@ $(function () {
         });
 
         $.get('api/obtener_codigos_postales',{fk_id_estados:fk_id_estados},function(data){
-            console.info(data);
+
             var cp = '';
 
             $.each(data,function(i,ele){
@@ -92,7 +92,7 @@ $(function () {
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
-                        console.log(data);
+
                         tabla_clientes();
                         $('#cerrarModalEditar').trigger("click");
                         Swal.fire("¡Éxito!", "Se modifico la información del cliente.", "success");
@@ -115,7 +115,6 @@ function tabla_clientes(){
     $('#detallesLista').empty();
 
     $.get( 'api/lista_clientes',function(data){
-        console.info(data);
 
         let tabla = '';
 
@@ -173,6 +172,63 @@ function lista_obligaciones(){
 
 }
 
+
+lista_tareas_predefinidas(1);
+lista_tareas_predefinidas(2);
+
+function lista_tareas_predefinidas(id){
+
+    let nombreLisata = '';
+
+    if( id == 1 ){
+        nombreLisata = 'listaTareasContabilidad';
+    }else{
+        nombreLisata = 'listaTareasDefensa';
+    }
+    $('#'+nombreLisata).empty();
+
+    $.get( 'api/obtener_tareas_predefinidas',{fk_id_categorias_tareas:id},function(data){
+        var lista = '';
+        console.info(data);
+        $.each(data,function(i,ele){
+
+            var listaSubTareas = '';
+
+            if( ele.sub_tareas_predefinidas.length > 0 ){
+                console.info(ele.sub_tareas_predefinidas);
+                $.each(ele.sub_tareas_predefinidas,function(j,subTareas){
+
+
+
+                    listaSubTareas += '<li class="list-group-item">'+
+                                        '<div class="form-check">'+
+                                            '<input class="form-check-input" type="checkbox" value="" id="list1">'+
+                                            '<label class="form-check-label" for="list1">'+subTareas.sub_tarea_predefinida+'</label>'+
+                                        '</div>'+
+                                    '</li>';
+
+                });
+            }
+
+
+            lista += '<li class="list-group-item">'+
+                        '<div class="form-check">'+
+                            '<input class="form-check-input" type="checkbox" value="" id="list1">'+
+                            '<label class="form-check-label" for="list1">'+ele.tarea_predefinida+'</label>'+
+                        '</div>'+
+                        '<ul class="list-group">'+
+                            listaSubTareas+
+                        '</ul>'+
+                    '</li>';
+
+        });
+        $('#'+nombreLisata).append(lista);
+
+    });
+
+}
+
+
 function cargarInfoCliente(id){
 
     $.get('api/datos_cliente',{id:id},function(data){
@@ -185,15 +241,13 @@ function cargarInfoCliente(id){
                 $.each(ele,function(j,ele2){
                     $.each(ele2,function(a,ele3){
                         $('#editar_'+a+'_'+j).val(ele3).change();
-                        console.info(a,ele3);
+
                         if( a == 'fk_id_estados' ){
 
                             cargarMunicipios('#editar_fk_id_municipios_'+j,ele3,ele2.fk_id_municipios);
                             cargarCodigosPostales('#editar_fk_id_codigos_postales_'+j,ele3,ele2.fk_id_codigos_postales);
 
                         }
-
-
 
                         if( a == 'telefonos' ){
 
@@ -251,11 +305,11 @@ function cargarMunicipios(campo,fk_id_estados,seleccion){
         var municipios = '';
 
         $.each(data,function(i,ele){
-            console.log( parseInt(seleccion) , ele.id);
+
             if( parseInt(seleccion) != ele.id ){
                 municipios += '<option value="'+ ele.id +'">'+ ele.municipio +'</option>';
             }else{
-                console.info('aqui ');
+
                 municipios += '<option value="'+ ele.id +'" selected>'+ ele.municipio +'</option>';
             }
 
@@ -273,7 +327,7 @@ function cargarCodigosPostales(campo,fk_id_estados,seleccion){
         var cp = '';
 
         $.each(data,function(i,ele){
-            console.info(seleccion , ele.cp);
+
             if( parseInt(seleccion) != ele.cp ){
                 cp += '<option value="'+ ele.cp +'">'+ ele.cp +'</option>';
             }else{
