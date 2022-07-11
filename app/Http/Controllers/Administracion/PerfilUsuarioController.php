@@ -3,47 +3,74 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Models\User;
-use App\Models\Roles;
 use App\Models\Estados;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PerfilRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PerfilUsuarioController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
 
     }
 
     public function index()
     {
-        $id=Auth::user()->id;
-        $estado=Auth::user()->fk_id_estado;
 
-        return view('administracion/perfilusuario',['user' => User::select('foto')->where('id',$id)->get(),
-                                                    'estado' => Estados::select('estado')->where('id',$estado)->get(),
-                                                    'estados' => Estados::select('id','estado')->get(),
-                                                    'roles'=>Roles::select()->where('activo',1)->where('eliminado',0)->get()]);
+        return view('administracion/perfilusuario',['estados' => Estados::select('id','estado')->get(),
+                                                    'foto'=>User::select('foto')->get()]);
      }
 
 
 
 public function editar_perfil(Request $request){
 
-    dd($request);
+    // dd($request);
+    $datos= collect($request->all())->except('_token');
 
-    User::where('id',$request->id)->update( ['name' => $request->name,
-    'email' => $request->email,
-    'password' => Hash::make($request->password),
-    'phone' => $request->phone,
-    'message' => $request->message,
-    'fk_id_estado' => $request->estado,] );
+    if($request->file('foto') === null){
 
-return "Exito";
+
+    try{
+    User::where('id',$datos['id'])->update( ['name' => $datos['name'],
+    'email' => $datos['email'],
+    'phone' => $datos['phone'],
+    'message' => $datos['message'],
+    'fk_id_estado' => $datos['estado'],] );
+    }catch(Throwable $th){
+    dd("Error de Inserción",$th);
+    }
+    return redirect()->route('perfilUsuario')->with('message', ['type'=> 'success', 'text' => 'Se agrego visita con exito .', 'title' => 'Exito!']);
+
+   }else{
+
+    $file = $request->file('foto');
+    //obtenemos el nombre del archivo
+    $nombre =  time()."_".$file->getClientOriginalName();
+
+    //indicamos que queremos guardar un nuevo archivo en el disco local
+    Storage::disk('usuarios')->put($nombre,  \File::get($file));
+
+    try{
+
+    User::where('id',$request['id'])->update( ['name' => $request['name'],
+    'email' => $request['email'],
+    'phone' => $request['phone'],
+    'message' => $request['message'],
+    'foto'=> $nombre,
+    'fk_id_estado' => $request['estado'],] );
+
+    }catch(Throwable $th){
+    dd("Error de Inserción",$th);
+    }
+    return redirect()->route('perfilUsuario')->with('message', ['type'=> 'success', 'text' => 'Se agrego visita con exito .', 'title' => 'Exito!']);
+
 }
 
+
+}
 
 }

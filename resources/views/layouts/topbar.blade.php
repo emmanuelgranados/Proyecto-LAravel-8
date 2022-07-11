@@ -327,12 +327,19 @@
                 aria-haspopup="true"
                 aria-expanded="false"
                 >
-                <img
+                {{-- <img
                     src="../../assets/images/users/1.jpg"
                     alt="user"
                     class="rounded-circle"
                     width="36"
+                /> --}}
+                @if ($foto[0]->foto === null)
+                <img src="../../assets/images/users/5.jpg"  class="rounded-circle" width="30"
+                     />
+                @else
+                <img src="public/images/usuarios/{{$foto[0]->foto}}" class="rounded-circle" width="30"
                 />
+            @endif
                 <span class="ms-2 font-weight-medium">{{auth()->user()->name}}</span
                 ><span class="fas fa-angle-down ms-2"></span>
                 </a>
@@ -356,12 +363,19 @@
                     "
                 >
                     <div class="">
-                    <img
+                    {{-- <img
                         src="../../assets/images/users/1.jpg"
                         alt="user"
                         class="rounded-circle"
                         width="60"
+                    /> --}}
+                    @if ($foto[0]->foto === null)
+                    <img src="../../assets/images/users/5.jpg"  class="rounded-circle" width="60"
+                         />
+                    @else
+                    <img src="public/images/usuarios/{{$foto[0]->foto}}" class="rounded-circle" width="60"
                     />
+                @endif
                     </div>
                     <div class="ms-2">
                     <h4 class="mb-0 text-white">{{auth()->user()->name}}</h4>

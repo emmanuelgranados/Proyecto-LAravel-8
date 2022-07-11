@@ -5,6 +5,7 @@ use App\Models\Roles;
 use App\Models\Grupos;
 use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -54,3 +55,22 @@ use Illuminate\Support\Facades\DB;
 
 
 
+Route::get('/perfil_usuario', function (Request $request) {
+    $id=Auth::user()->id;
+
+    return User::select('users.id',
+    'users.name',
+    'users.email',
+    'users.foto',
+    'users.phone',
+    'users.message',
+    'estados.id as idEstado',
+    'estados.estado',
+    'users.created_at',
+    'users.updated_at')
+    ->leftjoin('estados','estados.id','=', 'users.fk_id_estado')
+    ->where('users.eliminado',0)
+    ->where('users.id',$id)
+    ->get();
+
+});

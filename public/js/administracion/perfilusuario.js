@@ -7,47 +7,40 @@ $(function () {
     });
 
 
-    $("#formEditarPerfil").on("submit", function(e){
-
-        e.preventDefault();
-
-        let datos = $(this).serialize() ;
-
-        Swal.fire({
-            title: "¿Esta seguro que desea guardar cambios?",
-            // text: "You won't be able to revert this!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Aceptar",
-          }).then((result) => {
-            if (result.value) {
-            $.ajax({
-            type:'POST',
-            url:'editar_perfil',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data:datos,
-            success:function(data){
-
-
-                Swal.fire("¡Éxito!", "Se agrego edito el registro de usuario.", "success");
-                window.location.reload();
+    $.ajax({
+        url:'api/perfil_usuario',
+        dataSrc: function(json){
+                return json;
             },
-            error: function(response) {
+        success: function(data){
+            console.log(data[0].name);
+        //Datos de Perfil
+            $("#perfilusuario").val(data[0].name);
+            $("#perfilestado").val(data[0].estado);
+            $("#perfilemail").val(data[0].email);
+            $("#perfilphone").val(data[0].phone);
+            $("#perfilmessage").val(data[0].message);
 
-            console.log(response.responseJSON.errors);
+//Editar
+            $("#name").val(data[0].name);
+            $("#email").val(data[0].email);
+            $("#phone").val(data[0].phone);
+            $("#message").val(data[0].message);
+            $("#estado").val(data[0].idEstado).change();
 
 
-            }
-         });
 
+        },
+           statusCode: {
+           404: function() {
+              alert('web not found');
+           }
+        },
+        error:function(x,xs,xt){
+           window.open(JSON.stringify(x));
+           //alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
         }
-
-      });
-
-
      });
 
 });
+
