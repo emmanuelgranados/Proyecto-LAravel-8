@@ -174,7 +174,7 @@ function lista_obligaciones(){
 
 
 lista_tareas_predefinidas(1);
-lista_tareas_predefinidas(2);
+// lista_tareas_predefinidas(2);
 
 function lista_tareas_predefinidas(id){
 
