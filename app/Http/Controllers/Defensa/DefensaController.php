@@ -24,13 +24,11 @@ class DefensaController extends Controller
     public function index()
     {
 
-
-
         $clientes = Clientes::all();
         $paises = Paises::all();
         $estados = Estados::all();
 
-        return view('clientes/clientes',[
+        return view('defensa/clientes_defensa',[
             'clientes'=>$clientes,
             'paises' => $paises,
             'estados' => $estados
