@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl" >
         <div class="modal-content">
             <div class="modal-header modal-colored-header bg-info text-white">
-                <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Cliente </h4>
+                <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Cliente Defensa</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body">
@@ -186,7 +186,61 @@
                                     </div>
                                 </div> --}}
 
-                                <h4 class="card-title">Tareas Predeterminadas</h4>
+                                <h4 class="card-title">Tareas Predefinidas</h4>
+                                <hr class="mt-0 mb-1">
+                                <div class="card-body">
+                                    <div class="accordion " id="accordionPanelsStayOpenExample">
+                                        {{-- <div class="accordion-item"> --}}
+                                            <h1 class="card-title">Recurso de revocación</h1>
+                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
+                                            <div class="card-body">
+                                                <div class="row" id="listaRecursoRevocacion"></div>
+                                            </div>
+
+                                            <h1 class="card-title">Juicio de nulidad.</h1>
+                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
+                                            <div class="card-body">
+                                                <div class="row" id="listaJucioNulidad"></div>
+                                            </div>
+
+                                            <h1 class="card-title">Amparo.</h1>
+                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
+                                            <div class="card-body">
+                                                <div class="row" id="listaAmparo"></div>
+                                            </div>
+
+                                            <h1 class="card-title">Materia Civil:</h1>
+                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
+                                            <div class="card-body">
+                                                <div class="row" id="listaMateriaCivil"></div>
+                                            </div>
+
+
+
+
+                                          {{-- <div id="tareasContabilidad" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                                            <div class="accordion-body">
+                                                <ul class="list-group" id="listaTareasContabilidad"></ul>
+                                            </div>
+
+                                          </div>
+                                        </div> --}}
+                                        {{-- <div class="accordion-item">
+                                          <h2 class="accordion-header" id="flush-headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                              Defensa
+                                            </button>
+                                          </h2>
+                                          <div id="flush-collapseTwo" class="accordion-collapse collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample" style="">
+                                            <div class="accordion-body">
+                                                <ul class="list-group" id="listaTareasDefensa"></ul>
+                                            </div>
+                                          </div>
+                                        </div> --}}
+                                    </div>
+                                </div>
+
+                                {{-- <h4 class="card-title">Tareas Predeterminadas</h4>
                                 <hr class="mt-0 mb-1">
                                 <div class="card-body">
                                     <div class="accordion " id="accordionPanelsStayOpenExample">
@@ -203,7 +257,7 @@
 
                                           </div>
                                         </div>
-                                        {{-- <div class="accordion-item">
+                                        <div class="accordion-item">
                                           <h2 class="accordion-header" id="flush-headingTwo">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                               Defensa
@@ -214,9 +268,9 @@
                                                 <ul class="list-group" id="listaTareasDefensa"></ul>
                                             </div>
                                           </div>
-                                        </div> --}}
+                                        </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <hr class="mt-0 mb-1">
                                 <div class="modal-footer">
