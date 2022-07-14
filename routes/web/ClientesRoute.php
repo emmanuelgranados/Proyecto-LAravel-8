@@ -5,14 +5,15 @@ use Doctrine\DBAL\Schema\Index;
 // Route::group(['namespace' => 'Administracion', 'middleware' => 'auth'], function () {
 Route::group(['namespace' => 'Clientes'], function () {
 
-    Route::get('clientes', 'ClientesController@index')->name('clientes');
+    Route::get('clientes_contabilidad', 'ClientesContabilidadController@index')->name('clientes_contabilidad');
     Route::post('lista_cliente', 'ClientesController@nuevoCliente');
     Route::post('nuevo_cliente', 'ClientesController@nuevoCliente');
     Route::post('editar_cliente', 'ClientesController@editarCliente');
     Route::post('eliminar_cliente', 'ClientesController@eliminarCliente');
 
 
-    Route::get('prospectos', 'ProspectosController@index')->name('prospectos');
+    Route::get('clientes_defensa', 'ClientesDefensaController@index')->name('clientes_defensa');
+    // Route::get('prospectos_contabilidad', 'ProspectosDefensaController@index')->name('prospectos_contabilidad');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');

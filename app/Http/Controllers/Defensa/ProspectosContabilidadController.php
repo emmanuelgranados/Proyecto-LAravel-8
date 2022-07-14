@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class ProspectosDefensaController extends Controller
+class ProspectosContabilidadController extends Controller
 {
 
     public function __construct()
@@ -30,7 +30,7 @@ class ProspectosDefensaController extends Controller
         $paises = Paises::all();
         $estados = Estados::all();
 
-        return view('prospectos/prospectos_defensa',[
+        return view('prospectos/prospectos_contabilidad',[
             'clientes'=>$clientes,
             'paises' => $paises,
             'estados' => $estados

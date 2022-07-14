@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Defensa;
+namespace App\Http\Controllers\Clientes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class ProspectosDefensaController extends Controller
+class ClientesContabilidadController extends Controller
 {
 
     public function __construct()
@@ -30,7 +30,7 @@ class ProspectosDefensaController extends Controller
         $paises = Paises::all();
         $estados = Estados::all();
 
-        return view('prospectos/prospectos_defensa',[
+        return view('clientes/clientes_contabilidad',[
             'clientes'=>$clientes,
             'paises' => $paises,
             'estados' => $estados
