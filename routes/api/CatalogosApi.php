@@ -3,6 +3,7 @@
 use App\Models\Obligaciones;
 use Illuminate\Http\Request;
 use App\Models\TareasPredefinidas;
+use App\Models\SubTareasPredefinidas;
 
 Route::get('/lista_obligaciones', function (Request $request) {
 
@@ -44,6 +45,41 @@ Route::post('/detalle_tareas_predefinidas', function (Request $request) {
     ->leftjoin('categorias_tareas','categorias_tareas.id','=', 'tareas_predefinidas.fk_id_categorias_tareas')
     ->where('tareas_predefinidas.eliminado',0)
     ->where('tareas_predefinidas.id', $request->id)
+    ->get();
+
+});
+
+
+
+Route::get('/lista_sub_tareas_predefinidas', function (Request $request) {
+
+    return SubTareasPredefinidas::select('sub_tareas_predefinidas.id',
+                            'sub_tareas_predefinidas.sub_tarea_predefinida',
+                            'sub_tareas_predefinidas.fk_id_tareas_predefinidas as idtareapredeterminada',
+                            'tareas_predefinidas.tarea_predefinida',
+                            'categorias_tareas.categoria_tarea',
+                            'sub_tareas_predefinidas.activo',
+                            'sub_tareas_predefinidas.eliminado',)
+    ->leftjoin('tareas_predefinidas','tareas_predefinidas.id','=', 'sub_tareas_predefinidas.fk_id_tareas_predefinidas')
+    ->leftjoin('categorias_tareas','categorias_tareas.id','=', 'tareas_predefinidas.fk_id_categorias_tareas')
+    ->where('sub_tareas_predefinidas.eliminado',0)
+    ->get();
+});
+
+
+Route::post('/detalle_sub_tareas_predefinidas', function (Request $request) {
+
+return SubTareasPredefinidas::select('sub_tareas_predefinidas.id',
+                            'sub_tareas_predefinidas.sub_tarea_predefinida',
+                            'sub_tareas_predefinidas.fk_id_tareas_predefinidas as idtareapredeterminada',
+                            'tareas_predefinidas.tarea_predefinida',
+                            'categorias_tareas.categoria_tarea',
+                            'sub_tareas_predefinidas.activo',
+                            'sub_tareas_predefinidas.eliminado',)
+    ->leftjoin('tareas_predefinidas','tareas_predefinidas.id','=', 'sub_tareas_predefinidas.fk_id_tareas_predefinidas')
+    ->leftjoin('categorias_tareas','categorias_tareas.id','=', 'tareas_predefinidas.fk_id_categorias_tareas')
+    ->where('sub_tareas_predefinidas.eliminado',0)
+    ->where('sub_tareas_predefinidas.id', $request->id)
     ->get();
 
 });

@@ -43,11 +43,9 @@
                 <div class="card-body">
                   <center class="mt-4">
                     @if ($foto[0]->foto === null)
-                    <img src="../../assets/images/users/5.jpg"  class="position-relative w-100"
-                          />
+                    <img src="../../assets/images/users/5.jpg"  class="position-relative w-100"/>
                             @else
-                            <img src="public/images/usuarios/{{$foto[0]->foto}}"  class=" position-relative w-100"
-                            />
+                            <img src="public/images/usuarios/{{$foto[0]->foto}}"  class=" position-relative w-100"/>
                         @endif
                     <h4 class="card-title mt-2">{{auth()->user()->name}}</h4>
                     <h6 class="card-subtitle">{{auth()->user()->email}}</h6>

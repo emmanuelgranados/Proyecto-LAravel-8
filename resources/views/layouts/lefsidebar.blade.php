@@ -139,6 +139,14 @@
                                     <span class="hide-menu">Tareas Predefinidas</span>
                                 </a>
                             </li>
+
+                            <li class="sidebar-item">
+                                <a href="{{route('sub_tareas_predefinidas')}}" class="sidebar-link">
+                                    <i class="mdi mdi-box-shadow"></i>
+                                    <span class="hide-menu">Sub Tareas Predefinidas</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
 

@@ -21,4 +21,13 @@ Route::group(['namespace' => 'Catalogos', 'middleware' => 'auth'], function () {
     Route::post('delete_tareas_predefinidas', 'TareasPredefinidasController@delete_tareas_predefinidas')->name('delete_tareas_predefinidas');
     Route::post('bloquear_tareas_predefinidas', 'TareasPredefinidasController@bloquear_tareas_predefinidas')->name('bloquear_tareas_predefinidas');
     Route::post('desbloquear_tareas_predefinidas', 'TareasPredefinidasController@desbloquear_tareas_predefinidas')->name('desbloquear_tareas_predefinidas');
+
+
+      // CATALOGO SUB TAREAS
+      Route::get('sub_tareas_predefinidas', 'SubTareasPredefinidasController@index')->name('sub_tareas_predefinidas');
+      Route::post('new_subtareas_predefinidas', 'SubTareasPredefinidasController@new_subtareas_predefinidas')->name('new_subtareas_predefinidas');
+      Route::post('edit_subtareas_predefinidas', 'SubTareasPredefinidasController@edit_subtareas_predefinidas')->name('edit_subtareas_predefinidas');
+      Route::post('delete_subtareas_predefinidas', 'SubTareasPredefinidasController@delete_subtareas_predefinidas')->name('delete_subtareas_predefinidas');
+      Route::post('bloquear_subtareas_predefinidas', 'SubTareasPredefinidasController@bloquear_subtareas_predefinidas')->name('bloquear_subtareas_predefinidas');
+      Route::post('desbloquear_subtareas_predefinidas', 'SubTareasPredefinidasController@desbloquear_subtareas_predefinidas')->name('desbloquear_subtareas_predefinidas');
 });
