@@ -117,15 +117,17 @@ function tabla_clientes(){
     $.get( 'api/lista_clientes',function(data){
 
         let tabla = '';
-
+        console.log(data);
         $.each(data,function(i,ele){
 
             tabla += '<tr>'+
                         '<td>'+ ele.id +'</td>'+
-                        '<td>'+ ele.nombre_razon_social +'</td>'+
+                        '<td>'+ ele.nombre_cliente +'</td>'+
+                        '<td>'+ ele.razon_social +'</td>'+
                         '<td>'+ ele.rfc +'</td>'+
                         '<td>'+ ele.email +'</td>'+
-                        '<td>'+ ele.pagina_web +'</td>'+
+                        '<td>'+ ele.fecha_ingreso +'</td>'+
+                        '<td>'+ ele.usuario.name +'</td>'+
                         '<td><div class="dropdown dropstart">'+
                         '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
                           '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>'+
@@ -143,6 +145,26 @@ function tabla_clientes(){
     });
 
 }
+
+lista_usuarios();
+
+function lista_usuarios(){
+
+    $('#personalAsignado').empty();
+
+    $.get( 'api/obtener_usuarios',function(data){
+        var lista = '';
+        $.each(data,function(i,ele){
+
+            lista += '<option value="'+ele.id+'">'+ele.name+'</option>';
+
+        });
+        $('#personalAsignado').append(lista);
+
+    });
+
+}
+
 
 lista_obligaciones();
 

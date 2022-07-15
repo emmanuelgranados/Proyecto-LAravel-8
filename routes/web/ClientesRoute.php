@@ -7,7 +7,7 @@ Route::group(['namespace' => 'Clientes'], function () {
 
     Route::get('clientes_contabilidad', 'ClientesContabilidadController@index')->name('clientes_contabilidad');
     Route::post('lista_cliente', 'ClientesController@nuevoCliente');
-    Route::post('nuevo_cliente', 'ClientesController@nuevoCliente');
+    Route::post('nuevo_cliente', 'ClientesContabilidadController@nuevoCliente');
     Route::post('editar_cliente', 'ClientesController@editarCliente');
     Route::post('eliminar_cliente', 'ClientesController@eliminarCliente');
 

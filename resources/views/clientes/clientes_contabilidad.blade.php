@@ -5,7 +5,6 @@
 @extends('layouts.topbar')
 @extends('layouts.lefsidebar')
 
-{{-- {{dd($usuarios)}} --}}
 @section('content')
 
 <div id="main-wrapper">
@@ -27,7 +26,7 @@
 
                     {{-- Formulario para crear nuevos clientes --}}
 
-                     @include('clientes.forms.nuevo')
+                     @include('clientes.forms.contabilidad_nuevo')
 
                     {{-- Fomularios para editar cliente --}}
 
@@ -48,10 +47,12 @@
                                     <thead >
                                         <tr>
                                             <td scope="col" class="border-0 font-weight-medium ps-4" >#</td>
-                                            <td scope="col" class="border-0 font-weight-medium">Nombre o Rázon Social</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Nombre Cliente</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Razón Social</td>
                                             <td scope="col" class="border-0 font-weight-medium">RFC</td>
                                             <th scope="col" class="border-0 font-weight-medium">Correo Electronico</td>
-                                            <td scope="col" class="border-0 font-weight-medium">Página Web</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Fecha de Ingreso</td>
+                                            <td scope="col" class="border-0 font-weight-medium">Personal Asignado</td>
                                             <td scope="col" class="border-0 font-weight-medium">Acciones</td>
                                         </tr>
                                     </thead>
@@ -76,5 +77,5 @@
 
 
 @section('script')
-    <script src="js/clientes/clientes.js" as></script>
+    <script src="js/clientes/clientes_contabilidad.js" as></script>
 @endsection

@@ -10,6 +10,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <form  class="formNuevoCliente" id="formNuevoCliente" method="POST">
+                                <input type="hidden" name="cliente[tipo_servicio]" value="1">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">
@@ -19,7 +20,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Nombre del cliente</label>
                                                     <div class="col-md-12">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[nombre_razon_social]" placeholder="google">
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[nombre_cliente]" placeholder="google">
                                                     {{-- <small class="form-control-feedback">
                                                         This is inline help
                                                     </small> --}}
@@ -31,7 +32,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Razón Social</label>
                                                     <div class="col-md-12">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[nombre_razon_social]" placeholder="google S.A de C.V">
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[razon_social]" placeholder="google S.A de C.V">
                                                     {{-- <small class="form-control-feedback">
                                                         This is inline help
                                                     </small> --}}
@@ -43,10 +44,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">RFC</label>
                                                 <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" name="cliente[rfc]" placeholder="XAXX010101000">
-                                                {{-- <small class="form-control-feedback">
-                                                    This field has error.
-                                                </small> --}}
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[rfc]" placeholder="XAXX010101000">
+                                                    {{-- <small class="form-control-feedback">
+                                                        This field has error.
+                                                    </small> --}}
                                                 </div>
                                             </div>
                                             </div>
@@ -58,10 +59,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Correo Electrónico</label>
                                                 <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" name="cliente[email]" placeholder="ejemplo@gmail.com">
-                                                {{-- <small class="form-control-feedback">
-                                                    This is inline help
-                                                </small> --}}
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[email]" placeholder="ejemplo@gmail.com">
+                                                    {{-- <small class="form-control-feedback">
+                                                        This is inline help
+                                                    </small> --}}
                                                 </div>
                                             </div>
                                             </div>
@@ -70,9 +71,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha de ingreso como cliente</label>
                                                     <div class="col-md-12">
-                                                        <input type="hidden"  id="prospecto" name="cliente[prospecto]" value="0">
-                                                    <input type="date" class="form-control nuevoCliente" name="cliente[pagina_web]">
-
+                                                        <input type="date" class="form-control nuevoCliente" name="cliente[fecha_ingreso]">
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,11 +80,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Personal asignado</label>
                                                     <div class="col-md-12">
-                                                        <select name="tarea[fk_id_prioridades]" class="form-control form-select estados">
-                                                            <option value="1">Baja</option>
-                                                            <option value="2">Media</option>
-                                                            <option value="3">Alta</option>
-                                                        </select>
+                                                        <select id="personalAsignado" name="cliente[fk_id_usuario_asignado]" class="form-control form-select"></select>
                                                     </div>
                                                 </div>
                                             </div>

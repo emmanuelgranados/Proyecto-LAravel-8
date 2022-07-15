@@ -5,13 +5,28 @@ use App\Models\CodigosPostales;
 use App\Models\Municipios;
 use App\Models\Obligaciones;
 use App\Models\TareasPredefinidas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 Route::get('/lista_clientes', function (Request $request) {
 
-    $clientes = Clientes::where('prospecto',0)->where('activo',1)->where('eliminado',0)->get();
+    $clientes = Clientes::with('usuario')
+        ->where('prospecto',0)
+        ->where('tipo_servicio',1)
+        ->where('activo',1)
+        ->where('eliminado',0)
+        ->get();
 
     return $clientes;
+});
+
+Route::get('/obtener_usuarios', function (Request $request) {
+
+    $usuarios = User::where('activo',1)
+        ->where('eliminado',0)
+        ->get();
+
+    return $usuarios;
 });
 
 Route::get('/lista_prospectos', function (Request $request) {

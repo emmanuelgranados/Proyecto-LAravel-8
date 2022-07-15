@@ -14,10 +14,13 @@ class Clientes extends  Model
     protected $table = 'clientes';
 
     protected $fillable = [
-        'nombre_razon_social',
+        'nombre_cliente',
+        'razon_social',
         'rfc',
         'email',
-        'pagina_web',
+        'fecha_ingreso',
+        'fk_id_usuario_asignado',
+        'tipo_servicio',
         'prospecto',
         'activo',
         'eliminado'
@@ -26,6 +29,10 @@ class Clientes extends  Model
     public function direcciones()
     {
         return $this->hasMany(Direcciones::class, 'fk_id_clientes','id');
+    }
+
+    public function usuario(){
+        return $this->hasOne(User::class,'id','fk_id_usuario_asignado');
     }
 
 }
