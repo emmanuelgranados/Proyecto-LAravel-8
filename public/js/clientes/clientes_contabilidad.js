@@ -180,7 +180,7 @@ function lista_obligaciones(){
                         '<div class="mb-3">'+
                             '<div class="col-md-12">'+
                                 '<div class="form-check">'+
-                                    '<input class="form-check-input" type="checkbox" value="" id="obligaciones_'+i+'">'+
+                                    '<input class="form-check-input" type="checkbox" name="cliente[obligaciones][][fk_id_obligaciones]" value="'+parseInt(ele.id)+'" id="obligaciones_'+i+'">'+
                                     '<label class="form-check-label" for="obligaciones_'+i+'">'+ ele.obligacion + '</label>'+
                                 '</div>'+
                             '</div>'+

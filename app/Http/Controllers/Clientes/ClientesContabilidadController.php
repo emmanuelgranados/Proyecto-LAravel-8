@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Clientes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
+use App\Models\ClientesObligaciones;
 use App\Models\Direcciones;
 use App\Models\Estados;
 use App\Models\Municipios;
@@ -42,8 +43,12 @@ class ClientesContabilidadController extends Controller
     public function nuevoCliente( Request $request)
     {
 
+
+        // dd($request);
+
         $nuevoCliente = Clientes::create($request->cliente );
         $nuevaDireccion = $request->cliente['direcciones'];
+        $nuevaObligaciones = $request->cliente['obligaciones'];
 
         foreach( $nuevaDireccion  as $i => $direccion ){
 
@@ -56,7 +61,12 @@ class ClientesContabilidadController extends Controller
                 $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
 
             }
+        }
 
+        foreach( $nuevaObligaciones as $j => $obligacion ){
+
+            $nuevaObligaciones[$j]['fk_id_clientes'] = $nuevoCliente->id;
+            $nuevoObligacion = ClientesObligaciones::create( $nuevaObligaciones[$j] );
 
         }
 
