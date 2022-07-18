@@ -25,13 +25,13 @@
                     </nav>
                     <button class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nuevo Cliente </button>
 
-                    {{-- Formulario para crear nuevos clientes --}}
+                    {{-- Formulario para crear nuevos clientes defensa--}}
 
                      @include('clientes.forms.defensa_nuevo')
 
-                    {{-- Fomularios para editar cliente --}}
+                    {{-- Fomularios para editar cliente defensa --}}
 
-                    {{-- @include('defensa.forms.editar') --}}
+                    @include('clientes.forms.defensa_editar')
 
                 </div>
             </div>

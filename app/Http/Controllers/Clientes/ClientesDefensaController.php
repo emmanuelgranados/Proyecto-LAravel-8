@@ -43,7 +43,7 @@ class ClientesDefensaController extends Controller
     public function nuevoClienteDefensa( Request $request)
     {
 
-         // dd($request->cliente['tereas_estandar']);
+         dd($request);
 
          $nuevoCliente = Clientes::create($request->cliente );
          $nuevaDireccion = $request->cliente['direcciones'];

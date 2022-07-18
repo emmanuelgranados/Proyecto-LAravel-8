@@ -214,30 +214,34 @@
                                 </div>
 
 
-                                <h4 class="card-title">Tareas Predefinidas</h4>
-                                <hr class="mt-0 mb-1">
+                                {{-- <h4 class="card-title">Tareas Predefinidas</h4>
+                                <hr class="mt-0 mb-1"> --}}
                                 <div class="card-body">
                                     <div class="accordion " id="accordionPanelsStayOpenExample">
                                         {{-- <div class="accordion-item"> --}}
                                             <h1 class="card-title">Recurso de revocación</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaRecursoRevocacion"></div>
                                             </div>
 
                                             <h1 class="card-title">Juicio de nulidad.</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaJucioNulidad"></div>
                                             </div>
 
                                             <h1 class="card-title">Amparo.</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaAmparo"></div>
                                             </div>
 
                                             <h1 class="card-title">Materia Civil:</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaMateriaCivil"></div>
