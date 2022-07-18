@@ -219,75 +219,7 @@
                                 <h4 class="card-title">Tareas Estandar</h4>
                                 <hr class="mt-0 mb-1">
                                 <div class="card-body">
-                                    <div class="row" >
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" >
-                                                        <label class="form-check-label" for="">Elaboración de registros contables.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" >
-                                                        <label class="form-check-label" for="">Elaboración del pago provisional de ISR.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" >
-                                                        <label class="form-check-label" for="">Pago mensual de IVA.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" >
-                                                        <label class="form-check-label" for="">Pago mensual de impuestos retenidos.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" >
-                                                        <label class="form-check-label" for="">Elaboración de financieros.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" >
-                                                        <label class="form-check-label" for="">Envio de financieros.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                    <div class="row" id="listaTareasEstandar"></div>
                                 </div>
 
                                 <hr class="mt-0 mb-1">

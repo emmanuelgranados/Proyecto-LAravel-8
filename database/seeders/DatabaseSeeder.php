@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
     $this->call(TareasPredefinidasTableSeeder::class);
     $this->call(CategoriasTareasTableSeeder::class);
     $this->call(SubTareasPredefinidasTableSeeder::class);
+    $this->call(TareasEstandarTableSeeder::class);
 
     }
 }

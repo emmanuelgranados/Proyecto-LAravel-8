@@ -50,7 +50,7 @@ $(function () {
             if (result.value) {
                 $.ajax({
                     type:'POST',
-                    url:'nuevo_cliente',
+                    url:'nuevo_cliente_defensa',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
@@ -114,7 +114,7 @@ function tabla_clientes(){
 
     $('#detallesLista').empty();
 
-    $.get( 'api/lista_clientes',function(data){
+    $.get( 'api/lista_clientes',{tipo_servicio:2},function(data){
 
         let tabla = '';
 
@@ -122,10 +122,12 @@ function tabla_clientes(){
 
             tabla += '<tr>'+
                         '<td>'+ ele.id +'</td>'+
-                        '<td>'+ ele.nombre_razon_social +'</td>'+
+                        '<td>'+ ele.nombre_cliente +'</td>'+
+                        '<td>'+ ele.razon_social +'</td>'+
                         '<td>'+ ele.rfc +'</td>'+
                         '<td>'+ ele.email +'</td>'+
-                        '<td>'+ ele.pagina_web +'</td>'+
+                        '<td>'+ ele.fecha_ingreso +'</td>'+
+                        '<td>'+ ele.usuario.name +'</td>'+
                         '<td><div class="dropdown dropstart">'+
                         '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
                           '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>'+
@@ -144,33 +146,70 @@ function tabla_clientes(){
 
 }
 
-// lista_obligaciones();
+lista_usuarios();
 
-// function lista_obligaciones(){
+function lista_usuarios(){
 
-//     $('#listaObligaciones').empty();
+    $('#personalAsignado').empty();
 
-//     $.get( 'api/obtener_obligaciones',function(data){
-//         var lista = '';
-//         $.each(data,function(i,ele){
+    $.get( 'api/obtener_usuarios',function(data){
+        var lista = '';
+        $.each(data,function(i,ele){
 
-//             lista += '<div class="col-md-4">'+
-//                         '<div class="mb-3">'+
-//                             '<div class="col-md-12">'+
-//                                 '<div class="form-check">'+
-//                                     '<input class="form-check-input" type="checkbox" value="" id="obligaciones_'+i+'">'+
-//                                     '<label class="form-check-label" for="obligaciones_'+i+'">'+ ele.obligacion + '</label>'+
-//                                 '</div>'+
-//                             '</div>'+
-//                         '</div>'+
-//                     '</div>';
+            lista += '<option value="'+ele.id+'">'+ele.name+'</option>';
 
-//         });
-//         $('#listaObligaciones').append(lista);
+        });
+        $('#personalAsignado').append(lista);
 
-//     });
+    });
 
-// }
+}
+
+
+lista_tareas_estandar();
+
+function lista_tareas_estandar(){
+
+    $('#listaTareasEstandar').empty();
+    $('#editarListaTareasEstandar').empty();
+
+    $.get( 'api/obtener_tareas_estandar',function(data){
+
+        var lista = '';
+        var listaEditar = '';
+
+        $.each(data,function(i,ele){
+
+            lista += '<div class="col-md-4">'+
+                        '<div class="mb-3">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-check">'+
+                                    '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="tareas_estandar_'+i+'">'+
+                                    '<label class="form-check-label" for="tareas_estandar_'+i+'">'+ ele.tarea_estandar + '</label>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+            listaEditar += '<div class="col-md-4">'+
+                '<div class="mb-3">'+
+                    '<div class="col-md-12">'+
+                        '<div class="form-check">'+
+                            '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+i+'">'+
+                            '<label class="form-check-label" for="tareas_estandar_'+i+'">'+ ele.tarea_estandar + '</label>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+
+        });
+        $('#listaTareasEstandar').append(lista);
+        $('#editarListaTareasEstandar').append(listaEditar);
+
+    });
+
+}
+
 
 
 lista_tareas_predefinidas(2);

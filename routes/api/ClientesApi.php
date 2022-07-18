@@ -4,6 +4,7 @@ use App\Models\Clientes;
 use App\Models\CodigosPostales;
 use App\Models\Municipios;
 use App\Models\Obligaciones;
+use App\Models\TareasEstandar;
 use App\Models\TareasPredefinidas;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ Route::get('/lista_clientes', function (Request $request) {
 
     $clientes = Clientes::with('usuario')
         ->where('prospecto',0)
-        ->where('tipo_servicio',1)
+        ->where('tipo_servicio',$request->tipo_servicio)
         ->where('activo',1)
         ->where('eliminado',0)
         ->get();
@@ -38,7 +39,7 @@ Route::get('/lista_prospectos', function (Request $request) {
 
 Route::get('/datos_cliente', function (Request $request) {
 
-    $cliente = Clientes::with('direcciones.pais','direcciones.estado','direcciones.municipio','direcciones.telefonos')
+    $cliente = Clientes::with('direcciones.pais','direcciones.estado','direcciones.municipio','direcciones.telefonos','obligaciones','tareasEstandar')
     ->where('id',$request->id)
     ->first();
 
@@ -74,6 +75,17 @@ Route::get('/obtener_obligaciones', function (Request $request) {
     $obligaciones = Obligaciones::where('activo',1)
     ->where('eliminado',0)
     ->orderBy('obligacion')
+    ->get();
+
+    return $obligaciones;
+
+});
+
+Route::get('/obtener_tareas_estandar', function (Request $request) {
+
+    $obligaciones = TareasEstandar::where('activo',1)
+    ->where('eliminado',0)
+    ->orderBy('tarea_estandar')
     ->get();
 
     return $obligaciones;

@@ -15,59 +15,77 @@
                                     <hr class="mt-0 mb-1">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Nombre o Razón Social</label>
-                                                <div class="col-md-12">
-                                                <input type="hidden" id="editar_id" name="cliente[id]">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_nombre_razon_social" name="cliente[nombre_razon_social]" placeholder="google S.A de C.V">
-                                                {{-- <small class="form-control-feedback">
-                                                    This is inline help
-                                                </small> --}}
+
+
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Nombre del cliente</label>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control " id="editar_nombre_cliente" name="cliente[nombre_cliente]" placeholder="google">
+                                                        {{-- <small class="form-control-feedback">
+                                                            This is inline help
+                                                        </small> --}}
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Razón Social</label>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="editar_razon_social" name="cliente[razon_social]" placeholder="google S.A de C.V">
+                                                        {{-- <small class="form-control-feedback">
+                                                            This is inline help
+                                                        </small> --}}
+                                                    </div>
+                                                </div>
                                             </div>
+
                                             <!--/span-->
-                                            <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">RFC</label>
-                                                <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_rfc" name="cliente[rfc]" placeholder="XAXX010101000">
-                                                {{-- <small class="form-control-feedback">
-                                                    This field has error.
-                                                </small> --}}
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">RFC</label>
+                                                    <div class="col-md-12">
+                                                    <input type="text" class="form-control " id="editar_rfc" name="cliente[rfc]" placeholder="XAXX010101000">
+                                                    {{-- <small class="form-control-feedback">
+                                                        This field has error.
+                                                    </small> --}}
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
                                         <div class="row">
-                                            <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Correo Electrónico</label>
-                                                <div class="col-md-12">
-                                                <input type="text" class="form-control nuevoCliente" id="editar_email" name="cliente[email]" placeholder="ejemplo@gmail.com">
-                                                {{-- <small class="form-control-feedback">
-                                                    This is inline help
-                                                </small> --}}
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Correo Electrónico</label>
+                                                    <div class="col-md-12">
+                                                    <input type="text" class="form-control " id="editar_email" name="cliente[email]" placeholder="ejemplo@gmail.com">
+                                                    {{-- <small class="form-control-feedback">
+                                                        This is inline help
+                                                    </small> --}}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="control-label">Página Web</label>
-                                                <div class="col-md-12">
-                                                <input type="hidden"  id="editar_prospecto" name="cliente[prospecto]" value="0" >
-                                                <input type="text" class="form-control nuevoCliente" id="editar_pagina_web" name="cliente[pagina_web]" placeholder="www.google.com">
-                                                {{-- <small class="form-control-feedback">
-                                                    This field has error.
-                                                </small> --}}
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Fecha de ingreso como cliente</label>
+                                                    <div class="col-md-12">
+                                                        <input type="date" class="form-control" id="editar_fecha_ingreso" name="cliente[fecha_ingreso]">
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Personal asignado</label>
+                                                    <div class="col-md-12">
+                                                        <select id="personalAsignado" id="eidtar_fk_usurio_asignado" name="cliente[fk_id_usuario_asignado]" class="form-control form-select"></select>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <!--/span-->
+
                                         </div>
                                     </div>
                                 </div>
@@ -182,6 +200,21 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <h4 class="card-title">Obligaciones</h4>
+                                <hr class="mt-0 mb-1 card w-100">
+                                <div class="card-body">
+                                    <!--/row-->
+                                    <div class="row" id="editarListaObligaciones"></div>
+                                </div>
+
+                                <h4 class="card-title">Tareas Estandar</h4>
+                                <hr class="mt-0 mb-1">
+                                <div class="card-body">
+                                    <div class="row" id="editarListaTareasEstandar"></div>
+                                </div>
+
                                 <hr class="mt-0 mb-1">
                                 <div class="modal-footer">
                                     <button type="button" id="cerrarModalEditar" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>

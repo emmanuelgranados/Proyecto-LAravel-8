@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Clientes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
+use App\Models\ClientesTareasEstandar;
 use App\Models\Direcciones;
 use App\Models\Estados;
 use App\Models\Municipios;
@@ -39,26 +40,44 @@ class ClientesDefensaController extends Controller
 
     }
 
-    public function nuevoCliente( Request $request)
+    public function nuevoClienteDefensa( Request $request)
     {
 
-        $nuevoCliente = Clientes::create($request->cliente );
-        $nuevaDireccion = $request->cliente['direcciones'];
+         // dd($request->cliente['tereas_estandar']);
 
-        foreach( $nuevaDireccion  as $i => $direccion ){
+         $nuevoCliente = Clientes::create($request->cliente );
+         $nuevaDireccion = $request->cliente['direcciones'];
+        //  $nuevaObligaciones = $request->cliente['obligaciones'];
+         $nuevaTareasEstandar = $request->cliente['tereas_estandar'];
 
-            $nuevaDireccion[$i]['fk_id_clientes'] = $nuevoCliente->id;
-            $nuevaDireccion = Direcciones::create( $nuevaDireccion[$i] );
+         foreach( $nuevaDireccion  as $i => $direccion ){
 
-            foreach( $direccion['telefonos'] as $j => $telefonos ){
+             $nuevaDireccion[$i]['fk_id_clientes'] = $nuevoCliente->id;
+             $nuevaDireccion = Direcciones::create( $nuevaDireccion[$i] );
 
-                $direccion['telefonos'][$j]['fk_id_direcciones'] = $nuevaDireccion->id;
-                $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
+             foreach( $direccion['telefonos'] as $j => $telefonos ){
 
-            }
+                 $direccion['telefonos'][$j]['fk_id_direcciones'] = $nuevaDireccion->id;
+                 $nuevoTelefono = Telefonos::create( $direccion['telefonos'][$j]);
 
+             }
+         }
 
-        }
+        //  foreach( $nuevaObligaciones as $j => $obligacion ){
+
+        //      $nuevaObligaciones[$j]['fk_id_clientes'] = $nuevoCliente->id;
+        //      $nuevoObligacion = ClientesObligaciones::create( $nuevaObligaciones[$j] );
+
+        //  }
+
+         foreach( $nuevaTareasEstandar as $k => $tareaEstandar ){
+
+             $nuevaTareasEstandar[$k]['fk_id_clientes'] = $nuevoCliente->id;
+
+             // dd($nuevaTareasEstandar[$j]);
+             $nuevoTareasEstandar = ClientesTareasEstandar::create( $nuevaTareasEstandar[$k]) ;
+
+         }
 
         return "Exito papuuuus";
 

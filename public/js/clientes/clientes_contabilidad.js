@@ -114,7 +114,7 @@ function tabla_clientes(){
 
     $('#detallesLista').empty();
 
-    $.get( 'api/lista_clientes',function(data){
+    $.get( 'api/lista_clientes',{tipo_servicio:1},function(data){
 
         let tabla = '';
         console.log(data);
@@ -171,9 +171,11 @@ lista_obligaciones();
 function lista_obligaciones(){
 
     $('#listaObligaciones').empty();
+    $('#editarListaObligaciones').empty();
 
     $.get( 'api/obtener_obligaciones',function(data){
         var lista = '';
+        var listaEditar = '';
         $.each(data,function(i,ele){
 
             lista += '<div class="col-md-4">'+
@@ -187,8 +189,64 @@ function lista_obligaciones(){
                         '</div>'+
                     '</div>';
 
+            listaEditar += '<div class="col-md-4">'+
+                '<div class="mb-3">'+
+                    '<div class="col-md-12">'+
+                        '<div class="form-check">'+
+                            '<input class="form-check-input" type="checkbox" name="cliente[obligaciones][][fk_id_obligaciones]" value="'+parseInt(ele.id)+'" id="editar_obligaciones_'+i+'">'+
+                            '<label class="form-check-label" for="obligaciones_'+i+'">'+ ele.obligacion + '</label>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+
         });
         $('#listaObligaciones').append(lista);
+        $('#editarListaObligaciones').append(listaEditar);
+
+    });
+
+}
+
+lista_tareas_estandar();
+
+function lista_tareas_estandar(){
+
+    $('#listaTareasEstandar').empty();
+    $('#editarListaTareasEstandar').empty();
+
+    $.get( 'api/obtener_tareas_estandar',function(data){
+
+        var lista = '';
+        var listaEditar = '';
+
+        $.each(data,function(i,ele){
+
+            lista += '<div class="col-md-4">'+
+                        '<div class="mb-3">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-check">'+
+                                    '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="tareas_estandar_'+i+'">'+
+                                    '<label class="form-check-label" for="tareas_estandar_'+i+'">'+ ele.tarea_estandar + '</label>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+            listaEditar += '<div class="col-md-4">'+
+                '<div class="mb-3">'+
+                    '<div class="col-md-12">'+
+                        '<div class="form-check">'+
+                            '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+i+'">'+
+                            '<label class="form-check-label" for="tareas_estandar_'+i+'">'+ ele.tarea_estandar + '</label>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+
+        });
+        $('#listaTareasEstandar').append(lista);
+        $('#editarListaTareasEstandar').append(listaEditar);
 
     });
 
@@ -255,6 +313,8 @@ function cargarInfoCliente(id){
 
     $.get('api/datos_cliente',{id:id},function(data){
 
+        console.info(data);
+
         $.each(data,function(i,ele){
 
             $('#editar_'+i).val(ele);
@@ -285,6 +345,31 @@ function cargarInfoCliente(id){
                     });
                 });
             }
+
+            if( i == 'obligaciones' ){
+
+                $.each(ele,function(j,ele2){
+
+                    console.info('Aqui ando 2',ele2);
+
+                    $('#editar_obligaciones_'+ele2.id).prop('checked', true);
+
+                });
+            }
+
+            if( i == 'tareas_estandar' ){
+
+
+                $.each(ele,function(j,ele2){
+
+                    console.info('Aqui ando 2',ele2);
+
+                    $('#editar_tareas_estandar_'+ele2.id).prop('checked', true);
+
+                });
+            }
+
+
 
         });
     });

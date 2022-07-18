@@ -30,7 +30,7 @@
 
                     {{-- Fomularios para editar cliente --}}
 
-                    @include('clientes.forms.editar')
+                    @include('clientes.forms.contabilidad_editar')
 
                 </div>
             </div>

@@ -31,6 +31,16 @@ class Clientes extends  Model
         return $this->hasMany(Direcciones::class, 'fk_id_clientes','id');
     }
 
+    public function obligaciones()
+    {
+        return $this->hasMany(ClientesObligaciones::class, 'fk_id_clientes','id');
+    }
+
+    public function tareasEstandar()
+    {
+        return $this->hasMany(ClientesTareasEstandar::class, 'fk_id_clientes','id');
+    }
+
     public function usuario(){
         return $this->hasOne(User::class,'id','fk_id_usuario_asignado');
     }
