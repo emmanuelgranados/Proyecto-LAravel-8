@@ -10,7 +10,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <form  class="formEditarCliente" id="formEditarCliente" method="POST">
-                                <input type="hidden" name="cliente[id]" value="2">
+                                <input type="hidden" name="cliente[id]" id="id_cliente">
                                 <input type="hidden" name="cliente[tipo_servicio]" value="2">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
@@ -161,7 +161,7 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Municipio</label>
                                                 <div class="col-md-12">
-                                                    <select id="editar_fk_id_municipios_0" name="direcciones[direcciones][0][fk_id_municipios]" class="form-control form-select municipios">
+                                                    <select id="editar_fk_id_municipios_0" name="direcciones[0][fk_id_municipios]" class="form-control form-select municipios">
 
                                                     </select>
                                                 </div>
@@ -171,7 +171,7 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Código Postal</label>
                                                 <div class="col-md-12">
-                                                    <select id="editar_fk_id_codigos_postales_0" name="direcciones[direcciones][0][fk_id_codigos_postales]" class="form-control form-select codigosPostales">
+                                                    <select id="editar_fk_id_codigos_postales_0" name="direcciones[0][fk_id_codigos_postales]" class="form-control form-select codigosPostales">
                                                     </select>
                                                 </div>
                                             </div>
@@ -183,7 +183,7 @@
                                                 <label class="control-label">Teléfono 1</label>
                                                 <div class="col-md-12">
                                                     <input type="hidden" id="editar_telefonos_id_0" name="telefonos[0][id]" >
-                                                    <input type="text" id="editar_telefonos_telefono_0" name="direcciones[0][telefonos][][telefono]" class="form-control">
+                                                    <input type="text" id="editar_telefonos_telefono_0" name="telefonos[0][telefono]" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
                                                 <label class="control-label ">Teléfono 2</label>
                                                 <div class="col-md-12">
                                                     <input type="hidden" id="editar_telefonos_id_1" name="telefonos[1][id]" >
-                                                    <input type="text" id="editar_telefonos_telefono_1" name="direcciones[0][telefonos][][telefono]" class="form-control">
+                                                    <input type="text" id="editar_telefonos_telefono_1" name="telefonos[1][telefono]" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -207,30 +207,34 @@
                                 </div>
 
 
-                                <h4 class="card-title">Tareas Predefinidas</h4>
-                                <hr class="mt-0 mb-1">
+                                {{-- <h4 class="card-title">Tareas Predefinidas</h4>
+                                <hr class="mt-0 mb-1"> --}}
                                 <div class="card-body">
                                     <div class="accordion " id="accordionPanelsStayOpenExample">
                                         {{-- <div class="accordion-item"> --}}
                                             <h1 class="card-title">Recurso de revocación</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="editarListaRecursoRevocacion"></div>
                                             </div>
 
                                             <h1 class="card-title">Juicio de nulidad.</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="editarListaJucioNulidad"></div>
                                             </div>
 
                                             <h1 class="card-title">Amparo.</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="editarListaAmparo"></div>
                                             </div>
 
                                             <h1 class="card-title">Materia Civil:</h1>
+                                            <hr class="mt-0 mb-1">
                                             {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="editarListaMateriaCivil"></div>
@@ -240,7 +244,7 @@
 
                                 <hr class="mt-0 mb-1">
                                 <div class="modal-footer">
-                                    <button type="button" id="cerrarModalNuevo" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
+                                    <button type="button" id="cerrarModalEditar" class="btn btn-light" data-bs-dismiss="modal"> Cerrar </button>
                                     <button type="submit"class="btn btn-light-info text-info font-weight-medium"> Guardar </button>
                                 </div>
                             </form>

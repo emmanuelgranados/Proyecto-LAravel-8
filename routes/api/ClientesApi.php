@@ -39,9 +39,22 @@ Route::get('/lista_prospectos', function (Request $request) {
 
 Route::get('/datos_cliente', function (Request $request) {
 
-    $cliente = Clientes::with('direcciones.pais','direcciones.estado','direcciones.municipio','direcciones.telefonos','obligaciones','tareasEstandar','subTareasPredefinidas')
+    $cliente = Clientes::with(
+        'direcciones.pais',
+        'direcciones.estado',
+        'direcciones.municipio',
+        'direcciones.telefonos',
+        'obligaciones')
+        ->with(['subTareasPredefinidas' => function ($q){
+            $q->where('activo',1);
+        }])
+        ->with(['tareasEstandar' => function ($q){
+            $q->where('activo',1);
+        }])
     ->where('id',$request->id)
     ->first();
+
+    // dd($cliente->toArray());
 
     return $cliente;
 

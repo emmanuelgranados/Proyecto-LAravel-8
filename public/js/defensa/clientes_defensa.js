@@ -195,7 +195,8 @@ function lista_tareas_estandar(){
                 '<div class="mb-3">'+
                     '<div class="col-md-12">'+
                         '<div class="form-check">'+
-                            '<input class="form-check-input tareasEstandar" type="checkbox" name="tereas_estandar[][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+ele.id+'">'+
+                            // '<input type="hidden" name="tereas_estandar['+ i +'][fk_id_clientes]" value="'+ $('#id_cliente').val()+ '" >'+
+                            '<input class="form-check-input tareasEstandar" type="checkbox" name="tereas_estandar['+ i +'][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+ele.id+'">'+
                             '<label class="form-check-label" for="tareas_estandar_'+ele.id+'">'+ ele.tarea_estandar + '</label>'+
                         '</div>'+
                     '</div>'+
@@ -213,20 +214,11 @@ function lista_tareas_estandar(){
 
 
 lista_tareas_predefinidas(2);
-// lista_tareas_predefinidas(2);
 
 function lista_tareas_predefinidas(id){
 
     let nombreLisata = '';
     let nombreLisataEditar = '';
-
-    // if( id == 2 ){
-    //     nombreLisata = 'listaRecursoRevocacion';
-    // }else{
-    //     nombreLisata = 'listaTareasDefensa';
-    // }
-
-
 
     $.get( 'api/obtener_tareas_predefinidas',{fk_id_categorias_tareas:id},function(data){
 
@@ -274,8 +266,8 @@ function lista_tareas_predefinidas(id){
                             '<div class="mb-3">'+
                                 '<div class="col-md-12">'+
                                     '<div class="form-check">'+
-                                        '<input class="form-check-input subTareasPredefinidas" type="checkbox" value="" id="editar_sub_tareas_predefinidas_'+subTareas.id+'">'+
-                                        '<label class="form-check-label" for="obligaciones_'+subTareas.id+'">'+subTareas.sub_tarea_predefinida+'</label>'+
+                                        '<input class="form-check-input subTareasPredefinidas" type="checkbox" value="'+subTareas.id+'"  name="sub_tareas_predefinidas[][fk_id_sub_tareas_predefinidas]"  id="editar_sub_tareas_predefinidas_'+subTareas.id+'">'+
+                                        '<label class="form-check-label" for="sub_tareas_predefinidas_'+subTareas.id+'">'+subTareas.sub_tarea_predefinida+'</label>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -298,7 +290,7 @@ function cargarInfoCliente(id){
     $('#id_cliente').val(id);
 
     $.get('api/datos_cliente',{id:id},function(data){
-
+        console.info(data);
         $('.tareasEstandar').prop('checked',false);
         $('.subTareasPredefinidas').prop('checked',false);
 

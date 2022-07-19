@@ -149,7 +149,7 @@ function tabla_clientes(){
 function cargarInfoCliente(id){
 
     $.get('api/datos_cliente',{id:id},function(data){
-
+        console.info(data);
         $.each(data,function(i,ele){
 
             $('#editar_'+i).val(ele);
