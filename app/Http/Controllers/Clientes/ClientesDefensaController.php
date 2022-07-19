@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Clientes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
+use App\Models\ClientesSubTareasPredefinidas;
 use App\Models\ClientesTareasEstandar;
 use App\Models\Direcciones;
 use App\Models\Estados;
@@ -43,12 +44,12 @@ class ClientesDefensaController extends Controller
     public function nuevoClienteDefensa( Request $request)
     {
 
-         dd($request);
+        //  dd($request);
 
          $nuevoCliente = Clientes::create($request->cliente );
          $nuevaDireccion = $request->cliente['direcciones'];
-        //  $nuevaObligaciones = $request->cliente['obligaciones'];
          $nuevaTareasEstandar = $request->cliente['tereas_estandar'];
+         $nuevaSubTareasPredifinidas = $request->cliente['sub_tareas_predefinidas'];
 
          foreach( $nuevaDireccion  as $i => $direccion ){
 
@@ -63,30 +64,31 @@ class ClientesDefensaController extends Controller
              }
          }
 
-        //  foreach( $nuevaObligaciones as $j => $obligacion ){
-
-        //      $nuevaObligaciones[$j]['fk_id_clientes'] = $nuevoCliente->id;
-        //      $nuevoObligacion = ClientesObligaciones::create( $nuevaObligaciones[$j] );
-
-        //  }
-
-         foreach( $nuevaTareasEstandar as $k => $tareaEstandar ){
+        foreach( $nuevaTareasEstandar as $k => $tareaEstandar ){
 
              $nuevaTareasEstandar[$k]['fk_id_clientes'] = $nuevoCliente->id;
-
-             // dd($nuevaTareasEstandar[$j]);
              $nuevoTareasEstandar = ClientesTareasEstandar::create( $nuevaTareasEstandar[$k]) ;
 
          }
+
+         foreach( $nuevaSubTareasPredifinidas as $k => $subTareaPredefinida ){
+
+            $nuevaSubTareasPredifinidas[$k]['fk_id_clientes'] = $nuevoCliente->id;
+            $nuevoSubTareasPredifinidas = ClientesSubTareasPredefinidas::create( $nuevaSubTareasPredifinidas[$k]) ;
+
+        }
 
         return "Exito papuuuus";
 
     }
 
-    public function editarCliente( Request $request)
+    public function editarClienteDefensa( Request $request)
     {
 
+        // dd($request);
+
         Clientes::where('id',$request->cliente['id'])->update($request->cliente );
+
 
         foreach( $request->direcciones as $direccion ){
             Direcciones::where('id',$direccion['id'])->update($direccion);

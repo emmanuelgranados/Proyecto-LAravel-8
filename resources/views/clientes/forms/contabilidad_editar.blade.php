@@ -10,6 +10,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <form  class="formEditarCliente" id="formEditarCliente" method="POST">
+                                <input type="hidden" id="id_cliente" name="cliente[id]" value="">
+                                <input type="hidden" name="cliente[tipo_servicio]" value="1">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">

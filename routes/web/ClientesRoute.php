@@ -14,6 +14,7 @@ Route::group(['namespace' => 'Clientes', 'middleware' => 'auth'], function () {
 
     Route::get('clientes_defensa', 'ClientesDefensaController@index')->name('clientes_defensa');
     Route::post('nuevo_cliente_defensa', 'ClientesDefensaController@nuevoClienteDefensa');
+    Route::post('editar_cliente_defensa', 'ClientesDefensaController@editarClienteDefensa');
     // Route::get('prospectos_contabilidad', 'ProspectosDefensaController@index')->name('prospectos_contabilidad');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');
     // Route::get('clientes', 'ClientesController@index')->name('clientes');

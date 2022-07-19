@@ -41,6 +41,12 @@ class Clientes extends  Model
         return $this->hasMany(ClientesTareasEstandar::class, 'fk_id_clientes','id');
     }
 
+    public function subTareasPredefinidas()
+    {
+        return $this->hasMany(ClientesSubTareasPredefinidas::class, 'fk_id_clientes','id');
+    }
+
+
     public function usuario(){
         return $this->hasOne(User::class,'id','fk_id_usuario_asignado');
     }

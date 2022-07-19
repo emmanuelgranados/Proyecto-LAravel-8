@@ -88,7 +88,7 @@ $(function () {
 
                 $.ajax({
                     type:'POST',
-                    url:'editar_cliente',
+                    url:'editar_cliente_defensa',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
@@ -195,7 +195,7 @@ function lista_tareas_estandar(){
                 '<div class="mb-3">'+
                     '<div class="col-md-12">'+
                         '<div class="form-check">'+
-                            '<input class="form-check-input tareasEstandar" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+ele.id+'">'+
+                            '<input class="form-check-input tareasEstandar" type="checkbox" name="tereas_estandar[][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+ele.id+'">'+
                             '<label class="form-check-label" for="tareas_estandar_'+ele.id+'">'+ ele.tarea_estandar + '</label>'+
                         '</div>'+
                     '</div>'+
@@ -263,7 +263,7 @@ function lista_tareas_predefinidas(id){
                             '<div class="mb-3">'+
                                 '<div class="col-md-12">'+
                                     '<div class="form-check">'+
-                                        '<input class="form-check-input" type="checkbox" value="'+subTareas.id+'" id="sub_tareas_predefinidas_'+subTareas.id+'" name="cliente[sub_tareas_predefinidas][][fk_id_sub_tareas_predefinidas]" >'+
+                                        '<input class="form-check-input subTareasPredefinidas" type="checkbox" value="'+subTareas.id+'" id="sub_tareas_predefinidas_'+subTareas.id+'" name="cliente[sub_tareas_predefinidas][][fk_id_sub_tareas_predefinidas]" >'+
                                         '<label class="form-check-label" for="sub_tareas_predefinidas_'+subTareas.id+'">'+subTareas.sub_tarea_predefinida+'</label>'+
                                     '</div>'+
                                 '</div>'+
@@ -274,7 +274,7 @@ function lista_tareas_predefinidas(id){
                             '<div class="mb-3">'+
                                 '<div class="col-md-12">'+
                                     '<div class="form-check">'+
-                                        '<input class="form-check-input" type="checkbox" value="" id="editar_sub_tareas_predefinidas_'+subTareas.id+'">'+
+                                        '<input class="form-check-input subTareasPredefinidas" type="checkbox" value="" id="editar_sub_tareas_predefinidas_'+subTareas.id+'">'+
                                         '<label class="form-check-label" for="obligaciones_'+subTareas.id+'">'+subTareas.sub_tarea_predefinida+'</label>'+
                                     '</div>'+
                                 '</div>'+
@@ -295,9 +295,12 @@ function lista_tareas_predefinidas(id){
 
 function cargarInfoCliente(id){
 
+    $('#id_cliente').val(id);
+
     $.get('api/datos_cliente',{id:id},function(data){
 
         $('.tareasEstandar').prop('checked',false);
+        $('.subTareasPredefinidas').prop('checked',false);
 
         $.each(data,function(i,ele){
 
@@ -319,7 +322,6 @@ function cargarInfoCliente(id){
 
                             $.each(ele3,function(b,ele4){
                                 $.each(ele4,function(c,ele5){
-
                                     $('#editar_telefonos_'+c+'_'+b).val(ele5).change();
                                 });
                             });
@@ -334,14 +336,14 @@ function cargarInfoCliente(id){
 
 
             if( i == 'tareas_estandar' ){
-
-
                 $.each(ele,function(j,ele2){
-
-                    console.info('Aqui ando 2',ele2);
-
                     $('#editar_tareas_estandar_'+ele2.fk_id_tareas_estandar).prop('checked', true);
+                });
+            }
 
+            if( i == 'sub_tareas_predefinidas' ){
+                $.each(ele,function(j,ele2){
+                    $('#editar_sub_tareas_predefinidas_'+ele2.fk_id_sub_tareas_predefinidas).prop('checked', true);
                 });
             }
 

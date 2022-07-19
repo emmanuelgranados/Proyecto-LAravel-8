@@ -39,7 +39,7 @@ Route::get('/lista_prospectos', function (Request $request) {
 
 Route::get('/datos_cliente', function (Request $request) {
 
-    $cliente = Clientes::with('direcciones.pais','direcciones.estado','direcciones.municipio','direcciones.telefonos','obligaciones','tareasEstandar')
+    $cliente = Clientes::with('direcciones.pais','direcciones.estado','direcciones.municipio','direcciones.telefonos','obligaciones','tareasEstandar','subTareasPredefinidas')
     ->where('id',$request->id)
     ->first();
 
