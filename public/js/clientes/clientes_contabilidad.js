@@ -1,5 +1,7 @@
 $(function () {
 
+    $('#selectPais').val(42).change();
+
     $( ".estados" ).change(function () {
 
         var fk_id_estados = $(this).val();
@@ -50,7 +52,7 @@ $(function () {
             if (result.value) {
                 $.ajax({
                     type:'POST',
-                    url:'nuevo_cliente',
+                    url:'nuevo_cliente_contabilidad',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
@@ -88,7 +90,7 @@ $(function () {
 
                 $.ajax({
                     type:'POST',
-                    url:'editar_cliente',
+                    url:'editar_cliente_contabilidad',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
@@ -117,7 +119,7 @@ function tabla_clientes(){
     $.get( 'api/lista_clientes',{tipo_servicio:1},function(data){
 
         let tabla = '';
-        console.log(data);
+
         $.each(data,function(i,ele){
 
             tabla += '<tr>'+
@@ -151,8 +153,10 @@ lista_usuarios();
 function lista_usuarios(){
 
     $('#personalAsignado').empty();
+    $('#editar_fk_usurio_asignado').empty();
 
     $.get( 'api/obtener_usuarios',function(data){
+
         var lista = '';
         $.each(data,function(i,ele){
 
@@ -160,6 +164,7 @@ function lista_usuarios(){
 
         });
         $('#personalAsignado').append(lista);
+        $('#editar_fk_usurio_asignado').append(lista);
 
     });
 
@@ -176,14 +181,15 @@ function lista_obligaciones(){
     $.get( 'api/obtener_obligaciones',function(data){
         var lista = '';
         var listaEditar = '';
+
         $.each(data,function(i,ele){
 
             lista += '<div class="col-md-4">'+
                         '<div class="mb-3">'+
                             '<div class="col-md-12">'+
                                 '<div class="form-check">'+
-                                    '<input class="form-check-input" type="checkbox" name="cliente[obligaciones][][fk_id_obligaciones]" value="'+parseInt(ele.id)+'" id="obligaciones_'+i+'">'+
-                                    '<label class="form-check-label" for="obligaciones_'+i+'">'+ ele.obligacion + '</label>'+
+                                    '<input class="form-check-input" type="checkbox" name="cliente[obligaciones][][fk_id_obligaciones]" value="'+parseInt(ele.id)+'" id="obligaciones_'+ele.id+'">'+
+                                    '<label class="form-check-label" for="obligaciones_'+ele.id+'">'+ ele.obligacion + '</label>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -193,8 +199,8 @@ function lista_obligaciones(){
                 '<div class="mb-3">'+
                     '<div class="col-md-12">'+
                         '<div class="form-check">'+
-                            '<input class="form-check-input" type="checkbox" name="cliente[obligaciones][][fk_id_obligaciones]" value="'+parseInt(ele.id)+'" id="editar_obligaciones_'+i+'">'+
-                            '<label class="form-check-label" for="obligaciones_'+i+'">'+ ele.obligacion + '</label>'+
+                            '<input class="form-check-input" type="checkbox" name="obligaciones[][fk_id_obligaciones]" value="'+parseInt(ele.id)+'" id="editar_obligaciones_'+ele.id+'">'+
+                            '<label class="form-check-label" for="obligaciones_'+ele.id+'">'+ ele.obligacion + '</label>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -226,8 +232,8 @@ function lista_tareas_estandar(){
                         '<div class="mb-3">'+
                             '<div class="col-md-12">'+
                                 '<div class="form-check">'+
-                                    '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="tareas_estandar_'+i+'">'+
-                                    '<label class="form-check-label" for="tareas_estandar_'+i+'">'+ ele.tarea_estandar + '</label>'+
+                                    '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="tareas_estandar_'+ele.id+'">'+
+                                    '<label class="form-check-label" for="tareas_estandar_'+ele.id+'">'+ ele.tarea_estandar + '</label>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -237,8 +243,8 @@ function lista_tareas_estandar(){
                 '<div class="mb-3">'+
                     '<div class="col-md-12">'+
                         '<div class="form-check">'+
-                            '<input class="form-check-input" type="checkbox" name="cliente[tereas_estandar][][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+i+'">'+
-                            '<label class="form-check-label" for="tareas_estandar_'+i+'">'+ ele.tarea_estandar + '</label>'+
+                            '<input class="form-check-input" type="checkbox" name="tereas_estandar[][fk_id_tareas_estandar]" value="'+ele.id+'" id="editar_tareas_estandar_'+ele.id+'">'+
+                            '<label class="form-check-label" for="tareas_estandar_'+ele.id+'">'+ ele.tarea_estandar + '</label>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -269,13 +275,13 @@ function lista_tareas_predefinidas(id){
 
     $.get( 'api/obtener_tareas_predefinidas',{fk_id_categorias_tareas:id},function(data){
         var lista = '';
-        console.info(data);
+
         $.each(data,function(i,ele){
 
             var listaSubTareas = '';
 
             if( ele.sub_tareas_predefinidas.length > 0 ){
-                console.info(ele.sub_tareas_predefinidas);
+
                 $.each(ele.sub_tareas_predefinidas,function(j,subTareas){
 
 
@@ -310,6 +316,8 @@ function lista_tareas_predefinidas(id){
 
 
 function cargarInfoCliente(id){
+
+    $('#id_cliente').val(id);
 
     $.get('api/datos_cliente',{id:id},function(data){
 
@@ -348,21 +356,16 @@ function cargarInfoCliente(id){
 
                 $.each(ele,function(j,ele2){
 
-                    console.info('Aqui ando 2',ele2);
-
-                    $('#editar_obligaciones_'+ele2.id).prop('checked', true);
+                    $('#editar_obligaciones_'+ele2.fk_id_obligaciones).prop('checked', true);
 
                 });
             }
 
             if( i == 'tareas_estandar' ){
 
-
                 $.each(ele,function(j,ele2){
 
-                    console.info('Aqui ando 2',ele2);
-
-                    $('#editar_tareas_estandar_'+ele2.id).prop('checked', true);
+                    $('#editar_tareas_estandar_'+ele2.fk_id_tareas_estandar).prop('checked', true);
 
                 });
             }
@@ -389,7 +392,7 @@ function eliminarCliente(id){
 
             $.ajax({
                 type:'POST',
-                url:'eliminar_cliente',
+                url:'eliminar_cliente_contabilidad',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:{id:id},
                 success:function(data){

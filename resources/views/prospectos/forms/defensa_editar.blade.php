@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl" >
         <div class="modal-content">
             <div class="modal-header modal-colored-header bg-info text-white">
-                <h4 class="modal-title" id="info-header-modalLabel"> Editar Cliente Defensa</h4>
+                <h4 class="modal-title" id="info-header-modalLabel"> Editar Prospecto Defensa</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body">
@@ -19,7 +19,7 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label class="control-label">Nombre del cliente</label>
+                                                    <label class="control-label">Nombre del Prospecto</label>
                                                     <div class="col-md-12">
                                                     <input type="text" class="form-control nuevoCliente" id="editar_nombre_cliente" name="cliente[nombre_cliente]" placeholder="google">
                                                     {{-- <small class="form-control-feedback">

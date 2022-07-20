@@ -81,7 +81,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Personal asignado</label>
                                                     <div class="col-md-12">
-                                                        <select id="personalAsignado" id="editar_fk_usurio_asignado" name="cliente[fk_id_usuario_asignado]" class="form-control form-select"></select>
+                                                        <select id="editar_fk_usurio_asignado" name="cliente[fk_id_usuario_asignado]" class="form-control form-select"></select>
                                                     </div>
                                                 </div>
                                             </div>

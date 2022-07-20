@@ -78,5 +78,5 @@
 
 
 @section('script')
-    <script src="js/defensa/clientes_defensa.js" as></script>
+    <script src="js/clientes/clientes_defensa.js" as></script>
 @endsection

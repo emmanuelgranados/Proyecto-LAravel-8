@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Clientes;
+namespace App\Http\Controllers\Prospectos;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
@@ -8,15 +8,12 @@ use App\Models\ClientesSubTareasPredefinidas;
 use App\Models\ClientesTareasEstandar;
 use App\Models\Direcciones;
 use App\Models\Estados;
-use App\Models\Municipios;
 use App\Models\Paises;
-use App\Models\TareasEstandar;
 use App\Models\Telefonos;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 
-class ClientesDefensaController extends Controller
+class ProspectosDefensaController extends Controller
 {
 
     public function __construct()
@@ -33,7 +30,7 @@ class ClientesDefensaController extends Controller
         $paises = Paises::all();
         $estados = Estados::all();
 
-        return view('clientes/clientes_defensa',[
+        return view('prospectos/prospectos_defensa',[
             'clientes'=>$clientes,
             'paises' => $paises,
             'estados' => $estados

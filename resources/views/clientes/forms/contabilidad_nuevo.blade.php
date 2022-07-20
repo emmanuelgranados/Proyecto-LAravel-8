@@ -10,6 +10,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <form  class="formNuevoCliente" id="formNuevoCliente" method="POST">
+                                <input type="hidden"  id="prospecto" name="cliente[prospecto]" value="0">
                                 <input type="hidden" name="cliente[tipo_servicio]" value="1">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
@@ -88,7 +89,7 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Página Web</label>
                                                     <div class="col-md-12">
-                                                        <input type="hidden"  id="prospecto" name="cliente[prospecto]" value="0">
+
                                                     <input type="text" class="form-control nuevoCliente" name="cliente[pagina_web]" placeholder="www.google.com">
 
                                                     </div>
@@ -144,7 +145,7 @@
                                             <div class="mb-3">
                                                 <label class="control-label">País</label>
                                                 <div class="col-md-12">
-                                                    <select  name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select">
+                                                    <select id="selectPais" name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select">
                                                         @foreach ( $paises as $pais )
                                                             <option value="{{ $pais->id }}">{{ $pais->pais }}</option>
                                                         @endforeach

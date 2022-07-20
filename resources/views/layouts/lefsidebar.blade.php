@@ -88,13 +88,13 @@
                                 <li class="sidebar-item">
                                     <a href="{{ route('prospectos_contabilidad') }}" class="sidebar-link">
                                         <i class="mdi mdi-cards-variant"></i>
-                                        <span class="hide-menu">Prospectos Contabilidad</span>
+                                        <span class="hide-menu">Contabilidad</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="{{ route('prospectos_defensa') }}" class="sidebar-link">
                                         <i class="mdi mdi-cards-variant"></i>
-                                        <span class="hide-menu">Prospectos Defensa</span>
+                                        <span class="hide-menu">Defensa</span>
                                     </a>
                                 </li>
                             </ul>

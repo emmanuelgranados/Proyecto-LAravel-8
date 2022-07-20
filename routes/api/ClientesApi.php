@@ -43,8 +43,10 @@ Route::get('/datos_cliente', function (Request $request) {
         'direcciones.pais',
         'direcciones.estado',
         'direcciones.municipio',
-        'direcciones.telefonos',
-        'obligaciones')
+        'direcciones.telefonos')
+        ->with(['obligaciones' => function ($q){
+            $q->where('activo',1);
+        }])
         ->with(['subTareasPredefinidas' => function ($q){
             $q->where('activo',1);
         }])
