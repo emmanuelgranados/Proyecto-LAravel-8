@@ -39,9 +39,9 @@ class ProspectosContabilidadController extends Controller
 
     }
 
-    public function nuevoClienteContabilidad( Request $request)
+    public function nuevoProspectoContabilidad( Request $request)
     {
-
+          // dd($request);
         $nuevoCliente = Clientes::create($request->cliente );
         $nuevaDireccion = $request->cliente['direcciones'];
 
@@ -90,7 +90,7 @@ class ProspectosContabilidadController extends Controller
 
     }
 
-    public function editarClienteContabilidad( Request $request)
+    public function editarProspectoContabilidad( Request $request)
     {
         // dd($request);
         Clientes::where('id',$request->cliente['id'])->update($request->cliente );

@@ -27,11 +27,11 @@
 
                     {{-- Formulario para crear nuevos clientes defensa--}}
 
-                     @include('clientes.forms.defensa_nuevo')
+                     @include('prospectos.forms.defensa_nuevo')
 
                     {{-- Fomularios para editar cliente defensa --}}
 
-                    @include('clientes.forms.defensa_editar')
+                    @include('prospectos.forms.defensa_editar')
 
                 </div>
             </div>

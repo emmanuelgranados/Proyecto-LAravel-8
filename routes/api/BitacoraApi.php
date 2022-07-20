@@ -11,13 +11,10 @@ use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/obtener_usuarios', function (Request $request) {
-
+Route::get('/obtener_usuarios_grupos', function (Request $request) {
 
     $usuario = Auth::user();
 
-
-    // dd($usuario->fk_id_roles);
     switch( $usuario->fk_id_roles  ){
         case 1:
         case 2:
@@ -33,31 +30,15 @@ Route::get('/obtener_usuarios', function (Request $request) {
             break;
     }
 
-
-    if( $usuario->fk_id_roles == 3 ){
-
-
-
-    }else if( $usuario->fk_id_roles == 1 ){
-
-    }
-
-    // $usuarios = User::with('roles')->get();
-    // $usuarios = User::with('roles')
-    //     ->when( $fk_id_roles == 2 ,function($q) {
-    //         where
-    //     })
-    //     ->get();
-
     return $usuarios;
 });
 
 Route::get('/obtener_clientes', function () {
 
-    $cliente = Clientes::orderBy('nombre_razon_social')
+    $cliente = Clientes::orderBy('nombre_cliente')
     ->where('activo',1)
     ->where('eliminado',0)
-    ->orderBy('nombre_razon_social')
+    ->orderBy('nombre_cliente')
     ->get();
 
     return $cliente;
@@ -85,6 +66,20 @@ Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
     return $tareasActivas;
 
 });
+
+
+Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
+
+    $tareasActivas = Tareas::orderBy('id','DESC')
+    ->where('fk_id_users_asignado',$request->fk_id_users)
+    ->where('fk_id_estatus','<>',3)
+    ->where('eliminado',0)
+    ->get();
+
+    return $tareasActivas;
+
+});
+
 
 Route::get('/obtener_lista_tareas', function (Request $request ) {
 
@@ -115,5 +110,7 @@ Route::get('/obtener_grupos', function (Request $request) {
     return $grupos;
 
 });
+
+
 
 

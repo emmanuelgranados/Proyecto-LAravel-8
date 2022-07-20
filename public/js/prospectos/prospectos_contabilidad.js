@@ -116,7 +116,7 @@ function tabla_clientes(){
 
     $('#detallesLista').empty();
 
-    $.get( 'api/lista_clientes',{tipo_servicio:1},function(data){
+    $.get( 'api/lista_clientes',{tipo_servicio:1,prospecto:1},function(data){
 
         let tabla = '';
 

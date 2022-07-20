@@ -25,16 +25,22 @@
                     </nav>
                     @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2  || Auth::user()->fk_id_roles == 3 )
                         <button id="nuevaTarea" class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nueva Tarea </button>
+                        <button id="nuevaTareaPredefinida" class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#modal_nueva_tarea_predefinida"><i class="mdi mdi-account-plus"></i> Nueva Tarea Predefinida</button>
 
                     @endif
 
-                    {{-- Formulario para crear nuevos clientes --}}
+                    {{-- Formulario para crear nueva tarea general --}}
 
-                     @include('bitacora.forms.nuevo')
+                    @include('bitacora.forms.nuevo')
+
+                    {{-- Formulario para crear nueva tarea predefinida --}}
+
+                    @include('bitacora.forms.nueva_tarea_predefinida')
 
                     {{-- Fomularios para editar cliente --}}
 
                     @include('bitacora.forms.editar')
+
                 </div>
             </div>
 

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 Route::get('/lista_clientes', function (Request $request) {
 
     $clientes = Clientes::with('usuario')
-        ->where('prospecto',0)
+        ->where('prospecto',$request->prospecto)
         ->where('tipo_servicio',$request->tipo_servicio)
         ->where('activo',1)
         ->where('eliminado',0)

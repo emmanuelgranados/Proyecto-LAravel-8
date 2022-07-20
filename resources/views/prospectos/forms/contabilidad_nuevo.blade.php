@@ -85,17 +85,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="control-label">Página Web</label>
-                                                    <div class="col-md-12">
-                                                        <input type="hidden"  id="prospecto" name="cliente[prospecto]" value="0">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[pagina_web]" placeholder="www.google.com">
-
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                            <!--/span-->
                                         </div>
                                     </div>
                                 </div>

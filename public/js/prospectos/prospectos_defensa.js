@@ -52,7 +52,7 @@ $(function () {
             if (result.value) {
                 $.ajax({
                     type:'POST',
-                    url:'nuevo_cliente_defensa',
+                    url:'nuevo_prospecto_defensa',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data:datos,
                     success:function(data){
@@ -116,7 +116,7 @@ function tabla_clientes(){
 
     $('#detallesLista').empty();
 
-    $.get( 'api/lista_clientes',{tipo_servicio:2},function(data){
+    $.get( 'api/lista_clientes',{tipo_servicio:2,prospecto:1},function(data){
 
         let tabla = '';
 

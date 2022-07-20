@@ -39,10 +39,8 @@ class ProspectosDefensaController extends Controller
 
     }
 
-    public function nuevoClienteDefensa( Request $request)
+    public function nuevoProspectoDefensa( Request $request)
     {
-
-        //  dd($request);
 
          $nuevoCliente = Clientes::create($request->cliente );
          $nuevaDireccion = $request->cliente['direcciones'];
@@ -91,7 +89,7 @@ class ProspectosDefensaController extends Controller
 
     }
 
-    public function editarClienteDefensa( Request $request)
+    public function editarProspectoDefensa( Request $request)
     {
 
         // dd($request);
@@ -144,7 +142,7 @@ class ProspectosDefensaController extends Controller
 
     }
 
-    public function eliminarClienteDefensa( Request $request )
+    public function eliminarProspectoDefensa( Request $request )
     {
         Clientes::where('id',$request->id)->update( ['activo' => 0,'eliminado' => 1 ] );
 
