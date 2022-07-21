@@ -6,6 +6,7 @@ use App\Models\CodigosPostales;
 use App\Models\Comentarios;
 use App\Models\Grupos;
 use App\Models\Municipios;
+use App\Models\SubTareasPredefinidas;
 use App\Models\Tareas;
 use App\Models\User;
 use App\Models\UsersGrupos;
@@ -75,6 +76,17 @@ Route::get('/obtener_lista_tareas_predefinidas', function (Request $request ) {
     ->where('fk_id_clientes',$request->fk_id_clientes)
     ->where('activo',1)
     ->get();
+
+    return $tareasPredefinidas;
+
+});
+
+
+Route::get('/obtener_tarea_predefinida', function (Request $request ) {
+
+    $tareasPredefinidas = SubTareasPredefinidas::where('id',$request->id)
+    ->where('activo',1)
+    ->first();
 
     return $tareasPredefinidas;
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('sub_tarea_predefinida');
             $table->string('fk_id_tareas_predefinidas');
+            $table->integer('campo')->default(1);
             $table->boolean('activo')->default(1);
             $table->boolean('eliminado')->default(0);
         });

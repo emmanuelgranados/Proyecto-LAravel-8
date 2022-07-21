@@ -19,7 +19,8 @@ class SubTareasPredefinidas extends Model
         'sub_tarea_predefinida',
         'fk_id_tareas_predefinidas',
         'activo',
-        'eliminado'
+        'eliminado',
+        'campo'
      ];
 
      public function tareasPredefinidas(){

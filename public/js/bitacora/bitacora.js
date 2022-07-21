@@ -1,5 +1,7 @@
 // const { data } = require("autoprefixer");
 
+// const { defaultsDeep } = require("lodash");
+
 $(function () {
 
     $("#formNuevaTarea").on("submit", function(e){
@@ -116,19 +118,74 @@ $(function () {
       });
 
 
-      $( "#predefinida_fk_id_clientes" ).change(function () {
+    $( "#predefinida_fk_id_clientes" ).change(function () {
 
         $.get('api/obtener_lista_tareas_predefinidas',{fk_id_clientes:$(this).val()},function(data){
 
             var tareasPredefinidas = '';
 
             $.each(data,function(i,ele){
-                console.info(ele.sub_tareas_predefinidas.sub_tarea_predefinida);
-                tareasPredefinidas += '<option value="'+ ele.id +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
+                // console.info(ele.sub_tareas_predefinidas.sub_tarea_predefinida);
+                tareasPredefinidas += '<option value="'+ ele.fk_id_sub_tareas_predefinidas +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
 
             });
             $('#fk_id_tareas_predefinidas').empty();
             $('#fk_id_tareas_predefinidas').append(tareasPredefinidas);
+
+        });
+
+
+    }).change();
+
+
+    $( "#fk_id_tareas_predefinidas" ).change(function () {
+
+        $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
+
+            var campoDinamico = '';
+
+            switch ( data.fk_id_tipo_campo_html ){
+                case 1:
+
+                    // campoDinamico = '<textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>';
+                    campoDinamico = '<div class="row">'+
+                                        '<div class="col-md-12">'+
+                                            '<div class="mb-3">'+
+                                                '<label>Tarea a Realizar</label>'+
+                                                '<input type="text" class="form-control" name="tarea[tarea]" >'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>';
+
+
+
+                    break;
+                case 2:
+
+                    campoDinamico = '<div class="row">'+
+                                        '<div class="col-md-12">'+
+                                            '<div class="mb-3">'+
+                                                '<label>Tarea a Realizar</label>'+
+                                                '<input type="datetime-local" class="form-control" name="tarea[fecha_inicio]" ></input>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>';
+
+
+                    break;
+            }
+
+
+
+            // var tareasPredefinidas = '';
+
+            // $.each(data,function(i,ele){
+            //     console.info(ele.sub_tareas_predefinidas.sub_tarea_predefinida);
+            //     tareasPredefinidas += '<option value="'+ ele.id +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
+
+            // });
+            $('#campoDinamico').empty();
+            $('#campoDinamico').append(campoDinamico);
 
         });
 

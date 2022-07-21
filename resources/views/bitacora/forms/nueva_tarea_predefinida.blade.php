@@ -14,6 +14,20 @@
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">
                                     <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="mb-3">
+                                                    <label class="control-label">Personal Asignado</label>
+                                                    <div class="col-md-12">
+                                                        <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
+                                                        <select id="fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="mb-3">
@@ -38,28 +52,9 @@
 
                                             </div>
                                         </div>
+                                        <div id="campoDinamico" ></div>
 
-                                        <div class="row">
-                                            <div class="col-md-12">
 
-                                                <div class="mb-3">
-                                                    <label class="control-label">Personal Asignado</label>
-                                                    <div class="col-md-12">
-                                                        <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
-                                                        <select id="fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label>Tarea a Realizar</label>
-                                                    <textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>
-                                                  </div>
-                                            </div>
-                                        </div>
                                         <div class="row">
 
                                             <div class="col-md-4">
