@@ -116,6 +116,26 @@ $(function () {
       });
 
 
+      $( "#predefinida_fk_id_clientes" ).change(function () {
+
+        $.get('api/obtener_lista_tareas_predefinidas',{fk_id_clientes:$(this).val()},function(data){
+
+            var tareasPredefinidas = '';
+
+            $.each(data,function(i,ele){
+                console.info(ele.sub_tareas_predefinidas.sub_tarea_predefinida);
+                tareasPredefinidas += '<option value="'+ ele.id +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
+
+            });
+            $('#fk_id_tareas_predefinidas').empty();
+            $('#fk_id_tareas_predefinidas').append(tareasPredefinidas);
+
+        });
+
+
+    }).change();
+
+
 });
 
 cargarUsuarios();
@@ -180,6 +200,7 @@ function cargarClientes(){
 
         $('#fk_id_clientes').append(selectClientes);
         $('#editar_fk_id_clientes').append(selectClientes);
+        $('#predefinida_fk_id_clientes').append(selectClientes);
 
     });
 
@@ -188,7 +209,7 @@ function cargarClientes(){
 
 cargarTareasPredefinidas();
 
-function cargarClientes(){
+function cargarTareasPredefinidas(){
 
     $.get('api/obtener_clientes',function(data){
         var selectClientes = '';

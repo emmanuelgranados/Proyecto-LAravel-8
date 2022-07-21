@@ -15,7 +15,19 @@
                                     <hr class="mt-0 mb-1">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="control-label">Cliente</label>
+                                                    <div class="col-md-12">
+                                                    {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
+                                                    <select id="predefinida_fk_id_clientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
+
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-8">
 
                                                 <div class="mb-3">
                                                     <label class="control-label">Tarea Predefinida</label>
@@ -49,18 +61,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="mb-3">
-                                                    <label class="control-label">Cliente</label>
-                                                    <div class="col-md-12">
-                                                    {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
-                                                    <select id="fk_id_clientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
 
-                                                    </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Inicio</label>

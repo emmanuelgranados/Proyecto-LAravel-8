@@ -22,6 +22,9 @@ class ClientesSubTareasPredefinidas extends Model
      ];
 
 
+     public function subTareasPredefinidas(){
+        return $this->hasOne(SubTareasPredefinidas::class,'id','fk_id_sub_tareas_predefinidas');
+     }
 
 }
 

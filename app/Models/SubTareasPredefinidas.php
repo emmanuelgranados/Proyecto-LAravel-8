@@ -22,7 +22,9 @@ class SubTareasPredefinidas extends Model
         'eliminado'
      ];
 
-
+     public function tareasPredefinidas(){
+        return $this->hasOne(TareasPredefinidas::class,'id','fk_id_tareas_predefinidas');
+     }
 
 }
 

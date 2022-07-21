@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Clientes;
+use App\Models\ClientesSubTareasPredefinidas;
 use App\Models\CodigosPostales;
 use App\Models\Comentarios;
 use App\Models\Grupos;
@@ -68,15 +69,14 @@ Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
 });
 
 
-Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
+Route::get('/obtener_lista_tareas_predefinidas', function (Request $request ) {
 
-    $tareasActivas = Tareas::orderBy('id','DESC')
-    ->where('fk_id_users_asignado',$request->fk_id_users)
-    ->where('fk_id_estatus','<>',3)
-    ->where('eliminado',0)
+    $tareasPredefinidas = ClientesSubTareasPredefinidas::with('subTareasPredefinidas.tareasPredefinidas')
+    ->where('fk_id_clientes',$request->fk_id_clientes)
+    ->where('activo',1)
     ->get();
 
-    return $tareasActivas;
+    return $tareasPredefinidas;
 
 });
 
