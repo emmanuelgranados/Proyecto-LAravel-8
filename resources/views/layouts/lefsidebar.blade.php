@@ -152,6 +152,33 @@
 
                 @endif
 
+
+                @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-linux"></i><span class="hide-menu">Sistemas</span>
+
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="{{route('inventario')}}" class="sidebar-link">
+                                <i class="mdi mdi-box-shadow"></i>
+                                <span class="hide-menu"> Inventario </span>
+                            </a>
+                        </li>
+                        {{-- <li class="sidebar-item">
+                            <a href="{{route('tareas_predefinidas')}}" class="sidebar-link">
+                                <i class="mdi mdi-box-shadow"></i>
+                                <span class="hide-menu">Tareas Predefinidas</span>
+                            </a>
+                        </li> --}}
+
+
+                    </ul>
+                </li>
+
+            @endif
+
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->

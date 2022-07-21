@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
     $this->call(CategoriasTareasTableSeeder::class);
     $this->call(SubTareasPredefinidasTableSeeder::class);
     $this->call(TareasEstandarTableSeeder::class);
+    $this->call(MarcasSeeder::class);
 
     }
 }
