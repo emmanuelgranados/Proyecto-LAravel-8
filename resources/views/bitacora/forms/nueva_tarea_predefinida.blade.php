@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl" >
         <div class="modal-content">
             <div class="modal-header modal-colored-header bg-info text-white">
-                <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Tarea Papuuuuus</h4>
+                <h4 class="modal-title" id="info-header-modalLabel"> Nuevo Tarea Predefinida</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body">
@@ -16,7 +16,7 @@
                                     <div class="card-body">
 
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
 
                                                 <div class="mb-3">
                                                     <label class="control-label">Personal Asignado</label>
@@ -25,23 +25,31 @@
                                                         <select id="predefinida_fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="control-label">Cliente</label>
                                                     <div class="col-md-12">
-                                                    {{-- <input type="text" class="form-control nuevoTarea" name="tarea[rfc]" placeholder="XAXX010101000"> --}}
-                                                    <select id="predefinida_fk_id_clientes" name="tarea[fk_id_clientes]" class="form-control form-select ">
+                                                        <select id="predefinida_fk_id_clientes" name="tarea[fk_id_clientes]" class="form-control form-select "> </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                    </select>
+                                        </div>
+                                        {{-- <div class="row">
+
+                                            <div class="col-md-4">
+
+                                                <div class="mb-3">
+                                                    <label class="control-label">Obligaciones</label>
+                                                    <div class="col-md-12">
+                                                        <select id="fk_id_obligaciones" name="tarea[fk_id_tareas_obligaciones]" class="form-control form-select "></select>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-8">
+
+                                            <div class="col-md-4">
 
                                                 <div class="mb-3">
                                                     <label class="control-label">Tarea Predefinida</label>
@@ -51,13 +59,13 @@
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div id="campoDinamico" ></div>
 
 
                                         <div class="row">
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Inicio</label>
                                                     <div class="col-md-12">
@@ -68,7 +76,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha y Hora Final</label>
                                                     <div class="col-md-12">

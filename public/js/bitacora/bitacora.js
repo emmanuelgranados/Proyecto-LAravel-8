@@ -165,7 +165,7 @@ $(function () {
                                         '<div class="col-md-12">'+
                                             '<div class="mb-3">'+
                                                 '<label>'+ data.sub_tarea_predefinida +'</label>'+
-                                                '<input type="datetime-local" class="form-control" name="tarea[fecha_inicio]" ></input>'+
+                                                '<input type="date" class="form-control" name="tarea[fecha_inicio]" ></input>'+
                                             '</div>'+
                                         '</div>'+
                                     '</div>';

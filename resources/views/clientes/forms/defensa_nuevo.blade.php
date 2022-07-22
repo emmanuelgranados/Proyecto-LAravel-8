@@ -198,11 +198,11 @@
                                 </div>
 
 
-                                <h4 class="card-title">Tareas Estandar</h4>
+                                {{-- <h4 class="card-title">Tareas Estandar</h4>
                                 <hr class="mt-0 mb-1">
                                 <div class="card-body">
                                     <div class="row" id="listaTareasEstandar"></div>
-                                </div>
+                                </div> --}}
 
 
                                 {{-- <h4 class="card-title">Tareas Predefinidas</h4>
