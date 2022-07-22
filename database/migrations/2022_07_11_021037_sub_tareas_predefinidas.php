@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('sub_tareas_predefinidas', function (Blueprint $table) {
             $table->id();
             $table->string('sub_tarea_predefinida');
-            $table->string('fk_id_tareas_predefinidas');
+            $table->integer('fk_id_tareas_predefinidas');
+            $table->integer('fk_id_tipo_campo_html');
             $table->integer('campo')->default(1);
             $table->boolean('activo')->default(1);
             $table->boolean('eliminado')->default(0);

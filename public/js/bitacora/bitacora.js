@@ -143,15 +143,14 @@ $(function () {
         $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
 
             var campoDinamico = '';
-
+            console.info(data);
             switch ( data.fk_id_tipo_campo_html ){
                 case 1:
 
-                    // campoDinamico = '<textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>';
                     campoDinamico = '<div class="row">'+
                                         '<div class="col-md-12">'+
                                             '<div class="mb-3">'+
-                                                '<label>Tarea a Realizar</label>'+
+                                                '<label>'+ data.sub_tarea_predefinida +'</label>'+
                                                 '<input type="text" class="form-control" name="tarea[tarea]" >'+
                                             '</div>'+
                                         '</div>'+
@@ -165,7 +164,7 @@ $(function () {
                     campoDinamico = '<div class="row">'+
                                         '<div class="col-md-12">'+
                                             '<div class="mb-3">'+
-                                                '<label>Tarea a Realizar</label>'+
+                                                '<label>'+ data.sub_tarea_predefinida +'</label>'+
                                                 '<input type="datetime-local" class="form-control" name="tarea[fecha_inicio]" ></input>'+
                                             '</div>'+
                                         '</div>'+
@@ -177,13 +176,7 @@ $(function () {
 
 
 
-            // var tareasPredefinidas = '';
 
-            // $.each(data,function(i,ele){
-            //     console.info(ele.sub_tareas_predefinidas.sub_tarea_predefinida);
-            //     tareasPredefinidas += '<option value="'+ ele.id +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
-
-            // });
             $('#campoDinamico').empty();
             $('#campoDinamico').append(campoDinamico);
 
@@ -202,6 +195,7 @@ function cargarUsuarios(fk_id_grupos = null){
     $('#listaUsuariosGrupo').empty();
     $('#fk_id_users_asignado').empty();
     $('#editar_fk_id_users_asignado').empty();
+    $('#predefinida_fk_id_users_asignado').empty();
 
     if( fk_id_grupos == null ){
         fk_id_grupos = 1;
@@ -239,6 +233,7 @@ function cargarUsuarios(fk_id_grupos = null){
         $('#listaUsuariosGrupo').append(listaUsuariosGrupo);
         $('#fk_id_users_asignado').append(selectUsuarios);
         $('#editar_fk_id_users_asignado').append(selectUsuarios);
+        $('#predefinida_fk_id_users_asignado').append(selectUsuarios);
 
     });
 }

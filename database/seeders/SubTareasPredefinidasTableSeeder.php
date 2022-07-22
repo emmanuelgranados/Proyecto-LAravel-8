@@ -32,7 +32,7 @@ class SubTareasPredefinidasTableSeeder extends Seeder
         DB::table('sub_tareas_predefinidas')->insert(['sub_tarea_predefinida' => 'Plazo fatal para su presentación' , 'fk_id_tareas_predefinidas' =>  8 , 'fk_id_tipo_campo_html' => 2 ]);
         DB::table('sub_tareas_predefinidas')->insert(['sub_tarea_predefinida' => 'Plazo preventivo para su presentación' , 'fk_id_tareas_predefinidas' => 8 , 'fk_id_tipo_campo_html' => 2 ]);
         DB::table('sub_tareas_predefinidas')->insert(['sub_tarea_predefinida' => 'Agravios identificados' , 'fk_id_tareas_predefinidas' => 8 , 'fk_id_tipo_campo_html' => 1 ]);
-        DB::table('sub_tareas_predefinidas')->insert(['sub_tarea_predefinida' => 'Observaciones' , 'fk_id_tareas_predefinidas' => 8 ]);
+        DB::table('sub_tareas_predefinidas')->insert(['sub_tarea_predefinida' => 'Observaciones' , 'fk_id_tareas_predefinidas' => 8, 'fk_id_tipo_campo_html' => 1 ]);
 
 
         DB::table('sub_tareas_predefinidas')->insert(['sub_tarea_predefinida' => 'Autoridad' , 'fk_id_tareas_predefinidas' =>  9 , 'fk_id_tipo_campo_html' => 1 ]);

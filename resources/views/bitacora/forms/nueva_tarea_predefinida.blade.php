@@ -22,7 +22,7 @@
                                                     <label class="control-label">Personal Asignado</label>
                                                     <div class="col-md-12">
                                                         <input type="hidden" name="tarea[fk_id_users_alta]" value="{{ Auth::user()->id }}">
-                                                        <select id="fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
+                                                        <select id="predefinida_fk_id_users_asignado" name="tarea[fk_id_users_asignado]" class="form-control form-select "></select>
                                                     </div>
                                                 </div>
 
