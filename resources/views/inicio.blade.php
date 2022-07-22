@@ -9,6 +9,8 @@
 
 
 
+
+
         <div class="page-wrapper">
 
             <div class="container-fluid border-bottom">
@@ -46,9 +48,9 @@
 
         </div>
 
-
+{{--
         <div class="d-flex justify-content-center" style="margin-top:100px">
-            {{-- <img src="images/mega_logo.png" width= 500px height=300px/> --}}
+
 
             <table style="text-align:center;">
                     <tr>
@@ -64,8 +66,18 @@
 
                 </table>
 
+        </div> --}}
+
+
+        <div id="agenda">
+            @include('agenda.agenda')
         </div>
 
-
-
 @endsection
+
+
+@section('script')
+<script src="../../dist/js/pages/calendar/cal-init.js"></script>
+@endsection
+
+

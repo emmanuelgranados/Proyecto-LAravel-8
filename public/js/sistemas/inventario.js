@@ -149,7 +149,7 @@ $('#historialequipos').DataTable({
         {data:'id', defaultContent: "---", title: "ID"},
         {data:'equipo.nombre_equipo', defaultContent: "---", title: "Equipo"},
         {data:'user.name', defaultContent: "---", title: "Atendio"},
-        {data:'user_adquiere.name', defaultContent: "---", title: "Adquiere"},
+        {data:'user_adquiere.name', defaultContent: "---", title: "Usuario"},
         {data:'fecha', defaultContent: "---", title: "Fecha"},
         {data:function(row, type){
             const classname = (row.evento == 1) ? 'bg-light-success text-success' : 'bg-light-warning text-warning';

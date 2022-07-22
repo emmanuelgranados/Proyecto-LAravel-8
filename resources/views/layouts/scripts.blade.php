@@ -25,7 +25,7 @@
     {{-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> --}}
     <script src="../../assets/libs/moment/min/moment.min.js"></script>
     <script src="../../assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script src="../../dist/js/pages/calendar/cal-init.js"></script>
+
 
     <script src="plugins/select2/js/select2.min.js"></script>
 
@@ -45,6 +45,9 @@
       type="text/css"
       href="../../assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css"
     />
+
+    <link href="../../assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
+
     <!-- Moment.js: -->
     {{-- <script src="https://cdn.datatables.net/plug-ins/1.11.3/dataRender/datetime.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>

@@ -187,14 +187,18 @@
     var form = "";
     var today = new Date($.now());
 
+
+///EVENTOS AJAX AQUI
+
+
     var defaultEvents = [
       {
-        title: "Meeting #3",
+        title: "JUNTA",
         start: new Date($.now() + 506800000),
         className: "bg-info",
       },
       {
-        title: "Submission #1",
+        title: "REVICIÓN",
         start: today,
         end: today,
         className: "bg-danger",
