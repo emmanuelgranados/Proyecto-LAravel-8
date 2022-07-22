@@ -1,8 +1,4 @@
 
-    <form  class="formqrEquipos" id="formqrEquipos" method="POST" enctype="multipart/form-data">
-
-        {{ csrf_field() }}
-
    <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header modal-colored-header bg-info text-white">
@@ -34,5 +30,3 @@
               <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
-
-    </form>

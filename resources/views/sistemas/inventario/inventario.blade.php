@@ -27,6 +27,10 @@
     @include('sistemas.inventario.forms.codigoqr')
 </div>
 
+<div id="historial_equipo" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
+    @include('sistemas.inventario.forms.historial')
+</div>
+
 
 
 
@@ -92,6 +96,6 @@
 
 
 @section('script')
-    <script src="js/easy.qrcode.min.js"></script>
+
     <script src="js/sistemas/inventario.js"></script>
 @endsection

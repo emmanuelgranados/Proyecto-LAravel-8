@@ -30,7 +30,8 @@
     <script src="plugins/select2/js/select2.min.js"></script>
 
     <script src="../../assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
+    <script src="js/html2canvas.js"></script>
+    <script src="js/easy.qrcode.min.js"></script>
 
     {{-- <link rel="stylesheet" type="text/css" href="/datatables/datatables.css">
     <script type="text/javascript" charset="utf8" src="/datatables/datatables.js"></script> --}}

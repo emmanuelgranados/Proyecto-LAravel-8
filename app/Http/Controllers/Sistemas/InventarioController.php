@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Sistemas;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Marcas;
 use App\Models\Inventario;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Models\HistorialInventario;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class InventarioController extends Controller
 {
@@ -58,6 +59,58 @@ class InventarioController extends Controller
 
      }
 
+
+     public function salida_equipo($id){
+
+        if(Auth::user()->hasRole('sistemas')){
+
+        $user=Auth::user()->id;
+
+        $status = Inventario::select('fk_id_users','status')->where('id',$id)->where('eliminado',0)->get();
+        $usuarioAsignado = $status[0]->fk_id_users;
+
+        switch($status[0]->status){
+
+        case "0":
+
+            Inventario::where('id',$id)->update(['fk_id_users'=> $user,'status' => 1]);
+
+            HistorialInventario::create([
+                'fecha' =>Carbon::now(),
+                'evento' => 1,
+                'fk_id_inventario' => $id,
+                'fk_id_users' => $user,
+                'fk_id_users_adquiere' => $usuarioAsignado,
+                'eliminado' => 0,
+               ]);
+
+        break;
+
+        case "1":
+
+            Inventario::where('id',$id)->update(['status' => 0]);
+
+            HistorialInventario::create([
+                'fecha' =>Carbon::now(),
+                'evento' => 0,
+                'fk_id_inventario' => $id,
+                'fk_id_users' => $user,
+                'fk_id_users_adquiere' => $usuarioAsignado,
+                'eliminado' => 0,
+               ]);
+
+        break;
+
+
+          }
+
+          return redirect()->route('inventario')->with('message', ['type'=> 'success', 'text' => 'Registro Actualizado.', 'title' => 'Exito!']);
+
+        }
+
+        return redirect()->route('inicio')->with('message', ['type'=> 'success', 'text' => 'Acceso Denegado.', 'title' => 'Exito!']);
+
+     }
 
 
 
