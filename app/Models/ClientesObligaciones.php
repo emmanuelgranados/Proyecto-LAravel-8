@@ -19,5 +19,8 @@ class ClientesObligaciones extends  Model
         'activo',
     ];
 
+    public function obligaciones(){
+        return $this->hasOne(Obligaciones::class,'id','fk_id_obligaciones');
+     }
 
 }

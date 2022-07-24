@@ -69,6 +69,8 @@
                         </div>
                     </div>
 
+
+
                     <div class="col-lg-4 d-flex align-items-stretch">
 
                       <div class="card w-100">
@@ -148,9 +150,7 @@
 
 
 @section('script')
+
     <script src="js/bitacora/bitacora.js"></script>
 
-    <script>
-        // $("#zero_config").DataTable();
-      </script>
 @endsection

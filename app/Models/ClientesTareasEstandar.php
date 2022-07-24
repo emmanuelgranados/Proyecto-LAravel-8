@@ -20,4 +20,8 @@ class ClientesTareasEstandar extends  Model
     ];
 
 
+    public function tareasEstandar(){
+        return $this->hasOne(TareasEstandar::class,'id','fk_id_tareas_estandar');
+     }
+
 }

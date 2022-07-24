@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Clientes;
+use App\Models\ClientesObligaciones;
 use App\Models\ClientesSubTareasPredefinidas;
+use App\Models\ClientesTareasEstandar;
 use App\Models\CodigosPostales;
 use App\Models\Comentarios;
 use App\Models\Grupos;
@@ -78,6 +80,28 @@ Route::get('/obtener_lista_tareas_predefinidas', function (Request $request ) {
     ->get();
 
     return $tareasPredefinidas;
+
+});
+
+Route::get('/obtener_lista_obligaciones', function (Request $request ) {
+
+    $obligaciones = ClientesObligaciones::with('obligaciones')
+    ->where('fk_id_clientes',$request->fk_id_clientes)
+    ->where('activo',1)
+    ->get();
+
+    return $obligaciones;
+
+});
+
+Route::get('/obtener_lista_tareas_estandar', function (Request $request ) {
+
+    $tareasEstantar = ClientesTareasEstandar::with('tareasEstandar')
+    ->where('fk_id_clientes',$request->fk_id_clientes)
+    ->where('activo',1)
+    ->get();
+
+    return $tareasEstantar;
 
 });
 

@@ -50,5 +50,12 @@
       href="../../assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css"
     />
 
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/libs/select2/dist/css/select2.min.css"
+    />
+    <!-- Custom CSS -->
+    <link href="../../dist/css/style.min.css" rel="stylesheet" />
 
 @endsection

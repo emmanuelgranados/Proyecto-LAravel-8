@@ -36,15 +36,8 @@
     {{-- <link rel="stylesheet" type="text/css" href="/datatables/datatables.css">
     <script type="text/javascript" charset="utf8" src="/datatables/datatables.js"></script> --}}
 
-    <link
-      href="../../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css"
-    />
+    <link href="../../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css"/>
 
     <link href="../../assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
 
@@ -59,7 +52,9 @@
     <script src="../../assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js"></script>
 
 
-
+    <script src="../../assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="../../assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="../../dist/js/pages/forms/select2/select2.init.js"></script>
 
 
     <script>

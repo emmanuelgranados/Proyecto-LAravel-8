@@ -115,24 +115,74 @@ $(function () {
 
         let datos = $(this).serialize() ;
 
+
       });
 
 
     $( "#predefinida_fk_id_clientes" ).change(function () {
 
+        $('#tipoTareas').empty();
+
+
+        $('#tipoTareas').append('<option value="0">Nueva Tarea</option>');
+
         $.get('api/obtener_lista_tareas_predefinidas',{fk_id_clientes:$(this).val()},function(data){
 
-            var tareasPredefinidas = '';
+            if(data.length != 0){
 
-            $.each(data,function(i,ele){
-                // console.info(ele.sub_tareas_predefinidas.sub_tarea_predefinida);
-                tareasPredefinidas += '<option value="'+ ele.fk_id_sub_tareas_predefinidas +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
+                var tareasPredefinidas = '';
 
-            });
-            $('#fk_id_tareas_predefinidas').empty();
-            $('#fk_id_tareas_predefinidas').append(tareasPredefinidas);
+                $.each(data,function(i,ele){
+                    tareasPredefinidas += '<option value="'+ ele.fk_id_sub_tareas_predefinidas +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
+
+                });
+
+                tareasPredefinidas = '<optgroup label="Obligaciones">'+tareasPredefinidas+'</optgroup>';
+
+                $('#tipoTareas').append(tareasPredefinidas);
+
+
+            }
 
         });
+
+        $.get('api/obtener_lista_obligaciones',{fk_id_clientes:$(this).val()},function(data){
+
+            if(data.length != 0){
+
+                 var obligaciones = '';
+
+                $.each(data,function(i,ele){
+
+                    obligaciones += '<option value="'+ ele.fk_id_obligaciones +'">'+ ele.obligaciones.obligacion +'</option>';
+
+                });
+
+                obligaciones = '<optgroup label="Obligaciones">'+obligaciones+'</optgroup>';
+
+                $('#tipoTareas').append(obligaciones);
+            }
+
+        });
+
+        $.get('api/obtener_lista_tareas_estandar',{fk_id_clientes:$(this).val()},function(data){
+
+            if(data.length != 0){
+
+                var tareasEstandar = '';
+
+                $.each(data,function(i,ele){
+
+                    tareasEstandar += '<option value="'+ ele.fk_id_tareas_estandar +'">'+ ele.tareas_estandar.tarea_estandar +'</option>';
+
+                });
+                tareasEstandar = '<optgroup label="Tareas Estandar">'+tareasEstandar+'</optgroup>';
+
+                $('#tipoTareas').append(tareasEstandar);
+            }
+
+        });
+
 
 
     }).change();
@@ -186,6 +236,9 @@ $(function () {
     }).change();
 
 
+    $('#tipoTareas').select2({
+        dropdownParent: $('#modal_nueva_tarea_predefinida')
+    });
 });
 
 cargarUsuarios();
@@ -243,7 +296,9 @@ cargarClientes();
 function cargarClientes(){
 
     $.get('api/obtener_clientes',function(data){
-        var selectClientes = '';
+
+        var selectClientes = '<option value="" disabled selected hidden>Seleccionar Cliente...</option>';
+
         $.each(data,function(i,ele){
 
             selectClientes += '<option value="'+ ele.id +'">'+ ele.nombre_cliente +'</option>';
