@@ -203,18 +203,20 @@ $(function () {
                     campoDinamico = '<div class="col-md-12">'+
                                         '<div class="mb-3">'+
                                             '<label>'+ $( "#tipoTareas option:selected" ).text() +'</label>'+
-                                            '<input type="text" class="form-control" name="tarea[tarea]" >'+
+                                            '<input type="text" class="form-control" name="tarea[sub_tarea]" >'+
                                         '</div>'+
-                                    '</div>';
+                                    '</div>'+
+                                    '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
 
                 }else if( tipoTarea[1] == 2 ){
 
                     campoDinamico = '<div class="col-md-12">'+
                                         '<div class="mb-3">'+
                                             '<label>'+ $( "#tipoTareas option:selected" ).text() +'</label>'+
-                                            '<input type="date" class="form-control" name="tarea[fecha_inicio]" ></input>'+
+                                            '<input type="date" class="form-control" name="tarea[fecha_sub_tarea]" ></input>'+
                                         '</div>'+
-                                    '</div>';
+                                    '</div>'+
+                                    '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
                 }
 
 
@@ -244,44 +246,7 @@ $(function () {
         $('#campoDinamico').empty();
         $('#campoDinamico').append(campoDinamico);
 
-        // <div class="row">
-        //                                     <div class="col-md-12">
-        //                                         <div class="mb-3">
-        //                                             <label>Tarea a Realizar</label>
-        //                                             <textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>
-        //                                           </div>
-        //                                     </div>
-        //                                 </div>
 
-        // $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
-
-            // alert();
-
-        //     var campoDinamico = '';
-        //     console.info(data);
-        //     switch ( data.fk_id_tipo_campo_html ){
-        //         case 1:
-
-
-
-
-
-        //             break;
-        //         case 2:
-
-
-
-
-        //             break;
-        //     }
-
-
-
-
-        //     $('#campoDinamico').empty();
-        //     $('#campoDinamico').append(campoDinamico);
-
-        // });
 
 
     });

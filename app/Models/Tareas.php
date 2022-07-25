@@ -25,6 +25,8 @@ class Tareas extends Model
         'fecha_final',
         'fecha_registro',
         'fk_id_estatus',
+        'fecha_sub_tarea',
+        'sub_tarea',
         'eliminado'
      ];
 
