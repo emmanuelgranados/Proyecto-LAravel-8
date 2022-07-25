@@ -127,17 +127,17 @@ $(function () {
         $('#tipoTareas').append('<option value="0">Nueva Tarea</option>');
 
         $.get('api/obtener_lista_tareas_predefinidas',{fk_id_clientes:$(this).val()},function(data){
-
+            console.info(data);
             if(data.length != 0){
 
                 var tareasPredefinidas = '';
 
                 $.each(data,function(i,ele){
-                    tareasPredefinidas += '<option value="'+ ele.fk_id_sub_tareas_predefinidas +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
+                    tareasPredefinidas += '<option value="predefinida_'+ ele.sub_tareas_predefinidas.fk_id_tipo_campo_html+'_'+ ele.fk_id_sub_tareas_predefinidas +'">'+ele.sub_tareas_predefinidas.tareas_predefinidas.tarea_predefinida+' - '+ ele.sub_tareas_predefinidas.sub_tarea_predefinida +'</option>';
 
                 });
 
-                tareasPredefinidas = '<optgroup label="Obligaciones">'+tareasPredefinidas+'</optgroup>';
+                tareasPredefinidas = '<optgroup label="Tareas Predefinidas">'+tareasPredefinidas+'</optgroup>';
 
                 $('#tipoTareas').append(tareasPredefinidas);
 
@@ -154,7 +154,7 @@ $(function () {
 
                 $.each(data,function(i,ele){
 
-                    obligaciones += '<option value="'+ ele.fk_id_obligaciones +'">'+ ele.obligaciones.obligacion +'</option>';
+                    obligaciones += '<option value="obligaciones_'+ ele.fk_id_obligaciones +'">'+ ele.obligaciones.obligacion +'</option>';
 
                 });
 
@@ -173,7 +173,7 @@ $(function () {
 
                 $.each(data,function(i,ele){
 
-                    tareasEstandar += '<option value="'+ ele.fk_id_tareas_estandar +'">'+ ele.tareas_estandar.tarea_estandar +'</option>';
+                    tareasEstandar += '<option value="estandar_'+ ele.fk_id_tareas_estandar +'">'+ ele.tareas_estandar.tarea_estandar +'</option>';
 
                 });
                 tareasEstandar = '<optgroup label="Tareas Estandar">'+tareasEstandar+'</optgroup>';
@@ -183,57 +183,156 @@ $(function () {
 
         });
 
-
+        $( "#tipoTareas" ).change();
 
     }).change();
 
 
-    $( "#fk_id_tareas_predefinidas" ).change(function () {
+    $( "#tipoTareas" ).change(function () {
 
-        $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
+        var selectTarea = $(this).val();
+        var campoDinamico = '';
 
-            var campoDinamico = '';
-            console.info(data);
-            switch ( data.fk_id_tipo_campo_html ){
-                case 1:
+        var tipoTarea = selectTarea.split("_") ;
+        console.info(tipoTarea);
+        switch( tipoTarea[0] ){
+            case 'predefinida':
 
-                    campoDinamico = '<div class="row">'+
-                                        '<div class="col-md-12">'+
-                                            '<div class="mb-3">'+
-                                                '<label>'+ data.sub_tarea_predefinida +'</label>'+
-                                                '<input type="text" class="form-control" name="tarea[tarea]" >'+
-                                            '</div>'+
+                if(tipoTarea[1] == 1){
+
+                    campoDinamico = '<div class="col-md-12">'+
+                                        '<div class="mb-3">'+
+                                            '<label>'+ $( "#tipoTareas option:selected" ).text() +'</label>'+
+                                            '<input type="text" class="form-control" name="tarea[tarea]" >'+
                                         '</div>'+
                                     '</div>';
 
+                }else if( tipoTarea[1] == 2 ){
 
-
-                    break;
-                case 2:
-
-                    campoDinamico = '<div class="row">'+
-                                        '<div class="col-md-12">'+
-                                            '<div class="mb-3">'+
-                                                '<label>'+ data.sub_tarea_predefinida +'</label>'+
-                                                '<input type="date" class="form-control" name="tarea[fecha_inicio]" ></input>'+
-                                            '</div>'+
+                    campoDinamico = '<div class="col-md-12">'+
+                                        '<div class="mb-3">'+
+                                            '<label>'+ $( "#tipoTareas option:selected" ).text() +'</label>'+
+                                            '<input type="date" class="form-control" name="tarea[fecha_inicio]" ></input>'+
                                         '</div>'+
                                     '</div>';
+                }
 
 
-                    break;
-            }
+            break;
+
+            case 'obligaciones':
+                campoDinamico =  '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
+            break;
+
+            case 'estandar':
+                campoDinamico = '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
+            break;
+
+            default:
+                campoDinamico =  '<div class="col-md-12">'+
+                                    '<div class="mb-3">'+
+                                        '<label>Tarea a Realizar</label>'+
+                                        '<textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>'+
+                                    '</div>'+
+                                '</div>';
+            break;
+
+        }
+
+        console.info( campoDinamico );
+
+        $('#campoDinamico').empty();
+        $('#campoDinamico').append(campoDinamico);
+
+        // <div class="row">
+        //                                     <div class="col-md-12">
+        //                                         <div class="mb-3">
+        //                                             <label>Tarea a Realizar</label>
+        //                                             <textarea class="form-control" rows="5" name="tarea[tarea]" ></textarea>
+        //                                           </div>
+        //                                     </div>
+        //                                 </div>
+
+        // $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
+
+            // alert();
+
+        //     var campoDinamico = '';
+        //     console.info(data);
+        //     switch ( data.fk_id_tipo_campo_html ){
+        //         case 1:
 
 
 
 
-            $('#campoDinamico').empty();
-            $('#campoDinamico').append(campoDinamico);
 
-        });
+        //             break;
+        //         case 2:
 
 
-    }).change();
+
+
+        //             break;
+        //     }
+
+
+
+
+        //     $('#campoDinamico').empty();
+        //     $('#campoDinamico').append(campoDinamico);
+
+        // });
+
+
+    });
+
+
+    // $( "#fk_id_tareas_predefinidas" ).change(function () {
+
+    //     $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
+
+    //         var campoDinamico = '';
+    //         console.info(data);
+    //         switch ( data.fk_id_tipo_campo_html ){
+    //             case 1:
+
+    //                 campoDinamico = '<div class="row">'+
+    //                                     '<div class="col-md-12">'+
+    //                                         '<div class="mb-3">'+
+    //                                             '<label>'+ data.sub_tarea_predefinida +'</label>'+
+    //                                             '<input type="text" class="form-control" name="tarea[tarea]" >'+
+    //                                         '</div>'+
+    //                                     '</div>'+
+    //                                 '</div>';
+
+
+
+    //                 break;
+    //             case 2:
+
+    //                 campoDinamico = '<div class="row">'+
+    //                                     '<div class="col-md-12">'+
+    //                                         '<div class="mb-3">'+
+    //                                             '<label>'+ data.sub_tarea_predefinida +'</label>'+
+    //                                             '<input type="date" class="form-control" name="tarea[fecha_inicio]" ></input>'+
+    //                                         '</div>'+
+    //                                     '</div>'+
+    //                                 '</div>';
+
+
+    //                 break;
+    //         }
+
+
+
+
+    //         $('#campoDinamico').empty();
+    //         $('#campoDinamico').append(campoDinamico);
+
+    //     });
+
+
+    // }).change();
 
 
     $('#tipoTareas').select2({
@@ -403,39 +502,39 @@ function cargarGrupos(){
 
 function cargarListaTareasActivas(id){
 
-    // $('#listaTareasActivas').empty();
-    // $('#listaComentarios').empty();
+    $('#listaTareasActivas').empty();
+    $('#listaComentarios').empty();
 
-    // $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
+    $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
 
-    //     let listaTareasActivas = '';
+        let listaTareasActivas = '';
 
-    //     $.each(data,function(i,ele){
+        $.each(data,function(i,ele){
 
-    //         if( ele.fk_id_prioridades == 1 ){
-    //             prioridad = 'border-info';
-    //         }else if( ele.fk_id_prioridades == 2 ){
-    //             prioridad = 'border-warning';
-    //         }else if( ele.fk_id_prioridades == 3 ){
-    //             prioridad = 'border-danger';
-    //         }
+            if( ele.fk_id_prioridades == 1 ){
+                prioridad = 'border-info';
+            }else if( ele.fk_id_prioridades == 2 ){
+                prioridad = 'border-warning';
+            }else if( ele.fk_id_prioridades == 3 ){
+                prioridad = 'border-danger';
+            }
 
-    //         listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
-    //                                 '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
-    //                                     // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
-    //                                     '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
-    //                                         '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
-    //                                     '</label>',
-    //                                 '</div>',
-    //                                '</li>';
+            listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
+                                    '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
+                                        // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
+                                        '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
+                                            '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
+                                        '</label>',
+                                    '</div>',
+                                   '</li>';
 
-    //     });
+        });
 
 
-    //     $('#listaTareasActivas').append(listaTareasActivas);
-    //     cargarListaTareas(id);
+        $('#listaTareasActivas').append(listaTareasActivas);
+        cargarListaTareas(id);
 
-    // });
+    });
     cargarListaTareas(id);
 
 }

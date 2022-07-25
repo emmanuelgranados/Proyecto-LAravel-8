@@ -148,7 +148,10 @@
                                             </div>
                                         </div>
 
-
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Adjuntar Archivo</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                          </div>
 
 
                                     </div>

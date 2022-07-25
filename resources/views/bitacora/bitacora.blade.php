@@ -24,14 +24,14 @@
                         </ol>
                     </nav>
                     @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2  || Auth::user()->fk_id_roles == 3 )
-                        <button id="nuevaTarea" class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nueva Tarea </button>
+                        {{-- <button id="nuevaTarea" class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-account-plus"></i> Nueva Tarea </button> --}}
                         <button id="nuevaTareaPredefinida" class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#modal_nueva_tarea_predefinida"><i class="mdi mdi-account-plus"></i> Nueva Tarea Predefinida</button>
 
                     @endif
 
                     {{-- Formulario para crear nueva tarea general --}}
 
-                    @include('bitacora.forms.nuevo')
+                    {{-- @include('bitacora.forms.nuevo') --}}
 
                     {{-- Formulario para crear nueva tarea predefinida --}}
 
@@ -89,33 +89,32 @@
                     </div>
                     <div class="col-md-12 col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
-                          <h4 class="card-title p-3 card-header mb-0">Comentarios de la Tarea</h4>
-                          <div class="card-body">
-                            <div class="chat-box scrollable ps-container ps-theme-default ps-active-y" style="height: 434px" data-ps-id="82206101-6a21-2db6-501a-84bf820abaa5">
-                              <!--chat Row -->
-                              <ul class="chat-list m-0 p-0" id="listaComentarios"></ul>
-                            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 434px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 211px;"></div></div></div>
-                          </div>
-                          <div class="card-body border-top">
-                            <form class="formComentarios" id="formComentarios" method="POST">
-                                <div class="row">
+                            <h4 class="card-title p-3 card-header mb-0">Comentarios de la Tarea</h4>
+                            <div class="card-body">
+                                <div class="chat-box scrollable ps-container ps-theme-default ps-active-y" style="height: 434px" data-ps-id="82206101-6a21-2db6-501a-84bf820abaa5">
+                                <!--chat Row -->
+                                <ul class="chat-list m-0 p-0" id="listaComentarios"></ul>
+                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 434px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 211px;"></div></div></div>
+                            </div>
+                            <div class="card-body border-top">
+                                <form class="formComentarios" id="formComentarios" method="POST">
+                                    <div class="row">
 
-                                    <div class="col-9">
-                                        <div class="input-field mt-0 mb-0">
-                                            <input type="hidden" name="comentario[fk_id_users]" value="{{ Auth::user()->id }}">
-                                            <input type="hidden" id="fk_id_tareas" name="comentario[fk_id_tareas]" value="">
-                                            <input type="text" id="nuevoComentario" name="comentario[comentario]" placeholder="Escribe tu comentario" class="form-control border-0">
+                                        <div class="col-9">
+                                            <div class="input-field mt-0 mb-0">
+                                                <input type="hidden" name="comentario[fk_id_users]" value="{{ Auth::user()->id }}">
+                                                <input type="hidden" id="fk_id_tareas" name="comentario[fk_id_tareas]" value="">
+                                                <input type="text" id="nuevoComentario" name="comentario[comentario]" placeholder="Escribe tu comentario" class="form-control border-0">
+                                            </div>
+                                        </div>
+                                        <div class="col-3 text-end">
+                                            <button class="btn-circle btn-lg btn-success btn text-white" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send feather-sm"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
                                         </div>
                                     </div>
-                                    <div class="col-3 text-end">
-                                        <button class="btn-circle btn-lg btn-success btn text-white" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send feather-sm"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
-                                    </div>
-                                </div>
-                            </form>
-                          </div>
+                                </form>
+                            </div>
                         </div>
-                      </div>
-                  </div>
+                    </div>
 
 
 
@@ -123,7 +122,7 @@
                     <div class="col-12">
                       <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">Tickets</h4>
+                          <h4 class="card-title">Lista de Tareas</h4>
 
                           <div class="table-responsive mt-4">
                             <table id="zero_config2" class="table table-bordered no-wrap fs-3 display" style="width:100%">
