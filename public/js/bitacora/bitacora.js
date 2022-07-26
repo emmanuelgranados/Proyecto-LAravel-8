@@ -468,45 +468,43 @@ function cargarListaTareasActivas(id){
     $('#listaComentarios').empty();
 
     $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
-
+        console.info(data);
         let listaTareasActivas = '';
 
         $.each(data,function(i,ele){
 
             if( ele.fk_id_prioridades == 1 ){
-                prioridad = 'border-info';
+                prioridad = '<span class="badge bg-light-info text-info rounded-pill font-weight-medium fs-1 py-1 ">Baja</span>';
             }else if( ele.fk_id_prioridades == 2 ){
-                prioridad = 'border-warning';
+                prioridad = '<span class="badge bg-light-warning text-warning rounded-pill font-weight-medium fs-1 py-1 ">Media</span>';
             }else if( ele.fk_id_prioridades == 3 ){
-                prioridad = 'border-danger';
+                prioridad = '<span class="badge bg-light-danger text-danger rounded-pill font-weight-medium fs-1 py-1">Alta</span>';
             }
 
-            // listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
-            //                         '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
-            //                             // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
-            //                             '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
-            //                                 '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
-            //                             '</label>',
-            //                         '</div>',
-            //                        '</li>';
+            var subTareas = '';
+
+            if( ele.sub_tarea != null ){
+                subTareas = ele.sub_tarea;
+            }
+
 
             listaTareasActivas += '<div class="d-flex flex-row comment-row border-bottom p-3">'+
                                     // '<div class="p-2">'+
                                     //     '<span class=""><img src="../../assets/images/users/1.jpg" class="rounded-circle" alt="user" width="50"></span>'+
                                     // '</div>'+
                                     '<div class="comment-text w-100 p-3">'+
-                                        '<h5 class="font-weight-medium">'+ ele.tarea +'</h5>'+
-                                        '<p class="mb-1 fs-3 text-muted">Lorem Ipsum is simply dummy text of the printing and type etting industry</p>'+
+                                        '<h5 class="font-weight-medium"><a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a></h5>'+
+                                        '<p class="mb-1 fs-3 text-muted">'+subTareas+'</p>'+
                                         '<div class="comment-footer mt-2">'+
                                         ' <div class="d-flex align-items-center">'+
-                                                '<span class="badge bg-light-info text-info rounded-pill font-weight-medium fs-1 py-1 ">Pending</span>'+
+                                                prioridad+
                                                 '<span class="action-icons">'+
-                                                '<a href="javascript:void(0)" class="ps-3"><i class="ti-pencil-alt"></i></a>'+
+                                                '<a href="#" class="ps-3" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')"><i class="ti-pencil-alt"></i></a>'+
                                                 '<a href="javascript:void(0)" class="ps-3"><i class="ti-check"></i></a>'+
-                                                '<a href="javascript:void(0)" class="ps-3"><i class="ti-heart"></i></a>'+
+                                                // '<a href="javascript:void(0)" class="ps-3"><i class="ti-heart"></i></a>'+
                                                 '</span>'+
                                             '</div>'+
-                                            '<span class="text-muted ms-auto fw-normal fs-2 d-block mt-2 text-end">April 14, 2021</span>'+
+                                            '<span class="text-muted ms-auto fw-normal fs-2 d-block mt-2 text-end">'+ele.fecha_registro+'</span>'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>';
@@ -543,7 +541,7 @@ function cargarListaTareas(fk_id_users){
         // ordering:true,
         columns:[
             //   { data: "id", defaultContent: "---", title: "#2" },
-              { data: "clientes.nombre_razon_social", defaultContent: "---", title: "Cliente" },
+              { data: "clientes.nombre_cliente", defaultContent: "---", title: "Cliente" },
               { data: "tarea", defaultContent: "---", title: "Tarea" },
               { data: "prioridades.prioridad", defaultContent: "---", title: "Prioridad" },
               { data: "usuarios_alta.name", defaultContent: "---", title: "Asigno" },
@@ -555,7 +553,7 @@ function cargarListaTareas(fk_id_users){
               {data:function(row, type){
                const id = row.id;
 
-               let botonAcciones =  (document.getElementById('nuevaTarea') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+               let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
                                                                                         '<li>'+
                                                                                             '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+id+')">Editar</a>'+
                                                                                         '</li>'+
@@ -573,7 +571,7 @@ function cargarListaTareas(fk_id_users){
                                                         '<circle cx="5" cy="12" r="1"></circle>'+
                                                     '</svg>'+
                                                 '</a>'+
-                                                botonAcciones
+                                                botonAcciones+
                                             '</div>';
 
               }, title: "Acciones"}
