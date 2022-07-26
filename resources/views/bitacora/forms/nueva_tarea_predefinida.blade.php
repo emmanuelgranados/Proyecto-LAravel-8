@@ -46,37 +46,7 @@
                                         </div>
 
 
-
-                                        {{-- <div class="row">
-
-                                            <div class="col-md-4">
-
-                                                <div class="mb-3">
-                                                    <label class="control-label">Obligaciones</label>
-                                                    <div class="col-md-12">
-                                                        <select id="fk_id_obligaciones" name="tarea[fk_id_tareas_obligaciones]" class="form-control form-select "></select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-4">
-
-                                                <div class="mb-3">
-                                                    <label class="control-label">Tarea Predefinida</label>
-                                                    <div class="col-md-12">
-                                                        <select id="fk_id_tareas_predefinidas" name="tarea[fk_id_tareas_predefinidas]" class="form-control form-select "></select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div> --}}
-                                        <div id="campoDinamico" class="row">
-                                            {{-- <div id="tareasPredefinidas" class="col-md-4"></div>
-                                            <div id="obligaciones" class="col-md-4"></div>
-                                            <div id="tareasEstandar" class="col-md-4"></div> --}}
-
-                                        </div>
+                                        <div id="campoDinamico" class="row"></div>
 
                                         <div class="row">
 

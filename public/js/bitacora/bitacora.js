@@ -127,7 +127,7 @@ $(function () {
         $('#tipoTareas').append('<option value="0">Nueva Tarea</option>');
 
         $.get('api/obtener_lista_tareas_predefinidas',{fk_id_clientes:$(this).val()},function(data){
-            console.info(data);
+
             if(data.length != 0){
 
                 var tareasPredefinidas = '';
@@ -194,7 +194,7 @@ $(function () {
         var campoDinamico = '';
 
         var tipoTarea = selectTarea.split("_") ;
-        console.info(tipoTarea);
+
         switch( tipoTarea[0] ){
             case 'predefinida':
 
@@ -241,7 +241,6 @@ $(function () {
 
         }
 
-        console.info( campoDinamico );
 
         $('#campoDinamico').empty();
         $('#campoDinamico').append(campoDinamico);
@@ -325,8 +324,6 @@ function cargarUsuarios(fk_id_grupos = null){
         let selectUsuarios = '';
 
         $('#listaTareasActivas').empty();
-
-        console.log(data);
 
         $.each(data,function(i,ele){
 
@@ -484,16 +481,40 @@ function cargarListaTareasActivas(id){
                 prioridad = 'border-danger';
             }
 
-            listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
-                                    '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
-                                        // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
-                                        '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
-                                            '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
-                                        '</label>',
-                                    '</div>',
-                                   '</li>';
+            // listaTareasActivas += '<li class="list-group-item border-0 mb-0 pb-3 pe-3 ps-0" data-role="task">'+
+            //                         '<div class="form-check border-start border-2 '+ prioridad +' ps-1">'+
+            //                             // '<input type="checkbox" class="form-check-input ms-2" id="inputSchedule" name="inputCheckboxesSchedule">'+
+            //                             '<label for="inputSchedule" class="form-check-label ps-2 fw-normal">'+
+            //                                 '<a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a>'+
+            //                             '</label>',
+            //                         '</div>',
+            //                        '</li>';
+
+            listaTareasActivas += '<div class="d-flex flex-row comment-row border-bottom p-3">'+
+                                    // '<div class="p-2">'+
+                                    //     '<span class=""><img src="../../assets/images/users/1.jpg" class="rounded-circle" alt="user" width="50"></span>'+
+                                    // '</div>'+
+                                    '<div class="comment-text w-100 p-3">'+
+                                        '<h5 class="font-weight-medium">'+ ele.tarea +'</h5>'+
+                                        '<p class="mb-1 fs-3 text-muted">Lorem Ipsum is simply dummy text of the printing and type etting industry</p>'+
+                                        '<div class="comment-footer mt-2">'+
+                                        ' <div class="d-flex align-items-center">'+
+                                                '<span class="badge bg-light-info text-info rounded-pill font-weight-medium fs-1 py-1 ">Pending</span>'+
+                                                '<span class="action-icons">'+
+                                                '<a href="javascript:void(0)" class="ps-3"><i class="ti-pencil-alt"></i></a>'+
+                                                '<a href="javascript:void(0)" class="ps-3"><i class="ti-check"></i></a>'+
+                                                '<a href="javascript:void(0)" class="ps-3"><i class="ti-heart"></i></a>'+
+                                                '</span>'+
+                                            '</div>'+
+                                            '<span class="text-muted ms-auto fw-normal fs-2 d-block mt-2 text-end">April 14, 2021</span>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>';
 
         });
+
+
+
 
 
         $('#listaTareasActivas').append(listaTareasActivas);
@@ -515,7 +536,6 @@ function cargarListaTareas(fk_id_users){
         ajax: {
             url: "api/obtener_lista_tareas?fk_id_users="+fk_id_users,
             dataSrc: function(json){
-            console.log('Aqui ando ',json);
                 return json;
             }
         },
@@ -656,24 +676,24 @@ function cargarListaTareas(fk_id_users){
 
 
         // $('#detallesLista').append(listaTareas);
-    // });
+        // });
 
-    // var table = $('#zero_config').destroy();
+        // var table = $('#zero_config').destroy();
 
-    // table.destroy();
+        // table.destroy();
 
-    // var table = $('#zero_config').DataTable();
+        // var table = $('#zero_config').DataTable();
 
 
 
-    // $('#zero_config').DataTable().columns.adjust().draw(); // Redraw the DataTable
+        // $('#zero_config').DataTable().columns.adjust().draw(); // Redraw the DataTable
 }
 
 
 function cargarInfoTarea(id){
 
     $.get('api/datos_tarea',{id:id},function(data){
-        console.log(data);
+
         $.each(data,function(i,ele){
 
             $('#editar_'+i).val(ele).change();

@@ -29,7 +29,7 @@ return new class extends Migration
             $table->dateTime('fk_id_sub_tareas_predefinidas')->nullable();
             $table->integer('fk_id_obligaciones')->nullable();
             $table->date('fecha_sub_tarea')->nullable();
-            $table->text('sub_tarea');
+            $table->text('sub_tarea')->nullable();
             $table->integer('fk_id_estatus')->nullable();
             $table->boolean('eliminado')->default(0);
         });
