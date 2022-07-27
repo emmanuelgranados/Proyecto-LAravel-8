@@ -188,59 +188,61 @@
     var today = new Date($.now());
 
 
-///EVENTOS AJAX AQUI
-
-
-    var defaultEvents = [
-      {
-        title: "JUNTA",
-        start: new Date($.now() + 506800000),
-        className: "bg-info",
-      },
-      {
-        title: "REVICIÓN",
-        start: today,
-        end: today,
-        className: "bg-danger",
-      },
-      {
-        title: "Meetup #6",
-        start: new Date($.now() + 848000000),
-        className: "bg-info",
-      },
-      {
-        title: "Seminar #4",
-        start: new Date($.now() - 1099000000),
-        end: new Date($.now() - 919000000),
-        className: "bg-warning",
-      },
-      {
-        title: "Event Conf.",
-        start: new Date($.now() - 1199000000),
-        end: new Date($.now() - 1199000000),
-        className: "bg-purple",
-      },
-      {
-        title: "Meeting #5",
-        start: new Date($.now() - 399000000),
-        end: new Date($.now() - 219000000),
-        className: "bg-info",
-      },
-      {
-        title: "Submission #2",
-        start: new Date($.now() + 868000000),
-        className: "bg-danger",
-      },
-      {
-        title: "Seminar #5",
-        start: new Date($.now() + 348000000),
-        className: "bg-success",
-      },
-    ];
+    // var defaultEvents = [
+    //   {
+    //     title: "JUNTA",
+    //     start: new Date($.now() + 506800000),
+    //     className: "bg-info",
+    //   },
+    //   {
+    //     title: "REVICIÓN",
+    //     start: today,
+    //     end: today,
+    //     className: "bg-danger",
+    //   },
+    //   {
+    //     title: "Meetup #6",
+    //     start: new Date($.now() + 848000000),
+    //     className: "bg-info",
+    //   },
+    //   {
+    //     title: "Seminar #4",
+    //     start: new Date($.now() - 1099000000),
+    //     end: new Date($.now() - 919000000),
+    //     className: "bg-warning",
+    //   },
+    //   {
+    //     title: "Event Conf.",
+    //     start: new Date($.now() - 1199000000),
+    //     end: new Date($.now() - 1199000000),
+    //     className: "bg-purple",
+    //   },
+    //   {
+    //     title: "Meeting #5",
+    //     start: new Date($.now() - 399000000),
+    //     end: new Date($.now() - 219000000),
+    //     className: "bg-info",
+    //   },
+    //   {
+    //     title: "Submission #2",
+    //     start: new Date($.now() + 868000000),
+    //     className: "bg-danger",
+    //   },
+    //   {
+    //     title: "Seminar #5",
+    //     start: new Date($.now() + 348000000),
+    //     className: "bg-success",
+    //   },
+    // ];
 
     var $this = this;
     $this.$calendarObj = $this.$calendar.fullCalendar({
-      slotDuration: "00:15:00",
+        monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+        dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+        dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+
+        slotDuration: "00:15:00",
       /* If we want to split day time each 15minutes */
       minTime: "08:00:00",
       maxTime: "19:00:00",
@@ -252,8 +254,18 @@
         center: "title",
         right: "month,agendaWeek,agendaDay",
       },
-      events: defaultEvents,
-      editable: true,
+      locale: 'es',
+    //   events: 'api/obtener_lista_tareas_activas_user',
+    events: {
+        url: 'api/obtener_lista_tareas_activas_user',
+        extraParams: function() { // a function that returns an object
+          return {
+            dynamic_value: Math.random()
+          };
+        }
+      }
+,
+      editable: false,
       droppable: true, // this allows things to be dropped onto the calendar !!!
       eventLimit: true, // allow "more" link when too many events
       selectable: true,
@@ -297,4 +309,5 @@
   //initializing CalendarApp
   $(window).on("load", function () {
     $.CalendarApp.init();
+
   });

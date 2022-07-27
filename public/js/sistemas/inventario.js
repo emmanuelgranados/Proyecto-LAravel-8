@@ -315,6 +315,7 @@ $.ajax({
        titleBackgroundColor: "#b3a716",
        titleHeight: 40,
        titleTop: 25,
+
        text: "http://127.0.0.1:8000/salida_equipo/"+id, // Content
        width: 240, // Widht
        height: 240, // Height

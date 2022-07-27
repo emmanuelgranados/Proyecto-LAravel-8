@@ -150,3 +150,21 @@ Route::get('/obtener_grupos', function (Request $request) {
 
 
 
+Route::get('/obtener_lista_tareas_activas_user', function (Request $request ) {
+
+    $id = Auth::user()->id;
+    $tareasActivas = Tareas::select('tarea as title', 'fecha_inicio as start','fecha_final as end')
+       ->selectRaw('(CASE
+                    WHEN fk_id_prioridades = 1 THEN "bg-info"
+                    WHEN fk_id_prioridades = 2 THEN "bg-warning"
+                    WHEN fk_id_prioridades = 3 THEN "bg-danger"
+                    END) className')
+    ->orderBy('id','DESC')
+    ->where('fk_id_users_asignado',$id)
+    ->where('fk_id_estatus','<>',3)
+    ->where('eliminado',0)
+    ->get();
+
+    return response()->json($tareasActivas);
+
+});

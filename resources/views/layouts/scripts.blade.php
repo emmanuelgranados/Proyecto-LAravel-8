@@ -25,6 +25,7 @@
     {{-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> --}}
     <script src="../../assets/libs/moment/min/moment.min.js"></script>
     <script src="../../assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="../../assets/libs/fullcalendar/dist/locales/es.js"></script>
 
 
     <script src="plugins/select2/js/select2.min.js"></script>
