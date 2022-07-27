@@ -1,6 +1,3 @@
-// const { data } = require("autoprefixer");
-
-// const { defaultsDeep } = require("lodash");
 
 $(function () {
 
@@ -101,7 +98,6 @@ $(function () {
                     data:datos,
                     success:function(data){
 
-                        // tabla_clientes();
                         cargarListaComentarios($('#fk_id_tareas').val());
                         $('#nuevoComentario').val('');
                         $('#cerrarModalNuevo').trigger("click");
@@ -119,7 +115,7 @@ $(function () {
       });
 
 
-    $( "#predefinida_fk_id_clientes" ).change(function () {
+    $( "#fk_id_clientes" ).change(function () {
 
         $('#tipoTareas').empty();
 
@@ -206,7 +202,8 @@ $(function () {
                                             '<input type="text" class="form-control" name="tarea[sub_tarea]" >'+
                                         '</div>'+
                                     '</div>'+
-                                    '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
+                                    '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
+                                    '<input type="hidden" name="tarea[fk_id_sub_tareas_predefinidas]" value="'+ selectTarea +'">';
 
                 }else if( tipoTarea[1] == 2 ){
 
@@ -216,14 +213,16 @@ $(function () {
                                             '<input type="date" class="form-control" name="tarea[fecha_sub_tarea]" ></input>'+
                                         '</div>'+
                                     '</div>'+
-                                    '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
+                                    '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
+                                    '<input type="hidden" name="tarea[fk_id_sub_tareas_predefinidas]" value="'+ selectTarea +'">';
                 }
 
 
             break;
 
             case 'obligaciones':
-                campoDinamico =  '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
+                campoDinamico =  '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
+                                 '<input type="hidden" name="tarea[fk_id_obligaciones]" value="'+ selectTarea +'">';
             break;
 
             case 'estandar':
@@ -241,67 +240,17 @@ $(function () {
 
         }
 
-
         $('#campoDinamico').empty();
         $('#campoDinamico').append(campoDinamico);
 
-
-
-
     });
 
-
-    // $( "#fk_id_tareas_predefinidas" ).change(function () {
-
-    //     $.get('api/obtener_tarea_predefinida',{id:$(this).val()},function(data){
-
-    //         var campoDinamico = '';
-    //         console.info(data);
-    //         switch ( data.fk_id_tipo_campo_html ){
-    //             case 1:
-
-    //                 campoDinamico = '<div class="row">'+
-    //                                     '<div class="col-md-12">'+
-    //                                         '<div class="mb-3">'+
-    //                                             '<label>'+ data.sub_tarea_predefinida +'</label>'+
-    //                                             '<input type="text" class="form-control" name="tarea[tarea]" >'+
-    //                                         '</div>'+
-    //                                     '</div>'+
-    //                                 '</div>';
-
-
-
-    //                 break;
-    //             case 2:
-
-    //                 campoDinamico = '<div class="row">'+
-    //                                     '<div class="col-md-12">'+
-    //                                         '<div class="mb-3">'+
-    //                                             '<label>'+ data.sub_tarea_predefinida +'</label>'+
-    //                                             '<input type="date" class="form-control" name="tarea[fecha_inicio]" ></input>'+
-    //                                         '</div>'+
-    //                                     '</div>'+
-    //                                 '</div>';
-
-
-    //                 break;
-    //         }
-
-
-
-
-    //         $('#campoDinamico').empty();
-    //         $('#campoDinamico').append(campoDinamico);
-
-    //     });
-
-
-    // }).change();
 
 
     $('#tipoTareas').select2({
         dropdownParent: $('#modal_nueva_tarea_predefinida')
     });
+
 });
 
 cargarUsuarios();
@@ -356,6 +305,9 @@ cargarClientes();
 
 function cargarClientes(){
 
+    $('#fk_id_clientes').empty();
+    $('#editar_fk_id_clientes').empty();
+
     $.get('api/obtener_clientes',function(data){
 
         var selectClientes = '<option value="" disabled selected hidden>Seleccionar Cliente...</option>';
@@ -368,31 +320,11 @@ function cargarClientes(){
 
         $('#fk_id_clientes').append(selectClientes);
         $('#editar_fk_id_clientes').append(selectClientes);
-        $('#predefinida_fk_id_clientes').append(selectClientes);
 
     });
 
 }
 
-
-cargarTareasPredefinidas();
-
-function cargarTareasPredefinidas(){
-
-    $.get('api/obtener_clientes',function(data){
-        var selectClientes = '';
-        $.each(data,function(i,ele){
-
-            selectClientes += '<option value="'+ ele.id +'">'+ ele.nombre_cliente +'</option>';
-
-        });
-
-        $('#fk_id_clientes').append(selectClientes);
-        $('#editar_fk_id_clientes').append(selectClientes);
-
-    });
-
-}
 
 cargarGrupos();
 
@@ -419,56 +351,13 @@ function cargarGrupos(){
 }
 
 
-// function cargarInfoGrupo(idGrupo){
-
-//     $.get( 'api/obtener_usuarios',function(data){
-
-//         let listaUsuariosGrupo = '';
-//         let selectUsuarios = '';
-
-//         $('#listaTareasActivas').empty();
-
-//         console.log(data);
-
-//         $.each(data,function(i,ele){
-
-//             listaUsuariosGrupo += '<li class="mb-3">'+
-//                                     '<a href="javascript:void(0)" onclick="cargarListaTareasActivas('+ ele.id +')">'+
-//                                         '<div class="d-flex align-items-center">'+
-//                                             '<img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">'+
-//                                             '<div class="ms-3">'+
-//                                                 '<h5 class="mb-0">'+ ele.name +'</h5>'+
-//                                                 '<small class="text-success">'+ ele.roles.name +'</small>'+
-//                                             '</div>'+
-//                                             '<div class="ms-auto chat-icon">'+
-//                                                 '<button type="button" class="btn btn-light-success text-success btn-circle btn-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone feather-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></button>'+
-//                                                 '<button type="button" class="btn btn-light-info text-info btn-circle btn-circle ms-2">'+
-//                                                     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-sm"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>'+
-//                                                 '</button>'
-//                                             '</div>'+
-//                                         '</div>'+
-//                                     '</a>'+
-//                                 '</li>';
-
-//             selectUsuarios += '<option value="'+ ele.id +'">'+ ele.name +'</option>';
-
-
-//         });
-//         $('#listaUsuariosGrupo').append(listaUsuariosGrupo);
-//         $('#fk_id_users_asignado').append(selectUsuarios);
-//         $('#editar_fk_id_users_asignado').append(selectUsuarios);
-
-//     });
-
-// }
-
 function cargarListaTareasActivas(id){
 
     $('#listaTareasActivas').empty();
     $('#listaComentarios').empty();
 
     $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
-        console.info(data);
+
         let listaTareasActivas = '';
 
         $.each(data,function(i,ele){
@@ -489,9 +378,6 @@ function cargarListaTareasActivas(id){
 
 
             listaTareasActivas += '<div class="d-flex flex-row comment-row border-bottom p-3">'+
-                                    // '<div class="p-2">'+
-                                    //     '<span class=""><img src="../../assets/images/users/1.jpg" class="rounded-circle" alt="user" width="50"></span>'+
-                                    // '</div>'+
                                     '<div class="comment-text w-100 p-3">'+
                                         '<h5 class="font-weight-medium"><a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a></h5>'+
                                         '<p class="mb-1 fs-3 text-muted">'+subTareas+'</p>'+
@@ -513,8 +399,6 @@ function cargarListaTareasActivas(id){
 
 
 
-
-
         $('#listaTareasActivas').append(listaTareasActivas);
         cargarListaTareas(id);
 
@@ -525,7 +409,6 @@ function cargarListaTareasActivas(id){
 
 
 function cargarListaTareas(fk_id_users){
-    // $('#detallesLista').empty();
 
     $('#zero_config2').empty();
 
@@ -593,98 +476,6 @@ function cargarListaTareas(fk_id_users){
     });
 
 
-    // $.get( 'api/obtener_lista_tareas',{fk_id_users:fk_id_users},function(datos){
-
-        // let listaTareas = '';
-        // // console.log(data);
-        // $.each(data,function(i,ele){
-
-            // let botonAcciones =  (document.getElementById('nuevaTarea') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
-            //                                                                             '<li>'+
-            //                                                                                 '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')">Editar</a>'+
-            //                                                                             '</li>'+
-            //                                                                             '<li>'+
-            //                                                                                 '<a class="dropdown-item" onclick="eliminarTarea('+ ele.id +')">Borrar</a>'+
-            //                                                                             '</li>'+
-            //                                                                         '</ul>';
-        //     listaTareas += '<tr>'+
-        //                         '<td>'+ ele.id +'</td>'+
-        //                         '<td>'+ ele.clientes.nombre_razon_social +'</td>'+
-        //                         '<td>'+ ele.tarea +'</td>'+
-        //                         '<td>'+ ele.prioridades.prioridad +'</td>'+
-        //                         '<td>'+ ele.usuarios_alta.name +'</td>'+
-        //                         '<td>'+ ele.usuarios_asignado.name +'</td>'+
-        //                         '<td>'+ ele.fecha_inicio +'</td>'+
-        //                         '<td>'+ ele.fecha_final +'</td>'+
-        //                         '<td>'+ ele.estatus.estatus +'</td>'+
-        //                         '<td>'+
-        //                             '<div class="dropdown dropstart">'+
-        //                                 '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
-        //                                     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
-        //                                         '<circle cx="12" cy="12" r="1"></circle>'+
-        //                                         '<circle cx="19" cy="12" r="1"></circle>'+
-        //                                         '<circle cx="5" cy="12" r="1"></circle>'+
-        //                                     '</svg>'+
-        //                                 '</a>'+
-        //                                 botonAcciones
-        //                             '</div>'+
-        //                         '</td>'+
-        //                     '</tr>';
-
-
-        // $('#zero_config2').DataTable( {
-        //     // "ajax": "api/obtener_lista_tareas?fk_id_users="+fk_id_users,
-        //     "data": datos,
-        //     "columns": [
-        //       { data: "id" },
-        //       { data: "clientes.nombre_razon_social" },
-        //       { data: "tarea" },
-        //       { data: "prioridades.prioridad" },
-        //       { data: "usuarios_alta.name" },
-        //       { data: "usuarios_asignado.name" },
-        //       { data: "fecha_inicio" },
-        //       { data: "fecha_final" },
-        //       { data: "estatus.estatus" }
-        //     ]
-
-        //   } );
-
-
-
-        // });
-
-
-
-
-                // console.info(data.eliminado);
-
-                // $('#zero_config').DataTable().clear().draw();
-                // $('#zero_config').DataTable().rows.add($.map( data,function(item){
-                //     console.log('aqui toy',item)
-                //     return{
-
-                //         eliminado: item.eliminado
-                //     }
-                // })
-
-                // ).draw(); // Add new data
-
-
-
-
-
-        // $('#detallesLista').append(listaTareas);
-        // });
-
-        // var table = $('#zero_config').destroy();
-
-        // table.destroy();
-
-        // var table = $('#zero_config').DataTable();
-
-
-
-        // $('#zero_config').DataTable().columns.adjust().draw(); // Redraw the DataTable
 }
 
 

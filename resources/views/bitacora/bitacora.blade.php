@@ -35,7 +35,7 @@
 
                     {{-- Formulario para crear nueva tarea predefinida --}}
 
-                    @include('bitacora.forms.nueva_tarea_predefinida')
+                    @include('bitacora.forms.nuevo')
 
                     {{-- Fomularios para editar cliente --}}
 
