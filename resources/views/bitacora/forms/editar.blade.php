@@ -35,16 +35,7 @@
 
                                         </div>
 
-                                        <div id="campoDinamico" class="row"></div>
-
-                                        {{-- <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label>Tarea a Realizar</label>
-                                                    <textarea class="form-control" id="editar_tarea" rows="5" name="tarea[tarea]" ></textarea>
-                                                  </div>
-                                            </div>
-                                        </div> --}}
+                                        <div id="editarCampoDinamico" class="row"></div>
 
                                         <div class="row">
 
