@@ -140,11 +140,18 @@ class ProspectosContabilidadController extends Controller
 
     }
 
-    public function eliminarClienteContabilidad( Request $request )
+    public function eliminarProspectoContabilidad( Request $request )
     {
         Clientes::where('id',$request->id)->update( ['activo' => 0,'eliminado' => 1 ] );
 
         return "Exito papuuuus3";
+    }
+
+    public function convertirPropectoContabilidad( Request $request )
+    {
+        Clientes::where('id',$request->id)->update( ['prospecto' => 0 ] );
+
+        return "Exito papuuuus4";
     }
 
 }

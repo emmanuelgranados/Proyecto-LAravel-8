@@ -29,15 +29,11 @@
 
                     @endif
 
-                    {{-- Formulario para crear nueva tarea general --}}
+                    {{-- Formulario para crear nueva tarea--}}
 
-                    {{-- @include('bitacora.forms.nuevo') --}}
+                    @include('bitacora.forms.nuevo')
 
-                    {{-- Formulario para crear nueva tarea predefinida --}}
-
-                    @include('bitacora.forms.nueva_tarea_predefinida')
-
-                    {{-- Fomularios para editar cliente --}}
+                    {{-- Fomularios para editar tarea --}}
 
                     @include('bitacora.forms.editar')
 
@@ -69,24 +65,26 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-lg-4 d-flex align-items-stretch">
+                        <div class="card w-100">
+                            <div class="card">
+                                <div class="card-body">
+                                  <h4 class="card-title">Lista de Taras Activas</h4>
+                                </div>
+                                <div class="comment-widgets scrollable mb-2 common-widget ps-container ps-theme-default ps-active-y" style="height: 450px" id="listaTareasActivas" id="listaTareasActivas">
 
-                      <div class="card w-100">
-                        <div class="d-flex align-items-center px-3 py-4 border-bottom">
-                          <div>
-                            <h4 class="card-title font-weight-medium">Lista de Taras Activas</h4>
-                          </div>
-                          <div class="ms-auto"></div>
+
+                                    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                                        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 450px;">
+                                        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 267px;"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                          <div class="todo-widget">
-                            <ul class="list-task todo-list list-group mb-0" data-role="tasklist" id="listaTareasActivas"></ul>
-                          </div>
-                        </div>
-                      </div>
                     </div>
+
                     <div class="col-md-12 col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
                             <h4 class="card-title p-3 card-header mb-0">Comentarios de la Tarea</h4>
@@ -116,25 +114,36 @@
                         </div>
                     </div>
 
-
+                </div>
 
                 <div class="row">
                     <div class="col-12">
-                      <div class="card">
-                        <div class="card-body">
-                          <h4 class="card-title">Lista de Tareas</h4>
-
-                          <div class="table-responsive mt-4">
-                            <table id="zero_config2" class="table table-bordered no-wrap fs-3 display" style="width:100%">
-
-                            </table>
-                          </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Tareas Por Terminar</h4>
+                                <div class="table-responsive mt-4">
+                                    <table id="zero_config1" class="table table-bordered no-wrap fs-3 display" style="width:100%"></table>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Lista de Tareas</h4>
+                                <div class="table-responsive mt-4">
+                                    <table id="zero_config2" class="table table-bordered no-wrap fs-3 display" style="width:100%"></table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
         </div>
 
         <footer class="footer text-center">

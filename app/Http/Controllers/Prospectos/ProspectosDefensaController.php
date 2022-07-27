@@ -149,4 +149,11 @@ class ProspectosDefensaController extends Controller
         return "Exito papuuuus3";
     }
 
+    public function convertirProspectoDefensa( Request $request )
+    {
+        Clientes::where('id',$request->id)->update( ['prospecto' => 0 ] );
+
+        return "Exito papuuuus4";
+    }
+
 }

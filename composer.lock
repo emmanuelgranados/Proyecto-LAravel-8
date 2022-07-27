@@ -895,6 +895,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v9.21.6",
             "source": {
                 "type": "git",
@@ -905,6 +906,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/569d7a2e361895f90e66bb4e02db89c27691a0e7",
                 "reference": "569d7a2e361895f90e66bb4e02db89c27691a0e7",
+=======
+            "version": "v9.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "b3b3dd43b9899f23df6d1d3e5390bd4662947a46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b3b3dd43b9899f23df6d1d3e5390bd4662947a46",
+                "reference": "b3b3dd43b9899f23df6d1d3e5390bd4662947a46",
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
                 "shasum": ""
             },
             "require": {
@@ -1071,7 +1084,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2022-07-22T14:16:44+00:00"
+=======
+            "time": "2022-07-26T16:16:33+00:00"
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
         },
         {
             "name": "laravel/sanctum",
@@ -1527,6 +1544,7 @@
         },
         {
             "name": "league/flysystem",
+<<<<<<< HEAD
             "version": "3.1.1",
             "source": {
                 "type": "git",
@@ -1537,6 +1555,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1a941703dfb649f9b821e7bc425e782f576a805e",
                 "reference": "1a941703dfb649f9b821e7bc425e782f576a805e",
+=======
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "ed0ecc7f9b5c2f4a9872185846974a808a3b052a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/ed0ecc7f9b5c2f4a9872185846974a808a3b052a",
+                "reference": "ed0ecc7f9b5c2f4a9872185846974a808a3b052a",
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
                 "shasum": ""
             },
             "require": {
@@ -1597,7 +1627,11 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/thephpleague/flysystem/tree/3.1.1"
+=======
+                "source": "https://github.com/thephpleague/flysystem/tree/3.2.0"
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
             },
             "funding": [
                 {
@@ -1613,7 +1647,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2022-07-18T09:59:40+00:00"
+=======
+            "time": "2022-07-26T07:26:36+00:00"
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
         },
         {
             "name": "league/mime-type-detection",
@@ -5574,6 +5612,7 @@
         },
         {
             "name": "laravel/breeze",
+<<<<<<< HEAD
             "version": "v1.11.1",
             "source": {
                 "type": "git",
@@ -5584,12 +5623,25 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/416c0923860dcef96b977bd4d385c681f65e896a",
                 "reference": "416c0923860dcef96b977bd4d385c681f65e896a",
+=======
+            "version": "v1.11.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "0568bd257f0985645d5f4bb10f9f37ad9e46d414"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/0568bd257f0985645d5f4bb10f9f37ad9e46d414",
+                "reference": "0568bd257f0985645d5f4bb10f9f37ad9e46d414",
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
                 "shasum": ""
             },
             "require": {
-                "illuminate/filesystem": "^9.0",
-                "illuminate/support": "^9.0",
-                "illuminate/validation": "^9.0",
+                "illuminate/console": "^9.21",
+                "illuminate/filesystem": "^9.21",
+                "illuminate/support": "^9.21",
+                "illuminate/validation": "^9.21",
                 "php": "^8.0.2"
             },
             "conflict": {
@@ -5630,7 +5682,11 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
+<<<<<<< HEAD
             "time": "2022-07-19T14:03:23+00:00"
+=======
+            "time": "2022-07-20T16:08:11+00:00"
+>>>>>>> 808ea590ff1ff691b77c157df2a56337779d6133
         },
         {
             "name": "laravel/sail",
@@ -7989,5 +8045,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }

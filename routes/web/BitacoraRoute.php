@@ -10,5 +10,8 @@ Route::group(['namespace' => 'Bitacora', 'middleware' => 'auth'], function () {
     Route::post('nuevo_comentarios', 'BitacoraController@nuevoComentarios');
     Route::post('editar_tarea', 'BitacoraController@editarTarea');
     Route::post('eliminar_tarea', 'BitacoraController@eliminarTarea');
+    Route::post('solicitar_terminar_tarea', 'BitacoraController@solicitarTerminarTarea');
+    Route::post('terminar_tarea', 'BitacoraController@terminarTarea');
+    Route::post('rechazar_tarea', 'BitacoraController@rechazarTarea');
 
 });

@@ -51,7 +51,7 @@ Route::get('/obtener_clientes', function () {
 
 Route::get('/datos_tarea', function (Request $request) {
 
-    $tarea = Tareas::with('clientes','prioridades','estatus')
+    $tarea = Tareas::with('clientes','prioridades','estatus','subTareasPredefinidas','obligaciones','tareasEstandar')
     ->where('id',$request->id)
     ->first();
 
@@ -64,10 +64,24 @@ Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
     $tareasActivas = Tareas::orderBy('id','DESC')
     ->where('fk_id_users_asignado',$request->fk_id_users)
     ->where('fk_id_estatus','<>',3)
+    ->where('fk_id_estatus','<>',4)
     ->where('eliminado',0)
     ->get();
 
     return $tareasActivas;
+
+});
+
+Route::get('/obtener_lista_tareas_por_terminar', function (Request $request ) {
+
+    $tareas = Tareas::with('clientes','prioridades','usuariosAlta','usuariosAsignado','estatus')
+    ->orderBy('id','DESC')
+    ->where('fk_id_estatus',4)
+    ->where('fk_id_users_asignado',$request->fk_id_users)
+    ->where('eliminado',0)
+    ->get();
+
+    return $tareas;
 
 });
 

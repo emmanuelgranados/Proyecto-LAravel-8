@@ -135,6 +135,7 @@ function tabla_clientes(){
                           '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>'+
                         '</a>'+
                         '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">'+
+                          '<li><a class="dropdown-item" onclick="convertirACliente('+ ele.id +')" >Convertir a Cliente</a></li>'+
                           '<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoCliente('+ ele.id +')" >Editar</a></li>'+
                           '<li><a class="dropdown-item" onclick="eliminarCliente('+ ele.id +')">Borrar</a></li>'+
                         '</ul>'+
@@ -376,6 +377,37 @@ function eliminarCliente(id){
 
         }
     });
+}
+
+function convertirACliente(id){
+
+    Swal.fire({
+        title: "¿Esta seguro que quiere convertir este prospecto a cliente?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
+
+            $.ajax({
+                type:'POST',
+                url:'convertir_prospecto_defensa',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
+                    tabla_clientes();
+                    $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro del cliente.", "success");
+
+                }
+            });
+
+        }
+    });
+
 }
 
 function cargarMunicipios(campo,fk_id_estados,seleccion){
