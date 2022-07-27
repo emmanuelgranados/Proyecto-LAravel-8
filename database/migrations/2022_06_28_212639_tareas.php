@@ -23,11 +23,9 @@ return new class extends Migration
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_final')->nullable();
             $table->dateTime('fecha_registro')->nullable()->useCurrent();
-            // $table->dateTime('fecha_notificacion')->nullable();
-            // $table->dateTime('fecha_plazo_fatal')->nullable();
-            // $table->dateTime('fecha_plazo_preventivo')->nullable();
-            $table->dateTime('fk_id_sub_tareas_predefinidas')->nullable();
+            $table->integer('fk_id_sub_tareas_predefinidas')->nullable();
             $table->integer('fk_id_obligaciones')->nullable();
+            $table->integer('fk_id_tareas_estandar')->nullable();
             $table->date('fecha_sub_tarea')->nullable();
             $table->text('sub_tarea')->nullable();
             $table->integer('fk_id_estatus')->nullable();

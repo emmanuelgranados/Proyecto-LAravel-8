@@ -13,6 +13,7 @@ use App\Models\Paises;
 use App\Models\Roles;
 use App\Models\RoleUser;
 use App\Models\Tareas;
+use App\Models\TareasSeguimiento;
 use App\Models\Telefonos;
 use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class BitacoraController extends Controller
 
         $nuevaComentario = Comentarios::create($comentario);
 
-
+        TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
 
         return "Exito papuuuus";
 
@@ -62,17 +63,10 @@ class BitacoraController extends Controller
 
     public function editarTarea( Request $request)
     {
-        // dd( $request );
+
         Tareas::where('id',$request->tarea['id'])->update($request->tarea );
 
-        // foreach( $request->direcciones as $direccion ){
-        //     Direcciones::where('id',$direccion['id'])->update($direccion);
-        // }
-
-        // foreach( $request->telefonos  as $telefono ){
-        //     Telefonos::where('id',$telefono['id'])->update($telefono);
-        // }
-
+        TareasSeguimiento::create(['fk_id_tareas' => $request->tarea['id'],'fk_id_acciones_tareas' => 2]);
 
 
         return "Exito papuuuus2";
@@ -81,9 +75,46 @@ class BitacoraController extends Controller
 
     public function eliminarTarea( Request $request )
     {
+
         Tareas::where('id',$request->id)->update( ['eliminado' => 1 ] );
+
+        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 3]);
 
         return "Exito papuuuus3";
     }
+
+    public function solicitarTerminarTarea( Request $request )
+    {
+
+        Tareas::where('id',$request->id)->update( ['fk_id_estatus' => 4 ] );
+
+        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 4]);
+
+        return "Exito papuuuus3";
+    }
+
+
+    public function terminarTarea( Request $request )
+    {
+
+        // Tareas::where('id',$request->id)->update( ['eliminado' => 1 ] );
+        Tareas::where('id',$request->id)->update( ['fk_id_estatus' => 3 ] );
+
+        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 5]);
+
+        return "Exito papuuuus3";
+    }
+
+    public function rechazarTarea( Request $request )
+    {
+
+        Tareas::where('id',$request->id)->update( ['fk_id_estatus' => 2 ] );
+
+        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 6]);
+
+        return "Exito papuuuus3";
+    }
+
+
 
 }

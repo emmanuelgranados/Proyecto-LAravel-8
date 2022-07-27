@@ -19,7 +19,8 @@ class EstatusTableSeeder extends Seeder
         INSERT INTO `estatus` (`id`, `estatus`) VALUES
         (1,'En Proceso'),
         (2,'Pendiente'),
-        (3,'Terminado')
+        (3,'Terminado'),
+        (4,'Solicitud de Terminado')
         ");
 
 

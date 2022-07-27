@@ -203,7 +203,7 @@ $(function () {
                                         '</div>'+
                                     '</div>'+
                                     '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
-                                    '<input type="hidden" name="tarea[fk_id_sub_tareas_predefinidas]" value="'+ selectTarea +'">';
+                                    '<input type="hidden" name="tarea[fk_id_sub_tareas_predefinidas]" value="'+ tipoTarea[2] +'">';
 
                 }else if( tipoTarea[1] == 2 ){
 
@@ -214,7 +214,7 @@ $(function () {
                                         '</div>'+
                                     '</div>'+
                                     '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
-                                    '<input type="hidden" name="tarea[fk_id_sub_tareas_predefinidas]" value="'+ selectTarea +'">';
+                                    '<input type="hidden" name="tarea[fk_id_sub_tareas_predefinidas]" value="'+ tipoTarea[2] +'">';
                 }
 
 
@@ -222,11 +222,13 @@ $(function () {
 
             case 'obligaciones':
                 campoDinamico =  '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
-                                 '<input type="hidden" name="tarea[fk_id_obligaciones]" value="'+ selectTarea +'">';
+                                 '<input type="hidden" name="tarea[fk_id_obligaciones]" value="'+ tipoTarea[1] +'">';
             break;
 
             case 'estandar':
-                campoDinamico = '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">';
+                campoDinamico = '<input type="hidden" name="tarea[tarea]" value="'+ $( "#tipoTareas option:selected" ).text() +'">'+
+                                '<input type="hidden" name="tarea[fk_id_tareas_estandar]" value="'+ tipoTarea[1] +'">';
+
             break;
 
             default:
@@ -260,7 +262,7 @@ function cargarUsuarios(fk_id_grupos = null){
     $('#listaUsuariosGrupo').empty();
     $('#fk_id_users_asignado').empty();
     $('#editar_fk_id_users_asignado').empty();
-    $('#predefinida_fk_id_users_asignado').empty();
+    $('#fk_id_users_asignado').empty();
 
     if( fk_id_grupos == null ){
         fk_id_grupos = 1;
@@ -296,7 +298,6 @@ function cargarUsuarios(fk_id_grupos = null){
         $('#listaUsuariosGrupo').append(listaUsuariosGrupo);
         $('#fk_id_users_asignado').append(selectUsuarios);
         $('#editar_fk_id_users_asignado').append(selectUsuarios);
-        $('#predefinida_fk_id_users_asignado').append(selectUsuarios);
 
     });
 }
@@ -386,7 +387,7 @@ function cargarListaTareasActivas(id){
                                                 prioridad+
                                                 '<span class="action-icons">'+
                                                 '<a href="#" class="ps-3" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+ele.id+')"><i class="ti-pencil-alt"></i></a>'+
-                                                '<a href="javascript:void(0)" class="ps-3"><i class="ti-check"></i></a>'+
+                                                '<a href="javascript:void(0)" class="ps-3" onclick="solicitarTerminarTarea('+ele.id+')"><i class="ti-check"></i></a>'+
                                                 // '<a href="javascript:void(0)" class="ps-3"><i class="ti-heart"></i></a>'+
                                                 '</span>'+
                                             '</div>'+
@@ -401,9 +402,9 @@ function cargarListaTareasActivas(id){
 
         $('#listaTareasActivas').append(listaTareasActivas);
         cargarListaTareas(id);
+        cargarListaTareasPorTerminar(id);
 
     });
-    cargarListaTareas(id);
 
 }
 
@@ -467,8 +468,79 @@ function cargarListaTareas(fk_id_users){
         paging:true,
         info:true,
         // responsive: true,
-        dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"],
+        // dom: "Bfrtip",
+        // buttons: ["copy", "csv", "excel", "pdf", "print"],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        }
+
+    });
+
+
+}
+
+
+function cargarListaTareasPorTerminar(fk_id_users){
+
+    $('#zero_config1').empty();
+
+    $('#zero_config1').DataTable({
+        searchDelay: 400,
+        ajax: {
+            url: "api/obtener_lista_tareas_por_terminar?fk_id_users="+fk_id_users,
+            dataSrc: function(json){
+                return json;
+            }
+        },
+        // order: [[0, 'asc']],
+        // ordering:true,
+        columns:[
+            //   { data: "id", defaultContent: "---", title: "#2" },
+              { data: "clientes.nombre_cliente", defaultContent: "---", title: "Cliente" },
+              { data: "tarea", defaultContent: "---", title: "Tarea" },
+              { data: "prioridades.prioridad", defaultContent: "---", title: "Prioridad" },
+              { data: "usuarios_alta.name", defaultContent: "---", title: "Asigno" },
+              { data: "usuarios_asignado.name", defaultContent: "---", title: "Realiza" },
+              { data: "fecha_inicio", defaultContent: "---", title: "Fecha Inicio" },
+              { data: "fecha_final", defaultContent: "---", title: "Fecha Final" },
+              { data: "estatus.estatus", defaultContent: "---", title: "Estatus"  },
+
+              {data:function(row, type){
+               const id = row.id;
+
+               let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+                                                                                        '<li>'+
+                                                                                            '<a class="dropdown-item" onclick="rechazarTarea('+id+')">Rechazar</a>'+
+                                                                                        '</li>'+
+                                                                                        '<li>'+
+                                                                                            '<a class="dropdown-item" onclick="terminarTarea('+ id +')">Terminar</a>'+
+                                                                                        '</li>'+
+                                                                                    '</ul>';
+
+
+                return  '<div class="dropdown dropstart">'+
+                                                '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
+                                                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
+                                                        '<circle cx="12" cy="12" r="1"></circle>'+
+                                                        '<circle cx="19" cy="12" r="1"></circle>'+
+                                                        '<circle cx="5" cy="12" r="1"></circle>'+
+                                                    '</svg>'+
+                                                '</a>'+
+                                                botonAcciones+
+                                            '</div>';
+
+              }, title: "Acciones"}
+        ],
+        aLengthMenu: [
+            [25, 50, 100, 200, -1],
+            [25, 50, 100, 200, 'All']
+        ],
+        destroy: true,
+        paging:true,
+        info:true,
+        // responsive: true,
+        // dom: "Bfrtip",
+        // buttons: ["copy", "csv", "excel", "pdf", "print"],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
         }
@@ -483,12 +555,56 @@ function cargarInfoTarea(id){
 
     $.get('api/datos_tarea',{id:id},function(data){
 
+        var campoDinamico = '';
+
         $.each(data,function(i,ele){
 
             $('#editar_'+i).val(ele).change();
 
+
+
+            switch( i ){
+                case 'fk_id_sub_tareas_predefinidas':
+
+                    if( ele != null ){
+
+                        if( data.sub_tareas_predefinidas.fk_id_tipo_campo_html == 1){
+
+                            campoDinamico = '<div class="col-md-12">'+
+                                                '<div class="mb-3">'+
+                                                    '<label>'+ data.tarea +'</label>'+
+                                                    '<input type="text" class="form-control" name="tarea[sub_tarea]" value="'+ data.sub_tarea +'">'+
+                                                '</div>'+
+                                            '</div>';
+
+                        }else if( data.sub_tareas_predefinidas.fk_id_tipo_campo_html == 2 ){
+
+                            campoDinamico = '<div class="col-md-12">'+
+                                                '<div class="mb-3">'+
+                                                    '<label>'+ data.tarea +'</label>'+
+                                                    '<input type="date" class="form-control" name="tarea[fecha_sub_tarea]" value="'+ data.fecha_sub_tarea +'"></input>'+
+                                                '</div>'+
+                                            '</div>';
+                        }
+
+                    }
+
+                break;
+
+
+            }
+
+
         });
+
+
+        $('#editarCampoDinamico').empty();
+        $('#editarCampoDinamico').append(campoDinamico);
     });
+
+
+
+
 }
 
 
@@ -560,6 +676,73 @@ function eliminarTarea(id){
                 data:{id:id},
                 success:function(data){
 
+                    let usuariosAsignado = $('#editar_fk_id_users_asignado').val();
+
+                    cargarListaTareasActivas(usuariosAsignado);
+
+                    $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                }
+            });
+
+        }
+    });
+}
+
+
+function solicitarTerminarTarea(id){
+
+    Swal.fire({
+            title: "¿Esta seguro desea solicitar terminar la tarea?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
+
+            $.ajax({
+                type:'POST',
+                url:'solicitar_terminar_tarea',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
+
+
+
+                    $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                }
+            });
+
+        }
+    });
+}
+
+function rechazarTarea(id){
+
+    Swal.fire({
+            title: "¿Esta seguro desea rechazar la tarea?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
+
+            $.ajax({
+                type:'POST',
+                url:'rechazar_tarea',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
+
 
 
                     $('#cerrarModalEditar').trigger("click");
@@ -573,3 +756,34 @@ function eliminarTarea(id){
 }
 
 
+function terminarTarea(id){
+
+    Swal.fire({
+            title: "¿Esta seguro desea terminar la tarea?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
+
+            $.ajax({
+                type:'POST',
+                url:'terminar_tarea',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
+
+
+
+                    $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                }
+            });
+
+        }
+    });
+}
