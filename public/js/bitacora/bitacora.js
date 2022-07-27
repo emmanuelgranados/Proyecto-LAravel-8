@@ -354,6 +354,9 @@ function cargarGrupos(){
 
 function cargarListaTareasActivas(id){
 
+    $('#usuarioActivo').val(id);
+
+
     $('#listaTareasActivas').empty();
     $('#listaComentarios').empty();
 
@@ -711,11 +714,10 @@ function solicitarTerminarTarea(id){
                 data:{id:id},
                 success:function(data){
 
-
-
                     $('#cerrarModalEditar').trigger("click");
                     Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
 
+                    cargarListaTareasActivas($('#usuarioActivo').val());
                 }
             });
 
@@ -743,10 +745,13 @@ function rechazarTarea(id){
                 data:{id:id},
                 success:function(data){
 
-
+                    cargarListaComentarios();
 
                     $('#cerrarModalEditar').trigger("click");
                     Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                    cargarListaTareasActivas($('#usuarioActivo').val());
+
 
                 }
             });
@@ -776,10 +781,10 @@ function terminarTarea(id){
                 data:{id:id},
                 success:function(data){
 
-
-
                     $('#cerrarModalEditar').trigger("click");
                     Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                    cargarListaTareasActivas($('#usuarioActivo').val());
 
                 }
             });

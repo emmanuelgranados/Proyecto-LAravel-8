@@ -49,6 +49,7 @@
                             <div class="d-flex align-items-center px-3 py-4 border-bottom">
                                 <div>
                                     <h4 class="card-title">Integrantes del Grupo</h4>
+                                    <input type="hidden" id="usuarioActivo" value="">
                                 </div>
                                 @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
                                     <div class="ms-auto">
