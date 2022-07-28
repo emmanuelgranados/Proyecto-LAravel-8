@@ -35,7 +35,6 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -43,6 +42,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+
+        'tareas' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/tareas',
+            'url' => env('APP_URL').'/tareas',
+        ],
+
         'usuarios' => [
             'driver' => 'local',
             'root'   => public_path() . '/public/images/usuarios',

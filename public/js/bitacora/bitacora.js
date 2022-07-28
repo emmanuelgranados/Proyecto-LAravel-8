@@ -5,6 +5,11 @@ $(function () {
 
         e.preventDefault();
 
+        // let datos = $(this).serialize() ;
+
+
+        var formData = new FormData(this);
+
         Swal.fire({
             title: "¿Esta seguro que desea agregar una nueva tarea?",
             // text: "You won't be able to revert this!",
@@ -20,20 +25,25 @@ $(function () {
                     type:'POST',
                     url:'nueva_tarea',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data:datos,
+                    data: formData,
+                    processData:false,
+                    contentType: false,
                     success:function(data){
-
+                        console.log("Aqui ando !!!",data);
                         cargarListaComentarios();
                         $('#cerrarModalNuevo').trigger("click");
                         Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
 
+                    },
+                    error: function (e) {
+                        console.info('un pinche erroe',e);
                     }
                  });
 
             }
           });
 
-        let datos = $(this).serialize() ;
+
 
       });
 

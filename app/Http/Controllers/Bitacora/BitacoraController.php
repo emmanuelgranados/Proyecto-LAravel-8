@@ -3,22 +3,12 @@
 namespace App\Http\Controllers\Bitacora;
 
 use App\Http\Controllers\Controller;
-use App\Models\Clientes;
 use App\Models\Comentarios;
-use App\Models\Direcciones;
-use App\Models\Estados;
-use App\Models\Grupos;
-use App\Models\Municipios;
-use App\Models\Paises;
-use App\Models\Roles;
-use App\Models\RoleUser;
 use App\Models\Tareas;
 use App\Models\TareasSeguimiento;
-use App\Models\Telefonos;
-use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 class BitacoraController extends Controller
 {
@@ -46,9 +36,11 @@ class BitacoraController extends Controller
 
         $nuevaComentario = Comentarios::create($comentario);
 
+        Storage::disk('tareas')->put($request->file('archivo_tarea')->getClientOriginalName(),  \File::get(  $request->file('archivo_tarea') ));
+
         TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
 
-        return "Exito papuuuus";
+        return "OK";
 
     }
 

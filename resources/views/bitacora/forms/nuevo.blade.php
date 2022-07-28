@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <form  class="formNuevaTarea" id="formNuevaTarea" method="POST">
+                            <form  class="formNuevaTarea" id="formNuevaTarea" method="POST" enctype="multipart/form-data">
                                 <div class="form-body">
                                     <h4 class="card-title">Datos Generales</h4>
                                     <hr class="mt-0 mb-1">
@@ -120,8 +120,8 @@
 
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label">Adjuntar Archivo</label>
-                                            <input class="form-control" type="file" id="formFile">
-                                          </div>
+                                            <input class="form-control" type="file" id="archivo_tarea" name="archivo_tarea">
+                                        </div>
 
 
                                     </div>
