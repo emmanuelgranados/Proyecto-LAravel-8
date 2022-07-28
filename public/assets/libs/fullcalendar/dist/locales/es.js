@@ -1,3 +1,5 @@
+
+
 FullCalendar.globalLocales.push(function () {
   'use strict';
 

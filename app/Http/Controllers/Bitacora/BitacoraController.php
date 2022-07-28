@@ -8,7 +8,9 @@ use App\Models\Tareas;
 use App\Models\TareasSeguimiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Hal\HalEmailController as Hal;
 
 class BitacoraController extends Controller
 {
@@ -20,6 +22,8 @@ class BitacoraController extends Controller
 
     public function index()
     {
+
+        $this->notificacionCorreo("Hola");
 
         return view('bitacora/bitacora');
 
@@ -105,6 +109,21 @@ class BitacoraController extends Controller
         TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 6]);
 
         return "Exito papuuuus3";
+    }
+
+    public function notificacionCorreo( $datos ){
+
+        $mensaje= '<p>Buenos dias!  </br>
+                                Te mando la plantilla de contpaq </p>
+                                <p>Saludos!</p>
+                                <p>Atte:<strong>Hal</strong></p>
+                                ';
+
+        $correos = array('ihernandez@automatyco.com');
+
+        Hal::send($correos,'Mensaje de prueba',$mensaje,'', true );
+
+
     }
 
 

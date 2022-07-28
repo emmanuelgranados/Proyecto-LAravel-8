@@ -24,8 +24,13 @@
     {{-- <script src="../../assets/libs/apexcharts/dist/apexcharts.min.js"></script> --}}
     {{-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> --}}
     <script src="../../assets/libs/moment/min/moment.min.js"></script>
+
+
     <script src="../../assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.js"></script>
     <script src="../../assets/libs/fullcalendar/dist/locales/es.js"></script>
+
+
 
 
     <script src="plugins/select2/js/select2.min.js"></script>
