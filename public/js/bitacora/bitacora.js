@@ -6,8 +6,6 @@ $(function () {
         e.preventDefault();
 
         // let datos = $(this).serialize() ;
-
-
         var formData = new FormData(this);
 
         Swal.fire({
@@ -47,7 +45,7 @@ $(function () {
 
       });
 
-      $("#formEditarTarea").on("submit", function(e){
+    $("#formEditarTarea").on("submit", function(e){
 
         e.preventDefault();
 
@@ -62,13 +60,15 @@ $(function () {
           }).then((result) => {
             if (result.value) {
 
-                let datos = $(this).serialize() ;
+                var formData = new FormData(this);
 
                 $.ajax({
                     type:'POST',
                     url:'editar_tarea',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data:datos,
+                    data: formData,
+                    processData:false,
+                    contentType: false,
                     success:function(data){
 
                         let usuariosAsignado = $('#editar_fk_id_users_asignado').val();
@@ -570,49 +570,22 @@ function cargarListaArchivos(fk_id_tareas){
     $('#listaArchivosTareas').DataTable({
         searchDelay: 400,
         ajax: {
-            url: "api/obtener_lista_tareas_por_terminar?fk_id_users="+fk_id_tareas,
+            url: "api/obtener_lista_tareas_archivos?fk_id_tareas="+fk_id_tareas,
             dataSrc: function(json){
                 return json;
             }
         },
-        // order: [[0, 'asc']],
-        // ordering:true,
         columns:[
-            //   { data: "id", defaultContent: "---", title: "#2" },
-              { data: "clientes.nombre_cliente", defaultContent: "---", title: "Cliente" },
-              { data: "tarea", defaultContent: "---", title: "Tarea" },
-              { data: "prioridades.prioridad", defaultContent: "---", title: "Prioridad" },
-              { data: "usuarios_alta.name", defaultContent: "---", title: "Asigno" },
-              { data: "usuarios_asignado.name", defaultContent: "---", title: "Realiza" },
-              { data: "fecha_inicio", defaultContent: "---", title: "Fecha Inicio" },
-              { data: "fecha_final", defaultContent: "---", title: "Fecha Final" },
-              { data: "estatus.estatus", defaultContent: "---", title: "Estatus"  },
-
+              { data: "usuarios.name", defaultContent: "---", title: "Usuario" },
+              { data: "fecha_registro", defaultContent: "---", title: "Fecha Registro" },
               {data:function(row, type){
-               const id = row.id;
 
-               let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
-                                                                                        '<li>'+
-                                                                                            '<a class="dropdown-item" onclick="rechazarTarea('+id+')">Rechazar</a>'+
-                                                                                        '</li>'+
-                                                                                        '<li>'+
-                                                                                            '<a class="dropdown-item" onclick="terminarTarea('+ id +')">Terminar</a>'+
-                                                                                        '</li>'+
-                                                                                    '</ul>';
+                return  '<a href="tareas/'+row.nombre_archivo+'" download>'+
+                            '<label>'+row.nombre_archivo+'</label>'+
+                        '</a>';
 
-
-                return  '<div class="dropdown dropstart">'+
-                                                '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
-                                                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
-                                                        '<circle cx="12" cy="12" r="1"></circle>'+
-                                                        '<circle cx="19" cy="12" r="1"></circle>'+
-                                                        '<circle cx="5" cy="12" r="1"></circle>'+
-                                                    '</svg>'+
-                                                '</a>'+
-                                                botonAcciones+
-                                            '</div>';
-
-              }, title: "Acciones"}
+              },
+            title: "Archivo"}
         ],
         aLengthMenu: [
             [25, 50, 100, 200, -1],

@@ -120,6 +120,7 @@
 
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label">Adjuntar Archivo</label>
+                                            <input type="hidden" name="archivo[fk_id_users]" value="{{ Auth::user()->id }}">
                                             <input class="form-control" type="file" id="archivo_tarea" name="archivo_tarea">
                                         </div>
 

@@ -95,6 +95,19 @@
 
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label for="formFile" class="form-label">Adjuntar Archivo</label>
+                                                    <input type="hidden" name="archivo[fk_id_users]" value="{{ Auth::user()->id }}">
+                                                    <input class="form-control" type="file" name="archivo_tarea">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
                                 </div>
                                 <hr class="mt-0 mb-1">

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Hal\HalEmailController as Hal;
+use App\Models\TareasArchivos;
 
 class BitacoraController extends Controller
 {
@@ -33,14 +34,20 @@ class BitacoraController extends Controller
     {
 
         $nuevaTarea = Tareas::create($request->tarea);
-
         $comentario = $request->comentario;
 
         $comentario['fk_id_tareas'] = $nuevaTarea->id;
-
         $nuevaComentario = Comentarios::create($comentario);
 
+        $archivo = $request->archivo;
+        $nombreArchivo = $request->file('archivo_tarea')->getClientOriginalName();
+
+        $archivo['nombre_archivo'] = $nombreArchivo;
+        $archivo['fk_id_tareas'] = $nuevaTarea->id;
+
         Storage::disk('tareas')->put($request->file('archivo_tarea')->getClientOriginalName(),  \File::get(  $request->file('archivo_tarea') ));
+
+        TareasArchivos::create( $archivo );
 
         TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
 
@@ -63,6 +70,29 @@ class BitacoraController extends Controller
         Tareas::where('id',$request->tarea['id'])->update($request->tarea );
 
         TareasSeguimiento::create(['fk_id_tareas' => $request->tarea['id'],'fk_id_acciones_tareas' => 2]);
+
+        if( !is_null( $request->archivo  ) ){
+
+            $archivo = $request->archivo;
+            $nombreArchivo = $request->file('archivo_tarea')->getClientOriginalName();
+            $archivo['nombre_archivo'] = $nombreArchivo;
+            $archivo['fk_id_tareas'] = $request->tarea['id'];
+
+            Storage::disk('tareas')->put($request->file('archivo_tarea')->getClientOriginalName(),  \File::get(  $request->file('archivo_tarea') ));
+
+            TareasArchivos::create( $archivo );
+
+            Comentarios::create([
+                'comentario' => 'Se agrego un nuevo archivo a la tarea <a href="/tareas/'.$nombreArchivo.'" download>
+                <label>'.$nombreArchivo.'</label>
+              </a>',
+                'fk_id_tareas' => $request->tarea['id'],
+                'fk_id_users' => $request->archivo['fk_id_users'],
+            ]);
+
+        }
+
+
 
 
         return "Exito papuuuus2";

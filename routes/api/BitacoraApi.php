@@ -10,6 +10,7 @@ use App\Models\Grupos;
 use App\Models\Municipios;
 use App\Models\SubTareasPredefinidas;
 use App\Models\Tareas;
+use App\Models\TareasArchivos;
 use App\Models\User;
 use App\Models\UsersGrupos;
 use Illuminate\Http\Request;
@@ -74,24 +75,24 @@ Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
 
 Route::get('/obtener_lista_tareas_por_terminar', function (Request $request ) {
 
-    $tareasArchivos = TareasArchivos::where('fk_id_tareas',$request->fk_id_tareas)
-    ->where('eliminado',0)
-    ->get();
+    $tareas = Tareas::with('clientes','prioridades','usuariosAlta','usuariosAsignado','estatus')
+        ->orderBy('id','DESC')
+        ->where('fk_id_estatus',4)
+        ->where('fk_id_users_asignado',$request->fk_id_users)
+        ->where('eliminado',0)
+        ->get();
 
-    return $tareasArchivos;
+    return $tareas;
 
 });
 
 Route::get('/obtener_lista_tareas_archivos', function (Request $request ) {
 
-    $tareas = Tareas::with('clientes','prioridades','usuariosAlta','usuariosAsignado','estatus')
-    ->orderBy('id','DESC')
-    ->where('fk_id_estatus',4)
-    ->where('fk_id_users_asignado',$request->fk_id_users)
-    ->where('eliminado',0)
+    $archivos = TareasArchivos::with('usuarios')
+    ->where('fk_id_tareas',$request->fk_id_tareas)
     ->get();
 
-    return $tareas;
+    return $archivos;
 
 });
 

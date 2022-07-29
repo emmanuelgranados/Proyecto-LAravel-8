@@ -16,6 +16,7 @@ class TareasArchivos extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'fk_id_users',
         'fk_id_tareas',
         'nombre_archivo',
         'fecha_registro',
@@ -23,6 +24,8 @@ class TareasArchivos extends Model
      ];
 
 
-
+     public function usuarios(){
+        return $this->belongsTo( User::class,'fk_id_users','id' );
+    }
 }
 

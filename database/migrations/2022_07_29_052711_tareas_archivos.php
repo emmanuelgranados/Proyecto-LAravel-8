@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tareas_archivos', function (Blueprint $table) {
             $table->id();
+            $table->integer('fk_id_users');
             $table->integer('fk_id_tareas');
             $table->string('nombre_archivo');
             $table->dateTime('fecha_registro')->nullable()->useCurrent();
