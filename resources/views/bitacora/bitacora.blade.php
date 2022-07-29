@@ -37,6 +37,11 @@
 
                     @include('bitacora.forms.editar')
 
+                    {{-- Lista de archivos adjusntos a la tarea --}}
+
+                    @include('bitacora.forms.archivos')
+
+
                 </div>
             </div>
 

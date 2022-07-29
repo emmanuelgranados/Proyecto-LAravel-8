@@ -23,7 +23,7 @@ class BitacoraController extends Controller
     public function index()
     {
 
-        $this->notificacionCorreo("Hola");
+        // $this->notificacionCorreo("Hola");
 
         return view('bitacora/bitacora');
 

@@ -74,6 +74,16 @@ Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
 
 Route::get('/obtener_lista_tareas_por_terminar', function (Request $request ) {
 
+    $tareasArchivos = TareasArchivos::where('fk_id_tareas',$request->fk_id_tareas)
+    ->where('eliminado',0)
+    ->get();
+
+    return $tareasArchivos;
+
+});
+
+Route::get('/obtener_lista_tareas_archivos', function (Request $request ) {
+
     $tareas = Tareas::with('clientes','prioridades','usuariosAlta','usuariosAsignado','estatus')
     ->orderBy('id','DESC')
     ->where('fk_id_estatus',4)
