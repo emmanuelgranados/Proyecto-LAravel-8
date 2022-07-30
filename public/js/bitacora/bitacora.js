@@ -34,7 +34,9 @@ $(function () {
 
                     },
                     error: function (e) {
-                        console.info('un pinche erroe',e);
+
+                        mensajeError();
+
                     }
                  });
 
@@ -78,6 +80,11 @@ $(function () {
                         $('#cerrarModalEditar').trigger("click");
                         Swal.fire("¡Éxito!", "Se modifico la información de la tarea.", "success");
 
+                    },
+                    error: function (e) {
+
+                        mensajeError();
+
                     }
                 });
 
@@ -112,6 +119,11 @@ $(function () {
                         $('#nuevoComentario').val('');
                         $('#cerrarModalNuevo').trigger("click");
                         Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
+
+                    },
+                    error: function (e) {
+
+                        mensajeError();
 
                     }
                  });
@@ -844,4 +856,14 @@ function terminarTarea(id){
 
         }
     });
+}
+
+function mensajeError(){
+
+    Swal.fire({
+        type: "error",
+        title: "Oops...",
+        text: "¡Lo siento, ocurrió un error!",
+      });
+
 }

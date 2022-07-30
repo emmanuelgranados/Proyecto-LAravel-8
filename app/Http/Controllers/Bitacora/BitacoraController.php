@@ -39,15 +39,29 @@ class BitacoraController extends Controller
         $comentario['fk_id_tareas'] = $nuevaTarea->id;
         $nuevaComentario = Comentarios::create($comentario);
 
-        $archivo = $request->archivo;
-        $nombreArchivo = $request->file('archivo_tarea')->getClientOriginalName();
+        if( !is_null( $request->archivo  ) ){
 
-        $archivo['nombre_archivo'] = $nombreArchivo;
-        $archivo['fk_id_tareas'] = $nuevaTarea->id;
+            $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
 
-        Storage::disk('tareas')->put($request->file('archivo_tarea')->getClientOriginalName(),  \File::get(  $request->file('archivo_tarea') ));
+            Storage::disk('tareas')->put( $nombreArchivo ,  \File::get(  $request->file('archivo_tarea') ));
 
-        TareasArchivos::create( $archivo );
+            $archivo = $request->archivo;
+
+
+            $archivo['nombre_archivo'] = $nombreArchivo;
+            $archivo['fk_id_tareas'] = $nuevaTarea->id;
+
+            TareasArchivos::create( $archivo );
+
+            Comentarios::create([
+                'comentario' => 'Se agrego un nuevo archivo a la tarea <a href="/tareas/'.$nombreArchivo.'" download><label>'.$nombreArchivo.'</label></a>',
+                'fk_id_tareas' => $nuevaTarea->id,
+                'fk_id_users' => $request->tarea['fk_id_users_alta'],
+            ]);
+
+        }
+
+
 
         TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
 
@@ -74,18 +88,17 @@ class BitacoraController extends Controller
         if( !is_null( $request->archivo  ) ){
 
             $archivo = $request->archivo;
-            $nombreArchivo = $request->file('archivo_tarea')->getClientOriginalName();
+            $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
+
             $archivo['nombre_archivo'] = $nombreArchivo;
             $archivo['fk_id_tareas'] = $request->tarea['id'];
 
-            Storage::disk('tareas')->put($request->file('archivo_tarea')->getClientOriginalName(),  \File::get(  $request->file('archivo_tarea') ));
+            Storage::disk('tareas')->put($nombreArchivo,  \File::get(  $request->file('archivo_tarea') ));
 
             TareasArchivos::create( $archivo );
 
             Comentarios::create([
-                'comentario' => 'Se agrego un nuevo archivo a la tarea <a href="/tareas/'.$nombreArchivo.'" download>
-                <label>'.$nombreArchivo.'</label>
-              </a>',
+                'comentario' => 'Se agrego un nuevo archivo a la tarea <a href="/tareas/'.$nombreArchivo.'" download><label>'.$nombreArchivo.'</label></a>',
                 'fk_id_tareas' => $request->tarea['id'],
                 'fk_id_users' => $request->archivo['fk_id_users'],
             ]);
