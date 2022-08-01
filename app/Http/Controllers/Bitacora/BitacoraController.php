@@ -61,8 +61,6 @@ class BitacoraController extends Controller
 
         }
 
-
-
         TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
 
         return "OK";
@@ -147,9 +145,41 @@ class BitacoraController extends Controller
     public function rechazarTarea( Request $request )
     {
 
-        Tareas::where('id',$request->id)->update( ['fk_id_estatus' => 2 ] );
 
-        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 6]);
+        Tareas::where('id',$request->comentario['fk_id_tareas'])->update( ['fk_id_estatus' => 2 ] );
+
+        if( !is_null( $request->file('archivo_tarea') ) ){
+
+            $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
+
+            Storage::disk('tareas')->put( $nombreArchivo ,  \File::get(  $request->file('archivo_tarea') ));
+
+            $archivo = $request->archivo;
+
+
+            $archivo['nombre_archivo'] = $nombreArchivo;
+            $archivo['fk_id_tareas'] = $request->comentario['fk_id_tareas'];
+
+            TareasArchivos::create( $archivo );
+
+            Comentarios::create([
+                'comentario' => 'Se rechazo la tarea por siguiente motivo: '.$request->comentario['comentario'].' y se agrego un nuevo archivo a la tarea <a href="/tareas/'.$nombreArchivo.'" download><label>'.$nombreArchivo.'</label></a>',
+                'fk_id_tareas' => $request->comentario['fk_id_tareas'] ,
+                'fk_id_users' => $request->comentario['fk_id_users'],
+            ]);
+
+        }else{
+
+            Comentarios::create([
+                'comentario' => 'Se rechazo la tarea por siguiente motivo: '.$request->comentario['comentario'],
+                'fk_id_tareas' => $request->comentario['fk_id_tareas'] ,
+                'fk_id_users' => $request->comentario['fk_id_users'],
+            ]);
+
+
+        }
+
+        TareasSeguimiento::create(['fk_id_tareas' => $request->comentario['fk_id_tareas'] ,'fk_id_acciones_tareas' => 6]);
 
         return "Exito papuuuus3";
     }

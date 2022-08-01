@@ -5,7 +5,6 @@ $(function () {
 
         e.preventDefault();
 
-        // let datos = $(this).serialize() ;
         var formData = new FormData(this);
 
         Swal.fire({
@@ -39,7 +38,6 @@ $(function () {
 
                     }
                  });
-
             }
           });
 
@@ -93,43 +91,45 @@ $(function () {
 
       });
 
-    $("#formComentarios").on("submit", function(e){
+    $("#formRechazarTarea").on("submit", function(e){
 
         e.preventDefault();
 
         Swal.fire({
-            title: "¿Esta seguro que desea agregar un nuevo comentario?",
-            // text: "You won't be able to revert this!",
+            title: "¿Esta seguro desea rechazar la tarea?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             cancelButtonText: "Cancelar",
             confirmButtonText: "Aceptar",
-          }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type:'POST',
-                    url:'nuevo_comentarios',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data:datos,
-                    success:function(data){
+        }).then((result) => {
+        if (result.value) {
 
-                        cargarListaComentarios($('#fk_id_tareas').val());
-                        $('#nuevoComentario').val('');
-                        $('#cerrarModalNuevo').trigger("click");
-                        Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
+            var formData = new FormData(this);
 
-                    },
-                    error: function (e) {
+            $.ajax({
+                type:'POST',
+                url:'rechazar_tarea',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: formData,
+                processData:false,
+                contentType: false,
+                success:function(data){
 
-                        mensajeError();
+                    cargarListaComentarios();
 
-                    }
-                 });
+                    $('#cerrarModalRechazar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
 
-            }
-          });
+                    cargarListaTareasActivas($('#usuarioActivo').val());
+
+
+                }
+            });
+
+        }
+    });
 
         let datos = $(this).serialize() ;
 
@@ -535,7 +535,7 @@ function cargarListaTareasPorTerminar(fk_id_users){
 
                let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
                                                                                         '<li>'+
-                                                                                            '<a class="dropdown-item" onclick="rechazarTarea('+id+')">Rechazar</a>'+
+                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_rechazar_tarea" onclick="rechazarTarea('+ id +')">Rechazar</a>'+
                                                                                         '</li>'+
                                                                                         '<li>'+
                                                                                             '<a class="dropdown-item" onclick="terminarTarea('+ id +')">Terminar</a>'+
@@ -792,37 +792,39 @@ function solicitarTerminarTarea(id){
 
 function rechazarTarea(id){
 
-    Swal.fire({
-            title: "¿Esta seguro desea rechazar la tarea?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Aceptar",
-        }).then((result) => {
-        if (result.value) {
+    $('#rechazar_tarea_id').val(id);
 
-            $.ajax({
-                type:'POST',
-                url:'rechazar_tarea',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:{id:id},
-                success:function(data){
+    // Swal.fire({
+    //         title: "¿Esta seguro desea rechazar la tarea?",
+    //         type: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         cancelButtonText: "Cancelar",
+    //         confirmButtonText: "Aceptar",
+    //     }).then((result) => {
+    //     if (result.value) {
 
-                    cargarListaComentarios();
+    //         $.ajax({
+    //             type:'POST',
+    //             url:'rechazar_tarea',
+    //             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    //             data:{id:id},
+    //             success:function(data){
 
-                    $('#cerrarModalEditar').trigger("click");
-                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+    //                 cargarListaComentarios();
 
-                    cargarListaTareasActivas($('#usuarioActivo').val());
+    //                 $('#cerrarModalEditar').trigger("click");
+    //                 Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+    //                 cargarListaTareasActivas($('#usuarioActivo').val());
 
 
-                }
-            });
+    //             }
+    //         });
 
-        }
-    });
+    //     }
+    // });
 }
 
 

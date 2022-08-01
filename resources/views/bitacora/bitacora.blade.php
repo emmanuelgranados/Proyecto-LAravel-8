@@ -41,6 +41,9 @@
 
                     @include('bitacora.forms.archivos')
 
+                    {{-- Formulario para rechazar tarea --}}
+
+                    @include('bitacora.forms.rechazar_tarea')
 
                 </div>
             </div>
