@@ -45,6 +45,10 @@
 
                     @include('bitacora.forms.rechazar_tarea')
 
+                    {{-- Detalle de la tarea --}}
+
+                    @include('bitacora.forms.detalle_tarea')
+
                 </div>
             </div>
 

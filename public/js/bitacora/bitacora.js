@@ -535,6 +535,9 @@ function cargarListaTareasPorTerminar(fk_id_users){
 
                let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
                                                                                         '<li>'+
+                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_detalle_tareas" onclick="rechazarTarea('+ id +')">Detalle</a>'+
+                                                                                        '</li>'+
+                                                                                        '<li>'+
                                                                                             '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_rechazar_tarea" onclick="rechazarTarea('+ id +')">Rechazar</a>'+
                                                                                         '</li>'+
                                                                                         '<li>'+
