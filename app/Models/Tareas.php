@@ -66,5 +66,9 @@ class Tareas extends Model
         return $this->hasOne( TareasEstandar::class,'id','fk_id_tareas_estandar' );
     }
 
+    public function comentarios(){
+        return $this->hasMany( Comentarios::class,'fk_id_tareas','id' );
+    }
+
 }
 

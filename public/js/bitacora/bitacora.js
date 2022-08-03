@@ -535,7 +535,7 @@ function cargarListaTareasPorTerminar(fk_id_users){
 
                let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
                                                                                         '<li>'+
-                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_detalle_tareas" onclick="rechazarTarea('+ id +')">Detalle</a>'+
+                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_detalle_tareas" onclick="cargarDetalleTarea('+ id +')">Detalle</a>'+
                                                                                         '</li>'+
                                                                                         '<li>'+
                                                                                             '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_rechazar_tarea" onclick="rechazarTarea('+ id +')">Rechazar</a>'+
@@ -671,6 +671,59 @@ function cargarInfoTarea(id){
 
         $('#editarCampoDinamico').empty();
         $('#editarCampoDinamico').append(campoDinamico);
+    });
+
+
+
+
+}
+
+function cargarDetalleTarea(id){
+
+    $.get('api/detalle_tarea',{id:id},function(data){
+
+        console.info(data);
+
+
+        $.each(data,function(i,ele){
+            console.info(i,ele);
+            $('#detalle_'+i).empty();
+            $('#detalle_'+i).append(ele);
+
+            if( i == 'comentarios' ){
+
+                var listaComentarios = '';
+
+                $.each(ele,function(j,comentarios){
+                    console.info(i,ele);
+
+                    listaComentarios
+                    listaComentarios += '<li class="d-flex align-items-start">'+
+                                            '<img class="me-3 rounded" src="../../assets/images/users/2.jpg" alt="Generic placeholder image" width="60">'+
+                                            '<div class="media-body">'+
+                                                '<h5 class="mt-0 mb-1">'+comentarios.usuarios.name+'</h5>'+
+                                                comentarios.comentario+
+                                            '</div>'+
+                                        '</li>'+
+                                        '<hr>';
+
+                });
+
+                $('#detalle_'+i).empty();
+                $('#detalle_'+i).append(listaComentarios);
+
+            }
+
+
+
+
+
+
+        });
+
+
+        // $('#editarCampoDinamico').empty();
+        // $('#editarCampoDinamico').append(campoDinamico);
     });
 
 

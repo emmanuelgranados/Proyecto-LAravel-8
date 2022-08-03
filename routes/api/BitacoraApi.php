@@ -60,6 +60,16 @@ Route::get('/datos_tarea', function (Request $request) {
 
 });
 
+Route::get('/detalle_tarea', function (Request $request) {
+
+    $tarea = Tareas::with('clientes','prioridades','estatus','subTareasPredefinidas','obligaciones','tareasEstandar','comentarios.usuarios')
+    ->where('id',$request->id)
+    ->first();
+
+    return $tarea;
+
+});
+
 Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
 
     $tareasActivas = Tareas::orderBy('id','DESC')
