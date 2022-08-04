@@ -70,5 +70,9 @@ class Tareas extends Model
         return $this->hasMany( Comentarios::class,'fk_id_tareas','id' );
     }
 
+    public function archivos(){
+        return $this->hasMany( TareasArchivos::class,'fk_id_tareas','id' );
+    }
+
 }
 

@@ -32,69 +32,46 @@
                                     </div>
                                     <div class="card-body bg-light">
                                       <div class="row text-center">
-                                        <div class="col-6 my-2 text-start">
-                                          <span class="badge bg-warning">In Progress</span>
+                                        <div class="col-6 my-2 text-start" id="detalle_estatus">
+
                                         </div>
-                                        <div class="col-6 my-2">May 2, 2021 9:49</div>
+                                        <div class="col-6 my-2" id="detalle_fecha_inicio"></div>
                                       </div>
                                     </div>
                                     <div class="card-body">
-                                      <h5 class="pt-3">Ticket Creator</h5>
-                                      <span>User Name</span>
-                                      <h5 class="mt-4">Support Staff</h5>
-                                      <span>Agent Name</span>
-                                      <br>
-                                      <button type="button" class="mt-3 btn waves-effect waves-light btn-success">
-                                        Update
-                                      </button>
+                                      <h5 class="pt-3">Asigno</h5>
+                                      <span id="detalle_usuarios_alta"></span>
+                                      <h5 class="mt-4">Realiza</h5>
+                                      <span class="detalle_usuarios_asignado"></span>
                                     </div>
                                   </div>
                                   <div class="card">
                                     <div class="card-body text-center">
-                                      <h4 class="card-title">User Info</h4>
+                                      <h4 class="card-title">Información del Usuario</h4>
                                       <div class="profile-pic mb-3 mt-3">
                                         <img src="../../assets/images/users/5.jpg" class="rounded-circle" alt="user" width="150">
-                                        <h4 class="mt-3 mb-0">Daniel Kristeen</h4>
-                                        <a href="mailto:danielkristeen@gmail.com">danielkristeen@gmail.com</a>
-                                      </div>
-                                      <div class="row text-center mt-5">
-                                        <div class="col-4">
-                                          <h3 class="fw-bold">4</h3>
-                                          <h6>Total</h6>
-                                        </div>
-                                        <div class="col-4">
-                                          <h3 class="fw-bold">2</h3>
-                                          <h6>Open</h6>
-                                        </div>
-                                        <div class="col-4">
-                                          <h3 class="fw-bold">3</h3>
-                                          <h6>Closed</h6>
-                                        </div>
+                                        <h4 class="mt-3 mb-0 detalle_usuarios_asignado" ></h4>
+                                        <a id="detalle_usuarios_asignado_email"></a>
                                       </div>
                                     </div>
-                                    <div class="p-4 border-top mt-3">
-                                      <div class="row text-center">
-                                        <div class="col-6 border-end">
-                                          <a href="ticket-detail.html#" class="
-                                              link
-                                              d-flex
-                                              align-items-center
-                                              justify-content-center
-                                              font-weight-medium
-                                            "><i class="mdi mdi-message fs-6 me-1"></i>Message</a>
-                                        </div>
-                                        <div class="col-6">
-                                          <a href="ticket-detail.html#" class="
-                                              link
-                                              d-flex
-                                              align-items-center
-                                              justify-content-center
-                                              font-weight-medium
-                                            "><i class="mdi mdi-developer-board fs-6 me-1"></i>Portfolio</a>
-                                        </div>
-                                      </div>
-                                    </div>
+
+
                                   </div>
+
+                                  <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Archivos Adjuntos</h4>
+                                        <div id="visitor">
+
+                                            <ul class="list-group" id="detalle_archivos">
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                                 </div>
                               </div>

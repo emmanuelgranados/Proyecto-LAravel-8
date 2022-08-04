@@ -62,7 +62,7 @@ Route::get('/datos_tarea', function (Request $request) {
 
 Route::get('/detalle_tarea', function (Request $request) {
 
-    $tarea = Tareas::with('clientes','prioridades','estatus','subTareasPredefinidas','obligaciones','tareasEstandar','comentarios.usuarios')
+    $tarea = Tareas::with('clientes','prioridades','estatus','comentarios.usuarios','usuariosAlta','usuariosAsignado','archivos')
     ->where('id',$request->id)
     ->first();
 

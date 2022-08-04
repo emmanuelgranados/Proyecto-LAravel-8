@@ -464,6 +464,9 @@ function cargarListaTareas(fk_id_users){
 
                let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
                                                                                         '<li>'+
+                                                                                            '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_detalle_tareas" onclick="cargarDetalleTarea('+ id +')">Detalle</a>'+
+                                                                                        '</li>'+
+                                                                                        '<li>'+
                                                                                             '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+id+')">Editar</a>'+
                                                                                         '</li>'+
                                                                                         '<li>'+
@@ -681,12 +684,9 @@ function cargarInfoTarea(id){
 function cargarDetalleTarea(id){
 
     $.get('api/detalle_tarea',{id:id},function(data){
-
         console.info(data);
-
-
         $.each(data,function(i,ele){
-            console.info(i,ele);
+            // console.info(i,ele);
             $('#detalle_'+i).empty();
             $('#detalle_'+i).append(ele);
 
@@ -695,9 +695,8 @@ function cargarDetalleTarea(id){
                 var listaComentarios = '';
 
                 $.each(ele,function(j,comentarios){
-                    console.info(i,ele);
 
-                    listaComentarios
+
                     listaComentarios += '<li class="d-flex align-items-start">'+
                                             '<img class="me-3 rounded" src="../../assets/images/users/2.jpg" alt="Generic placeholder image" width="60">'+
                                             '<div class="media-body">'+
@@ -713,6 +712,72 @@ function cargarDetalleTarea(id){
                 $('#detalle_'+i).append(listaComentarios);
 
             }
+
+            if( i == 'estatus' ){
+
+                var estatus = '';
+
+                switch( ele.id ){
+
+                    case 1:
+                        estatus = '<span class="badge bg-primary">'+ ele.estatus +'</span>';
+                    break;
+                    case 2:
+                        estatus = '<span class="badge bg-warning">'+ ele.estatus +'</span>';
+                    break;
+                    case 3:
+                        estatus = '<span class="badge bg-success">'+ ele.estatus +'</span>';
+                    break;
+                    case 4:
+                        estatus = '<span class="badge bg-secondary">'+ ele.estatus +'</span>';
+                    break;
+
+                }
+
+                $('#detalle_'+i).empty();
+                $('#detalle_'+i).append(estatus);
+
+            }
+
+            if( i == 'usuarios_alta' ){
+
+                $('#detalle_'+i).empty();
+                $('#detalle_'+i).append(ele.name);
+
+            }
+
+            if( i == 'usuarios_asignado' ){
+
+                $('#detalle_'+i).empty();
+                $('#detalle_'+i+'_email').empty();
+
+                $('.detalle_'+i).append(ele.name);
+                $('#detalle_'+i+'_email').append(ele.email);
+
+            }
+
+            if( i == 'archivos' ){
+
+
+
+                var archivos = '';
+
+                $.each(ele,function(j,archivo){
+
+
+                    archivos +=  '<li class="list-group-item">'+
+                                    '<a href="tareas/'+archivo.nombre_archivo+'" download>'+
+                                    '<label>'+archivo.nombre_archivo+'</label>'+
+                                    '</a>'+
+                                '</li>';
+
+                });
+
+                $('#detalle_'+i).empty();
+                $('#detalle_'+i).append(archivos);
+
+            }
+
 
 
 
