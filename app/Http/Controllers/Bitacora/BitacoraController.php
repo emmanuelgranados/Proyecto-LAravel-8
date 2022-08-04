@@ -39,7 +39,8 @@ class BitacoraController extends Controller
         $comentario['fk_id_tareas'] = $nuevaTarea->id;
         $nuevaComentario = Comentarios::create($comentario);
 
-        if( !is_null( $request->archivo  ) ){
+        if( !is_null( $request->file('archivo_tarea') ) ){
+        // if( !is_null( $request->archivo  ) ){
 
             $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
 
@@ -83,7 +84,8 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(['fk_id_tareas' => $request->tarea['id'],'fk_id_acciones_tareas' => 2]);
 
-        if( !is_null( $request->archivo  ) ){
+        if( !is_null( $request->file('archivo_tarea') ) ){
+        // if( !is_null( $request->archivo  ) ){
 
             $archivo = $request->archivo;
             $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
