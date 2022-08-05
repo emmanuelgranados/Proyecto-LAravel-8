@@ -90,7 +90,7 @@
                         </h3>
                       </div>
                     <div class="d-flex justify-content-end">
-                        @if(Auth::user()->hasRole('sistemas'))
+                        @if(Auth::user()->hasRole('sistemas') ||  Auth::user()->hasRole('socio') )
                         <button id="agregar_usuario"class="btn btn-success text-white ms-3 d-none d-md-block" data-bs-toggle="modal" data-bs-target="#add-contact"><i class="mdi mdi-account-plus"></i> Nuevo usuario </button>
                         @endif
                       </div>
