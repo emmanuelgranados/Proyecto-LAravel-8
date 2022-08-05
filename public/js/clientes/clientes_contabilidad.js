@@ -39,35 +39,42 @@ $(function () {
 
         e.preventDefault();
 
-        Swal.fire({
-            title: "¿Esta seguro que desea agregar un nuevo cliente?",
-            // text: "You won't be able to revert this!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Aceptar",
-          }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type:'POST',
-                    url:'nuevo_cliente_contabilidad',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data:datos,
-                    success:function(data){
+        var check = document.getElementById('formNuevoCliente').reportValidity();
 
-                        tabla_clientes();
-                        $('#cerrarModalNuevo').trigger("click");
-                        Swal.fire("¡Éxito!", "Se agrego un nuevo registro de cliente.", "success");
+        if (check) {
 
-                    }
-                 });
+            let datos = $(this).serialize() ;
 
-            }
-          });
+            Swal.fire({
+                title: "¿Esta seguro que desea agregar un nuevo cliente?",
+                // text: "You won't be able to revert this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Aceptar",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type:'POST',
+                        url:'nuevo_cliente_contabilidad',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data:datos,
+                        success:function(data){
 
-        let datos = $(this).serialize() ;
+                            tabla_clientes();
+                            $('#cerrarModalNuevo').trigger("click");
+                            Swal.fire("¡Éxito!", "Se agrego un nuevo registro de cliente.", "success");
+
+                        }
+                    });
+
+                }
+            });
+
+        }
+
 
       });
 

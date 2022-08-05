@@ -66,14 +66,19 @@ class GruposTrabajoController extends Controller
 
     public function actualizarGrupo( $usuariosGrupos , $grupo ){
 
-
-        $usuarios = User::where('fk_id_grupos',$grupo)->get()->toArray();
+        $usuarios = User::where('fk_id_grupos',$grupo)->pluck('id')->toArray();
 
         $diferencias = array_diff($usuariosGrupos , $usuarios);
 
         foreach( $usuariosGrupos as $usuario  ){
             User::where('id',$usuario )->update([
-                'fk_id_grupos' => 1
+                'fk_id_grupos' => $grupo
+            ]);
+        }
+
+        foreach( $diferencias  as $usuario  ){
+            User::where('id',$usuario )->update([
+                'fk_id_grupos' => 0
             ]);
         }
 
