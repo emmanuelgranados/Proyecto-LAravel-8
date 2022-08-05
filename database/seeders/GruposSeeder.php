@@ -18,50 +18,50 @@ class GruposSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('grupos')->insert([
-            'name' => 'Desarrollo',
-            'activo' => 1,
-            'eliminado' => 0,
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now(),
-        ]);
+        // DB::table('grupos')->insert([
+        //     'name' => 'Desarrollo',
+        //     'activo' => 1,
+        //     'eliminado' => 0,
+        //     'created_at'=> Carbon::now(),
+        //     'updated_at'=> Carbon::now(),
+        // ]);
 
-        DB::table('grupos')->insert([
-            'name' => 'TI',
-            'activo' => 1,
-            'eliminado' => 0,
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now(),
-        ]);
+        // DB::table('grupos')->insert([
+        //     'name' => 'TI',
+        //     'activo' => 1,
+        //     'eliminado' => 0,
+        //     'created_at'=> Carbon::now(),
+        //     'updated_at'=> Carbon::now(),
+        // ]);
 
 
-        DB::table('users_grupos')->insert([
-            'fk_id_users'=>1,
-            'fk_id_grupos'=>1,
-            'activo'=>1,
-            'eliminado'=>0
-        ]);
+        // DB::table('users_grupos')->insert([
+        //     'fk_id_users'=>1,
+        //     'fk_id_grupos'=>1,
+        //     'activo'=>1,
+        //     'eliminado'=>0
+        // ]);
 
-        DB::table('users_grupos')->insert([
-            'fk_id_users'=>2,
-            'fk_id_grupos'=>1,
-            'activo'=>1,
-            'eliminado'=>0
-        ]);
+        // DB::table('users_grupos')->insert([
+        //     'fk_id_users'=>2,
+        //     'fk_id_grupos'=>1,
+        //     'activo'=>1,
+        //     'eliminado'=>0
+        // ]);
 
-        DB::table('users_grupos')->insert([
-            'fk_id_users'=>3,
-            'fk_id_grupos'=>1,
-            'activo'=>1,
-            'eliminado'=>0
-        ]);
+        // DB::table('users_grupos')->insert([
+        //     'fk_id_users'=>3,
+        //     'fk_id_grupos'=>1,
+        //     'activo'=>1,
+        //     'eliminado'=>0
+        // ]);
 
-        DB::table('users_grupos')->insert([
-            'fk_id_users'=>4,
-            'fk_id_grupos'=>1,
-            'activo'=>1,
-            'eliminado'=>0
-        ]);
+        // DB::table('users_grupos')->insert([
+        //     'fk_id_users'=>4,
+        //     'fk_id_grupos'=>1,
+        //     'activo'=>1,
+        //     'eliminado'=>0
+        // ]);
 
 
 
