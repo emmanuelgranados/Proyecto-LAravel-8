@@ -34,23 +34,59 @@ class GruposTrabajoController extends Controller
 
      function agregar_users_grupo(Request $request){
 
-        $users = collect($request->all())->except('_token','fk_id_grupos');
 
-        $grupo = collect($request->all())->except('_token','fk_id_users');
+        foreach($request->fk_id_users as $usuario ){
 
-        //   dd($users, $grupo);
+            UsersGrupos::create(['fk_id_users' => $usuario,
+            'fk_id_grupos'=>$request->fk_id_grupos,
+            'activo'=>1]);
 
-        foreach($users as  $user){
+        }
 
-            foreach($user as $us ){
-                UsersGrupos::create(['fk_id_users' =>$us,
-                'fk_id_grupos'=>$grupo['fk_id_grupos'],
-                'activo'=>1]);
-            }
+        $this->actualizarGrupo( $request->fk_id_users , $request->fk_id_grupos );
 
-         }
+        // $users = collect($request->all())->except('_token','fk_id_grupos');
+        // $grupo = collect($request->all())->except('_token','fk_id_users');
+
+        // dd($users, $grupo);
+
+        // foreach($users as  $user){
+
+        //     foreach($user as $us ){
+        //         UsersGrupos::create(['fk_id_users' =>$us,
+        //         'fk_id_grupos'=>$grupo['fk_id_grupos'],
+        //         'activo'=>1]);
+        //     }
+
+        //  }
 
          return  "Exito";
      }
+
+
+    public function actualizarGrupo( $usuariosGrupos , $grupo ){
+
+
+        $usuarios = User::where('fk_id_grupos',$grupo)->get()->toArray();
+
+        $diferencias = array_diff($usuariosGrupos , $usuarios);
+
+        foreach( $usuariosGrupos as $usuario  ){
+            User::where('id',$usuario )->update([
+                'fk_id_grupos' => 1
+            ]);
+        }
+
+        if(  count($usuarios) > 0 ){
+            foreach( $diferencias  as $usuario  ){
+                User::where('id',$usuario )->update([
+                    'fk_id_grupos' => 0
+                ]);
+            }
+
+        }
+
+    }
+
 
 }
