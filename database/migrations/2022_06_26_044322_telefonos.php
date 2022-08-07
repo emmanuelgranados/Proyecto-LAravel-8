@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('telefonos', function (Blueprint $table) {
             $table->id();
             $table->integer('fk_id_direcciones');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
         });
     }
 

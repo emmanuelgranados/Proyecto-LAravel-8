@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fk_id_clientes');
             $table->string('calle');
             $table->string('numero_exterior');
-            $table->string('numero_interior');
+            $table->string('numero_interior')->nullable();
             $table->string('colonia');
             $table->string('fk_id_paises');
             $table->string('fk_id_estados');
