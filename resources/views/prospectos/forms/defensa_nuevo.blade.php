@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <form  class="formNuevoCliente" id="formNuevoCliente" method="POST">
+                            <form  class="formNuevoCliente needs-validation" name="formNuevoCliente" method="POST" novalidate>
                                 <input type="hidden"  id="prospecto" name="cliente[prospecto]" value="1">
                                 <input type="hidden" name="cliente[tipo_servicio]" value="2">
                                 <div class="form-body">
@@ -21,10 +21,10 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Nombre del Prospecto</label>
                                                     <div class="col-md-12">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[nombre_cliente]" placeholder="google">
-                                                    {{-- <small class="form-control-feedback">
-                                                        This is inline help
-                                                    </small> --}}
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[nombre_cliente]" placeholder="google" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta un nombre del prospecto
+                                                    </small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -33,10 +33,10 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Razón Social</label>
                                                     <div class="col-md-12">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[razon_social]" placeholder="google S.A de C.V">
-                                                    {{-- <small class="form-control-feedback">
-                                                        This is inline help
-                                                    </small> --}}
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[razon_social]" placeholder="google S.A de C.V" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta la razon social del prospecto
+                                                    </small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,10 +45,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">RFC</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[rfc]" placeholder="XAXX010101000">
-                                                    {{-- <small class="form-control-feedback">
-                                                        This field has error.
-                                                    </small> --}}
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[rfc]" placeholder="XAXX010101000" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta el RFC del prospecto
+                                                    </small>
                                                 </div>
                                             </div>
                                             </div>
@@ -60,10 +60,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Correo Electrónico</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control nuevoCliente" name="cliente[email]" placeholder="ejemplo@gmail.com">
-                                                    {{-- <small class="form-control-feedback">
-                                                        This is inline help
-                                                    </small> --}}
+                                                    <input type="text" class="form-control nuevoCliente" name="cliente[email]" placeholder="ejemplo@gmail.com" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta el correo del prospecto
+                                                    </small>
                                                 </div>
                                             </div>
                                             </div>
@@ -72,7 +72,10 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Fecha de ingreso como cliente</label>
                                                     <div class="col-md-12">
-                                                        <input type="date" class="form-control nuevoCliente" name="cliente[fecha_ingreso]">
+                                                        <input type="date" class="form-control nuevoCliente" name="cliente[fecha_ingreso]" required>
+                                                        <small class="invalid-feedback">
+                                                            Falta la fecha de ingreso del prospecto
+                                                        </small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,7 +84,10 @@
                                                 <div class="mb-3">
                                                     <label class="control-label">Personal asignado</label>
                                                     <div class="col-md-12">
-                                                        <select id="personalAsignado" name="cliente[fk_id_usuario_asignado]" class="form-control form-select"></select>
+                                                        <select id="personalAsignado" name="cliente[fk_id_usuario_asignado]" class="form-control form-select" required></select>
+                                                        <small class="invalid-feedback">
+                                                            Falta seleccionar alguien del personal
+                                                        </small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,7 +103,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Calle</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="cliente[direcciones][0][calle]" class="form-control">
+                                                    <input type="text" name="cliente[direcciones][0][calle]" class="form-control" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta la calle
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +114,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Número Exterior</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="cliente[direcciones][0][numero_exterior]" class="form-control">
+                                                    <input type="text" name="cliente[direcciones][0][numero_exterior]" class="form-control" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta el nuemero exterior
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +125,7 @@
                                             <div class="mb-3 ">
                                                 <label class="control-label">Número Interior</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="cliente[direcciones][0][numero_interior]" class="form-control">
+                                                    <input type="text" name="cliente[direcciones][0][numero_interior]" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -124,7 +136,10 @@
                                             <div class="mb-3 row">
                                                 <label class="control-label">Colonia</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="cliente[direcciones][0][colonia]" class="form-control">
+                                                    <input type="text" name="cliente[direcciones][0][colonia]" class="form-control" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta la colonia
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,11 +149,14 @@
                                             <div class="mb-3">
                                                 <label class="control-label">País</label>
                                                 <div class="col-md-12" >
-                                                    <select  id="selectPais" name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select">
+                                                    <select  id="selectPais" name="cliente[direcciones][0][fk_id_paises]"class="form-control form-select" required>
                                                         @foreach ( $paises as $pais )
                                                             <option value="{{ $pais->id }}">{{ $pais->pais }}</option>
                                                         @endforeach
                                                     </select>
+                                                    <small class="invalid-feedback">
+                                                        Falta seleccionar el país
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,11 +164,14 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Estado</label>
                                                 <div class="col-md-12">
-                                                    <select name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select estados">
+                                                    <select name="cliente[direcciones][0][fk_id_estados]" class="form-control form-select estados" required>
                                                         @foreach ( $estados as $estado )
                                                             <option value="{{ $estado->id }}">{{ $estado->estado }}</option>
                                                         @endforeach
                                                     </select>
+                                                    <small class="invalid-feedback">
+                                                        Falta seleccionar el estado
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,9 +181,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Municipio</label>
                                                 <div class="col-md-12">
-                                                    <select name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select municipios">
-
-                                                    </select>
+                                                    <select name="cliente[direcciones][0][fk_id_municipios]" class="form-control form-select municipios" required></select>
+                                                    <small class="invalid-feedback">
+                                                        Falta seleccionar el municipio
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,8 +192,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Código Postal</label>
                                                 <div class="col-md-12">
-                                                    <select name="cliente[direcciones][0][fk_id_codigos_postales]" class="form-control form-select codigosPostales">
-                                                    </select>
+                                                    <select name="cliente[direcciones][0][fk_id_codigos_postales]" class="form-control form-select codigosPostales" required></select>
+                                                    <small class="invalid-feedback">
+                                                        Falta seleccionar el codigo postal
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +205,10 @@
                                             <div class="mb-3">
                                                 <label class="control-label">Teléfono 1</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control">
+                                                    <input type="text" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control" required>
+                                                    <small class="invalid-feedback">
+                                                        Falta el telefono
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +216,7 @@
                                             <div class="mb-3">
                                                 <label class="control-label ">Teléfono 2</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control">
+                                                    <input type="text" name="cliente[direcciones][0][telefonos][][telefono]" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -204,95 +231,35 @@
                                 </div>
 
 
-                                {{-- <h4 class="card-title">Tareas Predefinidas</h4>
-                                <hr class="mt-0 mb-1"> --}}
+
                                 <div class="card-body">
                                     <div class="accordion " id="accordionPanelsStayOpenExample">
-                                        {{-- <div class="accordion-item"> --}}
                                             <h1 class="card-title">Recurso de revocación</h1>
                                             <hr class="mt-0 mb-1">
-                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaRecursoRevocacion"></div>
                                             </div>
 
                                             <h1 class="card-title">Juicio de nulidad.</h1>
                                             <hr class="mt-0 mb-1">
-                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaJucioNulidad"></div>
                                             </div>
 
                                             <h1 class="card-title">Amparo.</h1>
                                             <hr class="mt-0 mb-1">
-                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaAmparo"></div>
                                             </div>
 
                                             <h1 class="card-title">Materia Civil:</h1>
                                             <hr class="mt-0 mb-1">
-                                            {{-- <hr class="mt-0 mb-1 card w-100"> --}}
                                             <div class="card-body">
                                                 <div class="row" id="listaMateriaCivil"></div>
                                             </div>
 
-
-
-
-                                          {{-- <div id="tareasContabilidad" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
-                                            <div class="accordion-body">
-                                                <ul class="list-group" id="listaTareasContabilidad"></ul>
-                                            </div>
-
-                                          </div>
-                                        </div> --}}
-                                        {{-- <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                              Defensa
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseTwo" class="accordion-collapse collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample" style="">
-                                            <div class="accordion-body">
-                                                <ul class="list-group" id="listaTareasDefensa"></ul>
-                                            </div>
-                                          </div>
-                                        </div> --}}
                                     </div>
                                 </div>
-
-                                {{-- <h4 class="card-title">Tareas Predeterminadas</h4>
-                                <hr class="mt-0 mb-1">
-                                <div class="card-body">
-                                    <div class="accordion " id="accordionPanelsStayOpenExample">
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingOne">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tareasContabilidad" aria-expanded="false" aria-controls="tareasContabilidad">
-                                              Contabilidad
-                                            </button>
-                                          </h2>
-                                          <div id="tareasContabilidad" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
-                                            <div class="accordion-body">
-                                                <ul class="list-group" id="listaTareasContabilidad"></ul>
-                                            </div>
-
-                                          </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                              Defensa
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseTwo" class="accordion-collapse collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample" style="">
-                                            <div class="accordion-body">
-                                                <ul class="list-group" id="listaTareasDefensa"></ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                 <hr class="mt-0 mb-1">
                                 <div class="modal-footer">
