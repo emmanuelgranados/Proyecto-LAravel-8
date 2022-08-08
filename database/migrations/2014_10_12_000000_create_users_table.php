@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',250);
             $table->integer('fk_id_roles')->nullable();
-            $table->integer('fk_id_grupos')->nullable();
+            $table->integer('fk_id_grupos')->nullable()->default(0);
             $table->string('phone')->nullable();
             $table->string('message',200)->nullable();
             $table->integer('fk_id_estado')->nullable();
