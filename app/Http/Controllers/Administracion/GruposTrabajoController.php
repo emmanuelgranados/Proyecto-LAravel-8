@@ -44,12 +44,6 @@ class GruposTrabajoController extends Controller
 
        $sacarintegrantes = array_diff( $usuariosActual,$usuariosNuevo['fk_id_users'] );
 
-       //vaciar grupo
-       if(isset($request->fk_id_users)){
-        echo("QQU");
-        User::where('fk_id_grupos',$grupo['fk_id_grupos'] )->update([
-            'fk_id_grupos' => 0  ]);
-         }
 
        //INSERTAR USUARIOS AL GRUPO Y ACTUALIZA USUARIO
          if(!empty($nuevosintegrantes)){
