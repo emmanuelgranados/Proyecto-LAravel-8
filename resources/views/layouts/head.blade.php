@@ -58,4 +58,7 @@
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet" />
 
+
+     <!-- This Page CSS -->
+     <link  rel="stylesheet"  type="text/css"   href="../../assets/libs/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css"/>
 @endsection

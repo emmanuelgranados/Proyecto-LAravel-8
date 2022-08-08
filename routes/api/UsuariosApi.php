@@ -46,12 +46,29 @@ use Illuminate\Support\Facades\DB;
 
      Route::get('/lista_integrantes', function (Request $request) {
 
-        return  UsersGrupos::select('users.name','roles.name')
-                        ->leftjoin('users','users.id','=','users_grupos.fk_id_users')
-                        ->leftjoin('roles','roles.id','=','users.fk_id_roles')
-                        ->where('users_grupos.fk_id_grupos',$request->id)
-                        ->where('users_grupos.activo',1)->where('users_grupos.eliminado',0)->get();
+        return response()->json( User::select('users.id','users.name','roles.name as rol')
+        ->selectRaw('(CASE
+                      WHEN fk_id_grupos = 0 THEN "0"
+                      WHEN fk_id_grupos != 0 THEN "1"
+                      END) selected')
+        ->leftjoin('roles','roles.id','=', 'users.fk_id_roles')
+        ->leftjoin('grupos','grupos.id','=', 'users.fk_id_grupos')
+        ->where('users.eliminado',0)
+        ->where('users.id','<>',1)
+        ->whereIn('users.fk_id_grupos',[0,$request->id])
+        ->get());
  });
+
+
+ Route::get('/lista_integrantes_detalles', function (Request $request) {
+
+    return response()->json( User::select('users.id','users.name','roles.name as rol')
+    ->leftjoin('roles','roles.id','=', 'users.fk_id_roles')
+    ->leftjoin('grupos','grupos.id','=', 'users.fk_id_grupos')
+    ->where('users.eliminado',0)
+    ->whereIn('users.fk_id_grupos',[$request->id])
+    ->get());
+});
 
 
 

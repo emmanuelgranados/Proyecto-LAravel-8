@@ -25,7 +25,7 @@ class GruposTrabajoController extends Controller
 
 
     function nuevo_grupo(Request $request){
-// dd($request);
+
         Grupos::create($request->grupos);
 
         return "Exito";
@@ -35,58 +35,75 @@ class GruposTrabajoController extends Controller
      function agregar_users_grupo(Request $request){
 
 
-        foreach($request->fk_id_users as $usuario ){
+       $grupo= collect($request->all())->except('_token','fk_id_users');
 
-            UsersGrupos::create(['fk_id_users' => $usuario,
-            'fk_id_grupos'=>$request->fk_id_grupos,
+       $usuariosActual = User::where('fk_id_grupos',$grupo)->pluck('id')->toArray();
+       $usuariosNuevo= collect($request->all())->except('_token','fk_id_grupos')->toArray();
+
+       $nuevosintegrantes = array_diff($usuariosNuevo['fk_id_users'] , $usuariosActual);
+
+       $sacarintegrantes = array_diff( $usuariosActual,$usuariosNuevo['fk_id_users'] );
+
+       //vaciar grupo
+       if(isset($request->fk_id_users)){
+        echo("QQU");
+        User::where('fk_id_grupos',$grupo['fk_id_grupos'] )->update([
+            'fk_id_grupos' => 0  ]);
+         }
+
+       //INSERTAR USUARIOS AL GRUPO Y ACTUALIZA USUARIO
+         if(!empty($nuevosintegrantes)){
+
+            foreach($nuevosintegrantes as $dato ){
+
+            UsersGrupos::create(['fk_id_users' => $dato,
+            'fk_id_grupos'=>$grupo['fk_id_grupos'],
             'activo'=>1]);
 
-        }
+            User::where('id',$dato )->update([
+                'fk_id_grupos' => $grupo['fk_id_grupos']]);
+                                                    }
+            }
+         //SACA USUARIOS DEL GRUPO Y ACTUALIZA USUARIO A 0
+         if(!empty($sacarintegrantes)){
+            echo("sacar Integrantes");
 
-        $this->actualizarGrupo( $request->fk_id_users , $request->fk_id_grupos );
+            foreach($sacarintegrantes as $dato ){
 
-        // $users = collect($request->all())->except('_token','fk_id_grupos');
-        // $grupo = collect($request->all())->except('_token','fk_id_users');
+            UsersGrupos::where('fk_id_users',$dato )->update([
+            'activo'=>0,
+            'eliminado'=>1]);
 
-        // dd($users, $grupo);
+            User::where('id',$dato )->update([
+                'fk_id_grupos' => 0  ]);
+            }
 
-        // foreach($users as  $user){
+            }
 
-        //     foreach($user as $us ){
-        //         UsersGrupos::create(['fk_id_users' =>$us,
-        //         'fk_id_grupos'=>$grupo['fk_id_grupos'],
-        //         'activo'=>1]);
-        //     }
 
-        //  }
 
          return  "Exito";
      }
 
 
-    public function actualizarGrupo( $usuariosGrupos , $grupo ){
+
+     public function eliminar_grupo(Request $request){
+
+        Grupos::where('id',$request->id )->update([
+            'activo'=>0,
+            'eliminado'=>1]);
+
+        User::where('fk_id_grupos',$request->id)->update([
+                'fk_id_grupos' => 0  ]);
 
 
-        $usuarios = User::where('fk_id_grupos',$grupo)->get()->toArray();
+     }
 
-        $diferencias = array_diff($usuariosGrupos , $usuarios);
 
-        foreach( $usuariosGrupos as $usuario  ){
-            User::where('id',$usuario )->update([
-                'fk_id_grupos' => 1
-            ]);
-        }
 
-        if(  count($usuarios) > 0 ){
-            foreach( $diferencias  as $usuario  ){
-                User::where('id',$usuario )->update([
-                    'fk_id_grupos' => 0
-                ]);
-            }
-
-        }
 
     }
 
 
-}
+
+

@@ -30,6 +30,9 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.js"></script>
     <script src="../../assets/libs/fullcalendar/dist/locales/es.js"></script>
 
+        <!-- This Page JS -->
+        <script src="../../assets/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js"></script>
+        <script src="../../dist/js/pages/forms/dual-listbox/dual-listbox.js"></script>
 
 
 

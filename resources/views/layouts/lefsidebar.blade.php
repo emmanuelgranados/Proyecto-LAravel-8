@@ -45,7 +45,7 @@
                             <li class="sidebar-item">
                                 <a href="{{ route('bitacora') }}" class="sidebar-link">
                                     <i class="mdi mdi-cards-variant"></i>
-                                    <span class="hide-menu">Bitacaora</span>
+                                    <span class="hide-menu">Bitacora</span>
                                 </a>
                             </li>
                         </ul>

@@ -22,9 +22,6 @@
     @include('grupos.forms.detalle')
 </div>
 
-<div id="delete-group" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @include('grupos.forms.delete')
-</div>
 
 <div id="add-users" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     @include('grupos.forms.addusers')
@@ -86,9 +83,7 @@
 
       </div>
 
-      <footer class="footer text-center">
-        All Rights Reserved by Ample admin.
-      </footer>
+
 
     </div>
 

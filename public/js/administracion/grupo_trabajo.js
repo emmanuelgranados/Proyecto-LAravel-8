@@ -3,21 +3,6 @@ $(function () {
 tabla_grupos();
 
 
-$('#lider.select2').select2({
-    dropdownParent: $('#add-group')
-});
-
-$('#fk_id_users').select2({
-    multiple:true,
-    theme: "classic",
-    dropdownParent: $('#add-users')
-});
-
-
-
-
-
-
 
 $("#formNuevoGrupo").on("submit", function(e){
 
@@ -47,19 +32,16 @@ $("#formNuevoGrupo").on("submit", function(e){
             Swal.fire("¡Éxito!", "Se agrego un nuevo registro de usuario.", "success");
         },
         error: function(response) {
-            $('#agregar_grupo').trigger("click");
-        console.log(response.responseJSON.errors);
+                $('#agregar_grupo').trigger("click");
+                console.log(response.responseJSON.errors);
             // $( "#errors" ).append(json.errors );
+                                  }
+              });//fin ajax
 
-        }
-     });
+                         }
 
-    }
-
-  });
-
-
- });
+                          });
+});
 
 
 
@@ -70,14 +52,44 @@ $("#formNuevoGrupo").on("submit", function(e){
 function add(id){
     $("#fk_id_grupos").val(id);
 
+    var demo2 = $('.integrantes').bootstrapDualListbox({
+        nonSelectedListLabel: 'Sin Grupo de Trabajo',
+        selectedListLabel: 'Integantes',
+        preserveSelectionOnMove: 'moved',
+        moveOnSelect: true,
+        moveAllLabel: 'Mover todo',
+        removeAllLabel: 'Remover todo',
+      });
+
+      demo2.empty();
+      demo2.bootstrapDualListbox('refresh', true);
+
+    $.get( 'api/lista_integrantes',{id:id},function(data){
+        console.info(data);
+
+         $.each(data,function(i,ele){
+
+            if(ele.selected == 0){
+                var sel = '';
+            }else{
+                var sel ='selected="selected"';
+            }
+
+
+            demo2.append('<option '+sel+' value="'+ele.id+'" >'+ele.name+' '+ele.rol+'</option>');
+
+            demo2.bootstrapDualListbox('refresh', true);
+
+        });
+
+    });
+
+
 
 
     $("#formAddUsers").on("submit", function(e){
-
       e.preventDefault();
-
       let datos = $(this).serialize() ;
-
       Swal.fire({
           title: "¿Esta seguro que desea agregar un nuevos integrantes al grupo?",
           // text: "You won't be able to revert this!",
@@ -97,14 +109,13 @@ function add(id){
           success:function(data){
               tabla_grupos();
             //   tabla_integrantes();
-              $('#cerrarModalAgregarUsers').trigger("click");
+            //   $('#cerrarModalAgregarUsers').trigger("click");
               Swal.fire("¡Éxito!", "Se agrego un nuevo registro de grupos.", "success");
           },
           error: function(response) {
-              $('#agregarUsuariosG').trigger("click");
+            //   $('#agregarUsuariosG').trigger("click");
           console.log(response.responseJSON.errors);
               // $( "#errors" ).append(json.errors );
-
           }
        });
       }
@@ -147,7 +158,7 @@ function tabla_grupos(){
                const id = row.id;
                 return `<button title="Agregar Usuario" id ="agregarUsuariosG" onclick="add(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#add-users"><i class="mdi mdi-account-plus"></i></button>
                         <button title="Detalles" onclick="detalle(${id})" class="btn text-center btn-small btn-link font-weight-bold boton"  data-bs-toggle="modal" data-bs-target="#detalle-group"><i class="fa fa-users" aria-hidden="true"></i></button>
-                        <button title="Eliminar" onclick="delete(${id})" class="btn text-center btn-small btn-link font-weight-bold botoncheckdelete" data-bs-toggle="modal" data-bs-target="#delete-group"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+                        <button title="Eliminar" onclick="delete_grupo(${id})" class="btn text-center btn-small btn-link font-weight-bold botoncheckdelete" data-bs-toggle="modal" data-bs-target="#delete-group"><i class="fa fa-trash" aria-hidden="true"></i></button>`;
 
               }, title: "Acciones"}
         ],
@@ -166,15 +177,49 @@ function tabla_grupos(){
         }
 
     });
-    // $(".buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel"
-    //   ).addClass("btn btn-cyan text-white me-1");
     }
+
+
+
+    function delete_grupo(id){
+        Swal.fire({
+            title: "¿Esta seguro que quiere eliminar este grupo?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Aceptar",
+        }).then((result) => {
+        if (result.value) {
+
+            $.ajax({
+                type:'POST',
+                url:'eliminar_grupo',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{id:id},
+                success:function(data){
+                    tabla_grupos();
+
+
+                    // $('#cerrarModalEditar').trigger("click");
+                    Swal.fire("¡Éxito!", "Se elimino el grupo", "success");
+
+                }
+            });
+
+        }
+    });
+    }
+
+
+
 
     function detalle(id){
 
         $('#integrantes').empty();
 
-        $.get( 'api/lista_integrantes',{id:id},function(data){
+        $.get( 'api/lista_integrantes_detalles',{id:id},function(data){
             console.info(data);
 
             let tabla = '';

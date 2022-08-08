@@ -1,13 +1,31 @@
+<style>
+
+
+// Only included because button labels aren't showing
+
+.moveall::after {
+  content: attr(title);
+
+}
+
+
+// Custom styling form
+.form-control option {
+    padding: 10px;
+    border-bottom: 1px solid #d48815;
+}
+
+</style>
 
             <form  class="formAddUsers" id="formAddUsers" method="POST" enctype="multipart/form-data">
 
                 {{ csrf_field() }}
 
-           <div class="modal-dialog">
+           <div class="modal-dialog modal-xl">
                       <div class="modal-content">
                         <div class="modal-header d-flex align-items-center">
                           <h4 class="modal-title" id="myModalLabel">
-                            Integrantes del Grupo
+                           Agregar Integrantes al Grupo
                           </h4>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -17,14 +35,12 @@
 
                                 <input type="hidden" id="fk_id_grupos" name="fk_id_grupos" value="{{old('fk_id_grupos')}}" required/>
 
-                                <div class="mb-3">
-                                    <label for="fk_id_users" class="control-label">Intregrantes</label>
-                                    <select id="fk_id_users" name="fk_id_users[]"class="form-control select2" value="{{old('fk_id_users[]')}}"  style="height: 36px; width: 100%" required>
-                                    @foreach ($users as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
+                                <div class="card-body">
+
+                                    <select class="integrantes" name="fk_id_users[]" id="integrantes" multiple>
                                     </select>
-                                </div>
+
+                                  </div>
 
                              </div>
                           </form>

@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Administracion'], function () {
     Route::get('grupos','GruposTrabajoController@index')->name('grupos');
     Route::post('nuevo_grupo','GruposTrabajoController@nuevo_grupo')->name('nuevo_grupo');
     Route::post('agregar_users_grupo','GruposTrabajoController@agregar_users_grupo')->name('agregar_users_grupo');
+    Route::post('eliminar_grupo','GruposTrabajoController@eliminar_grupo')->name('eliminar_grupo');
 
 
 
