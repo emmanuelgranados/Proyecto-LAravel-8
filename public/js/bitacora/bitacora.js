@@ -93,10 +93,52 @@ $(function () {
 
     $("#formRechazarTarea").on("submit", function(e){
 
+            e.preventDefault();
+            let datos = $(this).serialize() ;
+            Swal.fire({
+                title: "¿Esta seguro desea rechazar la tarea?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Aceptar",
+            }).then((result) => {
+            if (result.value) {
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    type:'POST',
+                    url:'rechazar_tarea',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: formData,
+                    processData:false,
+                    contentType: false,
+                    success:function(data){
+
+                        cargarListaComentarios();
+
+                        $('#cerrarModalRechazar').trigger("click");
+                        Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+
+                        cargarListaTareasActivas($('#usuarioActivo').val());
+
+
+                    }
+                });
+
+            }
+        });
+
+    });
+
+    $("#formComentarios").on("submit", function(e){
+
         e.preventDefault();
 
         Swal.fire({
-            title: "¿Esta seguro desea rechazar la tarea?",
+            title: "¿Esta seguro que desea agregar un nuevo comentario?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -104,37 +146,34 @@ $(function () {
             cancelButtonText: "Cancelar",
             confirmButtonText: "Aceptar",
         }).then((result) => {
-        if (result.value) {
+            if (result.value) {
 
-            var formData = new FormData(this);
+                var datos = $(this).serialize() ;
 
-            $.ajax({
-                type:'POST',
-                url:'rechazar_tarea',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: formData,
-                processData:false,
-                contentType: false,
-                success:function(data){
+                console.info(datos);
 
-                    cargarListaComentarios();
+                $.ajax({
+                    type:'POST',
+                    url:'nuevo_comentarios',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: datos,
+                    success:function(data){
 
-                    $('#cerrarModalRechazar').trigger("click");
-                    Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
+                        cargarListaComentarios($('#fk_id_tareas').val());
 
-                    cargarListaTareasActivas($('#usuarioActivo').val());
+                        $('#nuevoComentario').val('');
+                        $('#cerrarModalNuevo').trigger("click");
+                        Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
+
+                        cargarListaTareasActivas($('#usuarioActivo').val());
 
 
-                }
-            });
+                    }
+                });
 
-        }
+            }
+        });
     });
-
-        let datos = $(this).serialize() ;
-
-
-      });
 
 
     $( "#fk_id_clientes" ).change(function () {
