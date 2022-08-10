@@ -51,7 +51,7 @@
                         </ul>
                     </li>
 
-                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
+                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 || Auth::user()->fk_id_roles == 3 )
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                                 aria-expanded="false">
@@ -76,7 +76,7 @@
                         </li>
                     @endif
 
-                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
+                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 || Auth::user()->fk_id_roles == 3)
                         <li class="sidebar-item">
 
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
