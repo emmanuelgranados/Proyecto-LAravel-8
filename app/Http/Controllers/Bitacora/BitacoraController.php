@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Hal\HalEmailController as Hal;
 use App\Models\TareasArchivos;
+use App\Models\User;
 
 class BitacoraController extends Controller
 {
@@ -23,8 +24,6 @@ class BitacoraController extends Controller
 
     public function index()
     {
-
-        // $this->notificacionCorreo("Hola");
 
         return view('bitacora/bitacora');
 
@@ -40,7 +39,7 @@ class BitacoraController extends Controller
         $nuevaComentario = Comentarios::create($comentario);
 
         if( !is_null( $request->file('archivo_tarea') ) ){
-        // if( !is_null( $request->archivo  ) ){
+
 
             $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
 
@@ -64,6 +63,8 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
 
+        $this->notificacionCorreo( 'nuevo' , $nuevaTarea->id );
+
         return "OK";
 
     }
@@ -85,7 +86,7 @@ class BitacoraController extends Controller
         TareasSeguimiento::create(['fk_id_tareas' => $request->tarea['id'],'fk_id_acciones_tareas' => 2]);
 
         if( !is_null( $request->file('archivo_tarea') ) ){
-        // if( !is_null( $request->archivo  ) ){
+
 
             $archivo = $request->archivo;
             $nombreArchivo = date('His').'-'.$request->file('archivo_tarea')->getClientOriginalName();
@@ -106,9 +107,9 @@ class BitacoraController extends Controller
         }
 
 
+        $this->notificacionCorreo( 'editar' , $request->tarea['id'] );
 
-
-        return "Exito papuuuus2";
+        return "Ok";
 
     }
 
@@ -119,7 +120,9 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 3]);
 
-        return "Exito papuuuus3";
+        $this->notificacionCorreo( 'eliminar' , $request->tarea['id'] );
+
+        return "Ok";
     }
 
     public function solicitarTerminarTarea( Request $request )
@@ -129,7 +132,9 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 4]);
 
-        return "Exito papuuuus3";
+        $this->notificacionCorreo( 'solicitudTerminado' , $request->id );
+
+        return "Ok";
     }
 
 
@@ -141,7 +146,9 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 5]);
 
-        return "Exito papuuuus3";
+        $this->notificacionCorreo( 'terminado' , $request->id );
+
+        return "Ok";
     }
 
     public function rechazarTarea( Request $request )
@@ -183,20 +190,74 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(['fk_id_tareas' => $request->comentario['fk_id_tareas'] ,'fk_id_acciones_tareas' => 6]);
 
-        return "Exito papuuuus3";
+        $this->notificacionCorreo( 'rechazo' , $request->comentario['fk_id_tareas']);
+
+        return "Ok";
     }
 
-    public function notificacionCorreo( $datos ){
+    public function notificacionCorreo( $accion , $fk_id_tarea ){
 
-        $mensaje= '<p>Buenos dias!  </br>
-                                Te mando la plantilla de contpaq </p>
-                                <p>Saludos!</p>
-                                <p>Atte:<strong>Hal</strong></p>
-                                ';
 
-        $correos = array('ihernandez@automatyco.com');
+        switch( $accion ){
 
-        Hal::send($correos,'Mensaje de prueba',$mensaje,'', true );
+            case 'nuevo':
+                $mensajeAccion = 'Se agrego una nueva tarea';
+                $titulo = 'Nueva tarea';
+            break;
+
+            case 'editar':
+                $mensajeAccion = 'Se edito la tarea';
+                $titulo = 'Se edito una tarea';
+            break;
+
+            case 'eliminar':
+                $mensajeAccion = 'Se elimino la tarea';
+                $titulo = 'Eliminación';
+            break;
+
+            case 'solicitudTerminado':
+                $mensajeAccion = 'Se solocito el terminado de la tarea';
+                $titulo = 'Solicitud para terminar una tarea';
+            break;
+
+            case 'terminado':
+                $mensajeAccion = 'Se termino la tarea';
+                $titulo = 'Se termino una tarea';
+            break;
+
+            case 'rechazo':
+                $mensajeAccion = 'Se rechazo la tarea';
+                $titulo = 'Rechazo de una tarea';
+            break;
+
+
+            default:
+                 $mensajeAccion = 'Error';
+            break;
+
+        }
+
+
+        $tarea = Tareas::where('id', $fk_id_tarea )->first();
+
+        $correAlta = User::where('id',$tarea['fk_id_users_alta'])->first();
+        $correAsignado = User::where('id',$tarea['fk_id_users_asignado'])->first();
+
+        // dd( $tarea,$correAlta,$correAsignado,$tarea['fk_id_users_alta']  );
+
+
+        $mensaje= '<p>Buen día! </br> </br>
+                    '. $mensajeAccion .'</br></br>
+                    '. $tarea['tarea'].'
+                    </p>
+                    <p>Saludos!</p>
+                    <p>Atte:<strong>Hal</strong></p>
+                    ';
+
+        // dd( $correAlta['email'] , $correAsignado['email']  );
+        $correos = array( $correAlta['email'] , $correAsignado['email'] );
+
+        Hal::send($correos,$titulo,$mensaje,'', false );
 
 
     }

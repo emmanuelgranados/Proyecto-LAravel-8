@@ -17,7 +17,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="mb-3">
-                                                    <label>Moritivo Del Rechazo</label>
+                                                    <label>Motivo Del Rechazo</label>
                                                     <input type="hidden" name="comentario[fk_id_users]" value="{{ Auth::user()->id }}">
                                                     <input type="hidden" id="rechazar_tarea_id" name="comentario[fk_id_tareas]">
                                                     <textarea class="form-control" rows="5" name="comentario[comentario]"></textarea>
