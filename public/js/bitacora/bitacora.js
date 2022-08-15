@@ -467,8 +467,76 @@ function cargarListaTareasActivas(id){
         $('#listaTareasActivas').append(listaTareasActivas);
         cargarListaTareas(id);
         cargarListaTareasPorTerminar(id);
+        cargarListaReasignar(id);
 
     });
+
+}
+
+function cargarListaReasignar(fk_id_users){
+
+    $('#zero_config3').empty();
+
+    $('#zero_config3').DataTable({
+        searchDelay: 400,
+        ajax: {
+            url: "api/obtener_lista_tareas_pendientes?fk_id_users="+fk_id_users,
+            dataSrc: function(json){
+                return json;
+            }
+        },
+        // order: [[0, 'asc']],
+        // ordering:true,
+        columns:[
+            //   { data: "id", defaultContent: "---", title: "#2" },
+              { data: "clientes.nombre_cliente", defaultContent: "---", title: "Cliente" },
+              { data: "tarea", defaultContent: "---", title: "Tarea" },
+              { data: "prioridades.prioridad", defaultContent: "---", title: "Prioridad" },
+              { data: "usuarios_alta.name", defaultContent: "---", title: "Asigno" },
+            //   { data: "usuarios_asignado.name", defaultContent: "---", title: "Realiza" },
+              { data: "fecha_inicio", defaultContent: "---", title: "Fecha Inicio" },
+            //   { data: "fecha_final", defaultContent: "---", title: "Fecha Final" },
+              { data: "estatus.estatus", defaultContent: "---", title: "Estatus"  },
+              {data:function(row, type){
+
+
+                 return  '<select class="form-select category-select" id="exampleFormControlSelect1">'+
+                 '<option>Modulator</option>'+
+                 '<option>Admin</option>'+
+                 '<option>User</option>'+
+                 '<option>Subscriber</option>'+
+                 '</select>';
+
+               },
+               title: "Personal para Reasignar"},
+              {data:function(row, type){
+
+
+                return '<div class="button-group d-flex align-items-center">'+
+                '<a href="javascript:void(0)" class="text-info edit"><button class="btn btn-outline-info btn-rounded mb-3">'+
+                'Reasignar'+
+                '</button></a>'+
+                '</div>';
+
+              },
+              title: "Acciones"}
+        ],
+        aLengthMenu: [
+            [25, 50, 100, 200, -1],
+            [25, 50, 100, 200, 'All']
+        ],
+        destroy: true,
+        paging:true,
+        info:true,
+        // responsive: true,
+        // dom: "Bfrtip",
+        // buttons: ["copy", "csv", "excel", "pdf", "print"],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        }
+
+    });
+
 
 }
 

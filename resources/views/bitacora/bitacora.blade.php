@@ -126,7 +126,19 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Reasignar Tareas</h4>
+                                <div class="table-responsive mt-4">
+                                    <table id="zero_config3" class="table table-bordered no-wrap fs-3 display" style="width:100%"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
