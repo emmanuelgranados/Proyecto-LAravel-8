@@ -316,6 +316,59 @@ $(function () {
 
 });
 
+
+cargarGruposUsuarios();
+
+function cargarGruposUsuarios(fk_id_grupos = null){
+
+    // $('#listaUsuariosGrupo').empty();
+    // $('#fk_id_users_asignado').empty();
+    // $('#editar_fk_id_users_asignado').empty();
+    // $('#fk_id_users_asignado').empty();
+
+    if( fk_id_grupos == null ){
+        fk_id_grupos = 1;
+    }
+
+
+    $.get( 'api/obtener_grupos_usuarios',{ fk_id_grupos:fk_id_grupos },function(data){
+
+        console.info('Aqui ando!!!',data);
+
+        $.each(data,function());
+
+        // let listaUsuariosGrupo = '';
+        // let selectUsuarios = '';
+
+        // $('#listaTareasActivas').empty();
+
+        // $.each(data,function(i,ele){
+
+        //     listaUsuariosGrupo += '<li class="mb-3">'+
+        //                             '<a href="javascript:void(0)" onclick="cargarListaTareasActivas('+ ele.id +')">'+
+        //                                 '<div class="d-flex align-items-center">'+
+        //                                     '<img src="../../assets/images/users/1.jpg" class="rounded-circle" width="40">'+
+        //                                     '<div class="ms-3">'+
+        //                                         '<h5 class="mb-0">'+ ele.name +'</h5>'+
+        //                                         '<small class="text-success">'+ ele.roles.name +'</small>'+
+        //                                     '</div>'+
+
+        //                                 '</div>'+
+        //                             '</a>'+
+        //                         '</li>';
+
+        //     selectUsuarios += '<option value="'+ ele.id +'">'+ ele.name +'</option>';
+
+
+        // });
+        // $('#listaUsuariosGrupo').append(listaUsuariosGrupo);
+        // $('#fk_id_users_asignado').append(selectUsuarios);
+        // $('#editar_fk_id_users_asignado').append(selectUsuarios);
+
+    });
+}
+
+
 cargarUsuarios();
 
 function cargarUsuarios(fk_id_grupos = null){
@@ -501,11 +554,11 @@ function cargarListaReasignar(fk_id_users){
 
 
                  return  '<select class="form-select category-select" id="exampleFormControlSelect1">'+
-                 '<option>Modulator</option>'+
-                 '<option>Admin</option>'+
-                 '<option>User</option>'+
-                 '<option>Subscriber</option>'+
-                 '</select>';
+                            '<option>Modulator</option>'+
+                            '<option>Admin</option>'+
+                            '<option>User</option>'+
+                            '<option>Subscriber</option>'+
+                        '</select>';
 
                },
                title: "Personal para Reasignar"},

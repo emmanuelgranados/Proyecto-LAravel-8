@@ -22,6 +22,9 @@ class Grupos extends Model
         'updated_at'
     ];
 
-
+    public function usuarios()
+    {
+        return $this->hasMany(User::class,'fk_id_grupos','id');
+    }
 
 }
