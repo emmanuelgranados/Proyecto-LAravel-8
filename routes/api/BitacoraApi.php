@@ -34,7 +34,6 @@ Route::get('/obtener_grupos_usuarios', function (Request $request) {
     //         break;
     // }
 
-    dd($grupos);
     return $grupos;
 });
 
