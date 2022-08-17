@@ -18,7 +18,22 @@ class TareasSeguimiento extends Model
     protected $fillable = [
         'fk_id_tareas',
         'fk_id_acciones_tareas',
+        'fecha',
+        'fk_id_clientes',
+        'fk_id_prioridades',
+        'fk_id_users',
+        'fk_id_users_alta',
+        'fk_id_users_asignado',
+        'fecha_inicio',
+        'fecha_final',
         'fecha_registro',
+        'fk_id_sub_tareas_predefinidas',
+        'fk_id_obligaciones',
+        'fk_id_tareas_estandar',
+        'fecha_sub_tarea',
+        'sub_tarea',
+        'fk_id_estatus',
+        'eliminado'
      ];
 
 

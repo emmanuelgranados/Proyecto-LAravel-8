@@ -13,29 +13,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/obtener_grupos_usuarios', function (Request $request) {
-
-    // $grupos = Auth::user();
-
-    $grupos = Grupos::with('usuarios')->get()->toArray();
-
-    // switch( $usuario->fk_id_roles  ){
-    //     case 1:
-    //     case 2:
-    //         $usuarios = Grupos::wuth('usuarios')->get();
-    //         break;
-
-    //     case 3:
-    //         $usuarios = User::with('roles')->where('fk_id_grupos',$usuario->fk_id_grupos)->get();
-    //         break;
-
-    //     case 4:
-    //         $usuarios = User::with('roles')->where('id',$usuario->id)->get();
-    //         break;
-    // }
-
-    return $grupos;
-});
 
 
 Route::get('/obtener_usuarios_grupos', function (Request $request) {

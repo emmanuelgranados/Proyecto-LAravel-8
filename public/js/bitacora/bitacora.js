@@ -901,9 +901,6 @@ function cargarDetalleTarea(id){
 
         });
 
-
-        // $('#editarCampoDinamico').empty();
-        // $('#editarCampoDinamico').append(campoDinamico);
     });
 
 

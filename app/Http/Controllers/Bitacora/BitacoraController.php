@@ -61,7 +61,14 @@ class BitacoraController extends Controller
 
         }
 
-        TareasSeguimiento::create(['fk_id_tareas' => $nuevaTarea->id ,'fk_id_acciones_tareas' => 1]);
+        $tareaSeguiminto = $request->tarea ;
+
+        $tareaSeguiminto['fk_id_tareas'] = $nuevaTarea->id ;
+        $tareaSeguiminto['fk_id_acciones_tareas'] = 1 ;
+        $tareaSeguiminto['fk_id_users'] = Auth::user()->id;
+
+
+        TareasSeguimiento::create(  $tareaSeguiminto  );
 
         $this->notificacionCorreo( 'nuevo' , $nuevaTarea->id );
 
@@ -83,7 +90,16 @@ class BitacoraController extends Controller
 
         Tareas::where('id',$request->tarea['id'])->update($request->tarea );
 
-        TareasSeguimiento::create(['fk_id_tareas' => $request->tarea['id'],'fk_id_acciones_tareas' => 2]);
+        $tareaSeguiminto = $request->tarea ;
+
+        $tareaSeguiminto['fk_id_tareas'] = $request->tarea['id'] ;
+        $tareaSeguiminto['fk_id_acciones_tareas'] = 2 ;
+        $tareaSeguiminto['fk_id_users'] = Auth::user()->id;
+
+
+        TareasSeguimiento::create(  $tareaSeguiminto  );
+
+        // TareasSeguimiento::create(['fk_id_tareas' => $request->tarea['id'],'fk_id_acciones_tareas' => 2]);
 
         if( !is_null( $request->file('archivo_tarea') ) ){
 
@@ -118,7 +134,15 @@ class BitacoraController extends Controller
 
         Tareas::where('id',$request->id)->update( ['eliminado' => 1 ] );
 
-        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 3]);
+        // $tareaSeguiminto = $request->tarea ;
+
+        $tareaSeguiminto['fk_id_tareas'] =  $request->id ;
+        $tareaSeguiminto['fk_id_acciones_tareas'] = 3 ;
+        $tareaSeguiminto['fk_id_users'] = Auth::user()->id;
+
+        TareasSeguimiento::create(  $tareaSeguiminto  );
+
+        // TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 3]);
 
         $this->notificacionCorreo( 'eliminar' , $request->tarea['id'] );
 
@@ -130,7 +154,15 @@ class BitacoraController extends Controller
 
         Tareas::where('id',$request->id)->update( ['fk_id_estatus' => 4 ] );
 
-        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 4]);
+        // $tareaSeguiminto = $request->tarea ;
+
+        $tareaSeguiminto['fk_id_tareas'] =  $request->id ;
+        $tareaSeguiminto['fk_id_acciones_tareas'] = 4 ;
+        $tareaSeguiminto['fk_id_users'] = Auth::user()->id;
+
+        TareasSeguimiento::create(  $tareaSeguiminto  );
+
+        // TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 4]);
 
         $this->notificacionCorreo( 'solicitudTerminado' , $request->id );
 
@@ -144,7 +176,15 @@ class BitacoraController extends Controller
         // Tareas::where('id',$request->id)->update( ['eliminado' => 1 ] );
         Tareas::where('id',$request->id)->update( ['fk_id_estatus' => 3 ] );
 
-        TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 5]);
+        // $tareaSeguiminto = $request->tarea ;
+
+        $tareaSeguiminto['fk_id_tareas'] =  $request->id ;
+        $tareaSeguiminto['fk_id_acciones_tareas'] = 5 ;
+        $tareaSeguiminto['fk_id_users'] = Auth::user()->id;
+
+        TareasSeguimiento::create(  $tareaSeguiminto  );
+
+        // TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 5]);
 
         $this->notificacionCorreo( 'terminado' , $request->id );
 
@@ -188,7 +228,15 @@ class BitacoraController extends Controller
 
         }
 
-        TareasSeguimiento::create(['fk_id_tareas' => $request->comentario['fk_id_tareas'] ,'fk_id_acciones_tareas' => 6]);
+        // $tareaSeguiminto = $request->tarea ;
+
+        $tareaSeguiminto['fk_id_tareas'] =  $request->comentario['fk_id_tareas'] ;
+        $tareaSeguiminto['fk_id_acciones_tareas'] = 6 ;
+        $tareaSeguiminto['fk_id_users'] = Auth::user()->id;
+
+        TareasSeguimiento::create(  $tareaSeguiminto  );
+
+        // TareasSeguimiento::create(['fk_id_tareas' => $request->comentario['fk_id_tareas'] ,'fk_id_acciones_tareas' => 6]);
 
         $this->notificacionCorreo( 'rechazo' , $request->comentario['fk_id_tareas']);
 
