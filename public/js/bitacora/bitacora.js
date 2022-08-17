@@ -317,48 +317,6 @@ $(function () {
 });
 
 
-
-
-function cargarGruposUsuarios(fk_id_grupos = null){
-
-
-
-    if( fk_id_grupos == null ){
-        fk_id_grupos = 1;
-    }
-
-    var result = '';
-
-    $.get( 'api/obtener_grupos_usuarios',{ fk_id_grupos:fk_id_grupos },function(data){
-
-        var nombreGrupo = '';
-
-        $.each(data,function(i,ele){
-
-            var usuarios = '';
-
-            $.each(data,function(j,ele2){
-
-                usuarios += '<option value="'+ ele2.id +'">'+ ele2.name +'</option>';
-
-            });
-
-            nombreGrupo += '<optgroup label="'+ ele.name +'">'+usuarios+'</optgroup>';
-
-        });
-
-        result = nombreGrupo;
-
-        console.info('Aqui ando X3!!!!',result);
-
-    });
-
-    console.info('Aqui ando X4!!!!',result);
-
-    return data;
-}
-
-
 cargarUsuarios();
 
 function cargarUsuarios(fk_id_grupos = null){
@@ -542,22 +500,31 @@ function cargarListaReasignar(fk_id_users){
               { data: "estatus.estatus", defaultContent: "---", title: "Estatus"  },
               {data:function(row, type){
 
-                  var opciones = cargarGruposUsuarios();
+                const id = row.id;
 
-                  console.info('Aqui ando X2',opciones);
+                let botonAcciones =  (document.getElementById('nuevaTareaPredefinida') == null ) ? '' : '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">'+
+                                                                                         '<li>'+
+                                                                                             '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_detalle_tareas" onclick="cargarDetalleTarea('+ id +')">Detalle</a>'+
+                                                                                         '</li>'+
+                                                                                         '<li>'+
+                                                                                             '<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info-header-modal-2" onclick="cargarInfoTarea('+id+')">Editar</a>'+
+                                                                                         '</li>'+
+                                                                                         '<li>'+
+                                                                                             '<a class="dropdown-item" onclick="eliminarTarea('+ id +')">Borrar</a>'+
+                                                                                         '</li>'+
+                                                                                     '</ul>';
 
-                 return  '<select class="form-select category-select">'+ opciones +'</select>';
 
-               },
-               title: "Personal para Reasignar"},
-              {data:function(row, type){
-
-
-                return '<div class="button-group d-flex align-items-center">'+
-                '<a href="javascript:void(0)" class="text-info edit"><button class="btn btn-outline-info btn-rounded mb-3">'+
-                'Reasignar'+
-                '</button></a>'+
-                '</div>';
+                 return  '<div class="dropdown dropstart">'+
+                                                 '<a href="table-basic.html#" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">'+
+                                                     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal feather-sm">'+
+                                                         '<circle cx="12" cy="12" r="1"></circle>'+
+                                                         '<circle cx="19" cy="12" r="1"></circle>'+
+                                                         '<circle cx="5" cy="12" r="1"></circle>'+
+                                                     '</svg>'+
+                                                 '</a>'+
+                                                 botonAcciones+
+                                             '</div>';
 
               },
               title: "Acciones"}
