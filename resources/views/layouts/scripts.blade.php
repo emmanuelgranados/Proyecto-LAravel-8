@@ -65,6 +65,8 @@
     <script src="../../assets/libs/select2/dist/js/select2.min.js"></script>
     <script src="../../dist/js/pages/forms/select2/select2.init.js"></script>
 
+    <script src="../../assets/libs/block-ui/jquery.blockUI.js"></script>
+
 
     <script>
       $("#calendar").fullCalendar("option", "height", 650);

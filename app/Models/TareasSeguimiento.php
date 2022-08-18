@@ -37,5 +37,9 @@ class TareasSeguimiento extends Model
      ];
 
 
+    public function acciones(){
+        return $this->hasOne( AccionesTareas::class,'id','fk_id_acciones_tareas' );
+    }
+
 }
 

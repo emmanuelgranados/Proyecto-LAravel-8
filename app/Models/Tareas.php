@@ -74,5 +74,9 @@ class Tareas extends Model
         return $this->hasMany( TareasArchivos::class,'fk_id_tareas','id' );
     }
 
+    public function seguimiento(){
+        return $this->hasMany( TareasSeguimiento::class,'fk_id_tareas','id' );
+    }
+
 }
 

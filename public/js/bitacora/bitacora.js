@@ -1,6 +1,25 @@
 
 $(function () {
 
+    $(document).ajaxStart(function(){
+        $.blockUI({
+            message: '<i class="fas fa-spin fa-sync text-white"></i>',
+            overlayCSS: {
+            backgroundColor: "#000",
+            opacity: 0.5,
+            cursor: "wait",
+        },
+        css: {
+            border: 0,
+            padding: 0,
+            color: "#333",
+            backgroundColor: "transparent",
+        }
+        });
+    });
+
+    $(document).ajaxStop($.unblockUI);
+
     $("#formNuevaTarea").on("submit", function(e){
 
         e.preventDefault();
@@ -9,7 +28,6 @@ $(function () {
 
         Swal.fire({
             title: "¿Esta seguro que desea agregar una nueva tarea?",
-            // text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -18,6 +36,9 @@ $(function () {
             confirmButtonText: "Aceptar",
           }).then((result) => {
             if (result.value) {
+
+                $('#cerrarModalNuevo').trigger("click");
+
                 $.ajax({
                     type:'POST',
                     url:'nueva_tarea',
@@ -26,16 +47,13 @@ $(function () {
                     processData:false,
                     contentType: false,
                     success:function(data){
-                        console.log("Aqui ando !!!",data);
+
                         cargarListaComentarios();
-                        $('#cerrarModalNuevo').trigger("click");
                         Swal.fire("¡Éxito!", "Se agrego una nueva tarea.", "success");
 
                     },
                     error: function (e) {
-
                         mensajeError();
-
                     }
                  });
             }
@@ -61,7 +79,7 @@ $(function () {
             if (result.value) {
 
                 var formData = new FormData(this);
-
+                $('#cerrarModalEditar').trigger("click");
                 $.ajax({
                     type:'POST',
                     url:'editar_tarea',
@@ -72,17 +90,12 @@ $(function () {
                     success:function(data){
 
                         let usuariosAsignado = $('#editar_fk_id_users_asignado').val();
-
                         cargarListaTareasActivas(usuariosAsignado);
-
-                        $('#cerrarModalEditar').trigger("click");
                         Swal.fire("¡Éxito!", "Se modifico la información de la tarea.", "success");
 
                     },
                     error: function (e) {
-
                         mensajeError();
-
                     }
                 });
 
@@ -107,6 +120,7 @@ $(function () {
             if (result.value) {
 
                 var formData = new FormData(this);
+                $('#cerrarModalRechazar').trigger("click");
 
                 $.ajax({
                     type:'POST',
@@ -119,7 +133,7 @@ $(function () {
 
                         cargarListaComentarios();
 
-                        $('#cerrarModalRechazar').trigger("click");
+
                         Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
 
                         cargarListaTareasActivas($('#usuarioActivo').val());
@@ -326,6 +340,10 @@ function cargarUsuarios(fk_id_grupos = null){
     $('#editar_fk_id_users_asignado').empty();
     $('#fk_id_users_asignado').empty();
 
+    $('#zero_config1').empty();
+    $('#zero_config2').empty();
+    $('#zero_config3').empty();
+
     if( fk_id_grupos == null ){
         fk_id_grupos = 1;
     }
@@ -408,8 +426,6 @@ function cargarGrupos(){
         });
 
     }
-
-
 
 }
 
@@ -799,9 +815,9 @@ function cargarInfoTarea(id){
 function cargarDetalleTarea(id){
 
     $.get('api/detalle_tarea',{id:id},function(data){
-        console.info(data);
+
         $.each(data,function(i,ele){
-            // console.info(i,ele);
+
             $('#detalle_'+i).empty();
             $('#detalle_'+i).append(ele);
 
@@ -873,8 +889,6 @@ function cargarDetalleTarea(id){
 
             if( i == 'archivos' ){
 
-
-
                 var archivos = '';
 
                 $.each(ele,function(j,archivo){
@@ -893,11 +907,34 @@ function cargarDetalleTarea(id){
 
             }
 
+            if( i == 'seguimiento' ){
 
+                var seguimiento = '';
 
+                $.each(ele,function(j,detalle){
 
+                    console.info(detalle);
+                    seguimiento +=  '<div class="sl-item">'+
+                                        '<div class="sl-left">'+
+                                            '<button type="button" class="btn btn-success btn-circle btn-circle text-white">'+
+                                                '<i class="ti-user"></i>'+
+                                            '</button>'+
+                                        '</div>'+
+                                        '<div class="sl-right">'+
+                                            '<div class="d-flex align-items-center">'+
+                                                '<h5 class="mb-0">'+ detalle.acciones.accion_tarea +'</h5>'+
+                                                '<span class="sl-date ms-2">'+detalle.fecha+'</span>'+
+                                            '</div>'+
+                                            '<p class="mt-1">Contrary to popular belief</p>'+
+                                        '</div>'+
+                                    '</div>';
 
+                });
 
+                $('#detalle_'+i).empty();
+                $('#detalle_'+i).append(seguimiento);
+
+            }
 
         });
 
