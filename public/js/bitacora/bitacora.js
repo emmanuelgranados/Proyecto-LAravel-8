@@ -815,7 +815,7 @@ function cargarInfoTarea(id){
 function cargarDetalleTarea(id){
 
     $.get('api/detalle_tarea',{id:id},function(data){
-
+        console.info(data);
         $.each(data,function(i,ele){
 
             $('#detalle_'+i).empty();
@@ -880,6 +880,8 @@ function cargarDetalleTarea(id){
             if( i == 'usuarios_asignado' ){
 
                 $('#detalle_'+i).empty();
+                $('.detalle_'+i).empty();
+
                 $('#detalle_'+i+'_email').empty();
 
                 $('.detalle_'+i).append(ele.name);
@@ -913,6 +915,18 @@ function cargarDetalleTarea(id){
 
                 $.each(ele,function(j,detalle){
 
+                    let textoDetalle = '';
+
+                    if( detalle.usuarios_alta != null ){
+                        textoDetalle += '<p class="mt-1">Creo: '+ detalle.usuarios_alta.name +' </p>';
+                    }
+                    if( detalle.usuarios_asignado != null ){
+                        textoDetalle += '<p class="mt-1">Usuario Asignado: '+ detalle.usuarios_asignado.name +' </p>';
+                    }
+                    if( detalle.usuarios != null ){
+                        textoDetalle += '<p class="mt-1">Modifico: '+ detalle.usuarios.name +' </p>';
+                    }
+
                     console.info(detalle);
                     seguimiento +=  '<div class="sl-item">'+
                                         '<div class="sl-left">'+
@@ -925,7 +939,7 @@ function cargarDetalleTarea(id){
                                                 '<h5 class="mb-0">'+ detalle.acciones.accion_tarea +'</h5>'+
                                                 '<span class="sl-date ms-2">'+detalle.fecha+'</span>'+
                                             '</div>'+
-                                            '<p class="mt-1">Contrary to popular belief</p>'+
+                                            textoDetalle+
                                         '</div>'+
                                     '</div>';
 

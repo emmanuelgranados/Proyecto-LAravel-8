@@ -41,5 +41,18 @@ class TareasSeguimiento extends Model
         return $this->hasOne( AccionesTareas::class,'id','fk_id_acciones_tareas' );
     }
 
+    public function usuariosAlta(){
+        return $this->belongsTo( User::class,'fk_id_users_alta','id' );
+    }
+
+    public function usuariosAsignado(){
+        return $this->belongsTo( User::class,'fk_id_users_asignado','id' );
+    }
+
+    public function usuarios(){
+        return $this->belongsTo( User::class,'fk_id_users','id' );
+    }
+
+
 }
 
