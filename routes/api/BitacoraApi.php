@@ -188,7 +188,7 @@ Route::get('/obtener_lista_comentarios', function (Request $request) {
 
 Route::get('/obtener_grupos', function (Request $request) {
 
-    $grupos = Grupos::get();
+    $grupos = Grupos::where('eliminado',0)->get();
 
     return $grupos;
 

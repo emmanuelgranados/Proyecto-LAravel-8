@@ -60,7 +60,7 @@
             <div class="col-lg-12 col-md-8">
               <div class="card-body">
                 <div class="row mb-4">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <h3 class="font-weight-medium">
                         Usuarios / Grupos
                         </h3>
