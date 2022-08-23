@@ -1028,9 +1028,7 @@ function eliminarTarea(id){
                 data:{id:id},
                 success:function(data){
 
-                    let usuariosAsignado = $('#editar_fk_id_users_asignado').val();
-
-                    cargarListaTareasActivas(usuariosAsignado);
+                    cargarListaTareasActivas($('#editar_fk_id_users_asignado').val());
 
                     $('#cerrarModalEditar').trigger("click");
                     Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
@@ -1078,37 +1076,7 @@ function rechazarTarea(id){
 
     $('#rechazar_tarea_id').val(id);
 
-    // Swal.fire({
-    //         title: "¿Esta seguro desea rechazar la tarea?",
-    //         type: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         cancelButtonText: "Cancelar",
-    //         confirmButtonText: "Aceptar",
-    //     }).then((result) => {
-    //     if (result.value) {
 
-    //         $.ajax({
-    //             type:'POST',
-    //             url:'rechazar_tarea',
-    //             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    //             data:{id:id},
-    //             success:function(data){
-
-    //                 cargarListaComentarios();
-
-    //                 $('#cerrarModalEditar').trigger("click");
-    //                 Swal.fire("¡Éxito!", "Se elimino el registro de la tarea.", "success");
-
-    //                 cargarListaTareasActivas($('#usuarioActivo').val());
-
-
-    //             }
-    //         });
-
-    //     }
-    // });
 }
 
 

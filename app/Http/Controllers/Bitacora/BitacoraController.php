@@ -131,10 +131,8 @@ class BitacoraController extends Controller
 
     public function eliminarTarea( Request $request )
     {
-
         Tareas::where('id',$request->id)->update( ['eliminado' => 1 ] );
 
-        // $tareaSeguiminto = $request->tarea ;
 
         $tareaSeguiminto['fk_id_tareas'] =  $request->id ;
         $tareaSeguiminto['fk_id_acciones_tareas'] = 3 ;
@@ -142,9 +140,7 @@ class BitacoraController extends Controller
 
         TareasSeguimiento::create(  $tareaSeguiminto  );
 
-        // TareasSeguimiento::create(['fk_id_tareas' => $request->id ,'fk_id_acciones_tareas' => 3]);
-
-        $this->notificacionCorreo( 'eliminar' , $request->tarea['id'] );
+        $this->notificacionCorreo( 'eliminar' , $request->id );
 
         return "Ok";
     }
