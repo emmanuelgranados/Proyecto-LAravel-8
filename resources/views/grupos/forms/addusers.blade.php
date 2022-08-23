@@ -37,7 +37,7 @@
 
                                 <div class="card-body">
 
-                                    <select class="integrantes" name="fk_id_users[]" id="integrantes" multiple>
+                                    <select class="integrantes" name="fk_id_users[]" id="integrantess" multiple>
                                     </select>
 
                                   </div>

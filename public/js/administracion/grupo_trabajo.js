@@ -6,9 +6,11 @@ tabla_grupos();
 
 $("#formNuevoGrupo").on("submit", function(e){
 
+
     e.preventDefault();
 
     let datos = $(this).serialize() ;
+
 
     Swal.fire({
         title: "¿Esta seguro que desea agregar un nuevo grupo de trabajo?",
@@ -65,7 +67,7 @@ function add(id){
       demo2.bootstrapDualListbox('refresh', true);
 
     $.get( 'api/lista_integrantes',{id:id},function(data){
-        console.info(data);
+        // console.info(data);
 
          $.each(data,function(i,ele){
 
@@ -89,37 +91,83 @@ function add(id){
 
     $("#formAddUsers").on("submit", function(e){
       e.preventDefault();
+
+
       let datos = $(this).serialize() ;
-      Swal.fire({
-          title: "¿Esta seguro que desea agregar un nuevos integrantes al grupo?",
-          // text: "You won't be able to revert this!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Aceptar",
-        }).then((result) => {
-          if (result.value) {
-          $.ajax({
-           type:'POST',
-          url:'agregar_users_grupo',
-          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-          data:datos,
-          success:function(data){
-              tabla_grupos();
-            //   tabla_integrantes();
-            //   $('#cerrarModalAgregarUsers').trigger("click");
-              Swal.fire("¡Éxito!", "Se agrego un nuevo registro de grupos.", "success");
-          },
-          error: function(response) {
-            //   $('#agregarUsuariosG').trigger("click");
-          console.log(response.responseJSON.errors);
-              // $( "#errors" ).append(json.errors );
-          }
-       });
-      }
-    });
+
+var inte = $('#integrantess').val();
+
+if(inte.length == 0){
+    Swal.fire({
+        title: "¿Esta seguro que desea vaciar el grupo?",
+        // text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+      }).then((result) => {
+       if (result.value) {
+        $.ajax({
+         type:'POST',
+        url:'vaciar_users_grupo',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:datos,
+        success:function(data){
+            tabla_grupos();
+          //   tabla_integrantes();
+          //   $('#cerrarModalAgregarUsers').trigger("click");
+            Swal.fire("¡Éxito!", "Se agrego un nuevo registro de grupos.", "success");
+        },
+        error: function(response) {
+          //   $('#agregarUsuariosG').trigger("click");
+        console.log(response.responseJSON.errors);
+            // $( "#errors" ).append(json.errors );
+        }
+     });
+    }
+  });
+
+
+    }else{
+
+Swal.fire({
+    title: "¿Esta seguro que desea agregar un nuevos integrantes al grupo?",
+    // text: "You won't be able to revert this!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Aceptar",
+  }).then((result) => {
+   if (result.value) {
+    $.ajax({
+     type:'POST',
+    url:'agregar_users_grupo',
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    data:datos,
+    success:function(data){
+        tabla_grupos();
+      //   tabla_integrantes();
+      //   $('#cerrarModalAgregarUsers').trigger("click");
+        Swal.fire("¡Éxito!", "Se agrego un nuevo registro de grupos.", "success");
+    },
+    error: function(response) {
+      //   $('#agregarUsuariosG').trigger("click");
+    console.log(response.responseJSON.errors);
+        // $( "#errors" ).append(json.errors );
+    }
+ });
+}
+});
+    }
+
+    // console.log($('#integrantess').val());
+
+
+
 
    });
   }
@@ -220,7 +268,7 @@ function tabla_grupos(){
         $('#integrantes').empty();
 
         $.get( 'api/lista_integrantes_detalles',{id:id},function(data){
-            console.info(data);
+            // console.info(data);
 
             let tabla = '';
 

@@ -30,10 +30,7 @@
                                  </div>
                                </ul>
                         </div>
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-info waves-effect" data-bs-dismiss="modal"> Guardar</button>
-                          <button type="button"  id="cerrarModalNuevo" class="btn btn-default waves-effect" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
+
                       </div>
                       <!-- /.modal-content -->
                     </div>

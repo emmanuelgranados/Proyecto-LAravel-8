@@ -94,6 +94,14 @@ class GruposTrabajoController extends Controller
      }
 
 
+     public function vaciar_users_grupo(Request $request){
+
+        User::where('fk_id_grupos',$request->fk_id_grupos)->update([
+                    'fk_id_grupos' => 0  ]);
+
+     }
+
+
 
 
     }
