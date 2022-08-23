@@ -22,15 +22,15 @@ Route::get('/obtener_usuarios_grupos', function (Request $request) {
     switch( $usuario->fk_id_roles  ){
         case 1:
         case 2:
-            $usuarios = User::with('roles')->where('fk_id_grupos',$request->fk_id_grupos)->get();
+            $usuarios = User::with('roles')->where('fk_id_grupos',$request->fk_id_grupos)->where('fk_id_grupos','<>',0)->get();
             break;
 
         case 3:
-            $usuarios = User::with('roles')->where('fk_id_grupos',$usuario->fk_id_grupos)->get();
+            $usuarios = User::with('roles')->where('fk_id_grupos',$usuario->fk_id_grupos)->where('fk_id_grupos','<>',0)->get();
             break;
 
         case 4:
-            $usuarios = User::with('roles')->where('id',$usuario->id)->get();
+            $usuarios = User::with('roles')->where('id',$usuario->id)->where('fk_id_grupos','<>',0)->get();
             break;
     }
 
