@@ -441,7 +441,7 @@ function cargarListaTareasActivas(id){
     $.get( 'api/obtener_lista_tareas_activas',{fk_id_users:id},function(data){
 
         let listaTareasActivas = '';
-
+        console.info(data);
         $.each(data,function(i,ele){
 
             if( ele.fk_id_prioridades == 1 ){
@@ -461,7 +461,7 @@ function cargarListaTareasActivas(id){
 
             listaTareasActivas += '<div class="d-flex flex-row comment-row border-bottom p-3">'+
                                     '<div class="comment-text w-100 p-3">'+
-                                        '<h5 class="font-weight-medium"><a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.tarea +'</span></a></h5>'+
+                                        '<h5 class="font-weight-medium"><a href="#" onclick="cargarListaComentarios('+ ele.id +');"><span>'+ ele.clientes.nombre_cliente +' - '+ ele.tarea +'</span></a></h5>'+
                                         '<p class="mb-1 fs-3 text-muted">'+subTareas+'</p>'+
                                         '<div class="comment-footer mt-2">'+
                                         ' <div class="d-flex align-items-center">'+

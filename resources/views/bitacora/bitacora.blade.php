@@ -49,6 +49,7 @@
 
                     @include('bitacora.forms.detalle_tarea')
 
+
                 </div>
             </div>
 
@@ -83,6 +84,7 @@
                             <div class="card">
                                 <div class="card-body">
                                   <h4 class="card-title">Lista de Taras Activas</h4>
+                                  <h5 class="card-title" id="titulocliente"></h5>
                                 </div>
                                 <div class="comment-widgets scrollable mb-2 common-widget ps-container ps-theme-default ps-active-y" style="height: 450px" id="listaTareasActivas" id="listaTareasActivas">
 

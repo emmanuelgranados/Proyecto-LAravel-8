@@ -71,7 +71,8 @@ Route::get('/detalle_tarea', function (Request $request) {
 
 Route::get('/obtener_lista_tareas_activas', function (Request $request ) {
 
-    $tareasActivas = Tareas::orderBy('id','DESC')
+    $tareasActivas = Tareas::with('clientes')
+    ->orderBy('id','DESC')
     ->where('fk_id_users_asignado',$request->fk_id_users)
     ->where('fk_id_estatus','<>',3)
     ->where('fk_id_estatus','<>',4)

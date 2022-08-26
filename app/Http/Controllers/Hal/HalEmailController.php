@@ -24,7 +24,7 @@ class HalEmailController extends Controller
         $mail->Username = "arca@arcaasociados.com";
         $mail->Password = "Arca1234@#$";
 
-        $mail->setFrom('arca@arcaasociados.com', 'Hola '.$usuario.', Soy mensajero virtual de Arca Asocidado');
+        $mail->setFrom('arca@arcaasociados.com', 'Hola '.$usuario.', Soy el mensajero virtual de Arca Asociados');
 
         foreach($correo as $email)
         {
