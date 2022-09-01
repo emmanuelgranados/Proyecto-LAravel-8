@@ -26,6 +26,8 @@ class SubTareasPredefinidasController extends Controller
      }
 
      public function new_subtareas_predefinidas(Request $request){
+
+        // dd($request);
         SubTareasPredefinidas::create([
             'sub_tarea_predefinida' => $request['sub_tarea_predefinida'],
             'fk_id_tareas_predefinidas' => $request['fk_id_tareas_predefinidas'],

@@ -147,6 +147,13 @@
                                 </a>
                             </li>
 
+                            <li class="sidebar-item">
+                                <a href="{{route('tareas_estandar')}}" class="sidebar-link">
+                                    <i class="mdi mdi-box-shadow"></i>
+                                    <span class="hide-menu">Tareas Estandar</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
 

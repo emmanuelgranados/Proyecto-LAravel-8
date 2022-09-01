@@ -30,4 +30,12 @@ Route::group(['namespace' => 'Catalogos', 'middleware' => 'auth'], function () {
       Route::post('delete_subtareas_predefinidas', 'SubTareasPredefinidasController@delete_subtareas_predefinidas')->name('delete_subtareas_predefinidas');
       Route::post('bloquear_subtareas_predefinidas', 'SubTareasPredefinidasController@bloquear_subtareas_predefinidas')->name('bloquear_subtareas_predefinidas');
       Route::post('desbloquear_subtareas_predefinidas', 'SubTareasPredefinidasController@desbloquear_subtareas_predefinidas')->name('desbloquear_subtareas_predefinidas');
+
+      //CATALOGO TAREAS ESTANDAR
+      Route::get('tareas_estandar', 'TareasEstandarController@index')->name('tareas_estandar');
+      Route::post('new_tareas_estandar', 'TareasEstandarController@new_tareas_estandar')->name('new_tareas_estandar');
+      Route::post('edit_tareas_estandar', 'TareasEstandarController@edit_tareas_estandar')->name('edit_tareas_estandar');
+      Route::post('delete_tareas_estandar', 'TareasEstandarController@delete_tareas_estandar')->name('delete_tareas_estandar');
+      Route::post('bloquear_tareas_estandar', 'TareasEstandarController@bloquear_tareas_estandar')->name('bloquear_tareas_estandar');
+      Route::post('desbloquear_tareas_estandar', 'TareasEstandarController@desbloquear_tareas_estandar')->name('desbloquear_tareas_estandar');
 });

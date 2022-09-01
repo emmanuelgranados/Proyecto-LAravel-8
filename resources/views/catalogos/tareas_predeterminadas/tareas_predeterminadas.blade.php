@@ -47,7 +47,7 @@
         <div class="card">
           <div class="row no-gutters">
 
-            <div class="col-lg-9 col-md-8">
+            <div class="col-lg-12 col-md-12">
               <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-8">

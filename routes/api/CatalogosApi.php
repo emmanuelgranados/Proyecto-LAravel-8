@@ -2,6 +2,7 @@
 
 use App\Models\Obligaciones;
 use Illuminate\Http\Request;
+use App\Models\TareasEstandar;
 use App\Models\TareasPredefinidas;
 use App\Models\SubTareasPredefinidas;
 
@@ -31,6 +32,22 @@ Route::get('/lista_tareas_predefinidas', function (Request $request) {
                             'tareas_predefinidas.activo')
     ->leftjoin('categorias_tareas','categorias_tareas.id','=', 'tareas_predefinidas.fk_id_categorias_tareas')
     ->where('tareas_predefinidas.eliminado',0)
+    ->get();
+});
+
+
+Route::get('/lista_tareas_estandar', function (Request $request) {
+
+    return  TareasEstandar::select('id','tarea_estandar','activo')
+    ->where('eliminado',0)
+    ->get();
+});
+
+Route::post('/detalle_tareas_estandar', function (Request $request) {
+
+    return  TareasEstandar::select('id','tarea_estandar','activo')
+    ->where('eliminado',0)
+    ->where('id', $request->id)
     ->get();
 });
 
