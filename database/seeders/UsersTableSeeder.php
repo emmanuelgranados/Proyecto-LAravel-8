@@ -21,14 +21,14 @@ class UsersTableSeeder extends Seeder
     {
 
         DB::table('users')->insert([
-            'name'=>'Arca',
+            'name'=>'Admin',
             'fk_id_roles'=>1,
             'fk_id_grupos'=>0,
             'phone'=>'',
             'message'=>'Usuario de sistemas',
             'fk_id_estado'=>14,
-            'email'=>'arca@arcaasociados.com',
-            'password'=> bcrypt('ZaNkV9EO'),
+            'email'=>'admin@prueba.com',
+            'password'=> bcrypt('password'),
             'foto'=>1,
             'activo'=>1,
             'eliminado'=>0,

@@ -35,129 +35,8 @@
                         </li>
                     @endif
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                            aria-expanded="false">
-                            <i class="mdi mdi-note-text"></i>
-                            <span class="hide-menu">Bitacora</span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a href="{{ route('bitacora') }}" class="sidebar-link">
-                                    <i class="mdi mdi-cards-variant"></i>
-                                    <span class="hide-menu">Bitacora</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
 
-                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 || Auth::user()->fk_id_roles == 3 )
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                aria-expanded="false">
-                                <i class="mdi mdi-note-text"></i>
-                                <span class="hide-menu">Clientes</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item">
-                                    <a href="{{ route('clientes_contabilidad') }}" class="sidebar-link">
-                                        <i class="mdi mdi-cards-variant"></i>
-                                        <span class="hide-menu">Contabilidad</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="{{ route('clientes_defensa') }}" class="sidebar-link">
-                                        <i class="mdi mdi-cards-variant"></i>
-                                        <span class="hide-menu">Defensa</span>
-                                    </a>
-                                </li>
-                            </ul>
 
-                        </li>
-                    @endif
-
-                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 || Auth::user()->fk_id_roles == 3)
-                        <li class="sidebar-item">
-
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                aria-expanded="false">
-                                <i class="mdi mdi-note-text"></i>
-                                <span class="hide-menu">Prospectos</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item">
-                                    <a href="{{ route('prospectos_contabilidad') }}" class="sidebar-link">
-                                        <i class="mdi mdi-cards-variant"></i>
-                                        <span class="hide-menu">Contabilidad</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="{{ route('prospectos_defensa') }}" class="sidebar-link">
-                                        <i class="mdi mdi-cards-variant"></i>
-                                        <span class="hide-menu">Defensa</span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </li>
-                    @endif
-                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                aria-expanded="false">
-                                <i class="mdi mdi-chart-pie"></i>
-                                <span class="hide-menu">Reportes</span>
-
-                            </a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item">
-                                    <a href="{{ route('reportes') }}" class="sidebar-link">
-                                        <i class="mdi mdi-box-shadow"></i>
-                                        <span class="hide-menu"> Reportes </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    @endif
-                    @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
-                    <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-folder"></i><span class="hide-menu">Catalogos</span>
-
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a href="{{route('obligaciones')}}" class="sidebar-link">
-                                    <i class="mdi mdi-box-shadow"></i>
-                                    <span class="hide-menu"> Obligaciones </span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{{route('tareas_predefinidas')}}" class="sidebar-link">
-                                    <i class="mdi mdi-box-shadow"></i>
-                                    <span class="hide-menu">Tareas Predefinidas</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a href="{{route('sub_tareas_predefinidas')}}" class="sidebar-link">
-                                    <i class="mdi mdi-box-shadow"></i>
-                                    <span class="hide-menu">Sub Tareas Predefinidas</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a href="{{route('tareas_estandar')}}" class="sidebar-link">
-                                    <i class="mdi mdi-box-shadow"></i>
-                                    <span class="hide-menu">Tareas Estandar</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                @endif
 
 
                 @if ( Auth::user()->fk_id_roles == 1 || Auth::user()->fk_id_roles == 2 )
@@ -168,17 +47,11 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{route('inventario')}}" class="sidebar-link">
+                            <a href="{{route('maquinasProductos')}}" class="sidebar-link">
                                 <i class="mdi mdi-box-shadow"></i>
-                                <span class="hide-menu"> Inventario </span>
+                                <span class="hide-menu"> Maquinas </span>
                             </a>
                         </li>
-                        {{-- <li class="sidebar-item">
-                            <a href="{{route('tareas_predefinidas')}}" class="sidebar-link">
-                                <i class="mdi mdi-box-shadow"></i>
-                                <span class="hide-menu">Tareas Predefinidas</span>
-                            </a>
-                        </li> --}}
 
 
                     </ul>

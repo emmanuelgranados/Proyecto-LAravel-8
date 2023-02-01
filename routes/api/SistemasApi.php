@@ -3,6 +3,7 @@
 
 use App\Models\Inventario;
 use Illuminate\Http\Request;
+use App\Models\MaquinasProductos;
 use App\Models\HistorialInventario;
 
 Route::get('/lista_inventario', function (Request $request) {
@@ -29,6 +30,7 @@ Route::get('/historial_equipo', function (Request $request) {
     ->where('fk_id_inventario',$request->id)
     ->get();
     });
+
 
 
 
